@@ -1,1 +1,4 @@
-select * from {{ ref('opp_source') }}
+{{ config(materialized='table') }}
+
+select * from "acton".public.opportunity_source_20210514
+limit 10
