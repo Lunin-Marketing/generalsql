@@ -1,4 +1,5 @@
 {{ config(materialized='table') }}
+WITH final AS (
 SELECT
 lead_id,
 email,
@@ -11,4 +12,7 @@ month AS lead_created_month
 FROM "acton".dbt_acton.lead_source_xf
 LEFT JOIN "acton".dbt_acton.date_base_xf ON
 lead_source_xf.lead_created_date=date_base_xf.day
+)
+SELECT *
+FROM final
 WHERE lead_created_day IS NOT null
