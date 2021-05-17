@@ -9,7 +9,7 @@ lead_status,
 day AS lead_created_day,
 week AS lead_created_week,
 month AS lead_created_month
-FROM "defaultdb".dbt_acton.lead_source_xf
+FROM "defaultdb".dbt_actonmarketing.lead_source_xf
 LEFT JOIN "defaultdb".dbt_actonmarketing.date_base_xf ON
 lead_source_xf.lead_created_date=date_base_xf.day
 )
