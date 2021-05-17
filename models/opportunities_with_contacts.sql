@@ -2,10 +2,10 @@
 
 with opp_base as (
     select *
-    from "acton".dbt_acton.opp_source_xf
+    from "defaultdb".dbt_acton.opp_source_xf
 ), contact_base as (
     select *
-    from "acton".dbt_acton.contact_source_xf
+    from "defaultdb".dbt_acton.contact_source_xf
 )
 select 
 --count (distinct opportunity_id) as opps, --11343

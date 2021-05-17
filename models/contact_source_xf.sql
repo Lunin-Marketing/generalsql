@@ -55,4 +55,4 @@ hand_raiser__c AS is_hand_raiser,
 mql_created_date__c AS mql_created_date,
 mql_most_recent_date__c AS mql_most_recent_date
 
-FROM "acton".public.contact_source
+FROM "defaultdb".public.contact_source_20210517

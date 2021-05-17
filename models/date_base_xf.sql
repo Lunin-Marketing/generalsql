@@ -5,4 +5,4 @@ week,
 month,
 quarter,
 fy
-FROM "acton".public.date_base
+FROM "defaultdb".public.date_base

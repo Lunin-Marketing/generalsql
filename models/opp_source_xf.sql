@@ -43,4 +43,4 @@ renewal_acv,
 segment,
 type,
 forecast_category__c AS forecast_category
-from "acton".public.opportunity_source_20210514
+from "defaultdb".public.opportunity_source_20210517
