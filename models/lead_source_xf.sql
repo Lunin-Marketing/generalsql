@@ -48,4 +48,4 @@ mql_created_date__c AS mql_created_date,
 mql_most_recent_date__c AS mql_most_recent_date,
 created_date AS lead_created_date,
 lead_status AS lead_status
-from "acton".public.lead_source_20210514
+from "defaultdb".public.lead_source_20210517

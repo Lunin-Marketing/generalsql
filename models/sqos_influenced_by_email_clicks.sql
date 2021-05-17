@@ -2,10 +2,10 @@
 
 WITH opp_with_contact_base AS (
 SELECT *
-FROM "acton".dbt_acton.opportunities_with_contacts
+FROM "defaultdb".dbt_acton.opportunities_with_contacts
 ), email_click_base AS (
     SELECT *
-    FROM "acton".dbt_acton.email_clicks_ao_xf
+    FROM "defaultdb".dbt_acton.email_clicks_ao_xf
 ) , sum_base AS (
 SELECT 
 email_click_base.email,
