@@ -31,20 +31,30 @@ FROM email_click_base
 LEFT JOIN opp_with_contact_base ON 
 email_click_base.email=opp_with_contact_base.email
 WHERE opportunity_id IS NOT null
+AND discovery_date >= '2021-01-01'
+AND type = 'New Business'
+AND action_time >= '2021-01-01'
 --GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
 
-), final AS (
+), intermediate AS (
 SELECT DISTINCT
 automated_program_name,
-discovery_date,
-type,
-opps,
 acv
 FROM sum_base
 WHERE discovery_date IS NOT null
 AND discovery_date>=action_time
+AND automated_program_name IS NOT null
+AND automated_program_name != ''
+AND automated_program_name NOT LIKE '%Conf%'
+
+), final AS (
+SELECT
+automated_program_name,
+SUM(acv) AS total_acv
+FROM intermediate
+GROUP BY 1
+
 )
 
 SELECT *
 FROM final
-ORDER BY 4
