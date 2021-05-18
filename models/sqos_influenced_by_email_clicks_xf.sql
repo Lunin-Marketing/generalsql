@@ -3,9 +3,11 @@
 WITH opp_with_contact_base AS (
 SELECT *
 FROM "defaultdb".dbt_actonmarketing.opportunities_with_contacts
+
 ), email_click_base AS (
     SELECT *
     FROM "defaultdb".dbt_actonmarketing.email_clicks_ao_xf
+
 ) , sum_base AS (
 SELECT 
 email_click_base.email,
@@ -24,19 +26,26 @@ stage_name,
 acv,
 opp_lead_source,
 type,
-COUNT(DISTINCT opportunity_id) AS opps
+opportunity_id AS opps
 FROM email_click_base
 LEFT JOIN opp_with_contact_base ON 
 email_click_base.email=opp_with_contact_base.email
-WHERE opportunitY_id IS NOT null
-limit 10
-)
+WHERE opportunity_id IS NOT null
+--GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
+
+), final AS (
 SELECT
 automated_program_name,
 message_title,
-campaign_name
+campaign_name,
+stage_name,
+discovery_date,
+type,
+opps
+FROM sum_base
+WHERE discovery_date IS NOT null
+AND discovery_date>=action_time
+)
 
-
-
-
+SELECT *
 FROM final
