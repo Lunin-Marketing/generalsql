@@ -45,6 +45,9 @@ opps
 FROM sum_base
 WHERE discovery_date IS NOT null
 AND discovery_date>=action_time
+AND automated_program_name IS NOT null
+AND automated_program_name != ''
+AND automated_program_name NOT LIKE '%Conf%'
 )
 
 SELECT *
