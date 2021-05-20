@@ -49,3 +49,4 @@ mql_most_recent_date__c AS mql_most_recent_date,
 created_date AS lead_created_date,
 lead_status AS lead_status
 from "defaultdb".public.lead_source_20210517
+WHERE lead_owner != 'AO-Fake Leads'
