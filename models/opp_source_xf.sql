@@ -1,6 +1,13 @@
 {{ config(materialized='table') }}
+WITH base AS (
+--SELECT *
+--FROM "defaultdb".public.opportunity_source_2020
+--UNION ALL
+SELECT *
+FROM "defaultdb".public.opportunity_source_20210524
+)
 
-select 
+SELECT 
 opportunity_id,
 parent_account_id, 
 account_id, 
@@ -43,4 +50,4 @@ renewal_acv,
 segment,
 type,
 forecast_category__c AS forecast_category
-from "defaultdb".public.opportunity_source_20210517
+FROM base
