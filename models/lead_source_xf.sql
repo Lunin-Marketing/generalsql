@@ -1,6 +1,13 @@
 {{ config(materialized='table') }}
+WITH base AS (
+SELECT *
+FROM "defaultdb".public.lead_source_2020
+UNION ALL
+SELECT *
+FROM "defaultdb".public.lead_source_20210524
+)
 
-select
+SELECT
 lead_id,
 email,
 x9883_lead_score__c AS lead_score,
@@ -48,5 +55,5 @@ mql_created_date__c AS mql_created_date,
 mql_most_recent_date__c AS mql_most_recent_date,
 created_date AS lead_created_date,
 lead_status AS lead_status
-from "defaultdb".public.lead_source_20210517
+FROM base
 WHERE lead_owner != 'AO-Fake Leads'

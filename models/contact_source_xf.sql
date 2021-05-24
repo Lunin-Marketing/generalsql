@@ -1,4 +1,11 @@
 {{ config(materialized='table') }}
+WITH base AS (
+SELECT *
+FROM "defaultdb".public.contact_source_2020
+UNION ALL
+SELECT *
+FROM "defaultdb".public.contact_source_20210524
+)
 
 SELECT 
 account_id,
@@ -55,4 +62,4 @@ hand_raiser__c AS is_hand_raiser,
 mql_created_date__c AS mql_created_date,
 mql_most_recent_date__c AS mql_most_recent_date
 
-FROM "defaultdb".public.contact_source_20210517
+FROM base
