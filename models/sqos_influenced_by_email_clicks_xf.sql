@@ -41,7 +41,8 @@ campaign_name,
 stage_name,
 discovery_date,
 type,
-opps
+opps,
+acv
 FROM sum_base
 WHERE discovery_date IS NOT null
 AND discovery_date>=action_time
