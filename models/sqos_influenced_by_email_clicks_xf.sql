@@ -34,7 +34,7 @@ WHERE opportunity_id IS NOT null
 --GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
 
 ), final AS (
-SELECT
+SELECT DISTINCT
 automated_program_name,
 message_title,
 campaign_name,
@@ -49,6 +49,8 @@ AND discovery_date>=action_time
 AND automated_program_name IS NOT null
 AND automated_program_name != ''
 AND automated_program_name NOT LIKE '%Conf%'
+--AND type = 'New Business'
+--AND discovery_date >= '2021-01-01'
 )
 
 SELECT *
