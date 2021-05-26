@@ -9,7 +9,7 @@ FROM "defaultdb".dbt_actonmarketing.opportunities_with_contacts
     FROM "defaultdb".dbt_actonmarketing.email_clicks_ao_xf
 
 ) , sum_base AS (
-SELECT 
+SELECT DISTINCT
 email_click_base.email,
 action_time,
 message_title,
@@ -32,8 +32,12 @@ LEFT JOIN opp_with_contact_base ON
 email_click_base.email=opp_with_contact_base.email
 WHERE opportunity_id IS NOT null
 AND discovery_date >= '2021-01-01'
+AND discovery_date>=action_time
 AND type = 'New Business'
 AND action_time >= '2021-01-01'
+AND automated_program_name IS NOT null
+AND automated_program_name != ''
+AND automated_program_name NOT LIKE '%Conf%'
 --GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
 
 ), intermediate AS (
@@ -42,10 +46,10 @@ automated_program_name,
 acv
 FROM sum_base
 WHERE discovery_date IS NOT null
-AND discovery_date>=action_time
-AND automated_program_name IS NOT null
-AND automated_program_name != ''
-AND automated_program_name NOT LIKE '%Conf%'
+--AND discovery_date>=action_time
+--AND automated_program_name IS NOT null
+--AND automated_program_name != ''
+--AND automated_program_name NOT LIKE '%Conf%'
 
 ), final AS (
 SELECT
