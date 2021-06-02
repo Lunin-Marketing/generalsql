@@ -13,6 +13,11 @@ opp_channel_lead_creation,
 opp_medium_lead_creation,
 opp_source_lead_creation,
 type,
+case 
+when type in ('New Business') then 'New Business'
+when type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down','Trigger Renewal','Renewal','Multiyear Renewal','Admin Conversion','One Time','Downsell') then 'Upsell'
+else null
+end as grouped_type,
 acv
 FROM "defaultdb".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "defaultdb".dbt_actonmarketing.user_source_xf ON
