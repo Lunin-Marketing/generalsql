@@ -4,7 +4,7 @@ WITH base AS (
 --FROM "defaultdb".public.opportunity_source_2020
 --UNION ALL
 SELECT *
-FROM "defaultdb".public.opportunity_source_20210524
+FROM "defaultdb".public.opportunity_source_20210604
 )
 
 SELECT 
