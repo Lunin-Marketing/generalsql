@@ -10,9 +10,17 @@ is_won,
 discovery_date,
 stage_name,
 opp_lead_source,
+case 
+when type in ('New Business') then 'New Business'
+when type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down','Trigger Renewal','Renewal','Multiyear Renewal','Admin Conversion','One Time','Downsell') then 'Upsell'
+else null
+end as grouped_type,
 opp_channel_opportunity_creation, 
+opp_channel_lead_creation,
 opp_medium_opportunity_creation,
+opp_medium_lead_creation,
 opp_source_opportunity_creation, 
+opp_source_lead_creation,
 type,
 acv
 FROM "acton".dbt_actonmarketing.opp_source_xf
