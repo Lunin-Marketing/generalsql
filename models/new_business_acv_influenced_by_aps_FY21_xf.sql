@@ -2,11 +2,11 @@
 
 WITH opp_with_contact_base AS (
 SELECT *
-FROM "defaultdb".dbt_actonmarketing.opportunities_with_contacts
+FROM "acton".dbt_actonmarketing.opportunities_with_contacts
 
 ), email_click_base AS (
     SELECT *
-    FROM "defaultdb".dbt_actonmarketing.email_clicks_ao_xf
+    FROM "acton".dbt_actonmarketing.email_clicks_ao_xf
 
 ) , sum_base AS (
 SELECT DISTINCT
@@ -23,7 +23,7 @@ is_won,
 created_date,
 discovery_date,
 stage_name,
-acv,
+acv::numeric,
 opp_lead_source,
 type,
 opportunity_id AS opps

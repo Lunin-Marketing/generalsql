@@ -12,7 +12,7 @@ opp_channel_opportunity_creation,
 opp_medium_opportunity_creation,
 opp_source_opportunity_creation, 
 type
-FROM "defaultdb".dbt_actonmarketing.opp_source_xf
+FROM "acton".dbt_actonmarketing.opp_source_xf
 WHERE created_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
 

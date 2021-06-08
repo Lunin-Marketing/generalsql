@@ -1,10 +1,7 @@
 {{ config(materialized='table') }}
 WITH base AS (
 SELECT *
-FROM "defaultdb".public.lead_source_2020
-UNION ALL
-SELECT *
-FROM "defaultdb".public.lead_source_20210524
+FROM "acton".public.lead_source_20210524
 )
 
 SELECT

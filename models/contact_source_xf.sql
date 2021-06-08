@@ -1,10 +1,10 @@
 {{ config(materialized='table') }}
 WITH base AS (
+--SELECT *
+--FROM "defaultdb".public.contact_source_2020
+--UNION ALL
 SELECT *
-FROM "defaultdb".public.contact_source_2020
-UNION ALL
-SELECT *
-FROM "defaultdb".public.contact_source_20210524
+FROM "acton".public.contact_source_20210524
 )
 
 SELECT 

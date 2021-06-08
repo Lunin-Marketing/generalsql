@@ -3,6 +3,7 @@ SELECT
 day,
 week,
 month,
+month_name,
 quarter,
 fy
-FROM "defaultdb".public.date_base
+FROM "acton".public.date_base
