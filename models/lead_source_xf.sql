@@ -42,6 +42,7 @@ SELECT
 "lt_utm_campaign__c" AS campaign_last_touch,
 "Form_Consent_Opt_In__c" AS form_consent_opt_in,
 "Channel_Lead_Creation__c" AS channel_lead_creation,
+"Channel_Lead_Creation__c" AS lead_channel_forecast,
 "Medium_Lead_Creation__c" AS medium_lead_creation,
 "Source_Lead_Creation__c" AS source_lead_creation,
 "Campaign_Lead_Creation__c" AS campaign_lead_creation,
@@ -70,7 +71,5 @@ SELECT
 "ft_utm_campaign__c" AS campaign_first_touch
 --"X9883_Lead_Score__c" AS lead_score,
 --de_industry__c AS industry,
---channel_lead_creation__c AS lead_channel_forecast,
---lead_owner,
 FROM base
 WHERE base."OwnerId" != '00Ga0000003Nugr'
