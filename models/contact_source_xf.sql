@@ -61,8 +61,7 @@ SELECT
 annual_revenue,
 de_current_crm,
 de_current_ma,
-sdr,
-is_current_customer
+sdr
 FROM base
 LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
 base."AccountId"=account_source_xf.account_id
