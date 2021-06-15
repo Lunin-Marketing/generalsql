@@ -58,7 +58,6 @@ SELECT
 "CreatedDate" AS created_date,
 "Contact_Status__c" AS contact_status,
 "LeadID_Converted_From__c" AS lead_id_converted_from,
-account_owner_id,
 annual_revenue,
 de_current_crm,
 de_current_ma,

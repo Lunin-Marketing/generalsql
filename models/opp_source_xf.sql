@@ -13,7 +13,7 @@ SELECT
 "Amount" AS amount,
 "CloseDate" AS close_date,
 "Type" AS type,
-"LeadSource" AS lead_source,
+"LeadSource" AS opp_lead_source,
 "IsClosed" AS is_closed,
 "IsWon" AS is_won,
 "ForecastCategory" AS forecast_category,
@@ -59,7 +59,8 @@ SELECT
 "Renewal_Stage__c" AS renewal_stage,
 "Renewal_ACV__c" AS renewal_acv,
 "ACV__c" AS acv,
-"ACV_Deal_Size_USD__c" AS acv_deal_size_usd
+"ACV_Deal_Size_USD__c" AS acv_deal_size_usd,
+'2021-02-01' AS discovery_date
 FROM base
 )
 
