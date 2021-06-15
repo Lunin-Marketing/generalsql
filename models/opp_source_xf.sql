@@ -60,7 +60,7 @@ SELECT
 "Renewal_ACV__c" AS renewal_acv,
 "ACV__c" AS acv,
 "ACV_Deal_Size_USD__c" AS acv_deal_size_usd,
-'2021-02-01' AS discovery_date
+"Discovery_Date__c" AS discovery_date
 FROM base
 )
 
