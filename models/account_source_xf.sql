@@ -2,8 +2,8 @@
 WITH base AS (
 SELECT *
 FROM "acton".public."Account"
-)
 
+), final AS (
 SELECT
 "Id" AS account_id,
 "IsDeleted" AS is_deleted,
@@ -20,9 +20,9 @@ SELECT
 "de_Parent_Company__c" AS de_account_parent_name,
 "de_Ultimate_Parent_Company__c" AS de_ultimate_parent_account_name,
 "SF_Id_18_Char__c" AS "18_digit_account_id",
-"OwnerId" AS owner_id,
+"OwnerId" AS account_owner_id,
 "AnnualRevenue" AS annual_revenue,
-"de_Current_CRM__c" AS current_crm,
+"de_Current_CRM__c" AS de_current_crm,
 "Current_Marketing_Automation__c" AS current_ma,
 "de_Current_Marketing_Automation__c" AS de_current_ma,
 "SDR_Email__c" AS sdr_email,
@@ -37,3 +37,8 @@ SELECT
 "LastModifiedDate" AS last_modified_date,
 "CreatedDate" AS account_created_date
 FROM base
+)
+
+SELECT 
+* 
+FROM final
