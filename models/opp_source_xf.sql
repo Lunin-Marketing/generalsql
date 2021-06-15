@@ -2,8 +2,8 @@
 WITH base AS (
 SELECT *
 FROM "acton".public."Opportunity"
-)
 
+), final AS (
 SELECT 
 "Id" AS opportunity_id,
 "IsDeleted" AS is_deleted,
@@ -61,3 +61,8 @@ SELECT
 "ACV__c" AS acv,
 "ACV_Deal_Size_USD__c" AS acv_deal_size_usd
 FROM base
+)
+
+SELECT 
+*
+FROM final

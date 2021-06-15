@@ -2,8 +2,8 @@
 WITH base AS (
 SELECT *
 FROM "acton".public."Lead"
-)
 
+), final AS (
 SELECT
 "Id" AS lead_id,
 "IsDeleted" AS is_deleted,
@@ -73,3 +73,8 @@ SELECT
 --de_industry__c AS industry,
 FROM base
 WHERE base."OwnerId" != '00Ga0000003Nugr'
+)
+
+SELECT 
+*
+FROM final

@@ -2,8 +2,8 @@
 WITH base AS (
 SELECT *
 FROM "acton".public."Contact"
-)
 
+), final AS (
 SELECT 
 "Id" AS contact_id,
 "IsDeleted" AS is_deleted,
@@ -57,5 +57,18 @@ SELECT
 "MQL_Most_Recent_Date__c" AS mql_most_recent_date,
 "CreatedDate" AS created_date,
 "Contact_Status__c" AS contact_status,
-"LeadID_Converted_From__c" AS lead_id_converted_from
+"LeadID_Converted_From__c" AS lead_id_converted_from,
+account_owner_id,
+annual_revenue,
+de_current_crm,
+de_current_ma,
+sdr,
+is_current_customer
 FROM base
+LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
+base."AccountId"=account_source_xf.account_id
+)
+
+SELECT
+*
+FROM final
