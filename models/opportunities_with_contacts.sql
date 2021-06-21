@@ -8,8 +8,6 @@ with opp_base as (
     from "acton".dbt_actonmarketing.contact_source_xf
 )
 select 
---count (distinct opportunity_id) as opps, --11343
---count(distinct contact_id) as contacts --480000
 email,
 is_current_customer, 
 is_hand_raiser,
@@ -25,6 +23,6 @@ opp_lead_source,
 type
 FROM contact_base
 LEFT JOIN opp_base ON
-contact_base.account_id=opp_base.account_id
+LEFT(contact_base.account_id,15)=LEFT(opp_base.account_id,15)
 WHERE opportunity_id IS NOT null
 ORDER BY 5

@@ -11,15 +11,15 @@ SELECT
 "Name" AS opportunity_name,
 "StageName" AS stage_name,
 "Amount" AS amount,
-"CloseDate" AS close_date,
+DATE_TRUNC('day',"CloseDate")::Date AS close_date,
 "Type" AS type,
 "LeadSource" AS opp_lead_source,
 "IsClosed" AS is_closed,
 "IsWon" AS is_won,
 "ForecastCategory" AS forecast_category,
 "OwnerId" AS owner_id, 
-"CreatedDate" AS created_date,
-"LastModifiedDate" AS last_modified_date,
+DATE_TRUNC('day',"CreatedDate")::Date AS created_date,
+DATE_TRUNC('day',"LastModifiedDate")::Date AS last_modified_date,
 "ContactId" AS contact_id,
 "Renewal_Type__c" AS renewal_type,
 "Renewal_ACV_Value__c" AS renewal_acv_value,
@@ -53,14 +53,14 @@ SELECT
 "ft_subchannel__c" AS opp_subchannel_first_touch,
 "oc_subchannel__c" AS opp_subchannel_opportunity_creation,
 "lc_subchannel__c" AS opp_subchannel_lead_creation, 
-"Discovery_Call_Scheduled_Date__c" AS discovery_call_date,
+DATE_TRUNC('day',"Discovery_Call_Scheduled_Date__c")::Date AS discovery_call_date,
 "SQL_Status_Reason__c" AS sql_status_reason,
 "Opportunity_Status__c" AS opportunity_status,
 "Renewal_Stage__c" AS renewal_stage,
 "Renewal_ACV__c" AS renewal_acv,
 "ACV__c" AS acv,
 "ACV_Deal_Size_USD__c" AS acv_deal_size_usd,
-"Discovery_Date__c" AS discovery_date
+DATE_TRUNC('day',"Discovery_Date__c")::Date AS discovery_date
 FROM base
 )
 
