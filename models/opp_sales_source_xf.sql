@@ -23,6 +23,6 @@ FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
 LEFT(opp_source_xf.owner_id,15)=user_source_xf.user_id
 WHERE close_date IS NOT null
---AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
+AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
 AND is_won = '1'
 
