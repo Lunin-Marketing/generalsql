@@ -37,6 +37,7 @@ WHERE opportunity_id IS NOT null
 SELECT
 automated_program_name,
 message_title,
+action_time,
 campaign_name,
 stage_name,
 opp_created_date,
