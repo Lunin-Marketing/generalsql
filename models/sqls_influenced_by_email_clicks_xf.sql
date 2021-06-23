@@ -20,7 +20,7 @@ is_hand_raiser,
 mql_created_date,
 close_date,
 is_won,
-created_date,
+opp_created_date,
 discovery_date,
 stage_name,
 acv,
@@ -39,12 +39,12 @@ automated_program_name,
 message_title,
 campaign_name,
 stage_name,
-created_date,
+opp_created_date,
 type,
 opps
 FROM sum_base
-WHERE created_date IS NOT null
-AND created_date>=action_time
+WHERE opp_created_date IS NOT null
+AND opp_created_date>=action_time
 )
 
 SELECT *
