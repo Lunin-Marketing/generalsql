@@ -38,6 +38,7 @@ SELECT DISTINCT
 automated_program_name,
 message_title,
 campaign_name,
+action_time,
 stage_name,
 discovery_date,
 type,
