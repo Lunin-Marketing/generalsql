@@ -68,7 +68,11 @@ DATE_TRUNC('day',"MQL_Most_Recent_Date__c")::Date AS mql_most_recent_date,
 "Engagement_Level__c" AS engagement_level,
 "ft_utm_medium__c" AS medium_first_touch,
 "ft_utm_source__c" AS source_first_touch,
-"ft_utm_campaign__c" AS campaign_first_touch
+"ft_utm_campaign__c" AS campaign_first_touch,
+CASE WHEN "AnnualRevenue" <= 49999999 THEN 'SMB'
+     WHEN "AnnualRevenue" > 49999999 AND "AnnualRevenue" <= 499999999 THEN 'Mid-Market'
+     WHEN "AnnualRevenue" > 499999999 THEN 'Enterprise'
+     END AS company_size_rev 
 --"X9883_Lead_Score__c" AS lead_score,
 --de_industry__c AS industry,
 FROM base
