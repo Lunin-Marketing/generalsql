@@ -4,7 +4,7 @@ WITH current_week AS (
 SELECT
 week 
 FROM "acton".dbt_actonmarketing.date_base_xf
-WHERE day=CURRENT_DATE
+WHERE day=CURRENT_DATE-7
 ), base AS (
 SELECT DISTINCT
 lead_source_xf.lead_id AS lead_id,
