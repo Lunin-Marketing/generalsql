@@ -1,9 +1,8 @@
 {{ config(materialized='table') }}
 
-WITH current_quarter AS (
+WITH current_week AS (
 SELECT
-fy,
-quarter 
+week 
 FROM "acton".dbt_actonmarketing.date_base_xf
 WHERE day=CURRENT_DATE
 ), base AS (
@@ -13,9 +12,9 @@ lead_source_xf.created_date
 FROM "acton".dbt_actonmarketing.lead_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 lead_source_xf.created_date=date_base_xf.day
-LEFT JOIN current_quarter ON 
-date_base_xf.quarter=current_quarter.quarter
-WHERE current_quarter.quarter IS NOT null
+LEFT JOIN current_week ON 
+date_base_xf.week=current_week.week
+WHERE current_week.week IS NOT null
 )
 
 SELECT *
