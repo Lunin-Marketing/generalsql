@@ -55,7 +55,7 @@ SELECT
 "Was_a_Handraiser_Lead__c" AS was_a_handraiser_lead,
 "MQL_Created_Date__c" AS mql_created_date,
 "MQL_Most_Recent_Date__c" AS mql_most_recent_date,
-"CreatedDate" AS created_date,
+"Marketing_Lead_Creation_Date__c" AS created_date,
 "Contact_Status__c" AS contact_status,
 "LeadID_Converted_From__c" AS lead_id_converted_from,
 annual_revenue,
