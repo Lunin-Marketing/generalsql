@@ -76,7 +76,7 @@ CASE WHEN "AnnualRevenue" <= 49999999 THEN 'SMB'
 --"X9883_Lead_Score__c" AS lead_score,
 --de_industry__c AS industry,
 FROM base
-WHERE base."OwnerId" != '00Ga0000003Nugr'
+WHERE base."OwnerId" != '00Ga0000003Nugr' -- AO-Fake Leads
 )
 
 SELECT 

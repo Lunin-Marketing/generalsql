@@ -59,6 +59,10 @@ SELECT
 "Contact_Status__c" AS contact_status,
 "LeadID_Converted_From__c" AS lead_id_converted_from,
 annual_revenue,
+CASE WHEN annual_revenue <= 49999999 THEN 'SMB'
+     WHEN annual_revenue > 49999999 AND annual_revenue <= 499999999 THEN 'Mid-Market'
+     WHEN annual_revenue > 499999999 THEN 'Enterprise'
+     END AS company_size_rev,
 de_current_crm,
 de_current_ma,
 sdr
