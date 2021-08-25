@@ -27,7 +27,7 @@ AND mql_created_date IS NOT null
 AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
 AND email NOT LIKE '%act-on.com'
 AND lead_source = 'Marketing'
-AND company_size_rev = 'Mid-Market'
+AND company_size_rev = 'Mid-Market' 
 GROUP BY 1
 /*UNION ALL 
 SELECT
