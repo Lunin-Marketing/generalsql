@@ -5,8 +5,9 @@ SELECT DISTINCT
 week 
 FROM "acton".dbt_actonmarketing.date_base_xf
 WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
-)
 
+), final AS (
+    
 SELECT
 last_12_weeks.week,
 COUNT(lead_id) AS leads--,
@@ -28,7 +29,7 @@ AND email NOT LIKE '%act-on.com'
 AND lead_source = 'Marketing'
 AND company_size_rev = 'Mid-Market'
 GROUP BY 1
-UNION ALL 
+/*UNION ALL 
 SELECT
 last_12_weeks.week,
 COUNT(contact_id) AS leads--,
@@ -49,4 +50,11 @@ AND account_owner != '00Ga0000003Nugr'
 AND email NOT LIKE '%act-on.com'
 AND lead_source = 'Marketing'
 AND company_size_rev = 'Mid-Market'
+GROUP BY 1*/
+
+)
+SELECT
+week,
+SUM(leads) AS leads
+FROM final
 GROUP BY 1
