@@ -15,7 +15,7 @@ channel_lead_creation,
 medium_lead_creation,
 source_lead_creation,
 country,
-company_size_rev
+company_size_rev 
 FROM "acton".dbt_actonmarketing.lead_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 created_date=date_base_xf.day
