@@ -11,7 +11,8 @@ SELECT
 lead_id,
 created_date,
 offer_asset_type_lead_creation,
-lead_status
+lead_status,
+is_converted
 FROM "acton".dbt_actonmarketing.lead_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 lead_source_xf.created_date=date_base_xf.day
@@ -21,4 +22,4 @@ WHERE last_week.week IS NOT null
 AND created_date IS NOT null
 AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
 AND email NOT LIKE '%act-on.com'
-AND LOWER(is_hand_raiser) = 'true'
+AND is_hand_raiser = 'true'

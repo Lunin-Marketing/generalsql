@@ -21,5 +21,5 @@ WHERE last_12_weeks.week IS NOT null
 AND created_date IS NOT null
 AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
 AND email NOT LIKE '%act-on.com'
-AND LOWER(is_hand_raiser) = 'true'
+AND is_hand_raiser = 'true'
 AND LOWER(lead_status) NOT IN ('current customer','partner','bad data','no fit')
