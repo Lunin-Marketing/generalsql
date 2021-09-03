@@ -9,7 +9,7 @@ WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
 
 SELECT
 lead_id,
-created_date,
+date_base_xf.week AS created_date,
 offer_asset_type_lead_creation,
 lead_status
 FROM "acton".dbt_actonmarketing.lead_source_xf
