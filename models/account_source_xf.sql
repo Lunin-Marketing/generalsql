@@ -35,7 +35,11 @@ SELECT
 "Market_Segment_Dynamic__c" AS market_segment_dynamic,
 "de_Country__c" AS de_country,
 "LastModifiedDate" AS last_modified_date,
-"CreatedDate" AS account_created_date
+"CreatedDate" AS account_created_date,
+CASE WHEN "AnnualRevenue" <= 49999999 THEN 'SMB'
+     WHEN "AnnualRevenue" > 49999999 AND "AnnualRevenue" <= 499999999 THEN 'Mid-Market'
+     WHEN "AnnualRevenue" > 499999999 THEN 'Enterprise'
+     END AS company_size_rev 
 FROM base
 )
 
