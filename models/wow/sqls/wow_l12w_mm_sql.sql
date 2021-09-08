@@ -27,6 +27,6 @@ GROUP BY 1
 )
 SELECT
 week,
-SUM(mqls) AS mqls
+SUM(sqls) AS sqls
 FROM final
 GROUP BY 1
