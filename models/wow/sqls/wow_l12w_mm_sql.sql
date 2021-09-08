@@ -22,6 +22,7 @@ WHERE last_12_weeks.week IS NOT null
 AND created_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
 AND company_size_rev = 'Mid-Market' 
+AND type = 'New Business'
 GROUP BY 1
 
 )
