@@ -60,7 +60,14 @@ DATE_TRUNC('day',"Discovery_Call_Scheduled_Date__c")::Date AS discovery_call_dat
 "Renewal_ACV__c" AS renewal_acv,
 "ACV__c" AS acv,
 "ACV_Deal_Size_USD__c" AS acv_deal_size_usd,
-DATE_TRUNC('day',"Discovery_Date__c")::Date AS discovery_date
+DATE_TRUNC('day',"Discovery_Date__c")::Date AS discovery_date,
+CASE WHEN "ACV_Deal_Size_USD__c" <= '9999' THEN '< 10K'
+     WHEN "ACV_Deal_Size_USD__c" > '9999' AND "ACV_Deal_Size_USD__c" <= '14999' THEN '10-15K'
+     WHEN "ACV_Deal_Size_USD__c" > '14999' AND "ACV_Deal_Size_USD__c" <= '19999' THEN '15-20K'
+     WHEN "ACV_Deal_Size_USD__c" > '19999' AND "ACV_Deal_Size_USD__c" <= '24999' THEN '20-25K'
+     WHEN "ACV_Deal_Size_USD__c" > '24999' AND "ACV_Deal_Size_USD__c" <= '29999' THEN '25-30K'
+     ELSE '> 30K'
+     END AS deal_size_range
 FROM base
 )
 
