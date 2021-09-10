@@ -4,7 +4,7 @@ WITH base AS (
 
 SELECT
 opportunity_id,
-owner_id
+owner_id AS owner_name
 FROM "acton".dbt_actonmarketing.opp_source_xf
 WHERE 1=1
 AND type = 'New Business'
@@ -17,7 +17,7 @@ AND is_deleted != 'true'
 )
 
 SELECT
-owner_id,
+owner_name,
 COUNT(DISTINCT opportunity_id) AS opps
 FROM base
 GROUP BY 1

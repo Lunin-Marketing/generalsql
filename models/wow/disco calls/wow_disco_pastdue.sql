@@ -5,7 +5,7 @@ WITH  base AS (
 SELECT
 opportunity_id,
 opportunity_name,
-owner_id,
+owner_id AS owner_name,
 discovery_call_scheduled_datetime
 FROM "acton".dbt_actonmarketing.opp_source_xf
 WHERE 1=1
@@ -20,7 +20,7 @@ AND discovery_call_scheduled_datetime < CURRENT_DATE
 )
 
 SELECT
-owner_id,
+owner_name,
 COUNT(DISTINCT opportunity_id) AS opps
 FROM base
 GROUP BY 1
