@@ -1,39 +1,30 @@
 {{ config(materialized='table') }}
 
-WITH last_12_weeks AS (
+WITH last_week AS (
 SELECT DISTINCT
 week 
 FROM "acton".dbt_actonmarketing.date_base_xf
-WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
+WHERE day = CURRENT_DATE-7
 
 ), final AS (
     
 SELECT
 date_base_xf.week,
-opp_channel_lead_creation,
-opp_lead_source,
-COUNT(opportunity_id) AS won,
-SUM(acv_deal_size_usd) AS acv
-FROM "acton".dbt_actonmarketing.opp_source_xf
-LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
-opp_source_xf.account_id=account_source_xf.account_id
+COUNT(DISTINCT contract_id) AS churned
+FROM "acton".dbt_actonmarketing.contract_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
-opp_source_xf.close_date=date_base_xf.day
-LEFT JOIN last_12_weeks ON 
-date_base_xf.week=last_12_weeks.week
-WHERE last_12_weeks.week IS NOT null
-AND close_date IS NOT null
-AND discovery_date IS NOT null
-AND type = 'New Business'
-AND stage_name IN ('Closed – Lost No Resources / Budget','Closed – Lost Not Ready / No Decision','Closed – Lost Product Deficiency','Closed - Lost to Competitor')
-GROUP BY 1,2,3
+contract_source_xf.churn_date=date_base_xf.day
+LEFT JOIN last_week ON 
+date_base_xf.week=last_week.week
+WHERE last_week.week IS NOT null
+AND churn_date IS NOT null
+AND status = 'Activated'
+AND contract_status = 'Cancelled'
+AND cs_churn = 'true'
+GROUP BY 1
 
 )
 SELECT
 week,
-opp_channel_lead_creation,
-opp_lead_source,
-SUM(won) AS won,
-SUM(acv) AS acv
+churned
 FROM final
-GROUP BY 1,2,3
