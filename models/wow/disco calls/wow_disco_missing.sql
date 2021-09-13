@@ -4,7 +4,7 @@ WITH base AS (
 
 SELECT
 opportunity_id,
-owner_id AS owner_name
+owner_id AS owner_name --change to created_by
 FROM "acton".dbt_actonmarketing.opp_source_xf
 WHERE 1=1
 AND type = 'New Business'
