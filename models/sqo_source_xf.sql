@@ -3,7 +3,7 @@
 SELECT
 opportunity_id,
 opportunity_name,
-full_name AS owner_name,
+user_name AS owner_name,
 owner_id,
 is_closed,
 is_won,
@@ -25,7 +25,7 @@ type,
 acv
 FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
-LEFT(opp_source_xf.owner_id,15)=user_source_xf.user_id
+opp_source_xf.owner_id=user_source_xf.user_id
 WHERE discovery_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
 
