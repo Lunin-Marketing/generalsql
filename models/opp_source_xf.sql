@@ -69,7 +69,7 @@ CASE WHEN "ACV_Deal_Size_USD__c" <= '9999' THEN '< 10K'
      WHEN "ACV_Deal_Size_USD__c" > '14999' AND "ACV_Deal_Size_USD__c" <= '19999' THEN '15-20K'
      WHEN "ACV_Deal_Size_USD__c" > '19999' AND "ACV_Deal_Size_USD__c" <= '24999' THEN '20-25K'
      WHEN "ACV_Deal_Size_USD__c" > '24999' AND "ACV_Deal_Size_USD__c" <= '29999' THEN '25-30K'
-     ELSE '> 30K'
+     ELSE '30K+'
      END AS deal_size_range
 FROM base
 )
