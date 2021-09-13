@@ -5,9 +5,11 @@ WITH  base AS (
 SELECT
 opportunity_id,
 opportunity_name,
-owner_id AS owner_name,
+user_name AS owner_name,
 discovery_call_scheduled_datetime
 FROM "acton".dbt_actonmarketing.opp_source_xf
+LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
+opp_source_xf.owner_id=user_source_xf.user_id
 WHERE 1=1
 AND type = 'New Business'
 AND discovery_call_scheduled_datetime IS NOT null
