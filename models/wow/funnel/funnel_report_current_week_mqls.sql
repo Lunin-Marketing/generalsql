@@ -17,5 +17,6 @@ date_base_xf.week=current_week.week
 WHERE current_week.week IS NOT null
 )
 
-SELECT *
+SELECT 
+*
 FROM base
