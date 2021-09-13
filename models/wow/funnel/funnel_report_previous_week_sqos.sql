@@ -15,6 +15,7 @@ sqo_source_xf.discovery_date=date_base_xf.day
 LEFT JOIN previous_week ON 
 date_base_xf.week=previous_week.week
 WHERE previous_week.week IS NOT null
+AND type = 'New Business'
 )
 
 SELECT *

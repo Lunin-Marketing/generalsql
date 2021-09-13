@@ -16,6 +16,7 @@ opp_sales_source_xf.close_date=date_base_xf.day
 LEFT JOIN current_quarter ON 
 date_base_xf.quarter=current_quarter.quarter
 WHERE current_quarter.quarter IS NOT null
+AND type = 'New Business'
 )
 
 SELECT *

@@ -15,6 +15,7 @@ sql_source_xf.created_date=date_base_xf.day
 LEFT JOIN current_week ON 
 date_base_xf.week=current_week.week
 WHERE current_week.week IS NOT null
+AND type = 'New Business'
 )
 
 SELECT *
