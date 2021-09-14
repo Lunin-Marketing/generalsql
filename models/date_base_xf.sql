@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 SELECT
-day,
+day::Date,
 week,
 month,
 month_name,

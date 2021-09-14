@@ -13,7 +13,7 @@ date_base_xf.week,
 opp_channel_lead_creation,
 opp_lead_source,
 COUNT(opportunity_id) AS won,
-SUM(acv_deal_size_usd) AS acv
+SUM(acv_deal_size_usd)::integer AS acv
 FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
 opp_source_xf.account_id=account_source_xf.account_id
@@ -33,6 +33,6 @@ week,
 opp_channel_lead_creation,
 opp_lead_source,
 SUM(won) AS won,
-SUM(acv) AS acv
+SUM(acv)::money AS acv
 FROM final
 GROUP BY 1,2,3

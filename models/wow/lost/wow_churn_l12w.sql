@@ -9,7 +9,7 @@ WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
 ), final AS (
     
 SELECT
-date_base_xf.week,
+last_12_weeks.week,
 COUNT(DISTINCT contract_id) AS churned,
 SUM(arr_loss_amount * -1) AS lost_customer_arr
 FROM "acton".dbt_actonmarketing.contract_source_xf
@@ -23,6 +23,7 @@ AND churn_date IS NOT null
 AND status = 'Activated'
 AND contract_status = 'Cancelled'
 AND cs_churn = 'true'
+--AND contract_id LIKE '%8001O0000037UwxQAE%'
 GROUP BY 1
 
 )
@@ -31,3 +32,4 @@ week,
 churned,
 lost_customer_arr
 FROM final
+ORDER BY 1 ASC
