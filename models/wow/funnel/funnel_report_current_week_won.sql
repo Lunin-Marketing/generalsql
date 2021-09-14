@@ -8,6 +8,7 @@ WHERE day=CURRENT_DATE-7
 ), base AS (
 SELECT DISTINCT
 opp_sales_source_xf.opportunity_id AS won_id,
+acv,
 opp_sales_source_xf.close_date AS won_date
 FROM "acton".dbt_actonmarketing.opp_sales_source_xf 
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
