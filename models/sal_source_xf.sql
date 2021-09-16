@@ -8,7 +8,8 @@ is_converted,
 is_hand_raiser,
 mql_created_date,
 mql_most_recent_date,
-lead_status
+lead_status,
+country
 FROM "acton".dbt_actonmarketing.lead_source_xf
 WHERE lead_owner != '00Ga0000003Nugr'
 AND mql_created_date IS NOT null

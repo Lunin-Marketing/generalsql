@@ -9,7 +9,8 @@ WHERE day=CURRENT_DATE-7
 SELECT DISTINCT
 sqo_source_xf.opportunity_id AS sqo_id,
 acv,
-sqo_source_xf.discovery_date AS sqo_date
+sqo_source_xf.discovery_date AS sqo_date,
+country
 FROM "acton".dbt_actonmarketing.sqo_source_xf 
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 sqo_source_xf.discovery_date=date_base_xf.day
