@@ -11,8 +11,11 @@ opp_lead_source,
 opp_channel_opportunity_creation, 
 opp_medium_opportunity_creation,
 opp_source_opportunity_creation, 
-type
+type,
+billing_country AS country
 FROM "acton".dbt_actonmarketing.opp_source_xf
+LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON 
+opp_source_xf.account_id=account_source_xf.account_id
 WHERE created_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
 

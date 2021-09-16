@@ -8,7 +8,8 @@ WHERE day=CURRENT_DATE-14
 ), base AS (
 SELECT DISTINCT
 lead_source_xf.lead_id AS lead_id,
-lead_source_xf.marketing_created_date AS created_date
+lead_source_xf.marketing_created_date AS created_date,
+country
 FROM "acton".dbt_actonmarketing.lead_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 lead_source_xf.marketing_created_date=date_base_xf.day

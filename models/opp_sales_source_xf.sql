@@ -18,10 +18,13 @@ when type in ('New Business') then 'New Business'
 when type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down','Trigger Renewal','Renewal','Multiyear Renewal','Admin Conversion','One Time','Downsell') then 'Upsell'
 else null
 end as grouped_type,
-acv
+acv,
+billing_country AS country
 FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
 opp_source_xf.owner_id=user_source_xf.user_id
+LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON 
+opp_source_xf.account_id=account_source_xf.account_id
 WHERE close_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
 AND is_won = '1'
