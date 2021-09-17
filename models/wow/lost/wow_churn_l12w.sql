@@ -11,7 +11,7 @@ WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
 SELECT
 last_12_weeks.week,
 COUNT(DISTINCT contract_id) AS churned,
-SUM(arr_loss_amount * -1) AS lost_customer_arr
+SUM(arr_loss_amount) AS lost_customer_arr
 FROM "acton".dbt_actonmarketing.contract_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 contract_source_xf.churn_date=date_base_xf.day
