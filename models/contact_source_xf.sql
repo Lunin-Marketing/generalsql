@@ -61,7 +61,7 @@ SELECT
 "LeadID_Converted_From__c" AS lead_id_converted_from,
 "Is_Renewal_Contact__c" AS is_renewal_contact,
 --"Renewal_Contact__c" AS 
-"Owner_ID__c" AS owner_id,
+"Owner_ID__c" AS owner_id2,
 "Account_CSM__c" AS account_csm,
 "Contact_Role__c" AS contact_role,
 "Account_CSM_ID__c" AS account_csm_id,
