@@ -39,7 +39,27 @@ SELECT
 CASE WHEN "AnnualRevenue" <= 49999999 THEN 'SMB'
      WHEN "AnnualRevenue" > 49999999 AND "AnnualRevenue" <= 499999999 THEN 'Mid-Market'
      WHEN "AnnualRevenue" > 499999999 THEN 'Enterprise'
-     END AS company_size_rev 
+     END AS company_size_rev,
+"CSM__c" AS csm,
+"Account_CSM__c" AS account_csm,
+"Renewal_Notice_Date__c" AS renewal_notice_date,
+"Number_of_Open_Opps__c" AS number_of_open_opps,
+"Current_Contract__c" AS current_contract,
+"CSM_Team__c" AS csm_team,
+"Account_Owner_Email__c" AS account_owner_email,
+"SDR_Photo__c" AS sdr_photo,
+"AO_Instance_Number__c" AS ao_instance_number,
+"SDR_Calendly__c" AS sdr_calendly,
+"SDR_Title__c" AS sdr_title,
+"Onboarding_Specialist__c" AS onboarding_specialist,
+"SDR_First_Name__c" AS sdr_first_name,
+"Account_Owner_Calendly__c" AS account_owner_calendly,
+"Onboarding_Completion_Date__c" AS onboarding_completion_date,
+"Onboarding_Specialist_Email__c" AS onboarding_specialist_email,
+"Onboarding_Specialist_Photo__c" AS onboarding_specialist_photo,
+"Account_CSM_Email__c" AS account_csm_email,
+"Account_CSM_Photo__c" AS account_csm_photo,
+"SDR_Phone__c" AS sdr_phone
 FROM base
 )
 
