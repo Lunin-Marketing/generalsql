@@ -20,9 +20,8 @@ LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
 account_source_xf.account_owner_id=user_source_xf.user_id
 WHERE stage_name = 'Implement'
 AND is_current_customer = 'true'
-AND customer_since >= CURRENT_DATE-30
---AND onboarding_completion_date IS NOT null
-AND opp_source_xf.account_id != '0011O00002LeGkEQAV'
+AND customer_since BETWEEN CURRENT_DATE-30 and CURRENT_DATE
+AND onboarding_completion_date IS NOT null
 )
 
 SELECT 
@@ -53,5 +52,5 @@ opp_and_acct_base.account_id=contact_source_xf.account_id
 LEFT JOIN "acton".dbt_actonmarketing.ao_instance_user_source_xf ON
 contact_source_xf.contact_id=ao_instance_user_source_xf.ao_user_contact_id
 WHERE 1=1
---AND is_renewal_contact = 'true'
+AND is_renewal_contact = 'true'
 AND is_marketing_user = 'true'
