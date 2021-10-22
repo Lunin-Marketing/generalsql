@@ -59,7 +59,8 @@ CASE WHEN "AnnualRevenue" <= 49999999 THEN 'SMB'
 "Onboarding_Specialist_Photo__c" AS onboarding_specialist_photo,
 "Account_CSM_Email__c" AS account_csm_email,
 "Account_CSM_Photo__c" AS account_csm_photo,
-"SDR_Phone__c" AS sdr_phone
+"SDR_Phone__c" AS sdr_phone,
+"Account_Owner_Photo__c" AS account_owner_photo
 FROM base
 )
 
