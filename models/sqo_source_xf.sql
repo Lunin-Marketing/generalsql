@@ -22,7 +22,7 @@ opp_medium_lead_creation,
 opp_source_opportunity_creation, 
 opp_source_lead_creation,
 type,
-acv,
+acv_deal_size_usd AS acv,
 billing_country AS country
 FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
@@ -31,4 +31,3 @@ LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE discovery_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
-
