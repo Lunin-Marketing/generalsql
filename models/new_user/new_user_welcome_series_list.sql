@@ -7,18 +7,20 @@ customer_since,
 account_csm,
 account_csm_email,
 account_csm_photo,
-onboarding_specialist,
+onboarding.user_name AS onboarding_specialist,
 onboarding_specialist_email,
 onboarding_specialist_photo,
-user_name AS account_owner,
+owner.user_name AS account_owner,
 account_owner_email,
 account_owner_photo,
 onboarding_completion_date
 FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
 opp_source_xf.account_id=account_source_xf.account_id
-LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
-account_source_xf.account_owner_id=user_source_xf.user_id
+LEFT JOIN "acton".dbt_actonmarketing.user_source_xf owner ON
+account_source_xf.account_owner_id=owner.user_id
+LEFT JOIN "acton".dbt_actonmarketing.user_source_xf onboarding ON
+account_source_xf.onboarding_specialist=onboarding.user_id
 WHERE stage_name = 'Implement'
 AND is_current_customer = 'true'
 AND customer_since >= CURRENT_DATE-30

@@ -12,7 +12,8 @@ onboarding_specialist_email,
 onboarding_specialist_photo,
 user_name AS account_owner,
 account_owner_email,
-account_owner_photo
+account_owner_photo,
+onboarding_completion_date
 FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
 opp_source_xf.account_id=account_source_xf.account_id
@@ -21,7 +22,7 @@ account_source_xf.account_owner_id=user_source_xf.user_id
 WHERE stage_name = 'Implement'
 AND is_current_customer = 'true'
 AND customer_since BETWEEN CURRENT_DATE-30 and CURRENT_DATE
-AND onboarding_completion_date IS NOT null
+--AND onboarding_completion_date IS NOT null
 )
 
 SELECT 
@@ -41,6 +42,7 @@ opp_and_acct_base.onboarding_specialist_photo,
 opp_and_acct_base.account_owner,
 opp_and_acct_base.account_owner_email,
 opp_and_acct_base.account_owner_photo,
+opp_and_acct_base.onboarding_completion_date,
 contact_source_xf.first_name AS "First Name",
 contact_source_xf.last_name AS "Last Name",
 contact_source_xf.email AS "Email",
