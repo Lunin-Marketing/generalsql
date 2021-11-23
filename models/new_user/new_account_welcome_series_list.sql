@@ -14,10 +14,13 @@ user_name AS account_owner,
 account_owner_email,
 account_owner_photo,
 onboarding_completion_date
-FROM "acton".dbt_actonmarketing.opp_source_xf
-LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
+FROM {{ref('opp_source_xf')}}
+--FROM "acton".dbt_actonmarketing.opp_source_xf
+LEFT JOIN {{ref('account_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
 opp_source_xf.account_id=account_source_xf.account_id
-LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
+LEFT JOIN {{ref('user_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
 account_source_xf.account_owner_id=user_source_xf.user_id
 WHERE stage_name = 'Implement'
 AND is_current_customer = 'true'
@@ -49,9 +52,11 @@ contact_source_xf.email AS "Email",
 ao_instance_user_source_xf.ao_user_id,
 ao_instance_user_source_xf.is_marketing_user
 FROM opp_and_acct_base
-LEFT JOIN "acton".dbt_actonmarketing.contact_source_xf ON
+LEFT JOIN {{ref('contact_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.contact_source_xf ON
 opp_and_acct_base.account_id=contact_source_xf.account_id
-LEFT JOIN "acton".dbt_actonmarketing.ao_instance_user_source_xf ON
+LEFT JOIN {{ref('ao_instance_user_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.ao_instance_user_source_xf ON
 contact_source_xf.contact_id=ao_instance_user_source_xf.ao_user_contact_id
 WHERE 1=1
 AND is_renewal_contact = 'true'

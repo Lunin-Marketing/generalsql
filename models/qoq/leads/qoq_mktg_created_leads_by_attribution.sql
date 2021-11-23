@@ -3,7 +3,8 @@
 WITH last_quarter AS (
 SELECT DISTINCT
 quarter 
-FROM "acton".dbt_actonmarketing.date_base_xf
+{{ref('date_base_xf')}}
+--FROM "acton".dbt_actonmarketing.date_base_xf
 WHERE day BETWEEN CURRENT_DATE-90 AND CURRENT_DATE
 )
 
@@ -17,8 +18,10 @@ medium_lead_creation,
 source_lead_creation,
 country,
 company_size_rev 
-FROM "acton".dbt_actonmarketing.lead_source_xf
-LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
+FROM {{ref('lead_source_xf')}}
+--FROM "acton".dbt_actonmarketing.lead_source_xf
+LEFT JOIN {{ref('date_base_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 marketing_created_date=date_base_xf.day
 LEFT JOIN last_quarter ON 
 date_base_xf.quarter=last_quarter.quarter

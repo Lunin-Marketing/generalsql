@@ -7,8 +7,10 @@ opportunity_id,
 opportunity_name,
 user_name AS owner_name,
 discovery_call_scheduled_datetime
-FROM "acton".dbt_actonmarketing.opp_source_xf
-LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
+FROM {{ref('opp_source_xf')}}
+--FROM "acton".dbt_actonmarketing.opp_source_xf
+LEFT JOIN {{ref('user_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.user_source_xf ON
 opp_source_xf.owner_id=user_source_xf.user_id
 WHERE 1=1
 AND type = 'New Business'

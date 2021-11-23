@@ -66,4 +66,5 @@ medium_first_touch,
 source_first_touch,
 campaign_first_touch,
 company_size_rev
-FROM "acton".dbt_actonmarketing.lead_source_xf
+FROM {{ref('lead_source_xf')}}
+--FROM "acton".dbt_actonmarketing.lead_source_xf

@@ -6,7 +6,8 @@ SELECT
 opportunity_id,
 opp_source_lead_creation,
 acv_deal_size_usd
-FROM "acton".dbt_actonmarketing.opp_source_xf
+FROM {{ref('opp_source_xf')}}
+--FROM "acton".dbt_actonmarketing.opp_source_xf
 WHERE discovery_date >= '2020-01-01'
 AND discovery_date <= '2021-06-21'
 AND type = 'New Business'
