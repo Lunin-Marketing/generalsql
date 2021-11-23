@@ -11,7 +11,8 @@ mql_most_recent_date,
 lead_status,
 country,
 lead_owner
-FROM "acton".dbt_actonmarketing.lead_source_xf
+FROM {{ref('lead_source_xf')}}
+--FROM "acton".dbt_actonmarketing.lead_source_xf
 WHERE mql_created_date IS NOT null
 AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
 AND email NOT LIKE '%act-on.com'

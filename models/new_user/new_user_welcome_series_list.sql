@@ -7,19 +7,23 @@ customer_since,
 account_csm,
 account_csm_email,
 account_csm_photo,
-onboarding.user_name AS onboarding_specialist,
-onboarding_specialist_email,
-onboarding_specialist_photo,
+--onboarding.user_name AS onboarding_specialist,
+--onboarding_specialist_email,
+--onboarding_specialist_photo,
 owner.user_name AS account_owner,
 account_owner_email,
 account_owner_photo,
 onboarding_completion_date
-FROM "acton".dbt_actonmarketing.opp_source_xf
-LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
+FROM {{ref('opp_source_xf')}}
+--FROM "acton".dbt_actonmarketing.opp_source_xf
+LEFT JOIN {{ref('account_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON
 opp_source_xf.account_id=account_source_xf.account_id
-LEFT JOIN "acton".dbt_actonmarketing.user_source_xf owner ON
+LEFT JOIN {{ref('user_source_xf')}} owner ON
+--LEFT JOIN "acton".dbt_actonmarketing.user_source_xf owner ON
 account_source_xf.account_owner_id=owner.user_id
-LEFT JOIN "acton".dbt_actonmarketing.user_source_xf onboarding ON
+LEFT JOIN {{ref('user_source_xf')}} onboarding ON
+--LEFT JOIN "acton".dbt_actonmarketing.user_source_xf onboarding ON
 account_source_xf.onboarding_specialist=onboarding.user_id
 WHERE stage_name = 'Implement'
 AND is_current_customer = 'true'
@@ -39,9 +43,9 @@ CASE WHEN opp_and_acct_base.account_csm_email IS null THEN 'support@act-on.com'
 ELSE opp_and_acct_base.account_csm_email END AS account_csm_email,
 CASE WHEN opp_and_acct_base.account_csm_photo IS null THEN 'https://success.act-on.com/cdnr/forpcid1/acton/attachment/9883/f-fa8432de-9cea-4bf7-b6d4-eca1c9656b82/1/-/-/-/-/NewUserWelcomeSeries-EM3-Support.png'
 ELSE opp_and_acct_base.account_csm_photo END AS account_csm_photo,
-opp_and_acct_base.onboarding_specialist,
-opp_and_acct_base.onboarding_specialist_email,
-opp_and_acct_base.onboarding_specialist_photo,
+--opp_and_acct_base.onboarding_specialist,
+--opp_and_acct_base.onboarding_specialist_email,
+--opp_and_acct_base.onboarding_specialist_photo,
 opp_and_acct_base.account_owner,
 opp_and_acct_base.account_owner_email,
 opp_and_acct_base.account_owner_photo,
@@ -52,9 +56,11 @@ ao_instance_user_source_xf.ao_user_id,
 ao_instance_user_source_xf.is_marketing_user,
 opp_and_acct_base.onboarding_completion_date
 FROM opp_and_acct_base
-LEFT JOIN "acton".dbt_actonmarketing.contact_source_xf ON
+LEFT JOIN {{ref('contact_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.contact_source_xf ON
 opp_and_acct_base.account_id=contact_source_xf.account_id
-LEFT JOIN "acton".dbt_actonmarketing.ao_instance_user_source_xf ON
+LEFT JOIN {{ref('ao_instance_user_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.ao_instance_user_source_xf ON
 contact_source_xf.contact_id=ao_instance_user_source_xf.ao_user_contact_id
 WHERE 1=1
 AND is_marketing_user = 'true'

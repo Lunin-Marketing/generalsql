@@ -2,10 +2,12 @@
 
 with opp_base as (
     select *
-    from "acton".dbt_actonmarketing.opp_source_xf
+    FROM {{ref('opp_source_xf')}}
+    --from "acton".dbt_actonmarketing.opp_source_xf
 ), contact_base as (
     select *
-    from "acton".dbt_actonmarketing.contact_source_xf
+    FROM {{ref('contact_source_xf')}}
+    --from "acton".dbt_actonmarketing.contact_source_xf
 )
 select 
 email,

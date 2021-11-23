@@ -7,7 +7,8 @@ opportunity_id,
 opportunity_name,
 owner_id,
 discovery_call_scheduled_datetime
-FROM "acton".dbt_actonmarketing.opp_source_xf
+FROM {{ref('opp_source_xf')}}
+--FROM "acton".dbt_actonmarketing.opp_source_xf
 WHERE 1=1
 AND type = 'New Business'
 AND discovery_call_scheduled_datetime IS NOT null

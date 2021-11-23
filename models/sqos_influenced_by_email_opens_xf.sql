@@ -2,11 +2,13 @@
 
 WITH opp_with_contact_base AS (
 SELECT *
-FROM "acton".dbt_actonmarketing.opportunities_with_contacts
+FROM {{ref('opportunities_with_contacts')}}
+--FROM "acton".dbt_actonmarketing.opportunities_with_contacts
 
 ), email_click_base AS (
     SELECT *
-    FROM "acton".dbt_actonmarketing.email_opens_ao_xf
+    FROM {{ref('email_opens_ao_xf')}}
+    --FROM "acton".dbt_actonmarketing.email_opens_ao_xf
 
 ) , sum_base AS (
 SELECT 
