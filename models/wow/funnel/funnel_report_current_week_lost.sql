@@ -3,7 +3,8 @@
 WITH current_week AS (
 SELECT
 week 
-FROM "acton".dbt_actonmarketing.date_base_xf
+FROM {{ref('date_base_xf')}}
+--FROM "acton".dbt_actonmarketing.date_base_xf
 WHERE day=CURRENT_DATE-7
 ), base AS (
 SELECT DISTINCT
@@ -11,10 +12,13 @@ opp_source_xf.opportunity_id AS opportunity_id,
 acv_deal_size_usd,
 opp_source_xf.close_date AS close_date,
 billing_country AS country
-FROM "acton".dbt_actonmarketing.opp_source_xf
-LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
+FROM {{ref('opp_source_xf')}}
+--FROM "acton".dbt_actonmarketing.opp_source_xf
+LEFT JOIN {{ref('date_base_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 opp_source_xf.close_date=date_base_xf.day
-LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON 
+LEFT JOIN {{ref('account_source_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON 
 opp_source_xf.account_id=account_source_xf.account_id
 LEFT JOIN current_week ON 
 date_base_xf.week=current_week.week
