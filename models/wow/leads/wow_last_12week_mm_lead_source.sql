@@ -3,7 +3,8 @@
 WITH last_12_weeks AS (
 SELECT DISTINCT
 week 
-FROM "acton".dbt_actonmarketing.date_base_xf
+FROM {{ref('date_base_xf')}}
+--FROM "acton".dbt_actonmarketing.date_base_xf
 WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
 
 ), final AS (
@@ -11,8 +12,10 @@ WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
 SELECT
 last_12_weeks.week,
 COUNT(lead_id) AS leads
-FROM "acton".dbt_actonmarketing.lead_source_xf
-LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
+FROM {{ref('lead_source_xf')}}
+--FROM "acton".dbt_actonmarketing.lead_source_xf
+LEFT JOIN {{ref('date_base_xf')}} ON
+--LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 lead_source_xf.marketing_created_date=date_base_xf.day
 LEFT JOIN last_12_weeks ON 
 date_base_xf.week=last_12_weeks.week
