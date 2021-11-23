@@ -18,7 +18,8 @@ COUNT(DISTINCT lead_id) AS leads,
 0 AS lost_acv,
 0 AS churn,
 0 AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_leads
+FROM {{ref('funnel_report_current_week_leads')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_leads
 GROUP BY 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -38,7 +39,8 @@ COUNT(DISTINCT mql_id) AS mqls,
 0 AS lost_acv,
 0 AS churn,
 0 AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_mqls
+FROM {{ref('funnel_report_current_week_mqls')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_mqls
 GROUP BY 1,2,4,5,6,7,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -58,7 +60,8 @@ COUNT(DISTINCT sal_id) AS sals,
 0 AS lost_acv,
 0 AS churn,
 0 AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_sals
+FROM {{ref('funnel_report_current_week_sals')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_sals
 GROUP BY 1,2,3,4,6,7,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -78,7 +81,8 @@ COUNT(DISTINCT sql_id) AS sqls,
 0 AS lost_acv,
 0 AS churn,
 0 AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_sqls
+FROM {{ref('funnel_report_current_week_sqls')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_sqls
 GROUP BY 1,2,3,4,5,6,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -98,7 +102,8 @@ SUM(acv) AS sqo_acv,
 0 AS lost_acv,
 0 AS churn,
 0 AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_sqos
+FROM {{ref('funnel_report_current_week_sqos')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_sqos
 GROUP BY 1,2,4,3,4,5,6,7,8,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -118,7 +123,8 @@ SUM(acv) AS won_acv,
 0 AS lost_acv,
 0 AS churn,
 0 AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_won
+FROM {{ref('funnel_report_current_week_won')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_won
 GROUP BY 1,2,4,3,4,5,6,7,8,9,10,13,14,15,16
 UNION ALL
 SELECT
@@ -138,7 +144,8 @@ COUNT(DISTINCT opportunity_id) AS lost,
 SUM(acv_deal_size_usd) AS lost_acv,
 0 AS churn,
 0 AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_lost
+FROM {{ref('funnel_report_current_week_lost')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_lost
 GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,15,16
 UNION ALL
 SELECT
@@ -158,7 +165,8 @@ SELECT
 0 AS lost_acv,
 COUNT(DISTINCT contract_id) AS churn,
 SUM(arr_loss_amount) AS churn_acv
-FROM "acton".dbt_actonmarketing.funnel_report_current_week_churn
+FROM {{ref('funnel_report_current_week_churn')}}
+--FROM "acton".dbt_actonmarketing.funnel_report_current_week_churn
 GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14
 
 )
