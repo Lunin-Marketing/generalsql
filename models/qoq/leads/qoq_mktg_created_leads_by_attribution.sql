@@ -3,7 +3,7 @@
 WITH last_quarter AS (
 SELECT DISTINCT
 quarter 
-FROM {ref('date_base_xf')}}
+FROM {{ref('date_base_xf')}}
 --FROM "acton".dbt_actonmarketing.date_base_xf
 WHERE day BETWEEN CURRENT_DATE-90 AND CURRENT_DATE
 )
