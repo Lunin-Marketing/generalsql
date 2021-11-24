@@ -17,7 +17,7 @@ FROM {{ref('contract_source_xf')}}
 LEFT JOIN {{ref('date_base_xf')}} ON
 --LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
 contract_source_xf.churn_date=date_base_xf.day
-FROM {{ref('account_source_xf')}}
+LEFT JOIN {{ref('account_source_xf')}} ON
 --LEFT JOIN "acton".dbt_actonmarketing.account_source_xf ON 
 contract_source_xf.account_id=account_source_xf.account_id
 LEFT JOIN current_week ON 
