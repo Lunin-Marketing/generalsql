@@ -13,9 +13,16 @@ SELECT
 lead_id,
 marketing_created_date AS created_date,
 --COALESCE(converted_date,created_date) AS marketing_date,
-channel_lead_creation,
-medium_lead_creation,
-source_lead_creation,
+CASE WHEN channel_lead_creation LIKE '$https$' THEN 'organic'
+     WHEN channel_lead_creation IS null THEN 'organic'
+     ELSE channel_lead_creation 
+     END AS channel_lead_creation,
+CASE WHEN medium_lead_creation LIKE '$https$' THEN 'search'
+     ELSE medium_lead_creation 
+     END AS medium_lead_creation,
+CASE WHEN source_lead_creation LIKE '$https$' THEN 'google'
+     ELSE source_lead_creation 
+     END AS source_lead_creation,
 country,
 company_size_rev 
 FROM {{ref('lead_source_xf')}}
