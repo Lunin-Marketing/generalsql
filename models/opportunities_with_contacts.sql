@@ -15,7 +15,7 @@ with opp_base as (
     source_lead_creation,
     lead_source,
     marketing_created_date,
-    contact_status,
+    contact_status AS person_status,
     company_size_rev,
     account_id,
     contact_status AS person_status
@@ -32,7 +32,7 @@ with opp_base as (
     source_lead_creation,
     lead_source,
     marketing_created_date,
-    contact_status,
+    lead_status AS person_status,
     company_size_rev,
     account_id,
     lead_status AS person_status
