@@ -76,7 +76,7 @@ CASE WHEN "AnnualRevenue" <= 49999999 THEN 'SMB'
      END AS company_size_rev,
 "LeanData__A2B_Account__c" AS lean_data_account_id,
 "Account__c" AS account_id,
-COALESCE(lean_data_account_id,account_id) AS account_id 
+COALESCE("LeanData__A2B_Account__c","Account__c") AS person_account_id 
 --"X9883_Lead_Score__c" AS lead_score,
 --de_industry__c AS industry,
 FROM base
