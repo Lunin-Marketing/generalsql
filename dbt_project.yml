@@ -18,6 +18,9 @@ test-paths: ["tests"]
 data-paths: ["data"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+repositories:
+    # Be sure to replace VERSION_NUMBER below!
+    - https://github.com/fishtown-analytics/dbt-utils.git@0.8.0
 
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
@@ -35,6 +38,4 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   acton_marketing_data:
           materialized: view
-repositories:
-    # Be sure to replace VERSION_NUMBER below!
-    - https://github.com/fishtown-analytics/dbt-utils.git@0.8.0
+
