@@ -18,6 +18,7 @@ test-paths: ["tests"]
 data-paths: ["data"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+packages-paths: ["packages"]
 repositories:
     # Be sure to replace VERSION_NUMBER below!
     - https://github.com/fishtown-analytics/dbt-utils.git@0.8.0
