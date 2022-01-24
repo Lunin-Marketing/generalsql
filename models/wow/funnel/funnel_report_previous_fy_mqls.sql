@@ -1,11 +1,10 @@
 {{ config(materialized='table') }}
 
-WITH current_quarter AS (
+WITH previous_fy AS (
 SELECT
-fy,
-quarter 
+fy
 FROM {{ref('date_base_xf')}}
-WHERE day=CURRENT_DATE
+WHERE fy='2021'
 ), base AS (
 SELECT DISTINCT
 lead_mql_source_xf.lead_id AS mql_id,
@@ -13,9 +12,9 @@ lead_mql_source_xf.mql_created_date AS mql_date
 FROM {{ref('lead_mql_source_xf')}}
 LEFT JOIN {{ref('date_base_xf')}} ON
 lead_mql_source_xf.mql_created_date=date_base_xf.day
-LEFT JOIN current_quarter ON 
-date_base_xf.quarter=current_quarter.quarter
-WHERE current_quarter.quarter IS NOT null
+LEFT JOIN previous_fy ON 
+date_base_xf.fy=previous_fy.fy
+WHERE previous_fy.fy IS NOT null
 )
 
 SELECT *
