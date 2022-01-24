@@ -37,4 +37,4 @@ models:
           materialized: view
 repositories:
     # Be sure to replace VERSION_NUMBER below!
-    - https://github.com/fishtown-analytics/dbt-utils.git@0.6.2
+    - https://github.com/fishtown-analytics/dbt-utils.git@0.8.0
