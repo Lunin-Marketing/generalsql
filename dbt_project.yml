@@ -34,3 +34,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   acton_marketing_data:
           materialized: view
+repositories:
+    # Be sure to replace VERSION_NUMBER below!
+    - https://github.com/fishtown-analytics/dbt-utils.git@0.1.7
