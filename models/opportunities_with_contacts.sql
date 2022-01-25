@@ -17,8 +17,7 @@ with opp_base as (
     marketing_created_date,
     contact_status AS person_status,
     company_size_rev,
-    account_id,
-    contact_status AS person_status
+    account_id
     FROM {{ref('contact_source_xf')}}
     UNION ALL
     select
@@ -34,8 +33,7 @@ with opp_base as (
     marketing_created_date,
     lead_status AS person_status,
     company_size_rev,
-    account_id,
-    lead_status AS person_status
+    person_account_id
     FROM {{ref('lead_source_xf')}}
     WHERE is_converted = false
 )
@@ -50,11 +48,10 @@ person_base.medium_lead_creation,
 person_base.source_lead_creation,
 person_base.lead_source,
 person_base.marketing_created_date,
-person_base.contact_status,
 person_base.company_size_rev,
 person_base.account_id,
 person_base.person_status,
-opp_base.is_current_customer, 
+--opp_base.is_current_customer, 
 opp_base.opportunity_id,
 opp_base.close_date,
 opp_base.is_won,

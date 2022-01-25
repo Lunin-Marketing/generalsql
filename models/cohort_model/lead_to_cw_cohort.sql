@@ -27,11 +27,11 @@ is_won,
 channel_lead_creation,
 medium_lead_creation,
 source_lead_creation,
-datediff(day,marketing_created_date,mql_created_date) AS days_to_mql,
-datediff(day,mql_created_date,sal_created_date) AS days_to_sal,
-datediff(day,sal_created_date,opp_created_date) AS days_to_sql,
-datediff(day,opp_created_date,discovery_date) AS days_to_sqo,
-datediff(day,opp_created_date,cw_date) AS days_to_won,
-datediff(day,opp_created_date,cl_date) AS days_to_won
+{{ dbt_utils.datediff("marketing_created_date,mql_created_date",'day') }} AS days_to_mql,
+{{ dbt_utils.datediff("mql_created_date,sal_created_date",'day') }} AS days_to_sal,
+{{ dbt_utils.datediff("sal_created_date,opp_created_date",'day') }} AS days_to_sql,
+{{ dbt_utils.datediff("opp_created_date,discovery_date",'day') }} AS days_to_sqo,
+{{ dbt_utils.datediff("discovery_date,cw_date",'day') }} AS days_to_won,
+{{ dbt_utils.datediff("discovery_date,cl_date",'day') }} AS days_to_closed_lost
 FROM base
 WHERE marketing_created_date LIKE '2021%'
