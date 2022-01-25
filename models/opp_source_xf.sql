@@ -11,8 +11,7 @@ SELECT
 "AccountId" AS account_id,
 "Name" AS opportunity_name,
 "StageName" AS stage_name,
-CASE WHEN "Amount" IS null THEN null
-ELSE "Amount" END AS amount,
+"Amount" AS amount,
 DATE_TRUNC('day',"CloseDate")::Date AS close_date,
 "Type" AS type,
 "LeadSource" AS opp_lead_source,
