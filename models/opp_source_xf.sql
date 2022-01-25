@@ -1,4 +1,5 @@
 {{ config(materialized='table') }}
+
 WITH base AS (
 SELECT *
 FROM "acton".public."Opportunity"
@@ -10,7 +11,8 @@ SELECT
 "AccountId" AS account_id,
 "Name" AS opportunity_name,
 "StageName" AS stage_name,
-"Amount" AS amount,
+CASE WHEN "Amount" IS null THEN null
+ELSE "Amount" END AS amount,
 DATE_TRUNC('day',"CloseDate")::Date AS close_date,
 "Type" AS type,
 "LeadSource" AS opp_lead_source,
