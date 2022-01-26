@@ -60,7 +60,8 @@ CASE WHEN "AnnualRevenue" <= 49999999 THEN 'SMB'
 "Account_CSM_Email__c" AS account_csm_email,
 "Account_CSM_Photo__c" AS account_csm_photo,
 "SDR_Phone__c" AS sdr_phone,
-"Account_Owner_Photo__c" AS account_owner_photo
+"Account_Owner_Photo__c" AS account_owner_photo,
+"SystemModstamp" AS systemmodstamp
 FROM base
 )
 

@@ -5,7 +5,7 @@
         target_schema='snapshots',
         unique_key = 'lead_id',
         strategy='timestamp',
-        updated_at='last_modified_date',
+        updated_at='systemmodstamp',
     )
 }}
 
