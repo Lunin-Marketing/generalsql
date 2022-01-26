@@ -1,5 +1,5 @@
 {% macro nullcheck_table(relation) %}
-    {{ return(adapter.dispatch('nullcheck_table', 'dbt_utils')(relation)) }}
+    {{ return(adapter.dispatch('nullcheck_table', packages = dbt_utils._get_utils_namespaces())(relation)) }}
 {% endmacro %}
 
 {% macro default__nullcheck_table(relation) %}

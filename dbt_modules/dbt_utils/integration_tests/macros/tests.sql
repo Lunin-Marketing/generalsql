@@ -1,12 +1,14 @@
 
-{% test assert_equal(model, actual, expected) %}
-select * from {{ model }} where {{ actual }} != {{ expected }}
+{% macro test_assert_equal(model, actual, expected) %}
+select count(*) from {{ model }} where {{ actual }} != {{ expected }}
 
-{% endtest %}
+{% endmacro %}
 
 
-{% test not_empty_string(model, column_name) %}
+{% macro test_not_empty_string(model, arg) %}
 
-select * from {{ model }} where {{ column_name }} = ''
+{% set column_name = kwargs.get('column_name', kwargs.get('arg')) %}
 
-{% endtest %}
+select count(*) from {{ model }} where {{ column_name }} = ''
+
+{% endmacro %}

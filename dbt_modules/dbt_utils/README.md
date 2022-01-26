@@ -1,7 +1,7 @@
-This [dbt](https://github.com/dbt-labs/dbt) package contains macros that can be (re)used across dbt projects.
+This [dbt](https://github.com/fishtown-analytics/dbt) package contains macros that can be (re)used across dbt projects.
 
 ## Installation Instructions
-Check [dbt Hub](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) for the latest installation instructions, or [read the docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
+Check [dbt Hub](https://hub.getdbt.com/fishtown-analytics/dbt_utils/latest/) for the latest installation instructions, or [read the docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
 ----
 ## Contents
@@ -12,15 +12,13 @@ Check [dbt Hub](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) for the lates
   - [expression_is_true](#expression_is_true-source)
   - [recency](#recency-source)
   - [at_least_one](#at_least_one-source)
-  - [not_constant](#not_constant-source)
+  - [not_constant](#not_constant)
   - [cardinality_equality](#cardinality_equality-source)
   - [unique_where](#unique_where-source)
   - [not_null_where](#not_null_where-source)
-  - [not_null_proportion](#not_null_proportion-source)
   - [relationships_where](#relationships_where-source)
   - [mutually_exclusive_ranges](#mutually_exclusive_ranges-source)
   - [unique_combination_of_columns](#unique_combination_of_columns-source)
-  - [accepted_range](#accepted_range-source)
 
 **[Macros](#macros)**
 
@@ -30,9 +28,9 @@ Check [dbt Hub](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) for the lates
     - [get_relations_by_prefix](#get_relations_by_prefix-source)
     - [get_query_results_as_dict](#get_query_results_as_dict-source)
 
-- [SQL generators](#sql-generators)
-    - [date_spine](#date_spine-source)
-    - [haversine_distance](#haversine_distance-source)
+- [SQL generators](sql-generators)
+    - [date_spine](#date-spine_source)
+    - [haversine_distance](haversine_distance-source)]
     - [group_by](#group_by-source)
     - [star](#star-source)
     - [union_relations](#union_relations-source)
@@ -49,13 +47,13 @@ Check [dbt Hub](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) for the lates
 
 - [Cross-database macros](#cross-database-macros):
     - [current_timestamp](#current_timestamp-source)
-    - [dateadd](#dateadd-source)
-    - [datediff](#datediff-source)
+    - [dateadd](#date_add-source)
+    - [datediff](#datadiff-source)
     - [split_part](#split_part-source)
     - [last_day](#last_day-source)
     - [width_bucket](#width_bucket-source)
 
-- [Jinja Helpers](#jinja-helpers)
+- [Logger](#logger)
     - [pretty_time](#pretty_time-source)
     - [pretty_log_format](#pretty_log_format-source)
     - [log_info](#log_info-source)
@@ -222,7 +220,7 @@ models:
               to: ref('other_model_name')
 ```
 
-#### unique_where ([source](macros/schema_tests/test_unique_where.sql))
+#### unique_where ([source](macros/schema_tests/unique_where.sql))
 This test validates that there are no duplicate values present in a field for a subset of rows by specifying a `where` clause.
 
 **Usage:**
@@ -238,7 +236,7 @@ models:
               where: "_deleted = false"
 ```
 
-#### not_null_where ([source](macros/schema_tests/test_not_null_where.sql))
+#### not_null_where ([source](macros/schema_tests/not_null_where.sql))
 This test validates that there are no null values present in a column for a subset of rows by specifying a `where` clause.
 
 **Usage:**
@@ -252,22 +250,6 @@ models:
         tests:
           - dbt_utils.not_null_where:
               where: "_deleted = false"
-```
-
-#### not_null_proportion ([source](macros/schema_tests/not_null_proportion.sql))
-This test validates that the proportion of non-null values present in a column is between a specified range [`at_least`, `at_most`] where `at_most` is an optional argument (default: `1.0`).
-
-**Usage:**
-```yaml
-version: 2
-
-models:
-  - name: my_model
-    columns:
-      - name: id
-        tests:
-          - dbt_utils.not_null_proportion:
-              at_least: 0.95
 ```
 
 #### not_accepted_values ([source](macros/schema_tests/not_accepted_values.sql))
@@ -528,14 +510,8 @@ These macros run a query and return the results of the query as objects. They ar
 
 
 #### get_column_values ([source](macros/sql/get_column_values.sql))
-This macro returns the unique values for a column in a given [relation](https://docs.getdbt.com/docs/writing-code-in-dbt/class-reference/#relation) as an array.
-
-Arguments:
-- `table` (required): a [Relation](https://docs.getdbt.com/reference/dbt-classes#relation) (a `ref` or `source`) that contains the list of columns you wish to select from
-- `column` (required): The name of the column you wish to find the column values of
-- `order_by` (optional, default=`'count(*) desc'`): How the results should be ordered. The default is to order by `count(*) desc`, i.e. decreasing frequency. Setting this as `'my_column'` will sort alphabetically, while `'min(created_at)'` will sort by when thevalue was first observed.
-- `max_records` (optional, default=`none`): The maximum number of column values you want to return
-- `default` (optional, default=`[]`): The results this macro should return if the relation has not yet been created (and therefore has no column values).
+This macro returns the unique values for a column in a given [relation](https://docs.getdbt.com/docs/writing-code-in-dbt/class-reference/#relation).
+It takes an options `default` argument for compiling when the relation does not already exist.
 
 
 **Usage:**
@@ -543,35 +519,15 @@ Arguments:
 -- Returns a list of the payment_methods in the stg_payments model_
 {% set payment_methods = dbt_utils.get_column_values(table=ref('stg_payments'), column='payment_method') %}
 
-{% for payment_method in payment_methods %}
+{% for state in states %}
     ...
 {% endfor %}
 
 ...
 ```
 
-```sql
--- Returns the list sorted alphabetically
-{% set payment_methods = dbt_utils.get_column_values(
-        table=ref('stg_payments'),
-        column='payment_method',
-        order_by='payment_method'
-) %}
-```
-
-```sql
--- Returns the list sorted my most recently observed
-{% set payment_methods = dbt_utils.get_column_values(
-        table=ref('stg_payments'),
-        column='payment_method',
-        order_by='max(created_at) desc',
-        max_records=50,
-        default=['bank_transfer', 'coupon', 'credit_card']
-%}
-...
-```
-
 #### get_relations_by_pattern ([source](macros/sql/get_relations_by_pattern.sql))
+
 Returns a list of [Relations](https://docs.getdbt.com/docs/writing-code-in-dbt/class-reference/#relation)
 that match a given schema- or table-name pattern.
 
@@ -726,7 +682,7 @@ group by 1,2,3
 ```
 
 #### star ([source](macros/sql/star.sql))
-This macro generates a list of all fields that exist in the `from` relation, excluding any fields listed in the `except` argument. The construction is identical to `select * from {{ref('my_model')}}`, replacing star (`*`) with the star macro. This macro also has an optional `relation_alias` argument that will prefix all generated fields with an alias (`relation_alias`.`field_name`). The macro also has optional `prefix` and `suffix` arguments, which will be appropriately concatenated to each field name in the output (`prefix` ~ `field_name` ~ `suffix`).
+This macro generates a list of all fields that exist in the `from` relation, excluding any fields listed in the `except` argument. The construction is identical to `select * from {{ref('my_model')}}`, replacing star (`*`) with the star macro. This macro also has an optional `relation_alias` argument that will prefix all generated fields with an alias.
 
 **Usage:**
 ```sql
@@ -992,8 +948,8 @@ When an expression falls outside the range, the function returns:
 
 
 ---
-### Jinja Helpers
-#### pretty_time ([source](macros/jinja_helpers/pretty_time.sql))
+### Logger
+#### pretty_time ([source](macros/logger/pretty_time.sql))
 This macro returns a string of the current timestamp, optionally taking a datestring format.
 ```sql
 {#- This will return a string like '14:50:34' -#}
@@ -1003,7 +959,7 @@ This macro returns a string of the current timestamp, optionally taking a datest
 {{ dbt_utils.pretty_time(format='%Y-%m-%d %H:%M:%S') }}
 ```
 
-#### pretty_log_format ([source](macros/jinja_helpers/pretty_log_format.sql))
+#### pretty_log_format ([source](macros/logger/pretty_log_format.sql))
 This macro formats the input in a way that will print nicely to the command line when you `log` it.
 ```sql
 {#- This will return a string like:
@@ -1012,7 +968,7 @@ This macro formats the input in a way that will print nicely to the command line
 
 {{ dbt_utils.pretty_log_format("my pretty message") }}
 ```
-#### log_info ([source](macros/jinja_helpers/log_info.sql))
+#### log_info ([source](macros/logger/log_info.sql))
 This macro logs a formatted message (with a timestamp) to the command line.
 ```sql
 {{ dbt_utils.log_info("my pretty message") }}
@@ -1021,40 +977,6 @@ This macro logs a formatted message (with a timestamp) to the command line.
 ```
 11:07:28 | 1 of 1 START table model analytics.fct_orders........................ [RUN]
 11:07:31 + my pretty message
-```
-
-#### slugify ([source](macros/jinja_helpers/slugify.sql))
-This macro is useful for transforming Jinja strings into "slugs", and can be useful when using a Jinja object as a column name, especially when that Jinja object is not hardcoded.
-
-For this example, let's pretend that we have payment methods in our payments table like `['venmo App', 'ca$h-money']`, which we can't use as a column name due to the spaces and special characters. This macro does its best to strip those out in a sensible way: `['venmo_app',
-'cah_money']`.
-
-```sql
-{%- set payment_methods = dbt_utils.get_column_values(
-    table=ref('raw_payments'),
-    column='payment_method'
-) -%}
-
-select
-order_id,
-{%- for payment_method in payment_methods %}
-sum(case when payment_method = '{{ payment_method }}' then amount end)
-  as {{ slugify(payment_method) }}_amount,
-
-{% endfor %}
-...
-```
-
-```sql
-select
-order_id,
-
-sum(case when payment_method = 'Venmo App' then amount end)
-  as venmo_app_amount,
-
-sum(case when payment_method = 'ca$h money' then amount end)
-  as cah_money_amount,
-...
 ```
 
 ### Materializations
@@ -1124,26 +1046,29 @@ We welcome contributions to this repo! To contribute a new feature or a fix, ple
 **Note:** This is primarily relevant to:
 - Users and maintainers of community-supported [adapter plugins](https://docs.getdbt.com/docs/available-adapters)
 - Users who wish to override a low-lying `dbt_utils` macro with a custom implementation, and have that implementation used by other `dbt_utils` macros
-
 If you use Postgres, Redshift, Snowflake, or Bigquery, this likely does not apply to you.
 
-dbt v0.18.0 introduced [`adapter.dispatch()`](https://docs.getdbt.com/reference/dbt-jinja-functions/adapter#dispatch), a reliable way to define different implementations of the same macro across different databases.
+dbt v0.18.0 introduces `adapter.dispatch()`, a reliable way to define different implementations of the same macro
+across different databases.
 
-dbt v0.20.0 introduced a new project-level `dispatch` config that enables an "override" setting for all dispatched macros. If you set this config in your project, when dbt searches for implementations of a macro in the `dbt_utils` namespace, it will search through your list of packages instead of just looking in the `dbt_utils` package.
+All dispatched macros in `dbt_utils` have an override setting: a `var` named
+`dbt_utils_dispatch_list` that accepts a list of package names. If you set this
+variable in your project, when dbt searches for implementations of a dispatched
+`dbt_utils` macro, it will search through your listed packages _before_ using
+the implementations defined in `dbt_utils`.
 
-Set the config in `dbt_project.yml`:
+Set a variable in your `dbt_project.yml`:
 ```yml
-dispatch:
-  - macro_namespace: dbt_utils
-    search_order:
-      - first_package_to_search    # likely the name of your root project
-      - second_package_to_search   # could be a "shim" package, such as spark_utils
-      - dbt_utils                  # always include dbt_utils as the last place to search
+vars:
+  dbt_utils_dispatch_list:
+    - first_package_to_search    # likely the name of your root project (only the root folder)
+    - second_package_to_search   # likely an "add-on" package, such as spark_utils
+    # dbt_utils is always the last place searched
 ```
 
 If overriding a dispatched macro with a custom implementation in your own project's `macros/` directory, you must name your custom macro with a prefix: either `default__` (note the two underscores), or the name of your adapter followed by two underscores. For example, if you're running on Postgres and wish to override the behavior of `dbt_utils.datediff` (such that `dbt_utils.date_spine` will use your version instead), you can do this by defining a macro called either `default__datediff` or `postgres__datediff`.
 
-Let's say we have the config defined above, and we're running on Spark. When dbt goes to dispatch `dbt_utils.datediff`, it will search for macros the following in order:
+When running on Spark, if dbt needs to dispatch `dbt_utils.datediff`, it will search for the following in order:
 ```
 first_package_to_search.spark__datediff
 first_package_to_search.default__datediff

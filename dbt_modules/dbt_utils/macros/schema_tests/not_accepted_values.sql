@@ -1,8 +1,8 @@
-{% test not_accepted_values(model, column_name, values, quote=True) %}
-  {{ return(adapter.dispatch('test_not_accepted_values', 'dbt_utils')(model, column_name, values, quote)) }}
-{% endtest %}
+{% macro test_not_accepted_values(model, values) %}
 
-{% macro default__test_not_accepted_values(model, column_name, values, quote=True) %}
+{% set column_name = kwargs.get('column_name', kwargs.get('field')) %}
+{% set quote_values = kwargs.get('quote', True) %}
+
 with all_values as (
 
     select distinct
@@ -20,7 +20,7 @@ validation_errors as (
     from all_values
     where value_field in (
         {% for value in values -%}
-            {% if quote -%}
+            {% if quote_values -%}
             '{{ value }}'
             {%- else -%}
             {{ value }}
@@ -31,7 +31,7 @@ validation_errors as (
 
 )
 
-select *
+select count(*) as validation_errors
 from validation_errors
 
 {% endmacro %}

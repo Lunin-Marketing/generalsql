@@ -4,7 +4,7 @@ testing is required to validate that it will work on other dateparts.
 */
 
 {% macro last_day(date, datepart) %}
-  {{ return(adapter.dispatch('last_day', 'dbt_utils') (date, datepart)) }}
+  {{ return(adapter.dispatch('last_day', packages = dbt_utils._get_utils_namespaces()) (date, datepart)) }}
 {% endmacro %}
 
 
@@ -36,10 +36,3 @@ testing is required to validate that it will work on other dateparts.
     {%- endif -%}
 
 {%- endmacro %}
-
-{# redshift should use default instead of postgres #}
-{% macro redshift__last_day(date, datepart) %}
-
-    {{ return(dbt_utils.default__last_day(date, datepart)) }}
-
-{% endmacro %}

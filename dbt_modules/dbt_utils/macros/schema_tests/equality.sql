@@ -1,18 +1,9 @@
-{% test equality(model, compare_model, compare_columns=None) %}
-  {{ return(adapter.dispatch('test_equality', 'dbt_utils')(model, compare_model, compare_columns)) }}
-{% endtest %}
+{% macro test_equality(model) %}
+  {{ return(adapter.dispatch('test_equality', packages = dbt_utils._get_utils_namespaces())(model, **kwargs)) }}
+{% endmacro %}
 
-{% macro default__test_equality(model, compare_model, compare_columns=None) %}
+{% macro default__test_equality(model) %}
 
-{% set set_diff %}
-    count(*) + coalesce(abs(
-        sum(case when which_diff = 'a_minus_b' then 1 else 0 end) -
-        sum(case when which_diff = 'b_minus_a' then 1 else 0 end)
-    ), 0)
-{% endset %}
-
-{#-- Needs to be set at parse time, before we return '' below --#}
-{{ config(fail_calc = set_diff) }}
 
 {#-- Prevent querying of db in parsing mode. This works because this macro does not create any new refs. #}
 {%- if not execute -%}
@@ -26,12 +17,14 @@
 If the compare_cols arg is provided, we can run this test without querying the
 information schema — this allows the model to be an ephemeral model
 -#}
+{%- set compare_columns = kwargs.get('compare_columns', None) -%}
 
 {%- if not compare_columns -%}
     {%- do dbt_utils._is_ephemeral(model, 'test_equality') -%}
     {%- set compare_columns = adapter.get_columns_in_relation(model) | map(attribute='quoted') -%}
 {%- endif -%}
 
+{% set compare_model = kwargs.get('compare_model', kwargs.get('arg')) %}
 {% set compare_cols_csv = compare_columns | join(', ') %}
 
 with a as (
@@ -64,12 +57,23 @@ b_minus_a as (
 
 unioned as (
 
-    select 'a_minus_b' as which_diff, a_minus_b.* from a_minus_b
+    select * from a_minus_b
     union all
-    select 'b_minus_a' as which_diff, b_minus_a.* from b_minus_a
+    select * from b_minus_a
+
+),
+
+final as (
+
+    select (select count(*) from unioned) +
+        (select abs(
+            (select count(*) from a_minus_b) -
+            (select count(*) from b_minus_a)
+            ))
+        as count
 
 )
 
-select * from unioned
+select count from final
 
 {% endmacro %}

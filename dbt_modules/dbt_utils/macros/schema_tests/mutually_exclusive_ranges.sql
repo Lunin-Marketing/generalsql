@@ -1,6 +1,6 @@
-{% test mutually_exclusive_ranges(model, lower_bound_column, upper_bound_column, partition_by=None, gaps='allowed', zero_length_range_allowed=False) %}
-  {{ return(adapter.dispatch('test_mutually_exclusive_ranges', 'dbt_utils')(model, lower_bound_column, upper_bound_column, partition_by, gaps, zero_length_range_allowed)) }}
-{% endtest %}
+{% macro test_mutually_exclusive_ranges(model, lower_bound_column, upper_bound_column, partition_by=None, gaps='allowed', zero_length_range_allowed=False) %}
+  {{ return(adapter.dispatch('test_mutually_exclusive_ranges', packages = dbt_utils._get_utils_namespaces())(model, lower_bound_column, upper_bound_column, partition_by, gaps, zero_length_range_allowed)) }}
+{% endmacro %}
 
 {% macro default__test_mutually_exclusive_ranges(model, lower_bound_column, upper_bound_column, partition_by=None, gaps='allowed', zero_length_range_allowed=False) %}
 {% if gaps == 'not_allowed' %}
@@ -35,7 +35,7 @@ with window_functions as (
 
     select
         {% if partition_by %}
-        {{ partition_by }} as partition_by_col,
+        {{ partition_by }},
         {% endif %}
         {{ lower_bound_column }} as lower_bound,
         {{ upper_bound_column }} as upper_bound,
@@ -93,5 +93,5 @@ validation_errors as (
     )
 )
 
-select * from validation_errors
+select count(*) from validation_errors
 {% endmacro %}

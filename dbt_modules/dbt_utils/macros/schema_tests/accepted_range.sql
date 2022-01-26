@@ -1,24 +1,23 @@
-{% test accepted_range(model, column_name, min_value=none, max_value=none, inclusive=true) %}
-  {{ return(adapter.dispatch('test_accepted_range', 'dbt_utils')(model, column_name, min_value, max_value, inclusive)) }}
-{% endtest %}
+{% macro test_accepted_range(model, min_value = none, max_value = none, inclusive = true, where = "true") %}
 
-{% macro default__test_accepted_range(model, column_name, min_value=none, max_value=none, inclusive=true) %}
+{%- set column_name = kwargs.get('column_name', kwargs.get('field')) -%}
 
 with meet_condition as(
-  select *
+  select {{ column_name }} 
   from {{ model }}
+  where {{ where }}
 ),
 
 validation_errors as (
   select *
   from meet_condition
-  where
+  where 
     -- never true, defaults to an empty result set. Exists to ensure any combo of the `or` clauses below succeeds
-    1 = 2
+    1 = 2 
 
   {%- if min_value is not none %}
     -- records with a value >= min_value are permitted. The `not` flips this to find records that don't meet the rule.
-    or not {{ column_name }} > {{- "=" if inclusive }} {{ min_value }}
+    or not {{ column_name }} > {{- "=" if inclusive }} {{ min_value }} 
   {%- endif %}
 
   {%- if max_value is not none %}
@@ -27,7 +26,7 @@ validation_errors as (
   {%- endif %}
 )
 
-select *
+select count(*)
 from validation_errors
 
 {% endmacro %}

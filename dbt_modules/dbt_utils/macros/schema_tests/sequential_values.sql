@@ -1,10 +1,10 @@
-{% test sequential_values(model, column_name, interval=1, datepart=None) %}
+{% macro test_sequential_values(model, column_name, interval=1, datepart=None) %}
 
-  {{ return(adapter.dispatch('test_sequential_values', 'dbt_utils')(model, column_name, interval, datepart)) }}
+  {{ return(adapter.dispatch('test_sequential_values', packages=dbt_utils._get_utils_namespaces())(model, column_name, interval, datepart, **kwargs)) }}
 
-{% endtest %}
+{% endmacro %}
 
-{% macro default__test_sequential_values(model, column_name, interval=1, datepart=None) %}
+{% macro default__test_sequential_values(model, column_name, interval, datepart) %}
 
 with windowed as (
 
@@ -27,7 +27,8 @@ validation_errors as (
     {% endif %}
 )
 
-select *
+select
+    count(*)
 from validation_errors
 
 {% endmacro %}

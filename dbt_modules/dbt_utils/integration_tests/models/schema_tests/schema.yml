@@ -86,6 +86,7 @@ models:
       - name: id
         tests:
           - dbt_utils.relationships_where:
+              from: id
               to: ref('data_test_relationships_where_table_1')
               field: id
               from_condition: id <> 4
@@ -157,14 +158,3 @@ models:
               inclusive: true
               where: "id <> -1"
 
-  - name: data_not_null_proportion
-    columns:
-      - name: point_5
-        tests:
-          - dbt_utils.not_null_proportion:
-              at_least: 0.5
-              at_most: 0.5
-      - name: point_9
-        tests:
-          - dbt_utils.not_null_proportion:
-              at_least: 0.9

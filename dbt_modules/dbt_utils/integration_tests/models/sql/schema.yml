@@ -4,7 +4,7 @@ models:
   - name: test_generate_series
     tests:
       - dbt_utils.equality:
-          compare_model: ref('data_generate_series')
+          arg: ref('data_generate_series')
 
   - name: test_get_column_values
     columns:
@@ -105,11 +105,6 @@ models:
     tests:
       - dbt_utils.equality:
           compare_model: ref('data_star_expected')
-
-  - name: test_star_prefix_suffix
-    tests:
-      - dbt_utils.equality:
-          compare_model: ref('data_star_prefix_suffix_expected')
 
   - name: test_surrogate_key
     tests:
