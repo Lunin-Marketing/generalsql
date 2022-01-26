@@ -64,6 +64,7 @@ DATE_TRUNC('day',"Discovery_Call_Completed_Date_Time__c")::Date AS discovery_cal
 "Renewal_ACV__c" AS renewal_acv,
 "ACV__c" AS acv,
 "ACV_Deal_Size_USD__c" AS acv_deal_size_usd,
+"SystemModstamp" AS systemmodstamp,
 DATE_TRUNC('day',"Discovery_Date__c")::Date AS discovery_date,
 CASE WHEN "ACV_Deal_Size_USD__c" <= '9999' THEN '< 10K'
      WHEN "ACV_Deal_Size_USD__c" > '9999' AND "ACV_Deal_Size_USD__c" <= '14999' THEN '10-15K'

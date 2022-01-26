@@ -78,6 +78,8 @@ SELECT
 "Account_SDR_Email__c" AS account_sdr_email,
 "SF_Id_18_Char__c" AS contact_id_18,
 "Owner_Email__c" AS owner_email,
+"SystemModstamp" AS systemmodstamp,
+"LastModifiedDate" AS last_modified_date,
 annual_revenue,
 CASE WHEN annual_revenue <= 49999999 THEN 'SMB'
      WHEN annual_revenue > 49999999 AND annual_revenue <= 499999999 THEN 'Mid-Market'
