@@ -10,6 +10,8 @@ with base as (
 select
 person_id,
 opportunity_id,
+company_size_rev,
+channel_bucket,
 marketing_created_date::Date,
 mql_created_date::Date,
 CASE WHEN person_status NOT IN ('Current Customer','Partner','Bad Data','No Fit') THEN mql_created_date::Date

@@ -72,7 +72,20 @@ CASE WHEN "ACV_Deal_Size_USD__c" <= '9999' THEN '< 10K'
      WHEN "ACV_Deal_Size_USD__c" > '19999' AND "ACV_Deal_Size_USD__c" <= '24999' THEN '20-25K'
      WHEN "ACV_Deal_Size_USD__c" > '24999' AND "ACV_Deal_Size_USD__c" <= '29999' THEN '25-30K'
      ELSE '30K+'
-     END AS deal_size_range
+     END AS deal_size_range,
+CASE 
+    WHEN LOWER("Channel_Lead_Creation__c") = 'organic' THEN 'Organic'
+    WHEN LOWER("Channel_Lead_Creation__c") IS null THEN 'Unknown'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'social' AND LOWER("Medium_Lead_Creation__c") = 'social-organic' THEN 'Social - Organic'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'social' AND LOWER("Medium_Lead_Creation__c") = 'social-paid' THEN 'Paid Social'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'ppc' THEN 'PPC/Paid Search'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'email' AND LOWER("Source_Lead_Creation__c") like '%act-on%' THEN 'Paid Email' 
+    WHEN LOWER("Channel_Lead_Creation__c") = 'ppl' AND LOWER("Medium_Lead_Creation__c") = 'syndication partner' THEN 'PPL'
+    WHEN LOWER("Channel_Lead_Creation__c") IN ('prospecting','ppl') AND LOWER("Medium_Lead_Creation__c") = 'intent partner' THEN 'Intent Partners'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'event' THEN 'Events and Trade Shows'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'partner' THEN 'Partners'
+    ELSE 'Other'
+    END AS channel_bucket
 FROM base
 )
 
