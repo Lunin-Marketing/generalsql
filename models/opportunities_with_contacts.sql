@@ -33,7 +33,8 @@ with opp_base as (
     marketing_created_date,
     lead_status AS person_status,
     company_size_rev,
-    person_account_id
+    person_account_id,
+    channel_bucket
     FROM {{ref('lead_source_xf')}}
     WHERE is_converted = false
 )

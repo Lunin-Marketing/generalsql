@@ -85,6 +85,19 @@ CASE WHEN annual_revenue <= 49999999 THEN 'SMB'
      WHEN annual_revenue > 49999999 AND annual_revenue <= 499999999 THEN 'Mid-Market'
      WHEN annual_revenue > 499999999 THEN 'Enterprise'
      END AS company_size_rev,
+CASE 
+    WHEN LOWER("Channel_Lead_Creation__c") = 'organic' THEN 'Organic'
+    WHEN LOWER("Channel_Lead_Creation__c") IS null THEN 'Unknown'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'social' AND LOWER("Medium_Lead_Creation__c") = 'social-organic' THEN 'Social - Organic'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'social' AND LOWER("Medium_Lead_Creation__c") = 'social-paid' THEN 'Paid Social'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'ppc' THEN 'PPC/Paid Search'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'email' AND LOWER("Source_Lead_Creation__c") like '%act-on%' THEN 'Paid Email' 
+    WHEN LOWER("Channel_Lead_Creation__c") = 'ppl' AND LOWER("Medium_Lead_Creation__c") = 'syndication partner' THEN 'PPL'
+    WHEN LOWER("Channel_Lead_Creation__c") IN ('prospecting','ppl') AND LOWER("Medium_Lead_Creation__c") = 'intent partner' THEN 'Intent Partners'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'event' THEN 'Events and Trade Shows'
+    WHEN LOWER("Channel_Lead_Creation__c") = 'partner' THEN 'Partners'
+    ELSE 'Other'
+    END AS channel_bucket,
 de_current_crm,
 de_current_ma,
 sdr
