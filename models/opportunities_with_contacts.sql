@@ -1,9 +1,6 @@
 {{ config(materialized='table') }}
 
-with opp_base as (
-    select *
-    FROM {{ref('opp_source_xf')}}
-), person_base as (
+with person_base as (
     select
     contact_id AS person_id,
     email,
@@ -17,7 +14,8 @@ with opp_base as (
     marketing_created_date,
     contact_status AS person_status,
     company_size_rev,
-    account_id
+    account_id,
+    channel_bucket
     FROM {{ref('contact_source_xf')}}
     UNION ALL
     select
@@ -42,6 +40,7 @@ select
 person_base.person_id,
 person_base.email,
 person_base.is_hand_raiser,
+person_base.channel_bucket,
 person_base.mql_created_date,
 --person_base.owner_id,
 person_base.channel_lead_creation,
@@ -64,7 +63,7 @@ opp_base.opp_lead_source,
 opp_base.type,
 opp_base.is_closed
 FROM person_base
-LEFT JOIN opp_base ON
+LEFT JOIN {{ref('opp_source_xf')}} AS opp_base ON
 person_base.account_id=opp_base.account_id
 WHERE opportunity_id IS NOT null
-ORDER BY 15
+ORDER BY 4
