@@ -28,15 +28,11 @@ FROM "acton".salesforce."opportunity_line_item"
         subscription_type_c AS subscription_type,
         total_discount_c AS total_discount,
         prorate_multiplier_mirror_c AS prorate_multiplier_mirror,
-        sbqq_parent_id_c AS sbqq_parent_id
+        sbqq_parent_id_c AS sbqq_parent_id,
+        opp_product_family_text_c AS product_family
     FROM base
 
 )
 
 SELECT *
 FROM final
-
-
-
-
-)
