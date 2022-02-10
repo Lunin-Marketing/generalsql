@@ -2,20 +2,25 @@
 
 WITH base AS (
 SELECT *
-FROM "acton".public."Contract"
+FROM "acton".salesforce."contract"
 
 ), final AS (
 SELECT
-"Id" AS contract_id,
-"AccountId" AS account_id,
-"OwnerId" AS owner_id,
-"Churn_Date__c"::Date AS churn_date,
-"CS_Churn__c" AS cs_churn,
-"Status" AS status,
-"Contract_Status__c" AS contract_status,
-"ARR_Loss_Amount__c" AS arr_loss_amount,
-"SystemModstamp" AS systemmodstamp,
-"LastModifiedDate" AS last_modified_date
+id AS contract_id,
+account_id,
+owner_id,
+status,
+is_deleted,
+DATE_TRUNC('day',created_date)::Date AS created_date,
+created_by_id,
+DATE_TRUNC('day',last_modified_date)::Date AS last_modified_date,
+system_modstamp AS systemmodstamp,
+contract_status_c AS contract_status,
+related_opportunity_c AS contract_opportunity_id,
+DATE_TRUNC('day',churn_date)::Date AS churn_date,
+cs_churn_c AS cs_churn,
+arr_c AS arr
+--"ARR_Loss_Amount__c" AS arr_loss_amount,
 FROM base
 
 )
