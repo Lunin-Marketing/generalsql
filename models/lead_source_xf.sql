@@ -77,7 +77,6 @@ FROM "acton".salesforce."lead"
         source_lead_creation_c AS source_lead_creation,
         campaign_lead_creation_c AS campaign_lead_creation,
         firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
-        state,
         do_not_contact_c AS do_not_contact,
         form_consent_opt_in_c AS form_consent_opt_in,
         CASE 

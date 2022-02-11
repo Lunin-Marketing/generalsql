@@ -3,8 +3,8 @@
 SELECT
 opportunity_id,
 opportunity_name,
-is_closed,
-is_won,
+opp_source_xf.is_closed,
+opp_source_xf.is_won,
 created_date,
 stage_name,
 opp_lead_source,
