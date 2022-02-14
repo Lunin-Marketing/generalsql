@@ -75,7 +75,7 @@ FROM "acton".salesforce."contact"
         account_source_xf.annual_revenue,
         account_source_xf.de_current_crm,
         account_source_xf.de_current_ma,
-        account_source_xf.csm_name AS account_csm_name,
+        account_source_xf.account_csm_name AS account_csm_name,
         account_source_xf.csm_id AS account_csm_id,
         account_source_xf.sdr_phone AS account_sdr_phone,
         account_source_xf.sdr_photo AS account_sdr_photo,

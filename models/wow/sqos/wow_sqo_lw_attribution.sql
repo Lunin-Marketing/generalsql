@@ -13,7 +13,7 @@ SELECT
 opp_channel_lead_creation,
 opp_medium_lead_creation,
 opp_source_lead_creation,
-COUNT(opportunity_id) AS sqls,
+COUNT(DISTINCT opportunity_id) AS sqls,
 SUM(acv_deal_size_usd) AS acv
 FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN {{ref('account_source_xf')}} ON

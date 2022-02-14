@@ -6,7 +6,7 @@ FROM "acton".salesforce."opportunity"
 
 ), intermediate AS (
 
-    SELECT 
+    SELECT DISTINCT
         id AS opportunity_id,
         base.is_deleted,
         base.account_id,
@@ -18,8 +18,8 @@ FROM "acton".salesforce."opportunity"
         is_closed,
         is_won,
         base.owner_id, 
-        base.created_date AS created_date,
-        DATE_TRUNC('day',base.created_date)::Date AS created_day,
+        base.created_date AS created_day,
+        DATE_TRUNC('day',base.created_date)::Date AS created_date,
         DATE_TRUNC('day',base.last_modified_date)::Date AS last_modified_date,
         base.system_modstamp AS systemmodstamp,
         contact_id,
@@ -133,28 +133,214 @@ FROM "acton".salesforce."opportunity"
 ), intermediate_acv_formula AS (
 
     SELECT 
-        intermediate.*,
-        CASE
-            WHEN sbqq_product_subscription_term = 0 AND sbqq_primary_quote IS null THEN contract_acv
-            WHEN sbqq_product_subscription_term > 0 AND sbqq_product_subscription_term < 12 THEN tcv 
-            ELSE acv
-        END AS acv_formula
-        FROM intermediate
+      intermediate.opportunity_id,
+      intermediate.is_deleted,
+      intermediate.account_id,
+      intermediate.opportunity_name,
+      intermediate.stage_name,
+      intermediate.amount,
+      intermediate.type,
+      intermediate.opp_lead_source,
+      intermediate.is_closed,
+      intermediate.is_won,
+      intermediate.owner_id,
+      intermediate.created_day,
+      intermediate.created_date,
+      intermediate.last_modified_date,
+      intermediate.systemmodstamp,
+      intermediate.contact_id,
+      intermediate.contract_id,
+      intermediate.opp_crm,
+      intermediate.renewal_type,
+      intermediate.renewal_acv,
+      intermediate.opp_channel_lead_creation,
+      intermediate.opp_medium_lead_creation,
+      intermediate.discovery_date,
+      intermediate.opp_channel_opportunity_creation,
+      intermediate.opp_medium_opportunity_creation,
+      intermediate.opp_content_opportunity_creation,
+      intermediate.opp_source_opportunity_creation,
+      intermediate.csm,
+      intermediate.marketing_channel,
+      intermediate.opp_channel_first_touch,
+      intermediate.opp_content_first_touch,
+      intermediate.opp_medium_first_touch,
+      intermediate.opp_source_first_touch,
+      intermediate.opp_offer_asset_type_opportunity_creation,
+      intermediate.opp_offer_asset_subtype_opportunity_creation,
+      intermediate.opp_offer_asset_topic_opportunity_creation,
+      intermediate.opp_offer_asset_name_opportunity_creation,
+      intermediate.opp_offer_asset_name_first_touch,
+      intermediate.opp_offer_asset_name_lead_creation,
+      intermediate.opp_offer_asset_subtype_first_touch,
+      intermediate.opp_offer_asset_subtype_lead_creation,
+      intermediate.opp_offer_asset_topic_first_touch,
+      intermediate.opp_offer_asset_topic_lead_creation,
+      intermediate.opp_offer_asset_type_first_touch,
+      intermediate.opp_offer_asset_type_lead_creation,
+      intermediate.opp_subchannel_first_touch,
+      intermediate.opp_subchannel_lead_creation,
+      intermediate.opp_subchannel_opportunity_creation,
+      intermediate.discovery_call_date,
+      intermediate.opportunity_status,
+      intermediate.sql_status_reason,
+      intermediate.sql_date,
+      intermediate.discovery_call_scheduled_datetime,
+      intermediate.discovery_call_completed_datetime,
+      intermediate.ao_account_id,
+      intermediate.lead_id_converted_from,
+      intermediate.close_date,
+      intermediate.opp_type_details,
+      intermediate.close_day,
+      intermediate.opp_source_lead_creation,
+      intermediate.opp_campaign_opportunity_creation,
+      intermediate.forecast_category,
+      intermediate.opp_campaign_first_touch,
+      intermediate.acv_deal_size_override,
+      intermediate.lead_grade_at_conversion,
+      intermediate.renewal_stage,
+      intermediate.created_by_id,
+      intermediate.quota_credit_renewal,
+      intermediate.renewed_contract_id,
+      intermediate.quota_credit,
+      intermediate.primary_quote_id,
+      intermediate.quota_credit_new_business,
+      intermediate.quota_credit_one_time,
+      intermediate.submitted_for_approval,
+      intermediate.acv_add_back,
+      intermediate.trigger_renewal_value,
+      intermediate.sbqq_primary_quote,
+      intermediate.sbqq_product_subscription_term,
+      intermediate.contract_acv,
+      intermediate.include_in_acv_deal_size,
+      intermediate.age,
+      intermediate.tcv,
+      intermediate.acv,
+      intermediate.one_time_ps_value,
+      intermediate.one_time_license_value,
+      intermediate.pso_recurring_fees,
+      intermediate.total_price,
+      intermediate.annual_price,
+      CASE
+        WHEN sbqq_product_subscription_term = 0 AND sbqq_primary_quote IS null THEN SUM(contract_acv)
+        WHEN sbqq_product_subscription_term > 0 AND sbqq_product_subscription_term < 12 THEN SUM(tcv) 
+        ELSE SUM(acv)
+      END AS acv_formula
+      --intermediate.sbqq_subscription_type,
+      --intermediate.product_code,
+      --intermediate.product_family,
+    FROM intermediate
+    {{dbt_utils.group_by(n=88) }}
+
+), intermediate_acv_sum AS (
+    
+    SELECT
+      intermediate_acv_formula.opportunity_id,
+      intermediate_acv_formula.is_deleted,
+      intermediate_acv_formula.account_id,
+      intermediate_acv_formula.opportunity_name,
+      intermediate_acv_formula.stage_name,
+      intermediate_acv_formula.amount,
+      intermediate_acv_formula.type,
+      intermediate_acv_formula.opp_lead_source,
+      intermediate_acv_formula.is_closed,
+      intermediate_acv_formula.is_won,
+      intermediate_acv_formula.owner_id,
+      intermediate_acv_formula.created_day,
+      intermediate_acv_formula.created_date,
+      intermediate_acv_formula.last_modified_date,
+      intermediate_acv_formula.systemmodstamp,
+      intermediate_acv_formula.contact_id,
+      intermediate_acv_formula.contract_id,
+      intermediate_acv_formula.opp_crm,
+      intermediate_acv_formula.renewal_type,
+      intermediate_acv_formula.renewal_acv,
+      intermediate_acv_formula.opp_channel_lead_creation,
+      intermediate_acv_formula.opp_medium_lead_creation,
+      intermediate_acv_formula.discovery_date,
+      intermediate_acv_formula.opp_channel_opportunity_creation,
+      intermediate_acv_formula.opp_medium_opportunity_creation,
+      intermediate_acv_formula.opp_content_opportunity_creation,
+      intermediate_acv_formula.opp_source_opportunity_creation,
+      intermediate_acv_formula.csm,
+      intermediate_acv_formula.marketing_channel,
+      intermediate_acv_formula.opp_channel_first_touch,
+      intermediate_acv_formula.opp_content_first_touch,
+      intermediate_acv_formula.opp_medium_first_touch,
+      intermediate_acv_formula.opp_source_first_touch,
+      intermediate_acv_formula.opp_offer_asset_type_opportunity_creation,
+      intermediate_acv_formula.opp_offer_asset_subtype_opportunity_creation,
+      intermediate_acv_formula.opp_offer_asset_topic_opportunity_creation,
+      intermediate_acv_formula.opp_offer_asset_name_opportunity_creation,
+      intermediate_acv_formula.opp_offer_asset_name_first_touch,
+      intermediate_acv_formula.opp_offer_asset_name_lead_creation,
+      intermediate_acv_formula.opp_offer_asset_subtype_first_touch,
+      intermediate_acv_formula.opp_offer_asset_subtype_lead_creation,
+      intermediate_acv_formula.opp_offer_asset_topic_first_touch,
+      intermediate_acv_formula.opp_offer_asset_topic_lead_creation,
+      intermediate_acv_formula.opp_offer_asset_type_first_touch,
+      intermediate_acv_formula.opp_offer_asset_type_lead_creation,
+      intermediate_acv_formula.opp_subchannel_first_touch,
+      intermediate_acv_formula.opp_subchannel_lead_creation,
+      intermediate_acv_formula.opp_subchannel_opportunity_creation,
+      intermediate_acv_formula.discovery_call_date,
+      intermediate_acv_formula.opportunity_status,
+      intermediate_acv_formula.sql_status_reason,
+      intermediate_acv_formula.sql_date,
+      intermediate_acv_formula.discovery_call_scheduled_datetime,
+      intermediate_acv_formula.discovery_call_completed_datetime,
+      intermediate_acv_formula.ao_account_id,
+      intermediate_acv_formula.lead_id_converted_from,
+      intermediate_acv_formula.close_date,
+      intermediate_acv_formula.opp_type_details,
+      intermediate_acv_formula.close_day,
+      intermediate_acv_formula.opp_source_lead_creation,
+      intermediate_acv_formula.opp_campaign_opportunity_creation,
+      intermediate_acv_formula.forecast_category,
+      intermediate_acv_formula.opp_campaign_first_touch,
+      intermediate_acv_formula.acv_deal_size_override,
+      intermediate_acv_formula.lead_grade_at_conversion,
+      intermediate_acv_formula.renewal_stage,
+      intermediate_acv_formula.created_by_id,
+      intermediate_acv_formula.quota_credit_renewal,
+      intermediate_acv_formula.renewed_contract_id,
+      intermediate_acv_formula.quota_credit,
+      intermediate_acv_formula.primary_quote_id,
+      intermediate_acv_formula.quota_credit_new_business,
+      intermediate_acv_formula.quota_credit_one_time,
+      intermediate_acv_formula.submitted_for_approval,
+      intermediate_acv_formula.acv_add_back,
+      intermediate_acv_formula.trigger_renewal_value,
+      intermediate_acv_formula.sbqq_primary_quote,
+      intermediate_acv_formula.sbqq_product_subscription_term,
+      intermediate_acv_formula.contract_acv,
+      intermediate_acv_formula.include_in_acv_deal_size,
+      intermediate_acv_formula.age,
+      SUM(intermediate_acv_formula.one_time_ps_value) AS one_time_ps_value,
+      SUM(intermediate_acv_formula.one_time_license_value) AS one_time_license_value,
+      SUM(intermediate_acv_formula.pso_recurring_fees) AS pso_recurring_fees,
+      SUM(intermediate_acv_formula.tcv) AS tcv,
+      SUM(intermediate_acv_formula.acv) AS acv,
+      SUM(intermediate_acv_formula.total_price) AS total_price,
+      SUM(intermediate_acv_formula.annual_price) AS annual_price,
+      SUM(intermediate_acv_formula.acv_formula) AS acv_formula
+    FROM intermediate_acv_formula
+    {{dbt_utils.group_by(n=81) }}
 
 ), intermediate_acv_deal_size AS (
     
     SELECT
-        intermediate_acv_formula.*,
-        CASE
-            WHEN acv_deal_size_override > 0 AND is_closed = false AND submitted_for_approval = false THEN acv_deal_size_override
-            WHEN type = 'Renewal' THEN SUM(acv_add_back + trigger_renewal_value)
-            WHEN include_in_acv_deal_size=false THEN 0
-            WHEN include_in_acv_deal_size=true AND acv_formula=0 AND one_time_ps_value=0 AND one_time_license_value=0 AND pso_recurring_fees=0 THEN amount
-            ELSE acv_formula
-        END AS acv_deal_size_usd
-        FROM intermediate_acv_formula
-        {{dbt_utils.group_by(n=92) }}
-            
+      intermediate_acv_sum.*,
+      CASE
+        WHEN acv_deal_size_override > 0 AND is_closed = false AND submitted_for_approval = false THEN acv_deal_size_override
+        WHEN type = 'Renewal' THEN SUM(acv_add_back + trigger_renewal_value)
+        WHEN include_in_acv_deal_size=false THEN 0
+        WHEN include_in_acv_deal_size=true AND acv_formula=0 AND one_time_ps_value=0 AND one_time_license_value=0 AND pso_recurring_fees=0 THEN amount
+        ELSE acv_formula
+      END AS acv_deal_size_usd
+    FROM intermediate_acv_sum
+    {{dbt_utils.group_by(n=89) }}
+
 ), final AS (
 
     SELECT
@@ -183,6 +369,6 @@ FROM "acton".salesforce."opportunity"
     FROM intermediate_acv_deal_size
 )
 
-SELECT 
+SELECT DISTINCT
 *
 FROM final
