@@ -11,7 +11,7 @@ WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
     
 SELECT
 last_12_weeks.week,
-COUNT(opportunity_id) AS sqos
+COUNT(DISTINCT opportunity_id) AS sqos
 FROM {{ref('opp_source_xf')}}
 --FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN {{ref('account_source_xf')}} ON

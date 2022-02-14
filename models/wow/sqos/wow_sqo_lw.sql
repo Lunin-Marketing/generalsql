@@ -12,7 +12,7 @@ WHERE day = CURRENT_DATE-7
 SELECT
 opp_channel_lead_creation,
 opp_lead_source,
-COUNT(opportunity_id) AS sqos,
+COUNT(DISTINCT opportunity_id) AS sqos,
 SUM(acv_deal_size_usd) AS acv
 FROM {{ref('opp_source_xf')}}
 --FROM "acton".dbt_actonmarketing.opp_source_xf
