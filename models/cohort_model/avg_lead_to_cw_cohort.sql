@@ -6,6 +6,8 @@ WITH base AS(
 )
 
 SELECT
+    channel_bucket,
+    segment,
     AVG(days_to_mql) AS avg_days_to_mql,
     AVG(days_to_sal) AS avg_days_to_sal,
     AVG(days_to_sql) AS avg_days_to_sql,
@@ -13,3 +15,4 @@ SELECT
     AVG(days_to_won) AS avg_days_to_won,
     AVG(days_to_closed_lost) AS avg_days_to_closed_lost
 FROM base
+GROUP BY 1,2

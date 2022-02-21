@@ -7,11 +7,11 @@ FROM {{ref('date_base_xf')}}
 WHERE day=CURRENT_DATE-7
 ), base AS (
 SELECT DISTINCT
-sqo_source_xf.opportunity_id AS sqo_id,
+opp_demo_source_xf.opportunity_id AS demo_id,
 acv,
-sqo_source_xf.discovery_date AS sqo_date,
+opp_demo_source_xf.discovery_date AS sqo_date,
 country
-FROM {{ref('sqo_source_xf')}}
+FROM {{ref('opp_demo_source_xf')}}
 LEFT JOIN {{ref('date_base_xf')}} ON
 sqo_source_xf.discovery_date=date_base_xf.day
 LEFT JOIN current_week ON 
