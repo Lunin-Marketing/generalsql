@@ -91,6 +91,8 @@ FROM "acton".salesforce."contact"
             WHEN account_source_xf.annual_revenue > 49999999 AND account_source_xf.annual_revenue <= 499999999 THEN 'Mid-Market'
             WHEN account_source_xf.annual_revenue > 499999999 THEN 'Enterprise'
         END AS company_size_rev,
+        account_source_xf.global_region,
+        account_source_xf.segment,
         CASE 
             WHEN LOWER(channel_lead_creation_c) = 'organic' THEN 'Organic'
             WHEN LOWER(channel_lead_creation_c) IS null THEN 'Unknown'

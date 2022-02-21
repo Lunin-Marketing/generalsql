@@ -74,7 +74,19 @@ FROM "acton".salesforce."account"
         CASE 
             WHEN opp_source_xf.is_closed = false THEN COUNT(DISTINCT opp_source_xf.opportunity_id)
             ELSE 0
-        END AS number_of_open_opps
+        END AS number_of_open_opps,
+        CASE
+            WHEN base.billing_country IS NOT null AND base.billing_country IN ('GB','UK','IE','DE','DK','FI','IS','NO','SE','FR','AL','AD','AM','AT','BY','BE','BA','BG','HR','CS','CY','CZ','EE','FX','GE','GR','HU','IT','LV','LI','LT','LU','MK','MT','MD','MC','ME','NL','PL','PT','RO','SM','RS','SJ','SK','SI','ES','CH','UA','VA','FO','GI','GG','IM','JE','XK','RU') THEN 'EUROPE'
+            WHEN base.billing_country IS NOT null AND base.billing_country IN ('JP','KR','CN','MN','TW','VN','HK','LA','TH','KH','PH','MY','SG','ID','LK','IN','NP','BT','MM','PK','AF','KG','UZ','TM','KZ') THEN 'APJ'
+            WHEN base.billing_country IS NOT null AND base.billing_country IN ('AU','CX','NZ','NF','Australia','New Zealand') THEN 'AUNZ'
+            WHEN base.billing_country IS NOT null AND base.billing_country IN ('AR','BO','BR','BZ','CL','CO','CU','CR','DO','EC','FK','GF','GS','GY','GT','HN','MX','NI','PA','PE','PR','PY','SR','SV','UY','VE')THEN 'LATAM'
+            WHEN base.billing_state IS NOT null AND base.billing_state IN ('CA','NV','UT','AK','MO','CO','HI','OK','IL','AR','NE','MI','KS','OR','WA','ID','WI','MN','ND','SD','MT','WY','IA','NB','ON','PE','QC','AB','BC','MB','SK','NL','NS','YT','NU','NT') THEN 'NA-WEST'
+            WHEN base.billing_state IS NOT null AND base.billing_state IN ('NY','CT','MA','VT','NH','ME','NJ','RI','TX','AZ','NM','MS','LA','AL','TN','KY','OH','IN','GA','FL','NC','SC','PA','DC','DE','MD','VA','WV') THEN 'NA-EAST'
+            WHEN base.billing_country IS NOT null AND base.billing_country IN ('AG','AI','AN','AW','BB','BM','BS','DM','GD','GP','HT','JM','KN','LC','MQ','MS','TC','TT','VC','VG','VI') THEN 'NA-EAST'
+            WHEN base.billing_country IS NOT null AND base.billing_country IN ('US','CA') AND base.billing_state IS null  THEN 'NA-NO-STATEPROV'
+            WHEN base.billing_country IS NOT null AND base.billing_state IS NOT null THEN 'ROW'
+            ELSE 'Unknown'
+        END AS global_region
         -- "Renewal_Notice_Date__c" AS renewal_notice_date,
     FROM base
     LEFT JOIN "acton".salesforce."account" AS parent ON
@@ -96,5 +108,11 @@ FROM "acton".salesforce."account"
 )
 
 SELECT 
-* 
+final.*,
+CASE
+    WHEN global_region IN ('EUROPE','ROW','AUNZ') THEN 'EMEA'
+    WHEN company_size_rev IN ('SMB') OR company_size_rev IS null THEN 'Velocity'
+    WHEN company_size_rev IN ('Mid-Market','Enterprise') THEN 'Upmarket'
+    ELSE null
+END AS segment 
 FROM final

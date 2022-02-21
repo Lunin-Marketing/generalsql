@@ -97,6 +97,18 @@ FROM "acton".salesforce."lead"
             WHEN LOWER(channel_lead_creation_c) = 'partner' THEN 'Partners'
             ELSE 'Other'
         END AS channel_bucket,
+        CASE
+            WHEN country IS NOT null AND country IN ('GB','UK','IE','DE','DK','FI','IS','NO','SE','FR','AL','AD','AM','AT','BY','BE','BA','BG','HR','CS','CY','CZ','EE','FX','GE','GR','HU','IT','LV','LI','LT','LU','MK','MT','MD','MC','ME','NL','PL','PT','RO','SM','RS','SJ','SK','SI','ES','CH','UA','VA','FO','GI','GG','IM','JE','XK','RU','United Kingdom','England') THEN 'EUROPE'
+            WHEN country IS NOT null AND country IN ('JP','KR','CN','MN','TW','VN','HK','LA','TH','KH','PH','MY','SG','ID','LK','IN','NP','BT','MM','PK','AF','KG','UZ','TM','KZ') THEN 'APJ'
+            WHEN country IS NOT null AND country IN ('AU','CX','NZ','NF','Australia','New Zealand') THEN 'AUNZ'
+            WHEN country IS NOT null AND country IN ('AR','BO','BR','BZ','CL','CO','CU','CR','DO','EC','FK','GF','GS','GY','GT','HN','MX','NI','PA','PE','PR','PY','SR','SV','UY','VE')THEN 'LATAM'
+            WHEN state IS NOT null AND state IN ('CA','NV','UT','AK','MO','CO','HI','OK','IL','AR','NE','MI','KS','OR','WA','ID','WI','MN','ND','SD','MT','WY','IA','NB','ON','PE','QC','AB','BC','MB','SK','NL','NS','YT','NU','NT') THEN 'NA-WEST'
+            WHEN state IS NOT null AND state IN ('NY','CT','MA','VT','NH','ME','NJ','RI','TX','AZ','NM','MS','LA','AL','TN','KY','OH','IN','GA','FL','NC','SC','PA','DC','DE','MD','VA','WV') THEN 'NA-EAST'
+            WHEN country IS NOT null AND country IN ('AG','AI','AN','AW','BB','BM','BS','DM','GD','GP','HT','JM','KN','LC','MQ','MS','TC','TT','VC','VG','VI') THEN 'NA-EAST'
+            WHEN country IS NOT null AND country IN ('US','CA') AND state IS null  THEN 'NA-NO-STATEPROV'
+            WHEN country IS NOT null AND state IS NOT null THEN 'ROW'
+            ELSE 'Unknown'
+        END AS global_region,
         COALESCE(account_c,lean_data_a_2_b_account_c) AS person_account_id
     FROM base
     WHERE base.owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
@@ -104,5 +116,11 @@ FROM "acton".salesforce."lead"
 )
 
 SELECT 
-*
+final.*,
+CASE
+    WHEN global_region IN ('EUROPE','ROW','AUNZ') THEN 'EMEA'
+    WHEN company_size_rev IN ('SMB') OR company_size_rev IS null THEN 'Velocity'
+    WHEN company_size_rev IN ('Mid-Market','Enterprise') THEN 'Upmarket'
+    ELSE null
+END AS segment
 FROM final
