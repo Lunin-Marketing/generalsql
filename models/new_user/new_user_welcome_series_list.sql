@@ -37,8 +37,8 @@ opp_and_acct_base.opportunity_id,
 opp_and_acct_base.account_id,
 opp_and_acct_base.opportunity_name,
 opp_and_acct_base.customer_since,
-CASE WHEN opp_and_acct_base.account_csm IS null THEN 'Support'
-ELSE opp_and_acct_base.account_csm END AS account_csm,
+CASE WHEN opp_and_acct_base.account_csm_name IS null THEN 'Support'
+ELSE opp_and_acct_base.account_csm_name END AS account_csm_name,
 CASE WHEN opp_and_acct_base.account_csm_email IS null THEN 'support@act-on.com'
 ELSE opp_and_acct_base.account_csm_email END AS account_csm_email,
 CASE WHEN opp_and_acct_base.account_csm_photo IS null THEN 'https://success.act-on.com/cdnr/forpcid1/acton/attachment/9883/f-fa8432de-9cea-4bf7-b6d4-eca1c9656b82/1/-/-/-/-/NewUserWelcomeSeries-EM3-Support.png'

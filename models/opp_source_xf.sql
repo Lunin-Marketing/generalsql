@@ -30,6 +30,10 @@ FROM "acton".salesforce."opportunity"
         channel_lead_creation_c AS opp_channel_lead_creation,
         medium_lead_creation_c AS opp_medium_lead_creation,
         DATE_TRUNC('day',discovery_date_c)::Date AS discovery_date,
+        DATE_TRUNC('day',date_reached_confirmed_value_c)::Date AS confirmed_value_date,
+        DATE_TRUNC('day',date_reached_contract_c)::Date AS contract_date,
+        DATE_TRUNC('day',date_reached_demo_c)::Date AS demo_date,
+        DATE_TRUNC('day',date_reached_solution_c)::Date AS solution_date,
         oc_utm_channel_c AS opp_channel_opportunity_creation,
         oc_utm_medium_c AS opp_medium_opportunity_creation,
         oc_utm_content_c AS opp_content_opportunity_creation, 
@@ -128,7 +132,7 @@ FROM "acton".salesforce."opportunity"
     base.id=opportunity_line_item_xf.opportunity_id
     LEFT JOIN {{ref('quote_line')}} ON
     base.id=quote_line.opportunity_id
-    {{dbt_utils.group_by(n=85) }}
+    {{dbt_utils.group_by(n=89) }}
 
 ), intermediate_acv_formula AS (
 
@@ -156,6 +160,10 @@ FROM "acton".salesforce."opportunity"
       intermediate.opp_channel_lead_creation,
       intermediate.opp_medium_lead_creation,
       intermediate.discovery_date,
+      intermediate.demo_date,
+      intermediate.solution_date,
+      intermediate.contract_date,
+      intermediate.confirmed_value_date,
       intermediate.opp_channel_opportunity_creation,
       intermediate.opp_medium_opportunity_creation,
       intermediate.opp_content_opportunity_creation,
@@ -230,7 +238,7 @@ FROM "acton".salesforce."opportunity"
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    {{dbt_utils.group_by(n=88) }}
+    {{dbt_utils.group_by(n=92) }}
 
 ), intermediate_acv_sum AS (
     
@@ -258,6 +266,10 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.opp_channel_lead_creation,
       intermediate_acv_formula.opp_medium_lead_creation,
       intermediate_acv_formula.discovery_date,
+      intermediate_acv_formula.contract_date,
+      intermediate_acv_formula.demo_date,
+      intermediate_acv_formula.solution_date,
+      intermediate_acv_formula.confirmed_value_date,
       intermediate_acv_formula.opp_channel_opportunity_creation,
       intermediate_acv_formula.opp_medium_opportunity_creation,
       intermediate_acv_formula.opp_content_opportunity_creation,
@@ -325,7 +337,7 @@ FROM "acton".salesforce."opportunity"
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    {{dbt_utils.group_by(n=81) }}
+    {{dbt_utils.group_by(n=85) }}
 
 ), intermediate_acv_deal_size AS (
     
@@ -339,7 +351,7 @@ FROM "acton".salesforce."opportunity"
         ELSE acv_formula
       END AS acv_deal_size_usd
     FROM intermediate_acv_sum
-    {{dbt_utils.group_by(n=89) }}
+    {{dbt_utils.group_by(n=93) }}
 
 ), final AS (
 

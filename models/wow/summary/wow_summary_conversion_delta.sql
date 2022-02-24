@@ -38,13 +38,13 @@ WITH last_week AS (
 ), final AS (
 
     SELECT
-        SUM(last_lead_to_mql/NULLIF(previous_lead_to_mql,0)) AS lead_to_mql_delta,
-        SUM(last_mql_to_sal/NULLIF(previous_mql_to_sal,0)) AS mql_to_sal_delta,
-        SUM(last_sal_to_sql/NULLIF(previous_sal_to_sql,0)) AS sal_to_sql_delta,
-        SUM(last_sql_to_sqo/NULLIF(previous_sql_to_sqo,0)) AS sql_to_sqo_delta,
-        SUM(last_sqo_to_won/NULLIF(previous_sqo_to_won,0)) AS sqo_to_won_delta,
-        SUM(last_sqo_to_lost/NULLIF(previous_sqo_to_lost,0)) AS sqo_to_lost_delta,
-        SUM(last_sqo_to_churn/NULLIF(previous_sqo_to_churn,0)) AS sqo_to_churn_delta
+        ROUND(SUM(last_lead_to_mql-previous_lead_to_mql),2) AS lead_to_mql_delta,
+        ROUND(SUM(last_mql_to_sal-previous_mql_to_sal),2) AS mql_to_sal_delta,
+        ROUND(SUM(last_sal_to_sql-previous_sal_to_sql),2) AS sal_to_sql_delta,
+        ROUND(SUM(last_sql_to_sqo-previous_sql_to_sqo),2) AS sql_to_sqo_delta,
+        ROUND(SUM(last_sqo_to_won-previous_sqo_to_won),2) AS sqo_to_won_delta,
+        ROUND(SUM(last_sqo_to_lost-previous_sqo_to_lost),2) AS sqo_to_lost_delta,
+        ROUND(SUM(last_sqo_to_churn-previous_sqo_to_churn),2) AS sqo_to_churn_delta
     FROM intermediate
 )
 
