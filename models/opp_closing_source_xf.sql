@@ -31,3 +31,4 @@ LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE discovery_date IS NOT null
 AND stage_name = 'Closing'
+--AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo','VOC/Negotiate')
