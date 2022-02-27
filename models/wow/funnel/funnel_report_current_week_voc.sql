@@ -10,13 +10,13 @@ WITH current_week AS (
 ), base AS (
 
     SELECT DISTINCT
-        sqo_source_xf.opportunity_id AS sqo_id,
+        opp_voc_source_xf.opportunity_id AS voc_id,
         acv,
-        sqo_source_xf.discovery_date AS sqo_date,
+        opp_voc_source_xf.discovery_date AS sqo_date,
         country
     FROM {{ref('opp_voc_source_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
-    sqo_source_xf.discovery_date=date_base_xf.day
+    opp_voc_source_xf.discovery_date=date_base_xf.day
     LEFT JOIN current_week ON 
     date_base_xf.week=current_week.week
     WHERE current_week.week IS NOT null
