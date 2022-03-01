@@ -10,7 +10,7 @@ WITH current_week AS (
 ), base AS (
 
     SELECT DISTINCT
-        sql_source_xf.opportunity_id AS sql_id,
+        sql_id,
         sql_source_xf.created_date AS sql_date,
         country
     FROM {{ref('sql_source_xf')}}

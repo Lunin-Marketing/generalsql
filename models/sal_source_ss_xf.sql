@@ -10,8 +10,7 @@ mql_created_date,
 mql_most_recent_date,
 lead_status,
 country
-FROM {{ref('lead_source_xf')}}
---FROM "acton".dbt_actonmarketing.lead_source_xf
+FROM {{ref('lead_source_ss_xf')}}
 WHERE lead_owner != '00Ga0000003Nugr'
 AND mql_most_recent_date IS NOT null
 AND email NOT LIKE '%act-on.com'

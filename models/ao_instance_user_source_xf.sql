@@ -1,26 +1,36 @@
 {{ config(materialized='table') }}
+
 WITH base AS (
+
 SELECT *
-FROM "acton".public."Act_On_Instance_User__c"
+FROM "acton".salesforce."act_on_instance_user_c"
 
 ), final AS (
     SELECT
-    "Id" AS ao_user_id,
-    "Name" AS ao_user_name,
-    "CreatedDate" AS ao_user_created_date,
-    "Act_On_Instance__c" AS ao_user_instance,
-    "Email__c" AS ao_user_email, 
-    "First_Name__c" AS ao_user_first_name, 
-    "Last_Name__c" AS ao_user_last_name, 
-    "Is_Admin_User__c" AS is_admin_user,
-    "Is_Marketing_User__c" AS is_marketing_user,
-    "Is_Sales_User__c" AS is_sales_user,
-    "Date_User_Created__c" AS ao_user_date_created,
-    "AO_User_Account_ID__c" AS ao_user_account_id, 
-    "Contact__c" AS ao_user_contact_id,
-    "AO_Account_Name__c" AS ao_user_account_name
+        base.id AS ao_user_id,
+        base.is_deleted,
+        base.name AS ao_user_name,
+        base.created_date AS ao_user_created_date,
+        base.last_modified_date,
+        base.system_modstamp AS systemmodstamp,
+        base.act_on_instance_c AS ao_user_instance,
+        base.email_c AS ao_user_email, 
+        base.first_name_c AS ao_user_first_name, 
+        base.last_name_c AS ao_user_last_name, 
+        base.is_admin_user_c AS is_admin_user,
+        base.is_marketing_user_c AS is_marketing_user,
+        base.is_sales_user_c AS is_sales_user,
+        base.date_user_created_c AS ao_user_date_created,
+        base.ao_user_account_id_c AS ao_user_account_id, 
+        base.contact_c AS ao_user_contact_id,
+        base.deleted_c AS deleted,
+        base.deleted_date_c AS deleted_date,
+        ao_instance_source_xf.ao_instance_name AS ao_user_account_name
     FROM base
+    LEFT JOIN {{ref('ao_instance_source_xf')}} ON
+    base.act_on_instance_c=ao_instance_source_xf.ao_instance_id
+    
 )
-SELECT
-*
+
+SELECT *
 FROM final

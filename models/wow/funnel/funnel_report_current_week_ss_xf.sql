@@ -12,7 +12,7 @@ WITH base AS (
         0 AS voc,
         0 AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_leads')}}
+    FROM {{ref('funnel_report_current_week_leads_ss')}}
     GROUP BY 2,3,4,5,6,7,8,9
     UNION ALL
     SELECT
@@ -25,7 +25,7 @@ WITH base AS (
         0 AS voc,
         0 AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_mqls')}}
+    FROM {{ref('funnel_report_current_week_mqls_ss')}}
     GROUP BY 1,3,4,5,6,7,8,9
     UNION ALL
     SELECT
@@ -38,7 +38,7 @@ WITH base AS (
         0 AS voc,
         0 AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_sals')}}
+    FROM {{ref('funnel_report_current_week_sals_ss')}}
     GROUP BY 1,2,4,5,6,7,8,9
     UNION ALL
     SELECT
@@ -51,7 +51,7 @@ WITH base AS (
         0 AS voc,
         0 AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_sqls')}}
+    FROM {{ref('funnel_report_current_week_sqls_ss')}}
     GROUP BY 1,2,3,5,6,7,8,9
     UNION ALL
     SELECT
@@ -64,7 +64,7 @@ WITH base AS (
         0 AS voc,
         0 AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_sqos')}}
+    FROM {{ref('funnel_report_current_week_sqos_ss')}}
     GROUP BY 1,2,3,4,6,7,8,9
     UNION ALL
     SELECT
@@ -77,7 +77,7 @@ WITH base AS (
         0 AS voc,
         0 AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_demo')}}
+    FROM {{ref('funnel_report_current_week_demo_ss')}}
     GROUP BY 1,2,3,4,5,7,8,9
     UNION ALL
     SELECT
@@ -90,7 +90,7 @@ WITH base AS (
         COUNT(DISTINCT voc_id) AS voc,
         0 AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_voc')}}
+    FROM {{ref('funnel_report_current_week_voc_ss')}}
     GROUP BY 1,2,3,4,5,6,8,9
     UNION ALL
     SELECT
@@ -103,7 +103,7 @@ WITH base AS (
         0 AS voc,
         COUNT(DISTINCT closing_id) AS closing,
         0 AS won
-    FROM {{ref('funnel_report_previous_week_closing')}}
+    FROM {{ref('funnel_report_current_week_closing_ss')}}
     GROUP BY 1,2,3,4,5,6,7,9
     UNION ALL
     SELECT
@@ -116,7 +116,7 @@ WITH base AS (
         0 AS voc,
         0 AS closing,
         COUNT(DISTINCT won_id) AS won
-    FROM {{ref('funnel_report_previous_week_won')}}
+    FROM {{ref('funnel_report_current_week_won')}}
     GROUP BY 1,2,3,4,5,6,7,8
 
 )

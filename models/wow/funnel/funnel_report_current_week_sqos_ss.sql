@@ -10,15 +10,17 @@ WITH current_week AS (
 ), base AS (
 
     SELECT DISTINCT
-        lead_mql_source_xf.lead_id AS mql_id,
-        lead_mql_source_xf.mql_created_date AS mql_date,
+        sqo_source_ss_xf.opportunity_id AS sqo_id,
+        acv,    
+        sqo_source_ss_xf.discovery_date AS sqo_date,
         country
-    FROM {{ref('lead_mql_source_xf')}}
+    FROM {{ref('sqo_source_ss_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
-    lead_mql_source_xf.mql_created_date=date_base_xf.day
+    sqo_source_ss_xf.discovery_date=date_base_xf.day
     LEFT JOIN current_week ON 
     date_base_xf.week=current_week.week
     WHERE current_week.week IS NOT null
+    AND type = 'New Business'
 
 )
 

@@ -11,7 +11,7 @@ SELECT
     lead_status,
     country,
     lead_owner
-FROM {{ref('lead_source_xf')}}
+FROM {{ref('lead_source_ss_xf')}}
 WHERE mql_most_recent_date IS NOT null
 AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
 AND email NOT LIKE '%act-on.com'
