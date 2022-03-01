@@ -8,10 +8,6 @@ SELECT
     opp_source_xf.is_closed,
     opp_source_xf.is_won,
     discovery_date,
-    contract_date,
-    demo_date,
-    solution_date,
-    confirmed_value_date,
     stage_name,
     opp_lead_source,
     CASE 
@@ -33,6 +29,6 @@ LEFT JOIN {{ref('user_source_xf')}} ON
 opp_source_xf.owner_id=user_source_xf.user_id
 LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
-WHERE demo_date IS NOT null
---AND stage_name = 'Demo'
-AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery')
+WHERE discovery_date IS NOT null
+AND stage_name = 'Closing'
+--AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo','VOC/Negotiate')
