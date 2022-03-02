@@ -10,7 +10,8 @@ SELECT
     mql_most_recent_date,
     lead_status,
     country,
-    lead_owner
+    lead_owner,
+    global_region
 FROM {{ref('lead_source_xf')}}
 WHERE mql_most_recent_date IS NOT null
 AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
