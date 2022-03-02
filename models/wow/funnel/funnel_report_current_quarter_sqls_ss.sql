@@ -11,16 +11,17 @@ WITH current_quarter AS (
 ), base AS (
 
     SELECT DISTINCT
-        sal_source_xf.lead_id AS sal_id,
-        sal_source_xf.mql_created_date AS sal_date,
+        sql_source_ss_xf.sql_id,
+        sql_source_ss_xf.created_date AS sql_date,
         week,
-        global_region
-    FROM {{ref('sal_source_xf')}}
+        account_global_region
+    FROM {{ref('sql_source_ss_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
-    sal_source_xf.mql_created_date=date_base_xf.day
+    sql_source_ss_xf.created_date=date_base_xf.day
     LEFT JOIN current_quarter ON 
     date_base_xf.quarter=current_quarter.quarter
     WHERE current_quarter.quarter IS NOT null
+    AND type = 'New Business'
 
 )
 

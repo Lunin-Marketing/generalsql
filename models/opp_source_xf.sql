@@ -7,9 +7,21 @@ FROM "acton".salesforce."opportunity"
 ), intermediate AS (
 
     SELECT DISTINCT
-        id AS opportunity_id,
+        base.id AS opportunity_id,
         base.is_deleted,
         base.account_id,
+        CASE
+            WHEN account.billing_country IS NOT null AND account.billing_country IN ('GB','UK','IE','DE','DK','FI','IS','NO','SE','FR','AL','AD','AM','AT','BY','BE','BA','BG','HR','CS','CY','CZ','EE','FX','GE','GR','HU','IT','LV','LI','LT','LU','MK','MT','MD','MC','ME','NL','PL','PT','RO','SM','RS','SJ','SK','SI','ES','CH','UA','VA','FO','GI','GG','IM','JE','XK','RU') THEN 'EUROPE'
+            WHEN account.billing_country IS NOT null AND account.billing_country IN ('JP','KR','CN','MN','TW','VN','HK','LA','TH','KH','PH','MY','SG','ID','LK','IN','NP','BT','MM','PK','AF','KG','UZ','TM','KZ') THEN 'APJ'
+            WHEN account.billing_country IS NOT null AND account.billing_country IN ('AU','CX','NZ','NF','Australia','New Zealand') THEN 'AUNZ'
+            WHEN account.billing_country IS NOT null AND account.billing_country IN ('AR','BO','BR','BZ','CL','CO','CU','CR','DO','EC','FK','GF','GS','GY','GT','HN','MX','NI','PA','PE','PR','PY','SR','SV','UY','VE')THEN 'LATAM'
+            WHEN account.billing_state IS NOT null AND account.billing_state IN ('CA','NV','UT','AK','MO','CO','HI','OK','IL','AR','NE','MI','KS','OR','WA','ID','WI','MN','ND','SD','MT','WY','IA','NB','ON','PE','QC','AB','BC','MB','SK','NL','NS','YT','NU','NT') THEN 'NA-WEST'
+            WHEN account.billing_state IS NOT null AND account.billing_state IN ('NY','CT','MA','VT','NH','ME','NJ','RI','TX','AZ','NM','MS','LA','AL','TN','KY','OH','IN','GA','FL','NC','SC','PA','DC','DE','MD','VA','WV') THEN 'NA-EAST'
+            WHEN account.billing_country IS NOT null AND account.billing_country IN ('AG','AI','AN','AW','BB','BM','BS','DM','GD','GP','HT','JM','KN','LC','MQ','MS','TC','TT','VC','VG','VI') THEN 'NA-EAST'
+            WHEN account.billing_country IS NOT null AND account.billing_country IN ('US','CA') AND account.billing_state IS null  THEN 'NA-NO-STATEPROV'
+            WHEN account.billing_country IS NOT null AND account.billing_state IS NOT null THEN 'ROW'
+            ELSE 'Unknown'
+        END AS account_global_region,
         base.name AS opportunity_name,
         stage_name,
         amount,
@@ -31,52 +43,52 @@ FROM "acton".salesforce."opportunity"
         medium_lead_creation_c AS opp_medium_lead_creation,
         DATE_TRUNC('day',discovery_date_c)::Date AS discovery_date,
         DATE_TRUNC('day',date_reached_confirmed_value_c)::Date AS confirmed_value_date,
-        DATE_TRUNC('day',date_reached_contract_c)::Date AS contract_date,
+        DATE_TRUNC('day',date_reached_contract_c)::Date AS negotiation_date,
         DATE_TRUNC('day',date_reached_demo_c)::Date AS demo_date,
         DATE_TRUNC('day',date_reached_solution_c)::Date AS solution_date,
         oc_utm_channel_c AS opp_channel_opportunity_creation,
         oc_utm_medium_c AS opp_medium_opportunity_creation,
         oc_utm_content_c AS opp_content_opportunity_creation, 
         oc_utm_source_c AS opp_source_opportunity_creation, 
-        csm_c AS csm,
-        marketing_channel_c AS marketing_channel,
-        ft_utm_channel_c AS opp_channel_first_touch,
-        ft_utm_content_c AS opp_content_first_touch,
-        ft_utm_medium_c AS opp_medium_first_touch,
-        ft_utm_source_c AS opp_source_first_touch,
-        oc_offer_asset_type_c AS opp_offer_asset_type_opportunity_creation,
-        oc_offer_asset_subtype_c AS opp_offer_asset_subtype_opportunity_creation,
-        oc_offer_asset_topic_c AS opp_offer_asset_topic_opportunity_creation,
-        oc_offer_asset_name_c AS opp_offer_asset_name_opportunity_creation,
-        ft_offer_asset_name_c AS opp_offer_asset_name_first_touch,
-        lc_offer_asset_name_c  AS opp_offer_asset_name_lead_creation, 
-        ft_offer_asset_subtype_c AS opp_offer_asset_subtype_first_touch, 
-        lc_offer_asset_subtype_c AS opp_offer_asset_subtype_lead_creation,
-        ft_offer_asset_topic_c AS opp_offer_asset_topic_first_touch, 
-        lc_offer_asset_topic_c AS opp_offer_asset_topic_lead_creation,
-        ft_offer_asset_type_c AS opp_offer_asset_type_first_touch, 
-        lc_offer_asset_type_c AS opp_offer_asset_type_lead_creation,
-        ft_subchannel_c AS opp_subchannel_first_touch,
-        lc_subchannel_c AS opp_subchannel_lead_creation, 
-        oc_subchannel_c AS opp_subchannel_opportunity_creation,
-        DATE_TRUNC('day',discovery_call_scheduled_date_c)::Date AS discovery_call_date,
-        opportunity_status_c AS opportunity_status,
-        sql_status_reason_c AS sql_status_reason,
-        DATE_TRUNC('day',sql_date_c)::Date AS sql_date,
-        DATE_TRUNC('day',discovery_call_scheduled_date_time_c)::Date AS discovery_call_scheduled_datetime,
-        DATE_TRUNC('day',discovery_call_completed_date_time_c)::Date AS discovery_call_completed_datetime,
-        ao_account_id_c AS ao_account_id,
-        lead_id_converted_from_c AS lead_id_converted_from,
-        close_date,
-        opportunity_type_detail_c AS opp_type_details,
-        DATE_TRUNC('day',close_date)::Date AS close_day,
-        source_lead_creation_c AS opp_source_lead_creation,
-        oc_utm_campaign_c AS opp_campaign_opportunity_creation,
-        forecast_category,
-        ft_utm_campaign_c AS opp_campaign_first_touch,  
-        acv_deal_size_override_c AS acv_deal_size_override,
-        lead_grade_at_conversion_c AS lead_grade_at_conversion,
-        renewal_stage_c AS renewal_stage,
+        base.csm_c AS csm,
+        base.marketing_channel_c AS marketing_channel,
+        base.ft_utm_channel_c AS opp_channel_first_touch,
+        base.ft_utm_content_c AS opp_content_first_touch,
+        base.ft_utm_medium_c AS opp_medium_first_touch,
+        base.ft_utm_source_c AS opp_source_first_touch,
+        base.oc_offer_asset_type_c AS opp_offer_asset_type_opportunity_creation,
+        base.oc_offer_asset_subtype_c AS opp_offer_asset_subtype_opportunity_creation,
+        base.oc_offer_asset_topic_c AS opp_offer_asset_topic_opportunity_creation,
+        base.oc_offer_asset_name_c AS opp_offer_asset_name_opportunity_creation,
+        base.ft_offer_asset_name_c AS opp_offer_asset_name_first_touch,
+        base.lc_offer_asset_name_c  AS opp_offer_asset_name_lead_creation, 
+        base.ft_offer_asset_subtype_c AS opp_offer_asset_subtype_first_touch, 
+        base.lc_offer_asset_subtype_c AS opp_offer_asset_subtype_lead_creation,
+        base.ft_offer_asset_topic_c AS opp_offer_asset_topic_first_touch, 
+        base.lc_offer_asset_topic_c AS opp_offer_asset_topic_lead_creation,
+        base.ft_offer_asset_type_c AS opp_offer_asset_type_first_touch, 
+        base.lc_offer_asset_type_c AS opp_offer_asset_type_lead_creation,
+        base.ft_subchannel_c AS opp_subchannel_first_touch,
+        base.lc_subchannel_c AS opp_subchannel_lead_creation, 
+        base.oc_subchannel_c AS opp_subchannel_opportunity_creation,
+        DATE_TRUNC('day',base.discovery_call_scheduled_date_c)::Date AS discovery_call_date,
+        base.opportunity_status_c AS opportunity_status,
+        base.sql_status_reason_c AS sql_status_reason,
+        DATE_TRUNC('day',base.sql_date_c)::Date AS sql_date,
+        DATE_TRUNC('day',base.discovery_call_scheduled_date_time_c)::Date AS discovery_call_scheduled_datetime,
+        DATE_TRUNC('day',base.discovery_call_completed_date_time_c)::Date AS discovery_call_completed_datetime,
+        base.ao_account_id_c AS ao_account_id,
+        base.lead_id_converted_from_c AS lead_id_converted_from,
+        base.close_date,
+        base.opportunity_type_detail_c AS opp_type_details,
+        DATE_TRUNC('day',base.close_date)::Date AS close_day,
+        base.source_lead_creation_c AS opp_source_lead_creation,
+        base.oc_utm_campaign_c AS opp_campaign_opportunity_creation,
+        base.forecast_category,
+        base.ft_utm_campaign_c AS opp_campaign_first_touch,  
+        base.acv_deal_size_override_c AS acv_deal_size_override,
+        base.lead_grade_at_conversion_c AS lead_grade_at_conversion,
+        base.renewal_stage_c AS renewal_stage,
         base.created_by_id,
         quota_credit_renewal_c AS quota_credit_renewal,
         base.sbqq_renewed_contract_c AS renewed_contract_id,
@@ -96,7 +108,7 @@ FROM "acton".salesforce."opportunity"
         quote_line.sbqq_primary_quote,
         contract_source_xf.contract_acv,
         CASE
-            WHEN type IN ('New Business','Upsell','Trigger Renewal','Trigger Up','Non-Monetary Mod','Admin Opp','Partner New','Partner UpSell','Admin Conversion') THEN true
+            WHEN base.type IN ('New Business','Upsell','Trigger Renewal','Trigger Up','Non-Monetary Mod','Admin Opp','Partner New','Partner UpSell','Admin Conversion') THEN true
             ELSE false
         END AS include_in_acv_deal_size,
         CASE
@@ -132,7 +144,9 @@ FROM "acton".salesforce."opportunity"
     base.id=opportunity_line_item_xf.opportunity_id
     LEFT JOIN {{ref('quote_line')}} ON
     base.id=quote_line.opportunity_id
-    {{dbt_utils.group_by(n=89) }}
+    LEFT JOIN "acton".salesforce."account" account ON
+    base.account_id=account.id
+    {{dbt_utils.group_by(n=90) }}
 
 ), intermediate_acv_formula AS (
 
@@ -140,6 +154,7 @@ FROM "acton".salesforce."opportunity"
       intermediate.opportunity_id,
       intermediate.is_deleted,
       intermediate.account_id,
+      intermediate.account_global_region,
       intermediate.opportunity_name,
       intermediate.stage_name,
       intermediate.amount,
@@ -162,7 +177,7 @@ FROM "acton".salesforce."opportunity"
       intermediate.discovery_date,
       intermediate.demo_date,
       intermediate.solution_date,
-      intermediate.contract_date,
+      intermediate.negotiation_date,
       intermediate.confirmed_value_date,
       intermediate.opp_channel_opportunity_creation,
       intermediate.opp_medium_opportunity_creation,
@@ -238,7 +253,7 @@ FROM "acton".salesforce."opportunity"
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    {{dbt_utils.group_by(n=92) }}
+    {{dbt_utils.group_by(n=93) }}
 
 ), intermediate_acv_sum AS (
     
@@ -246,6 +261,7 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.opportunity_id,
       intermediate_acv_formula.is_deleted,
       intermediate_acv_formula.account_id,
+      intermediate_acv_formula.account_global_region,
       intermediate_acv_formula.opportunity_name,
       intermediate_acv_formula.stage_name,
       intermediate_acv_formula.amount,
@@ -266,7 +282,7 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.opp_channel_lead_creation,
       intermediate_acv_formula.opp_medium_lead_creation,
       intermediate_acv_formula.discovery_date,
-      intermediate_acv_formula.contract_date,
+      intermediate_acv_formula.negotiation_date,
       intermediate_acv_formula.demo_date,
       intermediate_acv_formula.solution_date,
       intermediate_acv_formula.confirmed_value_date,
@@ -337,7 +353,7 @@ FROM "acton".salesforce."opportunity"
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    {{dbt_utils.group_by(n=85) }}
+    {{dbt_utils.group_by(n=86) }}
 
 ), intermediate_acv_deal_size AS (
     
@@ -351,7 +367,7 @@ FROM "acton".salesforce."opportunity"
         ELSE acv_formula
       END AS acv_deal_size_usd
     FROM intermediate_acv_sum
-    {{dbt_utils.group_by(n=93) }}
+    {{dbt_utils.group_by(n=94) }}
 
 ), final AS (
 

@@ -12,11 +12,11 @@ WITH current_week AS (
     SELECT DISTINCT
         opp_voc_source_xf.opportunity_id AS voc_id,
         acv,
-        opp_voc_source_xf.discovery_date AS sqo_date,
+        opp_voc_source_xf.negotiation_date AS sqo_date,
         country
     FROM {{ref('opp_voc_source_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
-    opp_voc_source_xf.discovery_date=date_base_xf.day
+    opp_voc_source_xf.negotiation_date=date_base_xf.day
     LEFT JOIN current_week ON 
     date_base_xf.week=current_week.week
     WHERE current_week.week IS NOT null

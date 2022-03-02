@@ -16,7 +16,8 @@ SELECT
     opp_source_lead_creation,
     type,
     billing_country AS country,
-    company_size_rev
+    company_size_rev,
+    account_global_region
 FROM {{ref('opp_source_xf')}}
 LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
