@@ -1,26 +1,33 @@
 {{ config(materialized='table') }}
 
-WITH base AS (
+WITH base_prep AS (
 
-    SELECT
+    SELECT DISTINCT
         week,
         global_region
     FROM {{ref('funnel_report_current_quarter_leads_ss')}}
     UNION ALL 
-    SELECT
+    SELECT DISTINCT
         week,
         global_region
     FROM {{ref('funnel_report_current_quarter_mqls_ss')}}
     UNION ALL 
-    SELECT
+    SELECT DISTINCT
         week,
         global_region
     FROM {{ref('funnel_report_current_quarter_sals_ss')}}
     UNION ALL 
-    SELECT
+    SELECT DISTINCT
         week,
         account_global_region
     FROM {{ref('funnel_report_current_quarter_sqls_ss')}}
+
+), base AS (
+
+    SELECT DISTINCT
+    week,
+    global_region
+    FROM base_prep
 
 ), lead_base AS (
 
@@ -93,3 +100,4 @@ LEFT JOIN sql_base ON
 base.week=sql_base.week
 AND base.global_region=sql_base.account_global_region
 GROUP BY 1,2
+ORDER BY 1,2
