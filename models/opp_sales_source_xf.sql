@@ -19,7 +19,8 @@ when type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down
 else null
 end as grouped_type,
 acv,
-billing_country AS country
+billing_country AS country,
+account_global_region
 FROM {{ref('opp_source_xf')}}
 --FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN {{ref('user_source_xf')}} ON
