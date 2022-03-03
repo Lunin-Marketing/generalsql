@@ -8,7 +8,6 @@ SELECT
     opp_source_xf.is_closed,
     opp_source_xf.is_won,
     discovery_date,
-    contract_date,
     demo_date,
     solution_date,
     confirmed_value_date,
