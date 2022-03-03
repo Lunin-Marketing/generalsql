@@ -25,7 +25,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_leads')}}
+    FROM {{ref('funnel_report_current_week_leads_ss')}}
     GROUP BY 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -51,7 +51,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_mqls')}}
+    FROM {{ref('funnel_report_current_week_mqls_ss')}}
     GROUP BY 1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -77,7 +77,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_sals')}}
+    FROM {{ref('funnel_report_current_week_sals_ss')}}
     GROUP BY 1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -103,7 +103,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_sqls')}}
+    FROM {{ref('funnel_report_current_week_sqls_ss')}}
     GROUP BY 1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -129,7 +129,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_sqos')}}
+    FROM {{ref('funnel_report_current_week_sqos_ss')}}
     GROUP BY 1,2,4,3,4,5,6,7,8,11,12,13,14,15,16,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -155,7 +155,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_demo')}}
+    FROM {{ref('funnel_report_current_week_demo_ss')}}
     GROUP BY 1,2,4,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -181,7 +181,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_voc')}}
+    FROM {{ref('funnel_report_current_week_voc_ss')}}
     GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -207,7 +207,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_closing')}}
+    FROM {{ref('funnel_report_current_week_closing_ss')}}
     GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,17,18,19,20,21,22
     UNION ALL
     SELECT
@@ -233,7 +233,7 @@ WITH base AS (
         0 AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_won')}}
+    FROM {{ref('funnel_report_current_week_won')}}
     GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,19,20,21,22
     UNION ALL
     SELECT
@@ -259,7 +259,7 @@ WITH base AS (
         SUM(acv_deal_size_usd) AS lost_acv,
         0 AS churn,
         0 AS churn_acv
-    FROM {{ref('funnel_report_previous_week_lost')}}
+    FROM {{ref('funnel_report_current_week_lost')}}
     GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22
     UNION ALL
     SELECT
@@ -285,7 +285,7 @@ WITH base AS (
         0 AS lost_acv,
         COUNT(DISTINCT contract_id) AS churn,
         SUM(arr_loss_amount) AS churn_acv
-    FROM {{ref('funnel_report_previous_week_churn')}}
+    FROM {{ref('funnel_report_current_week_churn')}}
     GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
 
 )

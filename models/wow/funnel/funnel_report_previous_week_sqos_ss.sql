@@ -3,23 +3,25 @@
 WITH previous_week AS (
 
     SELECT
-        week 
+        week
     FROM {{ref('date_base_xf')}}
     WHERE day=CURRENT_DATE-14
 
 ), base AS (
 
     SELECT DISTINCT
-        lead_source_xf.lead_id AS lead_id,
-        lead_source_xf.marketing_created_date AS created_date,
+        sqo_source_ss_xf.opportunity_id AS sqo_id,
+        acv,
+        sqo_source_ss_xf.discovery_date AS sqo_date,
         country,
-        global_region
-    FROM {{ref('lead_source_xf')}}
+        account_global_region
+    FROM {{ref('sqo_source_ss_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
-    lead_source_xf.marketing_created_date=date_base_xf.day
+    sqo_source_ss_xf.discovery_date=date_base_xf.day
     LEFT JOIN previous_week ON 
     date_base_xf.week=previous_week.week
     WHERE previous_week.week IS NOT null
+    AND type = 'New Business'
 
 )
 

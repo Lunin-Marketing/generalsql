@@ -19,8 +19,7 @@ COUNT(DISTINCT lead_id) AS leads,
 0 AS churn,
 0 AS churn_acv
 FROM {{ref('funnel_report_previous_week_leads')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_leads
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -41,8 +40,7 @@ COUNT(DISTINCT mql_id) AS mqls,
 0 AS churn,
 0 AS churn_acv
 FROM {{ref('funnel_report_previous_week_mqls')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_mqls
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 1,2,4,5,6,7,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -63,8 +61,7 @@ COUNT(DISTINCT sal_id) AS sals,
 0 AS churn,
 0 AS churn_acv
 FROM {{ref('funnel_report_previous_week_sals')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_sals
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 1,2,3,4,6,7,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -85,8 +82,7 @@ COUNT(DISTINCT sql_id) AS sqls,
 0 AS churn,
 0 AS churn_acv
 FROM {{ref('funnel_report_previous_week_sqls')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_sqls
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 1,2,3,4,5,6,8,9,10,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -107,8 +103,7 @@ SUM(acv) AS sqo_acv,
 0 AS churn,
 0 AS churn_acv
 FROM {{ref('funnel_report_previous_week_sqos')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_sqos
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 1,2,4,3,4,5,6,7,8,11,12,13,14,15,16
 UNION ALL
 SELECT
@@ -129,8 +124,7 @@ SUM(acv) AS won_acv,
 0 AS churn,
 0 AS churn_acv
 FROM {{ref('funnel_report_previous_week_won')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_won
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 1,2,4,3,4,5,6,7,8,9,10,13,14,15,16
 UNION ALL
 SELECT
@@ -151,8 +145,7 @@ SUM(acv_deal_size_usd) AS lost_acv,
 0 AS churn,
 0 AS churn_acv
 FROM {{ref('funnel_report_previous_week_lost')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_lost
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,15,16
 UNION ALL
 SELECT
@@ -173,8 +166,7 @@ SELECT
 COUNT(DISTINCT contract_id) AS churn,
 SUM(arr_loss_amount) AS churn_acv
 FROM {{ref('funnel_report_previous_week_churn')}}
---FROM "acton".dbt_actonmarketing.funnel_report_previous_week_churn
-WHERE country IN ('UK','United Kingdom','GB','IE')
+WHERE global_region = 'EMEA'
 GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14
 
 )

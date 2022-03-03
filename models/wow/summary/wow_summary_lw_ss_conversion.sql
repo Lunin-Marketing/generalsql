@@ -1,4 +1,4 @@
- {{ config(materialized='table') }}
+{{ config(materialized='table') }}
 
 WITH base AS (
 
@@ -7,8 +7,10 @@ WITH base AS (
         ROUND(SUM(sals/NULLIF(mqls,0)),2) AS last_mql_to_sal,
         ROUND(SUM(sqls/NULLIF(sals,0)),2) AS last_sal_to_sql,
         ROUND(SUM(sqos/NULLIF(sqls,0)),2) AS last_sql_to_sqo,
-        ROUND(SUM(won/NULLIF(sqos,0)),2) AS last_sqo_to_won
-    FROM {{ref('funnel_report_current_quarter_ss_xf')}}
+        ROUND(SUM(won/NULLIF(sqos,0)),2) AS last_sqo_to_won,
+        ROUND(SUM(lost/NULLIF(sqos,0)),2) AS last_sqo_to_lost,
+        ROUND(SUM(churn/NULLIF(sqos,0)),2) AS last_sqo_to_churn
+    FROM {{ref('wow_summary_lw_ss')}}
    
 )
 
