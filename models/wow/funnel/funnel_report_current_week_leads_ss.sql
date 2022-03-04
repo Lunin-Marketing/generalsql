@@ -12,7 +12,8 @@ WITH current_week AS (
     SELECT DISTINCT
         lead_source_ss_xf.lead_id AS lead_id,
         lead_source_ss_xf.marketing_created_date AS created_date,
-        country
+        country,
+        global_region
     FROM {{ref('lead_source_ss_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
     lead_source_ss_xf.marketing_created_date=date_base_xf.day

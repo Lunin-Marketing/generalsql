@@ -246,3 +246,4 @@ SUM(won_acv) AS won_acv,
 SUM(lost) AS lost,
 SUM(lost_acv) AS lost_acv
 FROM final
+WHERE global_region NOT IN ('EUROPE','APJ','AUNZ','ROW')

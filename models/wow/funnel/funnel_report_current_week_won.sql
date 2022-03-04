@@ -11,7 +11,8 @@ SELECT DISTINCT
 opp_sales_source_xf.opportunity_id AS won_id,
 acv,
 opp_sales_source_xf.close_date AS won_date,
-country
+country,
+account_global_region
 FROM {{ref('opp_sales_source_xf')}}
 --FROM "acton".dbt_actonmarketing.opp_sales_source_xf 
 LEFT JOIN {{ref('date_base_xf')}} ON
