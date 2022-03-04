@@ -8,10 +8,11 @@ FROM {{ref('date_base_xf')}}
 WHERE day=CURRENT_DATE-7
 ), base AS (
 SELECT DISTINCT
-opp_source_xf.opportunity_id AS opportunity_id,
+opp_source_xf.opportunity_id AS lost_id,
 acv_deal_size_usd,
 opp_source_xf.close_date AS close_date,
-billing_country AS country
+billing_country AS country,
+account_global_region
 FROM {{ref('opp_source_xf')}}
 --FROM "acton".dbt_actonmarketing.opp_source_xf
 LEFT JOIN {{ref('date_base_xf')}} ON

@@ -84,49 +84,55 @@ WITH base_prep AS (
 
     SELECT
         COUNT(DISTINCT sqo_id) AS sqos,
+        SUM(acv) AS sqo_acv,
         account_global_region
     FROM {{ref('funnel_report_previous_week_sqos_ss')}}
-    GROUP BY 2
+    GROUP BY 3
    
 ), demo_base AS (
 
     SELECT
         COUNT(DISTINCT demo_id) AS demo,
+        SUM(acv) AS demo_acv,
         account_global_region
     FROM {{ref('funnel_report_previous_week_demo_ss')}}
-    GROUP BY 2
+    GROUP BY 3
    
 ), voc_base AS (
 
     SELECT
         COUNT(DISTINCT voc_id) AS voc,
+        SUM(acv) AS voc_acv,
         account_global_region
     FROM {{ref('funnel_report_previous_week_voc_ss')}}
-    GROUP BY 2
+    GROUP BY 3
    
 ), closing_base AS (
 
     SELECT
         COUNT(DISTINCT closing_id) AS closing,
+        SUM(acv) AS closing_acv,
         account_global_region
     FROM {{ref('funnel_report_previous_week_closing_ss')}}
-    GROUP BY 2
+    GROUP BY 3
    
 ), won_base AS (
 
     SELECT
         COUNT(DISTINCT won_id) AS won,
+        SUM(acv) AS won_acv,
         account_global_region
     FROM {{ref('funnel_report_previous_week_won')}}
-    GROUP BY 2
+    GROUP BY 3
    
 ), lost_base AS (
 
     SELECT
         COUNT(DISTINCT lost_id) AS lost,
+        SUM(acv_deal_size_usd) AS lost_acv,
         account_global_region
     FROM {{ref('funnel_report_previous_week_lost')}}
-    GROUP BY 2
+    GROUP BY 3
    
 ), final AS (
 
@@ -153,25 +159,49 @@ WITH base_prep AS (
             ELSE SUM(sqos) 
         END AS sqos,
         CASE 
+            WHEN SUM(sqo_acv) IS null THEN 0
+            ELSE SUM(sqo_acv) 
+        END AS sqo_acv,
+        CASE 
             WHEN SUM(demo) IS null THEN 0
             ELSE SUM(demo) 
         END AS demo,
+        CASE 
+            WHEN SUM(demo_acv) IS null THEN 0
+            ELSE SUM(demo_acv) 
+        END AS demo_acv,
         CASE 
             WHEN SUM(voc) IS null THEN 0
             ELSE SUM(voc) 
         END AS voc,
         CASE 
+            WHEN SUM(voc_acv) IS null THEN 0
+            ELSE SUM(voc_acv) 
+        END AS voc_acv,
+        CASE 
             WHEN SUM(closing) IS null THEN 0
             ELSE SUM(closing) 
         END AS closing,
+        CASE 
+            WHEN SUM(closing_acv) IS null THEN 0
+            ELSE SUM(closing_acv) 
+        END AS closing_acv,
         CASE 
             WHEN SUM(won) IS null THEN 0
             ELSE SUM(won) 
         END AS won,
         CASE 
+            WHEN SUM(won_acv) IS null THEN 0
+            ELSE SUM(won_acv) 
+        END AS won_acv,
+        CASE 
             WHEN SUM(lost) IS null THEN 0
             ELSE SUM(lost) 
-        END AS lost
+        END AS lost,
+        CASE 
+            WHEN SUM(lost_acv) IS null THEN 0
+            ELSE SUM(lost_acv) 
+        END AS lost_acv
     FROM base
     LEFT JOIN lead_base ON
     base.global_region=lead_base.global_region
@@ -204,10 +234,16 @@ SUM(mqls) AS mqls,
 SUM(sals) AS sals,
 SUM(sqls) AS sqls,
 SUM(sqos) AS sqos,
+SUM(sqo_acv) AS sqo_acv,
 SUM(demo) AS demo,
+SUM(demo_acv) AS demo_acv,
 SUM(voc) AS voc, 
+SUM(voc_acv) AS voc_acv,
 SUM(closing) AS closing,
+SUM(closing_acv) AS closing_acv,
 SUM(won) AS won,
-SUM(lost) AS lost
+SUM(won_acv) AS won_acv,
+SUM(lost) AS lost,
+SUM(lost_acv) AS lost_acv
 FROM final
 WHERE global_region NOT IN ('EUROPE','APJ','AUNZ','ROW')

@@ -12,7 +12,8 @@ WITH current_week AS (
     SELECT DISTINCT
         sql_id,
         sql_source_ss_xf.created_date AS sql_date,
-        country
+        country,
+        account_global_region
     FROM {{ref('sql_source_ss_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
     sql_source_ss_xf.created_date::Date=date_base_xf.day

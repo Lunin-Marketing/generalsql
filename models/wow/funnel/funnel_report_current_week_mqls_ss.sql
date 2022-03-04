@@ -12,7 +12,8 @@ WITH current_week AS (
     SELECT DISTINCT
         lead_mql_source_ss_xf.lead_id AS mql_id,
         lead_mql_source_ss_xf.mql_created_date AS mql_date,
-        country
+        country,
+        global_region
     FROM {{ref('lead_mql_source_ss_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
     lead_mql_source_ss_xf.mql_created_date=date_base_xf.day

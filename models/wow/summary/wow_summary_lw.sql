@@ -255,7 +255,7 @@ WITH base AS (
         0 AS sqo_acv,
         0 AS won,
         0 AS won_acv,
-        COUNT(DISTINCT opportunity_id) AS lost,
+        COUNT(DISTINCT lost_id) AS lost,
         SUM(acv_deal_size_usd) AS lost_acv,
         0 AS churn,
         0 AS churn_acv
