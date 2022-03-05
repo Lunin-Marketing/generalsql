@@ -8,8 +8,7 @@ WITH base AS (
         ROUND(SUM(sqls/NULLIF(sals,0)),2) AS last_sal_to_sql,
         ROUND(SUM(sqos/NULLIF(sqls,0)),2) AS last_sql_to_sqo,
         ROUND(SUM(won/NULLIF(sqos,0)),2) AS last_sqo_to_won,
-        ROUND(SUM(lost/NULLIF(sqos,0)),2) AS last_sqo_to_lost,
-        ROUND(SUM(churn/NULLIF(sqos,0)),2) AS last_sqo_to_churn
+        ROUND(SUM(lost/NULLIF(sqos,0)),2) AS last_sqo_to_lost
     FROM {{ref('wow_summary_lw_ss')}}
    
 )

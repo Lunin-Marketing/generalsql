@@ -9,7 +9,7 @@ WITH base AS (
         ROUND(SUM(sqos/NULLIF(sqls,0)),2) AS previous_sql_to_sqo,
         ROUND(SUM(won/NULLIF(sqos,0)),2) AS previous_sqo_to_won,
         ROUND(SUM(lost/NULLIF(sqos,0)),2) AS previous_sqo_to_lost,
-        ROUND(SUM(churn/NULLIF(sqos,0)),2) AS previous_sqo_to_churn
+        ROUND(SUM(churn/NULLIF(sqos,0)),2) AS last_sqo_to_churn
     FROM {{ref('wow_summary_pw')}}
    
 )

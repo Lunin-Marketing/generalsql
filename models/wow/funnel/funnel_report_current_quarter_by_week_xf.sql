@@ -1,6 +1,35 @@
 {{ config(materialized='table') }}
 
-WITH lead_base AS (
+WITH base_prep AS (
+
+    SELECT DISTINCT
+        week,
+        global_region
+    FROM {{ref('funnel_report_current_quarter_leads')}}
+    UNION ALL 
+    SELECT DISTINCT
+        week,
+        global_region
+    FROM {{ref('funnel_report_current_quarter_mqls')}}
+    UNION ALL 
+    SELECT DISTINCT
+        week,
+        global_region
+    FROM {{ref('funnel_report_current_quarter_sals')}}
+    UNION ALL 
+    SELECT DISTINCT
+        week,
+        account_global_region
+    FROM {{ref('funnel_report_current_quarter_sqls')}}
+
+), base AS (
+
+    SELECT DISTINCT
+    week,
+    global_region
+    FROM base_prep
+
+), lead_base AS (
 
     SELECT
         COUNT(DISTINCT lead_id) AS leads,
@@ -39,20 +68,36 @@ WITH lead_base AS (
 )
 
 SELECT
-    week,
-    region,
-    SUM(leads) AS leads,
-    SUM(mqls) AS mqls,
-    SUM(sals) AS sals,
-    SUM(sqls) AS sqls
-FROM lead_base
+    base.week,
+    base.global_region,
+    CASE 
+        WHEN SUM(leads) IS null THEN 0
+        ELSE SUM(leads) 
+    END AS leads,
+    CASE 
+        WHEN SUM(mqls) IS null THEN 0
+        ELSE SUM(mqls) 
+    END AS mqls,
+    CASE 
+        WHEN SUM(sals) IS null THEN 0
+        ELSE SUM(sals) 
+    END AS sals,
+    CASE 
+        WHEN SUM(sqls) IS null THEN 0
+        ELSE SUM(sqls) 
+    END AS sqls
+FROM base
+LEFT JOIN lead_base ON
+base.week=lead_base.week
+AND base.global_region=lead_base.global_region
 LEFT JOIN mql_base ON
-lead_base.week=mql_base.week
-AND lead_base.global_region=mql_base.global_region
+base.week=mql_base.week
+AND base.global_region=mql_base.global_region
 LEFT JOIN sal_base ON
-lead_base.week=sal_base.week
-AND lead_base.global_region=sal_base.global_region
+base.week=sal_base.week
+AND base.global_region=sal_base.global_region
 LEFT JOIN sql_base ON
-lead_base.week=sql_base.week
-AND lead_base.global_region=sql_base.account_global_region
+base.week=sql_base.week
+AND base.global_region=sql_base.account_global_region
 GROUP BY 1,2
+ORDER BY 1,2
