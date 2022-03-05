@@ -33,6 +33,7 @@ FROM "acton".salesforce."lead"
         system_modstamp AS systemmodstamp,
         DATE_TRUNC('day',mql_created_date_c)::Date AS mql_created_date,
         DATE_TRUNC('day',mql_most_recent_date_c)::Date AS mql_most_recent_date,
+        DATE_TRUNC('day',date_time_to_working_c)::Date AS working_date,
         account_c AS account_id,
         no_longer_with_company_c AS no_longer_with_company,
         ft_utm_channel_c AS channel_first_touch,

@@ -14,7 +14,8 @@ WITH current_quarter AS (
         opp_voc_source_ss_xf.opportunity_id AS voc_id,
         acv,
         opp_voc_source_ss_xf.negotiation_date AS sqo_date,
-        country
+        country,
+        account_global_region
     FROM {{ref('opp_voc_source_ss_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
     opp_voc_source_ss_xf.negotiation_date=date_base_xf.day

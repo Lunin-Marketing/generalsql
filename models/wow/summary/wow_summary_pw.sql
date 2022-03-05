@@ -1,316 +1,273 @@
 {{ config(materialized='table') }}
 
-WITH base AS (
+WITH base_prep AS (
+
+    SELECT DISTINCT
+        global_region
+    FROM {{ref('funnel_report_previous_week_leads')}}
+    UNION ALL 
+    SELECT DISTINCT
+        global_region
+    FROM {{ref('funnel_report_previous_week_mqls')}}
+    UNION ALL 
+    SELECT DISTINCT
+        global_region
+    FROM {{ref('funnel_report_previous_week_sals')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_sqls_ss')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_sqos')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_demo')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_voc')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_closing')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_won')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_lost')}}
+    UNION ALL 
+    SELECT DISTINCT
+        account_global_region
+    FROM {{ref('funnel_report_previous_week_churn')}}
+
+), base AS (
+
+    SELECT DISTINCT
+    global_region
+    FROM base_prep
+
+), lead_base AS (
 
     SELECT
         COUNT(DISTINCT lead_id) AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        global_region
     FROM {{ref('funnel_report_previous_week_leads')}}
-    GROUP BY 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 2
+
+), mql_base AS (
+    
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
         COUNT(DISTINCT mql_id) AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        global_region
     FROM {{ref('funnel_report_previous_week_mqls')}}
-    GROUP BY 1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 2
+
+), sal_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
         COUNT(DISTINCT sal_id) AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        global_region
     FROM {{ref('funnel_report_previous_week_sals')}}
-    GROUP BY 1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 2
+
+), sql_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
         COUNT(DISTINCT sql_id) AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        account_global_region
     FROM {{ref('funnel_report_previous_week_sqls')}}
-    GROUP BY 1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 2
+   
+), sqo_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
         COUNT(DISTINCT sqo_id) AS sqos,
         SUM(acv) AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        account_global_region
     FROM {{ref('funnel_report_previous_week_sqos')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,11,12,13,14,15,16,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 3
+   
+), demo_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
         COUNT(DISTINCT demo_id) AS demo,
         SUM(acv) AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        account_global_region
     FROM {{ref('funnel_report_previous_week_demo')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 3
+   
+), voc_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
         COUNT(DISTINCT voc_id) AS voc,
         SUM(acv) AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        account_global_region
     FROM {{ref('funnel_report_previous_week_voc')}}
-    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 3
+   
+), closing_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
         COUNT(DISTINCT closing_id) AS closing,
         SUM(acv) AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        account_global_region
     FROM {{ref('funnel_report_previous_week_closing')}}
-    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,17,18,19,20,21,22
-    UNION ALL
+    GROUP BY 3
+   
+), won_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
         COUNT(DISTINCT won_id) AS won,
         SUM(acv) AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        account_global_region
     FROM {{ref('funnel_report_previous_week_won')}}
-    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,19,20,21,22
-    UNION ALL
+    GROUP BY 3
+   
+), lost_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS won,
-        0 AS won_acv,
-        COUNT(DISTINCT opportunity_id) AS lost,
+        COUNT(DISTINCT lost_id) AS lost,
         SUM(acv_deal_size_usd) AS lost_acv,
-        0 AS churn,
-        0 AS churn_acv
+        account_global_region
     FROM {{ref('funnel_report_previous_week_lost')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22
-    UNION ALL
+    GROUP BY 3
+
+), churn_base AS (
+
     SELECT
-        0 AS leads,
-        0 AS leads_acv,
-        0 AS mqls,
-        0 AS mql_acv,
-        0 AS sals,
-        0 AS sal_acv,
-        0 AS sqls,
-        0 AS sql_acv,
-        0 AS sqos,
-        0 AS sqo_acv,
-        0 AS demo,
-        0 AS demo_acv,
-        0 AS voc,
-        0 AS voc_acv,
-        0 AS closing,
-        0 AS closing_acv,
-        0 AS won,
-        0 AS won_acv,
-        0 AS lost,
-        0 AS lost_acv,
         COUNT(DISTINCT contract_id) AS churn,
-        SUM(arr_loss_amount) AS churn_acv
+        SUM(arr_loss_amount) AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_previous_week_churn')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+    GROUP BY 3
+
+), final AS (
+
+    SELECT
+        base.global_region,
+        CASE 
+            WHEN SUM(leads) IS null THEN 0
+            ELSE SUM(leads) 
+        END AS leads,
+        CASE 
+            WHEN SUM(mqls) IS null THEN 0
+            ELSE SUM(mqls) 
+        END AS mqls,
+        CASE 
+            WHEN SUM(sals) IS null THEN 0
+            ELSE SUM(sals) 
+        END AS sals,
+        CASE 
+            WHEN SUM(sqls) IS null THEN 0
+            ELSE SUM(sqls) 
+        END AS sqls,
+        CASE 
+            WHEN SUM(sqos) IS null THEN 0
+            ELSE SUM(sqos) 
+        END AS sqos,
+        CASE 
+            WHEN SUM(sqo_acv) IS null THEN 0
+            ELSE SUM(sqo_acv) 
+        END AS sqo_acv,
+        CASE 
+            WHEN SUM(demo) IS null THEN 0
+            ELSE SUM(demo) 
+        END AS demo,
+        CASE 
+            WHEN SUM(demo_acv) IS null THEN 0
+            ELSE SUM(demo_acv) 
+        END AS demo_acv,
+        CASE 
+            WHEN SUM(voc) IS null THEN 0
+            ELSE SUM(voc) 
+        END AS voc,
+        CASE 
+            WHEN SUM(voc_acv) IS null THEN 0
+            ELSE SUM(voc_acv) 
+        END AS voc_acv,
+        CASE 
+            WHEN SUM(closing) IS null THEN 0
+            ELSE SUM(closing) 
+        END AS closing,
+        CASE 
+            WHEN SUM(closing_acv) IS null THEN 0
+            ELSE SUM(closing_acv) 
+        END AS closing_acv,
+        CASE 
+            WHEN SUM(won) IS null THEN 0
+            ELSE SUM(won) 
+        END AS won,
+        CASE 
+            WHEN SUM(won_acv) IS null THEN 0
+            ELSE SUM(won_acv) 
+        END AS won_acv,
+        CASE 
+            WHEN SUM(lost) IS null THEN 0
+            ELSE SUM(lost) 
+        END AS lost,
+        CASE 
+            WHEN SUM(lost_acv) IS null THEN 0
+            ELSE SUM(lost_acv) 
+        END AS lost_acv,
+        CASE 
+            WHEN SUM(churn) IS null THEN 0
+            ELSE SUM(churn) 
+        END AS churn,
+        CASE 
+            WHEN SUM(churn_acv) IS null THEN 0
+            ELSE SUM(churn_acv) 
+        END AS churn_acv    
+    FROM base
+    LEFT JOIN lead_base ON
+    base.global_region=lead_base.global_region
+    LEFT JOIN mql_base ON
+    base.global_region=mql_base.global_region
+    LEFT JOIN sal_base ON
+    base.global_region=sal_base.global_region
+    LEFT JOIN sql_base ON
+    base.global_region=sql_base.account_global_region
+    LEFT JOIN sqo_base ON
+    base.global_region=sqo_base.account_global_region
+    LEFT JOIN demo_base ON
+    base.global_region=demo_base.account_global_region
+    LEFT JOIN voc_base ON
+    base.global_region=voc_base.account_global_region
+    LEFT JOIN closing_base ON
+    base.global_region=closing_base.account_global_region
+    LEFT JOIN won_base ON
+    base.global_region=won_base.account_global_region
+    LEFT JOIN lost_base ON
+    base.global_region=lost_base.account_global_region
+    LEFT JOIN churn_base ON
+    base.global_region=churn_base.account_global_region
+    GROUP BY 1
+    ORDER BY 1
 
 )
 
 SELECT
-    SUM(leads) AS leads,
-    SUM(leads_acv) AS lead_acv,
-    SUM(mqls) AS mqls,
-    SUM(mql_acv) AS mql_acv,
-    SUM(sals) AS sals,
-    SUM(sal_acv) AS sal_acv,
-    SUM(sqls) AS sqls,
-    SUM(sql_acv) AS sql_acv,
-    SUM(sqos) AS sqos,
-    SUM(sqo_acv) AS sqo_acv,
-    SUM(demo) AS demo,
-    SUM(demo_acv) AS demo_acv,
-    SUM(voc) AS voc,
-    SUM(voc_acv) AS voc_acv,
-    SUM(closing) AS closing,
-    SUM(closing_acv) AS closing_acv,
-    SUM(won) AS won,
-    SUM(won_acv) AS won_acv,
-    SUM(lost) AS lost,
-    SUM(lost_acv) AS lost_acv,
-    SUM(churn) AS churn,
-    SUM(churn_acv) AS churn_acv
-FROM base
+SUM(leads) AS leads,
+SUM(mqls) AS mqls,
+SUM(sals) AS sals,
+SUM(sqls) AS sqls,
+SUM(sqos) AS sqos,
+SUM(sqo_acv) AS sqo_acv,
+SUM(demo) AS demo,
+SUM(demo_acv) AS demo_acv,
+SUM(voc) AS voc, 
+SUM(voc_acv) AS voc_acv,
+SUM(closing) AS closing,
+SUM(closing_acv) AS closing_acv,
+SUM(won) AS won,
+SUM(won_acv) AS won_acv,
+SUM(lost) AS lost,
+SUM(lost_acv) AS lost_acv,
+SUM(churn) AS churn,
+SUM(churn_acv) AS churn_acv
+FROM final

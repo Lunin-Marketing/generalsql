@@ -23,14 +23,12 @@ WITH last_week AS (
         last_sql_to_sqo,
         last_sqo_to_won,
         last_sqo_to_lost,
-        last_sqo_to_churn,
         previous_lead_to_mql,
         previous_mql_to_sal,
         previous_sal_to_sql,
         previous_sql_to_sqo,
         previous_sqo_to_won,
-        previous_sqo_to_lost,
-        previous_sqo_to_churn
+        previous_sqo_to_lost
     FROM last_week
     LEFT JOIN previous_week ON 
     last_week.week=previous_week.week
@@ -43,8 +41,7 @@ WITH last_week AS (
         ROUND(SUM(last_sal_to_sql-previous_sal_to_sql),2) AS sal_to_sql_delta,
         ROUND(SUM(last_sql_to_sqo-previous_sql_to_sqo),2) AS sql_to_sqo_delta,
         ROUND(SUM(last_sqo_to_won-previous_sqo_to_won),2) AS sqo_to_won_delta,
-        ROUND(SUM(last_sqo_to_lost-previous_sqo_to_lost),2) AS sqo_to_lost_delta,
-        ROUND(SUM(last_sqo_to_churn-previous_sqo_to_churn),2) AS sqo_to_churn_delta
+        ROUND(SUM(last_sqo_to_lost-previous_sqo_to_lost),2) AS sqo_to_lost_delta
     FROM intermediate
 )
 

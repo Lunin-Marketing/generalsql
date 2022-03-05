@@ -13,7 +13,8 @@ WITH current_week AS (
         opp_demo_source_xf.opportunity_id AS demo_id,
         acv,
         opp_demo_source_xf.demo_date AS sqo_date,
-        country
+        country,
+        account_global_region
     FROM {{ref('opp_demo_source_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
     opp_demo_source_xf.demo_date=date_base_xf.day
