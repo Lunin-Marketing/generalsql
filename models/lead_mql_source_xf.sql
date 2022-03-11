@@ -1,19 +1,18 @@
 {{ config(materialized='table') }}
 
 SELECT
-    lead_id,
+    person_id,
     email,
     lead_source,
-    is_converted,
     is_hand_raiser,
     mql_created_date,
     mql_most_recent_date,
-    lead_status,
+    person_status,
     country,
-    lead_owner,
+    person_owner_id,
     global_region
-FROM {{ref('lead_source_xf')}}
+FROM {{ref('person_source_xf')}}
 WHERE mql_most_recent_date IS NOT null
-AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
+AND person_owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
 AND email NOT LIKE '%act-on.com'
 AND lead_source = 'Marketing'

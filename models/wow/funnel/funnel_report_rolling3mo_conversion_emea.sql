@@ -8,7 +8,7 @@ WITH base AS (
         ROUND(SUM(sqls/NULLIF(sals,0)),2) AS sal_to_sql,
         ROUND(SUM(sqos/NULLIF(sqls,0)),2) AS sql_to_sqo,
         ROUND(SUM(won/NULLIF(sqos,0)),2) AS sqo_to_won
-    FROM {{ref('funnel_report_rolling3mo_combined')}}
+    FROM {{ref('funnel_report_rolling3mo_combined_emea')}}
     GROUP BY 1
 )
 

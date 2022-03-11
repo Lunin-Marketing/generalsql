@@ -15,7 +15,9 @@ WITH current_quarter AS (
         sqo_source_xf.discovery_date AS sqo_date,
         acv,
         country,
-        account_global_region
+        account_global_region,
+        opp_lead_source,
+        week
     FROM {{ref('sqo_source_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
     sqo_source_xf.discovery_date=date_base_xf.day

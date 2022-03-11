@@ -22,7 +22,7 @@ FROM "acton".salesforce."lead"
         industry,
         annual_revenue,
         number_of_employees,
-        owner_id AS lead_owner,
+        owner_id AS lead_owner_id,
         is_converted,
         DATE_TRUNC('day',converted_date)::Date AS converted_date,
         converted_account_id,
