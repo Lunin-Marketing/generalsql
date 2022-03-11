@@ -1,19 +1,18 @@
 {{ config(materialized='table') }}
 
 SELECT
-    lead_id,
+    person_id,
     email,
     lead_source,
-    is_converted,
     is_hand_raiser,
     working_date,
     mql_most_recent_date,
-    lead_status,
+    person_status,
     country,
     global_region
-FROM {{ref('lead_source_xf')}}
-WHERE lead_owner != '00Ga0000003Nugr'
+FROM {{ref('person_source_xf')}}
+WHERE person_owner_id != '00Ga0000003Nugr'
 AND working_date IS NOT null
 AND email NOT LIKE '%act-on.com'
 AND lead_source = 'Marketing'
-AND lead_status  NOT IN ('Current Customer','Partner','Bad Data','No Fit')
+AND person_status  NOT IN ('Current Customer','Partner','Bad Data','No Fit')

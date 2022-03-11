@@ -1,29 +1,27 @@
 {{ config(materialized='table') }}
 
 WITH last_12_weeks AS (
-SELECT DISTINCT
-week 
-FROM {{ref('date_base_xf')}}
---FROM "acton".dbt_actonmarketing.date_base_xf
-WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
+
+    SELECT DISTINCT
+        week 
+    FROM {{ref('date_base_xf')}}
+    WHERE day BETWEEN CURRENT_DATE-84 AND CURRENT_DATE-7
 
 )
 
 SELECT
-lead_id,
-date_base_xf.week AS created_date,
-offer_asset_type_lead_creation,
-lead_status
-FROM {{ref('lead_source_xf')}}
---FROM "acton".dbt_actonmarketing.lead_source_xf
+    person_id,
+    date_base_xf.week AS created_date,
+    offer_asset_type_lead_creation,
+    person_status
+FROM {{ref('person_source_xf')}}
 LEFT JOIN {{ref('date_base_xf')}} ON
---LEFT JOIN "acton".dbt_actonmarketing.date_base_xf ON
-lead_source_xf.created_date=date_base_xf.day
+person_source_xf.marketing_created_date=date_base_xf.day
 LEFT JOIN last_12_weeks ON 
 date_base_xf.week=last_12_weeks.week
 WHERE last_12_weeks.week IS NOT null
-AND created_date IS NOT null
-AND lead_owner != '00Ga0000003Nugr' -- AO-Fake Leads
+AND marketing_created_date IS NOT null
+AND person_owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
 AND email NOT LIKE '%act-on.com'
-AND is_hand_raiser = 'true'
-AND LOWER(lead_status) NOT IN ('current customer','partner','bad data','no fit')
+AND is_hand_raiser = TRUE
+AND LOWER(person_status) NOT IN ('current customer','partner','bad data','no fit')

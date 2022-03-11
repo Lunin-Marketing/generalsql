@@ -12,7 +12,7 @@ WITH rolling_3mo AS (
 ), base AS (
 
     SELECT DISTINCT
-        opp_voc_source_xf.opportunity_id AS sqo_id,
+        opp_voc_source_xf.opportunity_id AS voc_id,
         opp_voc_source_xf.negotiation_date AS voc_date,
         rolling_3mo.week,
         account_global_region
