@@ -10,7 +10,7 @@ WITH current_week AS (
 ), base AS (
 
     SELECT DISTINCT
-        sal_source_xf.lead_id AS sal_id,
+        sal_source_xf.person_id AS sal_id,
         sal_source_xf.working_date AS sal_date,
         country,
         global_region

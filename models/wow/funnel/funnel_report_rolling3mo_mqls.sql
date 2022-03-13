@@ -12,7 +12,7 @@ WITH rolling_3mo AS (
 ), base AS (
 
     SELECT DISTINCT
-        lead_mql_source_xf.lead_id AS mql_id,
+        lead_mql_source_xf.person_id AS mql_id,
         lead_mql_source_xf.mql_most_recent_date AS mql_date,
         rolling_3mo.week,
         global_region

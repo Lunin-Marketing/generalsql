@@ -7,7 +7,7 @@ FROM {{ref('date_base_xf')}}
 WHERE fy='2021'
 ), base AS (
 SELECT DISTINCT
-lead_mql_source_xf.lead_id AS mql_id,
+lead_mql_source_xf.person_id AS mql_id,
 lead_mql_source_xf.mql_created_date AS mql_date
 FROM {{ref('lead_mql_source_xf')}}
 LEFT JOIN {{ref('date_base_xf')}} ON
