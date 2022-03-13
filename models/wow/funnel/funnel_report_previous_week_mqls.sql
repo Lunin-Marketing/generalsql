@@ -10,7 +10,7 @@ WITH previous_week AS (
 ), base AS (
 
     SELECT DISTINCT
-        lead_mql_source_xf.lead_id AS mql_id,
+        lead_mql_source_xf.person_id AS mql_id,
         lead_mql_source_xf.mql_created_date AS mql_date,
         country,
         global_region

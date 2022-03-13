@@ -12,7 +12,7 @@ WITH rolling_3mo AS (
 ), base AS (
 
     SELECT DISTINCT
-        sal_source_xf.lead_id AS sal_id,
+        sal_source_xf.person_id AS sal_id,
         sal_source_xf.working_date AS working_date,
         rolling_3mo.week,
         global_region
