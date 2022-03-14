@@ -9,7 +9,7 @@ WITH last_week AS (
 
 )
 
-SELECT
+SELECT DISTINCT
     person_id,
     mql_most_recent_date,
     channel_lead_creation,

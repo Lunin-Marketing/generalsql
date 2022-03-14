@@ -9,7 +9,7 @@ WITH current_week AS (
 
 )
 
-SELECT
+SELECT DISTINCT
     person_id,
     marketing_created_date AS created_date,
     CASE WHEN channel_lead_creation LIKE '$https$' THEN 'organic'
