@@ -5,7 +5,7 @@
         target_schema='snapshots',
         unique_key = 'account_id',
         strategy='timestamp',
-        updated_at='systemmodstamp',
+        updated_at='systemmodstamp'
     )
 }}
 
