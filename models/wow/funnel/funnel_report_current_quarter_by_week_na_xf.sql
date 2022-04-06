@@ -13,6 +13,7 @@ SELECT
     SUM(leads) AS leads,
     SUM(mqls) AS mqls,
     SUM(sals) AS sals,
-    SUM(sqls) AS sqls
+    SUM(sqls) AS sqls,
+    SUM(sqos) AS sqos
 FROM base
 GROUP BY 1

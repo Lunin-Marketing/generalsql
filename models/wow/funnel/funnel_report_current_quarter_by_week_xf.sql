@@ -21,6 +21,11 @@ WITH base_prep AS (
         week,
         account_global_region
     FROM {{ref('funnel_report_current_quarter_sqls')}}
+    UNION ALL 
+    SELECT DISTINCT
+        week,
+        account_global_region
+    FROM {{ref('funnel_report_current_quarter_sqos')}}
 
 ), base AS (
 
@@ -65,6 +70,15 @@ WITH base_prep AS (
     FROM {{ref('funnel_report_current_quarter_sqls')}}
     GROUP BY 2,3
    
+), sqo_base AS (
+
+    SELECT
+        COUNT(DISTINCT sqo_id) AS sqos,
+        week,
+        account_global_region
+    FROM {{ref('funnel_report_current_quarter_sqos')}}
+    GROUP BY 2,3
+
 )
 
 SELECT
@@ -85,7 +99,11 @@ SELECT
     CASE 
         WHEN SUM(sqls) IS null THEN 0
         ELSE SUM(sqls) 
-    END AS sqls
+    END AS sqls,
+    CASE 
+        WHEN SUM(sqos) IS null THEN 0
+        ELSE SUM(sqos) 
+    END AS sqos
 FROM base
 LEFT JOIN lead_base ON
 base.week=lead_base.week
@@ -99,5 +117,8 @@ AND base.global_region=sal_base.global_region
 LEFT JOIN sql_base ON
 base.week=sql_base.week
 AND base.global_region=sql_base.account_global_region
+LEFT JOIN sqo_base ON
+base.week=sqo_base.week
+AND base.global_region=sqo_base.account_global_region
 GROUP BY 1,2
 ORDER BY 1,2
