@@ -6,7 +6,11 @@ WITH base AS (
         sql_source_xf.sql_id,
         sql_source_xf.created_date AS sql_date,
         company_size_rev,
-        account_global_region
+        account_global_region,
+        opp_lead_source,
+        segment,
+        industry,
+        channel_bucket
     FROM {{ref('sql_source_xf')}}
     WHERE type = 'New Business'
 

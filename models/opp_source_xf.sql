@@ -22,6 +22,11 @@ FROM "acton".salesforce."opportunity"
             WHEN account.billing_country IS NOT null AND account.billing_state IS NOT null THEN 'ROW'
             ELSE 'Unknown'
         END AS account_global_region,
+        CASE 
+            WHEN account.annual_revenue <= 49999999 THEN 'SMB'
+            WHEN account.annual_revenue > 49999999 AND account.annual_revenue <= 499999999 THEN 'Mid-Market'
+            WHEN account.annual_revenue > 499999999 THEN 'Enterprise'
+        END AS company_size_rev,
         base.name AS opportunity_name,
         stage_name,
         amount,
@@ -46,6 +51,7 @@ FROM "acton".salesforce."opportunity"
         DATE_TRUNC('day',date_reached_contract_c)::Date AS negotiation_date,
         DATE_TRUNC('day',date_reached_demo_c)::Date AS demo_date,
         DATE_TRUNC('day',date_reached_solution_c)::Date AS solution_date,
+        DATE_TRUNC('day',date_reached_closing_c)::Date AS closing_date,
         oc_utm_channel_c AS opp_channel_opportunity_creation,
         oc_utm_medium_c AS opp_medium_opportunity_creation,
         oc_utm_content_c AS opp_content_opportunity_creation, 
@@ -107,6 +113,8 @@ FROM "acton".salesforce."opportunity"
         opportunity_line_item_xf.annual_price,
         quote_line.sbqq_primary_quote,
         contract_source_xf.contract_acv,
+        account.industry,
+        --account.segment,
         CASE
             WHEN base.type IN ('New Business','Upsell','Trigger Renewal','Trigger Up','Non-Monetary Mod','Admin Opp','Partner New','Partner UpSell','Admin Conversion') THEN true
             ELSE false
@@ -146,7 +154,7 @@ FROM "acton".salesforce."opportunity"
     base.id=quote_line.opportunity_id
     LEFT JOIN "acton".salesforce."account" account ON
     base.account_id=account.id
-    {{dbt_utils.group_by(n=90) }}
+    {{dbt_utils.group_by(n=94) }}
 
 ), intermediate_acv_formula AS (
 
@@ -154,6 +162,7 @@ FROM "acton".salesforce."opportunity"
       intermediate.opportunity_id,
       intermediate.is_deleted,
       intermediate.account_id,
+      intermediate.company_size_rev,
       intermediate.account_global_region,
       intermediate.opportunity_name,
       intermediate.stage_name,
@@ -179,6 +188,7 @@ FROM "acton".salesforce."opportunity"
       intermediate.solution_date,
       intermediate.negotiation_date,
       intermediate.confirmed_value_date,
+      intermediate.closing_date,
       intermediate.opp_channel_opportunity_creation,
       intermediate.opp_medium_opportunity_creation,
       intermediate.opp_content_opportunity_creation,
@@ -235,6 +245,8 @@ FROM "acton".salesforce."opportunity"
       intermediate.sbqq_primary_quote,
       intermediate.sbqq_product_subscription_term,
       intermediate.contract_acv,
+      intermediate.industry,
+      --intermediate.segment,
       intermediate.include_in_acv_deal_size,
       intermediate.age,
       intermediate.tcv,
@@ -253,7 +265,7 @@ FROM "acton".salesforce."opportunity"
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    {{dbt_utils.group_by(n=93) }}
+    {{dbt_utils.group_by(n=96) }}
 
 ), intermediate_acv_sum AS (
     
@@ -262,6 +274,7 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.is_deleted,
       intermediate_acv_formula.account_id,
       intermediate_acv_formula.account_global_region,
+      intermediate_acv_formula.company_size_rev,
       intermediate_acv_formula.opportunity_name,
       intermediate_acv_formula.stage_name,
       intermediate_acv_formula.amount,
@@ -286,6 +299,7 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.demo_date,
       intermediate_acv_formula.solution_date,
       intermediate_acv_formula.confirmed_value_date,
+      intermediate_acv_formula.closing_date,
       intermediate_acv_formula.opp_channel_opportunity_creation,
       intermediate_acv_formula.opp_medium_opportunity_creation,
       intermediate_acv_formula.opp_content_opportunity_creation,
@@ -342,6 +356,8 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.sbqq_primary_quote,
       intermediate_acv_formula.sbqq_product_subscription_term,
       intermediate_acv_formula.contract_acv,
+      intermediate_acv_formula.industry,
+     -- intermediate_acv_formula.segment,
       intermediate_acv_formula.include_in_acv_deal_size,
       intermediate_acv_formula.age,
       SUM(intermediate_acv_formula.one_time_ps_value) AS one_time_ps_value,
@@ -353,12 +369,18 @@ FROM "acton".salesforce."opportunity"
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    {{dbt_utils.group_by(n=86) }}
+    {{dbt_utils.group_by(n=89) }}
 
 ), intermediate_acv_deal_size AS (
     
     SELECT
       intermediate_acv_sum.*,
+      CASE
+        WHEN account_global_region IN ('EUROPE','ROW','AUNZ') THEN 'EMEA'
+        WHEN company_size_rev IN ('SMB') OR company_size_rev IS null THEN 'Velocity'
+        WHEN company_size_rev IN ('Mid-Market','Enterprise') THEN 'Upmarket'
+        ELSE null
+      END AS segment, 
       CASE
         WHEN acv_deal_size_override > 0 AND is_closed = false AND submitted_for_approval = false THEN acv_deal_size_override
         WHEN type = 'Renewal' THEN SUM(acv_add_back + trigger_renewal_value)
@@ -367,7 +389,7 @@ FROM "acton".salesforce."opportunity"
         ELSE acv_formula
       END AS acv_deal_size_usd
     FROM intermediate_acv_sum
-    {{dbt_utils.group_by(n=94) }}
+    {{dbt_utils.group_by(n=98) }}
 
 ), final AS (
 
