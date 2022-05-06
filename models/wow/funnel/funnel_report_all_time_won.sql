@@ -7,7 +7,11 @@ WITH base AS (
         opp_sales_source_xf.close_date AS won_date,
         acv,
         company_size_rev,
-        account_global_region
+        account_global_region,
+        opp_lead_source,
+        segment,
+        industry,
+        channel_bucket
     FROM {{ref('opp_sales_source_xf')}}
     WHERE type = 'New Business'
 

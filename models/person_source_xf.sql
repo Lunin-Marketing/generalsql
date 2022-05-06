@@ -18,6 +18,8 @@ SELECT
     current_crm,
     current_ma,
     company_size_rev,
+    industry,
+    segment,
     -- DateTime Fields
     last_modified_date,
     created_date,
@@ -58,7 +60,8 @@ SELECT
     offer_asset_topic_lead_creation,
     offer_asset_type_first_touch,
     offer_asset_type_last_touch,
-    offer_asset_type_lead_creation
+    offer_asset_type_lead_creation,
+    channel_bucket
 FROM {{ref('lead_source_xf')}}
 WHERE is_converted = FALSE
 AND is_deleted = FALSE
@@ -81,6 +84,8 @@ SELECT
     de_current_crm,
     de_current_ma,
     company_size_rev,
+    industry,
+    segment,
     -- DateTime Fields
     last_modified_date,
     created_date,
@@ -121,6 +126,7 @@ SELECT
     offer_asset_topic_lead_creation,
     offer_asset_type_first_touch,
     offer_asset_type_last_touch,
-    offer_asset_type_lead_creation
+    offer_asset_type_lead_creation,
+    channel_bucket
 FROM {{ref('contact_source_xf')}}
 WHERE is_deleted = FALSE

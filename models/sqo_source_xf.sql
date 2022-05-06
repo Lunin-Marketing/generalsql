@@ -25,7 +25,10 @@ type,
 acv_deal_size_usd AS acv,
 billing_country AS country,
 account_global_region,
-company_size_rev
+opp_source_xf.segment,
+opp_source_xf.industry,
+channel_bucket,
+opp_source_xf.company_size_rev
 FROM {{ref('opp_source_xf')}}
 LEFT JOIN {{ref('user_source_xf')}} ON
 opp_source_xf.owner_id=user_source_xf.user_id

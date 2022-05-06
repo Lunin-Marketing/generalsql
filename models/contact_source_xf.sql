@@ -95,6 +95,7 @@ FROM "acton".salesforce."contact"
         END AS company_size_rev,
         account_source_xf.global_region,
         account_source_xf.segment,
+        account_source_xf.industry,
         CASE 
             WHEN LOWER(channel_lead_creation_c) = 'organic' THEN 'Organic'
             WHEN LOWER(channel_lead_creation_c) IS null THEN 'Unknown'
