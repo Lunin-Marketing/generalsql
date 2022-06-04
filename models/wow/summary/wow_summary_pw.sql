@@ -16,7 +16,7 @@ WITH base_prep AS (
     UNION ALL 
     SELECT DISTINCT
         account_global_region
-    FROM {{ref('funnel_report_previous_week_sqls_ss')}}
+    FROM {{ref('funnel_report_previous_week_sqls')}}
     UNION ALL 
     SELECT DISTINCT
         account_global_region

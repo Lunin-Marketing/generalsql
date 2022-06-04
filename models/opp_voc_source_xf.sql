@@ -35,5 +35,5 @@ opp_source_xf.owner_id=user_source_xf.user_id
 LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE negotiation_date IS NOT null
-AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo')
+AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo','Implement')
 ORDER BY 7 DESC

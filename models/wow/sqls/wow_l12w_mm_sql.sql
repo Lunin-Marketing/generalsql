@@ -20,7 +20,7 @@ opp_source_xf.account_id=account_source_xf.account_id
 WHERE 1=1 
 AND created_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
-AND company_size_rev IN ('Enterprise','Mid-Market')
+AND opp_source_xf.company_size_rev IN ('Enterprise','Mid-Market')
 AND type = 'New Business'
 
 ), final AS (

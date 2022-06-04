@@ -38,4 +38,4 @@ LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE demo_date IS NOT null
 --AND stage_name = 'Demo'
-AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery')
+AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Implement')

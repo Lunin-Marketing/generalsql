@@ -13,14 +13,14 @@ WITH current_quarter AS (
     SELECT DISTINCT
         opp_closing_source_xf.opportunity_id AS closing_id,
         acv,
-        opp_closing_source_xf.discovery_date AS closing_date,
+        opp_closing_source_xf.closing_date AS closing_date,
         country,
         account_global_region,
         opp_lead_source,
         week
     FROM {{ref('opp_closing_source_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
-    opp_closing_source_xf.discovery_date=date_base_xf.day
+    opp_closing_source_xf.closing_date=date_base_xf.day
     LEFT JOIN current_quarter ON 
     date_base_xf.quarter=current_quarter.quarter
     WHERE current_quarter.quarter IS NOT null

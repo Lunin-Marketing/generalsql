@@ -25,7 +25,7 @@ date_base_xf.week=last_12_weeks.week
 WHERE last_12_weeks.week IS NOT null
 AND discovery_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
-AND company_size_rev IN ('Enterprise','Mid-Market')
+AND opp_source_xf.company_size_rev IN ('Enterprise','Mid-Market')
 AND type = 'New Business'
 GROUP BY 1
 
