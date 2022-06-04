@@ -242,56 +242,56 @@ WITH base AS (
     FROM {{ref('funnel_report_all_time_lost')}}
     GROUP BY 2,3,4,5,6,7,8
 
-)
+), final AS (
 
-SELECT 
-    base.company_size_rev,
-    base.global_region,
-    base.lead_source,
-    base.segment,
-    base.industry,
-    base.channel_bucket,
-    base.date,
-    CASE 
-        WHEN SUM(leads) IS null THEN 0
-        ELSE SUM(leads) 
-    END AS leads,
-    CASE 
-        WHEN SUM(mqls) IS null THEN 0
-        ELSE SUM(mqls) 
-    END AS mqls,
-    CASE 
-        WHEN SUM(sals) IS null THEN 0
-        ELSE SUM(sals) 
-    END AS sals,
-    CASE 
-        WHEN SUM(sqls) IS null THEN 0
-        ELSE SUM(sqls) 
-    END AS sqls,
-    CASE 
-        WHEN SUM(sqos) IS null THEN 0
-        ELSE SUM(sqos) 
-    END AS sqos,
-    CASE 
-        WHEN SUM(demos) IS null THEN 0
-        ELSE SUM(demos) 
-    END AS demos,
-    CASE 
-        WHEN SUM(vocs) IS null THEN 0
-        ELSE SUM(vocs) 
-    END AS vocs,
-    CASE 
-        WHEN SUM(closing) IS null THEN 0
-        ELSE SUM(closing) 
-    END AS closing,
-    CASE 
-        WHEN SUM(won) IS null THEN 0
-        ELSE SUM(won) 
-    END AS won,
-    CASE 
-        WHEN SUM(lost) IS null THEN 0
-        ELSE SUM(lost) 
-    END AS lost
+    SELECT 
+        base.company_size_rev,
+        base.global_region,
+        base.lead_source,
+        base.segment,
+        base.industry,
+        base.channel_bucket,
+        base.date,
+        CASE 
+            WHEN SUM(leads) IS null THEN 0
+            ELSE SUM(leads) 
+        END AS leads,
+        CASE 
+            WHEN SUM(mqls) IS null THEN 0
+            ELSE SUM(mqls) 
+        END AS mqls,
+        CASE 
+            WHEN SUM(sals) IS null THEN 0
+            ELSE SUM(sals) 
+        END AS sals,
+        CASE 
+            WHEN SUM(sqls) IS null THEN 0
+            ELSE SUM(sqls) 
+        END AS sqls,
+        CASE 
+            WHEN SUM(sqos) IS null THEN 0
+            ELSE SUM(sqos) 
+        END AS sqos,
+        CASE 
+            WHEN SUM(demos) IS null THEN 0
+            ELSE SUM(demos) 
+        END AS demos,
+        CASE 
+            WHEN SUM(vocs) IS null THEN 0
+            ELSE SUM(vocs) 
+        END AS vocs,
+        CASE 
+            WHEN SUM(closing) IS null THEN 0
+            ELSE SUM(closing) 
+        END AS closing,
+        CASE 
+            WHEN SUM(won) IS null THEN 0
+            ELSE SUM(won) 
+        END AS won,
+        CASE 
+            WHEN SUM(lost) IS null THEN 0
+            ELSE SUM(lost) 
+        END AS lost
     FROM base
     LEFT JOIN lead_base ON 
     base.company_size_rev=lead_base.company_size_rev
@@ -374,3 +374,62 @@ SELECT
     AND base.channel_bucket=lost_base.channel_bucket
     AND base.date=lost_base.lost_date
     GROUP BY 1,2,3,4,5,6,7
+
+)
+
+SELECT
+    company_size_rev,
+    global_region,
+    lead_source,
+    segment,
+    industry,
+    channel_bucket,
+    date,
+    leads,
+    mqls,
+    sals,
+    sqls,
+    sqos,
+    demos,
+    vocs,
+    closing,
+    won,
+    lost,
+    CASE
+        WHEN mqls=0 THEN 0
+        ELSE SUM(leads/NULLIF(mqls,0))
+    END AS lead_to_mql_conv,
+    CASE
+        WHEN sals=0 THEN 0
+        ELSE SUM(mqls/NULLIF(sals,0))
+    END AS mql_to_sal_conv,
+    CASE
+        WHEN sqls=0 THEN 0
+        ELSE SUM(sals/NULLIF(sqls,0))
+    END AS sal_to_sql_conv,
+    CASE
+        WHEN sqos=0 THEN 0
+        ELSE SUM(sqls/NULLIF(sqos,0))
+    END AS sql_to_sqo_conv,
+    CASE
+        WHEN demos=0 THEN 0
+        ELSE SUM(sqos/NULLIF(demos,0))
+    END AS sqo_to_demo_conv,
+    CASE
+        WHEN vocs=0 THEN 0
+        ELSE SUM(demos/NULLIF(vocs,0))
+    END AS demo_to_voc_conv,
+    CASE
+        WHEN closing=0 THEN 0
+        ELSE SUM(vocs/NULLIF(closing,0))
+    END AS voc_to_closing_conv,
+    CASE
+        WHEN won=0 THEN 0
+        ELSE SUM(closing/NULLIF(won,0))
+    END AS closing_to_won_conv,
+    CASE
+        WHEN lost=0 THEN 0
+        ELSE SUM(closing/NULLIF(lost,0))
+    END AS closing_to_lost_conv
+FROM final
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17

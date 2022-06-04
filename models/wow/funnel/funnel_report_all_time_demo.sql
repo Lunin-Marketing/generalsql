@@ -1,17 +1,10 @@
 {{ config(materialized='table') }}
 
-WITH current_quarter AS (
-
-    SELECT
-        fy,
-        quarter 
-    FROM {{ref('date_base_xf')}}
-    WHERE day=CURRENT_DATE
-
-), base AS (
+WITH base AS (
 
     SELECT DISTINCT
         opp_demo_source_xf.opportunity_id AS demo_id,
+        CONCAT('https://acton.my.salesforce.com/',opp_demo_source_xf.opportunity_id) AS demo_url,
         acv,
         opp_demo_source_xf.demo_date AS demo_date,
         company_size_rev,

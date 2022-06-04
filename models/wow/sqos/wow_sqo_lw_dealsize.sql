@@ -11,7 +11,7 @@ WITH last_week AS (
     
     SELECT DISTINCT
         deal_size_range,
-        company_size_rev,
+        opp_source_xf.company_size_rev,
         COUNT(DISTINCT opportunity_id) AS sqos
     FROM {{ref('opp_source_xf')}}
     LEFT JOIN {{ref('account_source_xf')}} ON
