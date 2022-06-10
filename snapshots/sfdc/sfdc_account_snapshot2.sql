@@ -11,6 +11,5 @@
 
 SELECT *
 FROM {{ref('account_source_xf')}}
-LIMIT 1
 
 {% endsnapshot %}
