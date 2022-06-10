@@ -13,6 +13,7 @@ WITH base AS (
         industry,
         channel_bucket
     FROM {{ref('lead_mql_source_xf')}}
+    WHERE lead_mql_source_xf.mql_created_date IS NOT null
 
 )
 
