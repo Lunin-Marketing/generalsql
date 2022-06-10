@@ -1,4 +1,4 @@
-{% snapshot sfdc_contract_snapshot %}
+{% snapshot sfdc_contract_snapshot2 %}
 
 {{
     config (
