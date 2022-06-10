@@ -1,15 +1,15 @@
-{% snapshot sfdc_lead_snapshot2 %}
+{% snapshot sfdc_contact_snapshot %}
 
 {{
     config (
         target_schema='snapshots',
-        unique_key = 'lead_id',
+        unique_key = 'contact_id',
         strategy='timestamp',
         updated_at='systemmodstamp'
     )
 }}
 
 SELECT *
-FROM {{ref('lead_source_xf')}}
+FROM {{ref('contact_source_xf')}}
 
 {% endsnapshot %}
