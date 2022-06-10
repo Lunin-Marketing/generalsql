@@ -3,6 +3,7 @@ WITH opp_and_acct_base AS (
     SELECT
         opportunity_id,
         opp_source_xf.account_id,
+        account_source_xf.account_name,
         opportunity_name,
         customer_since,
         account_csm_name,
@@ -22,14 +23,15 @@ WITH opp_and_acct_base AS (
     account_source_xf.account_owner_id=user_source_xf.user_id
     WHERE stage_name = 'Implement'
     AND is_current_customer = 'true'
-    AND customer_since BETWEEN CURRENT_DATE-60 and CURRENT_DATE
+    AND customer_since BETWEEN CURRENT_DATE-130 and CURRENT_DATE
     --AND onboarding_completion_date IS NOT null
 
-)
+), final AS (
 
 SELECT 
     opp_and_acct_base.opportunity_id,
     opp_and_acct_base.account_id,
+    opp_and_acct_base.account_name,
     opp_and_acct_base.opportunity_name,
     opp_and_acct_base.customer_since,
     CASE 
@@ -64,3 +66,9 @@ contact_source_xf.contact_id=ao_instance_user_source_xf.ao_user_contact_id
 WHERE 1=1
 --AND is_renewal_contact = 'true'
 AND is_marketing_user = 'true'
+
+)
+
+SELECT DISTINCT
+account_name
+FROM final
