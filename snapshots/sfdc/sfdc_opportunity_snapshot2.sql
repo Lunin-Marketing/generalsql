@@ -11,6 +11,6 @@
 
 SELECT *
 FROM {{ref('opp_source_xf')}}
-LIMIT 10
+LIMIT 1000
 
 {% endsnapshot %}
