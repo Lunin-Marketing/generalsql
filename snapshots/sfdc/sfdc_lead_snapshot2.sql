@@ -1,16 +1,15 @@
-{% snapshot sfdc_account_snapshot %}
+{% snapshot sfdc_lead_snapshot2 %}
 
 {{
     config (
         target_schema='snapshots',
-        unique_key = 'account_id',
+        unique_key = 'lead_id',
         strategy='timestamp',
         updated_at='systemmodstamp'
     )
 }}
 
 SELECT *
-FROM {{ref('account_source_xf')}}
-LIMIT 1
+FROM {{ref('lead_source_xf')}}
 
 {% endsnapshot %}
