@@ -12,7 +12,7 @@ WITH current_quarter AS (
 
     SELECT DISTINCT
         opp_sales_source_xf.opportunity_id AS won_id,
-        opp_sales_source_xf.close_date AS won_date,
+        week,
         acv,
         country,
         account_global_region
