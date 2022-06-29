@@ -13,7 +13,7 @@ WITH current_quarter AS (
         SELECT DISTINCT
         opp_source_xf.opportunity_id AS lost_id,
         acv_deal_size_usd,
-        opp_source_xf.close_date AS close_date,
+        week,
         billing_country AS country,
         account_global_region
     FROM {{ref('opp_source_xf')}}

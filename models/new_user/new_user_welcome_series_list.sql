@@ -1,9 +1,9 @@
 WITH opp_and_acct_base AS (
 
     SELECT
-        opportunity_id,
+        -- opportunity_id,
         opp_source_xf.account_id,
-        opportunity_name,
+        -- opportunity_name,
         customer_since,
         account_csm_name,
         account_csm_email,
@@ -24,16 +24,15 @@ WITH opp_and_acct_base AS (
     account_source_xf.onboarding_specialist=onboarding.user_id
     WHERE stage_name = 'Implement'
     AND is_current_customer = 'true'
-    AND customer_since >= CURRENT_DATE-30
     AND opp_source_xf.account_id != '0011O00002LeGkEQAV'
     AND account_type != 'Partner Owned'
 
 )
 
-SELECT 
-    opp_and_acct_base.opportunity_id,
+SELECT DISTINCT
+    -- opp_and_acct_base.opportunity_id,
     opp_and_acct_base.account_id,
-    opp_and_acct_base.opportunity_name,
+    -- opp_and_acct_base.opportunity_name,
     opp_and_acct_base.customer_since,
     CASE 
         WHEN opp_and_acct_base.account_csm_name IS null THEN 'Support'
@@ -56,13 +55,16 @@ SELECT
     contact_source_xf.first_name AS "First Name",
     contact_source_xf.last_name AS "Last Name",
     contact_source_xf.email AS "Email",
+    ao_instance_user_source_xf.ao_user_name,
     ao_instance_user_source_xf.ao_user_id,
     ao_instance_user_source_xf.is_marketing_user,
-    opp_and_acct_base.onboarding_completion_date
-FROM opp_and_acct_base
+    opp_and_acct_base.onboarding_completion_date,
+    ao_user_date_created
+FROM {{ref('ao_instance_user_source_xf')}}
 LEFT JOIN {{ref('contact_source_xf')}} ON
-opp_and_acct_base.account_id=contact_source_xf.account_id
-LEFT JOIN {{ref('ao_instance_user_source_xf')}} ON
 contact_source_xf.contact_id=ao_instance_user_source_xf.ao_user_contact_id
+LEFT JOIN opp_and_acct_base ON
+opp_and_acct_base.account_id=contact_source_xf.account_id
 WHERE 1=1
 AND is_marketing_user = 'true'
+AND ao_user_date_created >= '2022-06-01'
