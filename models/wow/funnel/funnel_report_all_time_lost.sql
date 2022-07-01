@@ -7,13 +7,30 @@ WITH base AS (
         CONCAT('https://acton.my.salesforce.com/',opp_source_xf.opportunity_id) AS lost_url,
         acv_deal_size_usd,
         opp_source_xf.close_date AS lost_date,
-        opp_source_xf.account_global_region,
-        opp_source_xf.company_size_rev,
-        opp_lead_source,
-        stage_name,
-        opp_source_xf.segment,
-        opp_source_xf.industry,
-        channel_bucket
+        CASE
+        WHEN opp_source_xf.account_global_region IS null THEN 'blank'
+        ELSE opp_source_xf.account_global_region
+    END AS account_global_region,
+    CASE
+        WHEN opp_source_xf.company_size_rev IS null THEN 'blank'
+        ELSE opp_source_xf.company_size_rev
+    END AS company_size_rev,
+    CASE
+        WHEN opp_source_xf.opp_lead_source IS null THEN 'blank'
+        ELSE opp_source_xf.opp_lead_source
+    END AS opp_lead_source,
+    CASE
+        WHEN opp_source_xf.segment IS null THEN 'blank'
+        ELSE opp_source_xf.segment
+    END AS segment,
+    CASE
+        WHEN opp_source_xf.industry IS null THEN 'blank'
+        ELSE opp_source_xf.industry
+    END AS industry,
+    CASE
+        WHEN opp_source_xf.channel_bucket IS null THEN 'blank'
+        ELSE opp_source_xf.channel_bucket
+    END AS channel_bucket
     FROM {{ref('opp_source_xf')}}
     LEFT JOIN {{ref('account_source_xf')}} ON
     opp_source_xf.account_id=account_source_xf.account_id
