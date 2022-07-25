@@ -46,12 +46,15 @@ FROM "acton".salesforce."opportunity"
         renewal_acv_value_c AS renewal_acv,
         channel_lead_creation_c AS opp_channel_lead_creation,
         medium_lead_creation_c AS opp_medium_lead_creation,
-        DATE_TRUNC('day',discovery_date_c)::Date AS discovery_date,
+        DATE_TRUNC('day',date_time_reached_discovery_c)::Date AS discovery_date,
         DATE_TRUNC('day',date_reached_confirmed_value_c)::Date AS confirmed_value_date,
         DATE_TRUNC('day',date_reached_contract_c)::Date AS negotiation_date,
-        DATE_TRUNC('day',date_reached_demo_c)::Date AS demo_date,
+        DATE_TRUNC('day',date_time_reached_demo_c)::Date AS demo_date,
         DATE_TRUNC('day',date_reached_solution_c)::Date AS solution_date,
         DATE_TRUNC('day',date_reached_closing_c)::Date AS closing_date,
+        DATE_TRUNC('day',date_time_reached_implement_c)::Date AS implement_date,
+        DATE_TRUNC('day',date_time_reached_sql_c)::Date AS sql_date,
+        DATE_TRUNC('day',date_time_reached_voc_negotiate_c)::Date AS voc_date,
         oc_utm_channel_c AS opp_channel_opportunity_creation,
         oc_utm_medium_c AS opp_medium_opportunity_creation,
         oc_utm_content_c AS opp_content_opportunity_creation, 
@@ -80,7 +83,7 @@ FROM "acton".salesforce."opportunity"
         DATE_TRUNC('day',base.discovery_call_scheduled_date_c)::Date AS discovery_call_date,
         base.opportunity_status_c AS opportunity_status,
         base.sql_status_reason_c AS sql_status_reason,
-        DATE_TRUNC('day',base.sql_date_c)::Date AS sql_date,
+        DATE_TRUNC('day',base.sql_date_c)::Date AS sql_day,
         DATE_TRUNC('day',base.discovery_call_scheduled_date_time_c)::Date AS discovery_call_scheduled_datetime,
         DATE_TRUNC('day',base.discovery_call_completed_date_time_c)::Date AS discovery_call_completed_datetime,
         base.ao_account_id_c AS ao_account_id,
@@ -154,7 +157,7 @@ FROM "acton".salesforce."opportunity"
     base.id=quote_line.opportunity_id
     LEFT JOIN "acton".salesforce."account" account ON
     base.account_id=account.id
-    {{dbt_utils.group_by(n=94) }}
+    {{dbt_utils.group_by(n=97) }}
 
 ), intermediate_acv_formula AS (
 
@@ -189,6 +192,9 @@ FROM "acton".salesforce."opportunity"
       intermediate.negotiation_date,
       intermediate.confirmed_value_date,
       intermediate.closing_date,
+      intermediate.implement_date,
+      intermediate.sql_date,
+      intermediate.voc_date,
       intermediate.opp_channel_opportunity_creation,
       intermediate.opp_medium_opportunity_creation,
       intermediate.opp_content_opportunity_creation,
@@ -217,7 +223,7 @@ FROM "acton".salesforce."opportunity"
       intermediate.discovery_call_date,
       intermediate.opportunity_status,
       intermediate.sql_status_reason,
-      intermediate.sql_date,
+      intermediate.sql_day,
       intermediate.discovery_call_scheduled_datetime,
       intermediate.discovery_call_completed_datetime,
       intermediate.ao_account_id,
@@ -265,7 +271,7 @@ FROM "acton".salesforce."opportunity"
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    {{dbt_utils.group_by(n=96) }}
+    {{dbt_utils.group_by(n=99) }}
 
 ), intermediate_acv_sum AS (
     
@@ -300,6 +306,9 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.solution_date,
       intermediate_acv_formula.confirmed_value_date,
       intermediate_acv_formula.closing_date,
+      intermediate_acv_formula.implement_date,
+      intermediate_acv_formula.sql_date,
+      intermediate_acv_formula.voc_date,
       intermediate_acv_formula.opp_channel_opportunity_creation,
       intermediate_acv_formula.opp_medium_opportunity_creation,
       intermediate_acv_formula.opp_content_opportunity_creation,
@@ -328,7 +337,7 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.discovery_call_date,
       intermediate_acv_formula.opportunity_status,
       intermediate_acv_formula.sql_status_reason,
-      intermediate_acv_formula.sql_date,
+      intermediate_acv_formula.sql_day,
       intermediate_acv_formula.discovery_call_scheduled_datetime,
       intermediate_acv_formula.discovery_call_completed_datetime,
       intermediate_acv_formula.ao_account_id,
@@ -369,7 +378,7 @@ FROM "acton".salesforce."opportunity"
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    {{dbt_utils.group_by(n=89) }}
+    {{dbt_utils.group_by(n=92) }}
 
 ), intermediate_acv_deal_size AS (
     
@@ -389,7 +398,7 @@ FROM "acton".salesforce."opportunity"
         ELSE acv_formula
       END AS acv_deal_size_usd
     FROM intermediate_acv_sum
-    {{dbt_utils.group_by(n=98) }}
+    {{dbt_utils.group_by(n=101) }}
 
 ), final AS (
 

@@ -12,7 +12,7 @@ WITH base AS (
     FROM {{ref('lead_history_xf')}}
     LEFT JOIN {{ref('lead_source_xf')}} ON 
     lead_history_xf.lead_id=lead_source_xf.lead_id
-    WHERE marketing_created_date IS null
+    WHERE working_date IS null
     UNION ALL
     SELECT 
         contact_history_xf.contact_id,
@@ -24,7 +24,7 @@ WITH base AS (
     FROM {{ref('contact_history_xf')}}
     LEFT JOIN {{ref('contact_source_xf')}} ON 
     contact_history_xf.contact_id=contact_source_xf.contact_id
-    WHERE marketing_created_date IS null
+    WHERE working_date IS null
 
 ), final AS (
 
@@ -36,7 +36,8 @@ WITH base AS (
         type,
         ROW_NUMBER() OVER(PARTITION BY lead_id ORDER BY field_modified_at) AS event_number
     FROM base 
-    WHERE field ='X9883_Lead_Score__c'
+    WHERE field = 'Status'
+    AND new_value = 'Working'
     ORDER BY lead_id,field_modified_at
 
 )

@@ -252,6 +252,7 @@ WITH base_prep AS (
 )
 
 SELECT
+global_region,
 SUM(leads) AS leads,
 SUM(mqls) AS mqls,
 SUM(sals) AS sals,
@@ -271,3 +272,4 @@ SUM(lost_acv) AS lost_acv,
 SUM(churn) AS churn,
 SUM(churn_acv) AS churn_acv
 FROM final
+GROUP BY 1

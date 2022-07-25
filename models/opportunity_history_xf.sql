@@ -8,7 +8,7 @@ FROM "acton".salesforce."opportunity_field_history"
 )
 
 SELECT
-id AS contact_history_id, 
+id AS opportunity_history_id, 
 opportunity_id,
 created_date AS field_modified_at,
 field,
