@@ -13,7 +13,8 @@ WITH current_week AS (
         contract_source_xf.contract_id AS contract_id,
         arr_loss_amount,
         contract_source_xf.churn_date AS churn_date,
-        de_country AS country
+        de_country AS country,
+        global_region AS account_global_region
     FROM {{ref('contract_source_xf')}}
     LEFT JOIN {{ref('date_base_xf')}} ON
     contract_source_xf.churn_date=date_base_xf.day

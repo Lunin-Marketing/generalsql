@@ -24,9 +24,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        global_region
     FROM {{ref('funnel_report_current_week_leads')}}
-    GROUP BY 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+    GROUP BY 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -50,9 +51,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        global_region
     FROM {{ref('funnel_report_current_week_mqls')}}
-    GROUP BY 1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+    GROUP BY 1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -76,9 +78,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        global_region
     FROM {{ref('funnel_report_current_week_sals')}}
-    GROUP BY 1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+    GROUP BY 1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -102,9 +105,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_sqls')}}
-    GROUP BY 1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+    GROUP BY 1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -128,9 +132,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_sqos')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,11,12,13,14,15,16,17,18,19,20,21,22
+    GROUP BY 1,2,4,3,4,5,6,7,8,11,12,13,14,15,16,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -154,9 +159,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_demo')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20,21,22
+    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -180,9 +186,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_voc')}}
-    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,18,19,20,21,22
+    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -206,9 +213,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_closing')}}
-    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,17,18,19,20,21,22
+    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,17,18,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -232,9 +240,10 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_won')}}
-    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,19,20,21,22
+    GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,19,20,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -258,9 +267,10 @@ WITH base AS (
         COUNT(DISTINCT lost_id) AS lost,
         SUM(acv_deal_size_usd) AS lost_acv,
         0 AS churn,
-        0 AS churn_acv
+        0 AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_lost')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22
+    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22,23
     UNION ALL
     SELECT
         0 AS leads,
@@ -284,13 +294,15 @@ WITH base AS (
         0 AS lost,
         0 AS lost_acv,
         COUNT(DISTINCT contract_id) AS churn,
-        SUM(arr_loss_amount) AS churn_acv
+        SUM(arr_loss_amount) AS churn_acv,
+        account_global_region
     FROM {{ref('funnel_report_current_week_churn')}}
-    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+    GROUP BY 1,2,4,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,23
 
 )
 
 SELECT
+    global_region,
     SUM(leads) AS leads,
     SUM(leads_acv) AS lead_acv,
     SUM(mqls) AS mqls,
@@ -314,3 +326,4 @@ SELECT
     SUM(churn) AS churn,
     SUM(churn_acv) AS churn_acv
 FROM base
+GROUP BY 1

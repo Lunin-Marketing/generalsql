@@ -1,20 +1,21 @@
 WITH opp_and_acct_base AS (
 
     SELECT
-        -- opportunity_id,
+        opportunity_id,
         opp_source_xf.account_id,
-        -- opportunity_name,
+        opportunity_name,
         customer_since,
         account_csm_name,
         account_csm_email,
         account_csm_photo,
-        --onboarding.user_name AS onboarding_specialist,
-        --onboarding_specialist_email,
-        --onboarding_specialist_photo,
+        onboarding.user_name AS onboarding_specialist,
+        onboarding_specialist_email,
+        onboarding_specialist_photo,
         owner.user_name AS account_owner,
         account_owner_email,
         account_owner_photo,
-        onboarding_completion_date
+        onboarding_completion_date,
+        opp_source_xf.close_date
     FROM {{ref('opp_source_xf')}}
     LEFT JOIN {{ref('account_source_xf')}} ON
     opp_source_xf.account_id=account_source_xf.account_id
@@ -30,9 +31,9 @@ WITH opp_and_acct_base AS (
 )
 
 SELECT DISTINCT
-    -- opp_and_acct_base.opportunity_id,
+    opp_and_acct_base.opportunity_id,
     opp_and_acct_base.account_id,
-    -- opp_and_acct_base.opportunity_name,
+    opp_and_acct_base.opportunity_name,
     opp_and_acct_base.customer_since,
     CASE 
         WHEN opp_and_acct_base.account_csm_name IS null THEN 'Support'
@@ -46,9 +47,9 @@ SELECT DISTINCT
         WHEN opp_and_acct_base.account_csm_photo IS null THEN 'https://success.act-on.com/cdnr/forpcid1/acton/attachment/9883/f-fa8432de-9cea-4bf7-b6d4-eca1c9656b82/1/-/-/-/-/NewUserWelcomeSeries-EM3-Support.png'
         ELSE opp_and_acct_base.account_csm_photo 
     END AS account_csm_photo,
-    --opp_and_acct_base.onboarding_specialist,
-    --opp_and_acct_base.onboarding_specialist_email,
-    --opp_and_acct_base.onboarding_specialist_photo,
+    opp_and_acct_base.onboarding_specialist,
+    opp_and_acct_base.onboarding_specialist_email,
+    opp_and_acct_base.onboarding_specialist_photo,
     opp_and_acct_base.account_owner,
     opp_and_acct_base.account_owner_email,
     opp_and_acct_base.account_owner_photo,
@@ -67,4 +68,4 @@ LEFT JOIN opp_and_acct_base ON
 opp_and_acct_base.account_id=contact_source_xf.account_id
 WHERE 1=1
 AND is_marketing_user = 'true'
-AND ao_user_date_created >= '2022-06-01'
+AND close_date >= '2022-06-29'
