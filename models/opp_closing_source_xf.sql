@@ -35,5 +35,4 @@ opp_source_xf.owner_id=user_source_xf.user_id
 LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE closing_date IS NOT null
---AND stage_name = 'Closing'
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo','VOC/Negotiate','Implement')
