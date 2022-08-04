@@ -19,7 +19,8 @@ WITH person_base AS (
         global_region,
         segment,
         account_id,
-        channel_bucket
+        channel_bucket,
+        industry
     FROM {{ref('contact_source_xf')}}
     WHERE marketing_created_date >= '2021-01-01'
     UNION ALL
@@ -39,7 +40,8 @@ WITH person_base AS (
         global_region,
         segment,
         person_account_id,
-        channel_bucket
+        channel_bucket,
+        industry
     FROM {{ref('lead_source_xf')}}
     WHERE is_converted = false
     AND marketing_created_date >= '2021-01-01'
@@ -62,6 +64,7 @@ SELECT
     person_base.segment,
     person_base.account_id,
     person_base.person_status,
+    person_base.industry,
     account_base.is_current_customer, 
     opp_base.opportunity_id,
     opp_base.close_date,
@@ -73,6 +76,11 @@ SELECT
     opp_base.opp_lead_source,
     opp_base.type,
     opp_base.is_closed,
+    opp_base.segment AS opp_segment,
+    opp_base.account_global_region,
+    opp_base.company_size_rev AS opp_company_size_rev,
+    opp_base.industry AS opp_industry,
+    opp_base.channel_bucket AS opp_channel_bucket,
     CASE 
         WHEN mql_created_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' THEN 1
         ELSE 0

@@ -35,4 +35,5 @@ opp_source_xf.owner_id=user_source_xf.user_id
 LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE discovery_date IS NOT null
-AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
+AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','SQL - No Opportunity')
+--AND type = 'New Business'
