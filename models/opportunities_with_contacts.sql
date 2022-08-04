@@ -14,6 +14,7 @@ WITH person_base AS (
         source_lead_creation,
         lead_source,
         marketing_created_date,
+        working_date,
         contact_status AS person_status,
         company_size_rev,
         global_region,
@@ -35,6 +36,7 @@ WITH person_base AS (
         source_lead_creation,
         lead_source,
         marketing_created_date,
+        working_date,
         lead_status AS person_status,
         company_size_rev,
         global_region,
@@ -59,6 +61,7 @@ SELECT
     person_base.source_lead_creation,
     person_base.lead_source,
     person_base.marketing_created_date,
+    person_base.working_date,
     person_base.company_size_rev,
     person_base.global_region,
     person_base.segment,
@@ -86,7 +89,7 @@ SELECT
         ELSE 0
     END AS is_mql,
     CASE 
-        WHEN mql_created_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' AND person_status NOT IN ('Current Customer','Partner','Bad Data','No Fit') THEN 1
+        WHEN working_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' AND person_status NOT IN ('Current Customer','Partner','Bad Data','No Fit') THEN 1
         ELSE 0
     END AS is_sal,
     CASE
