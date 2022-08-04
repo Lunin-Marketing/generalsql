@@ -47,6 +47,5 @@ SELECT
     opp_industry,
     opp_channel_bucket,
     opp_created_date,
-    AVG(lead_to_opp_velocity)
+    lead_to_opp_velocity
 FROM final
-GROUP BY 1,2,3,4,5,6,7

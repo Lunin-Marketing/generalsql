@@ -52,6 +52,5 @@ SELECT
     industry,
     channel_bucket,
     won_date,
-    AVG(cw_velocity)
+    cw_velocity
 FROM final
-GROUP BY 1,2,3,4,5,6,7

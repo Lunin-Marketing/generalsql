@@ -10,6 +10,7 @@ WITH base AS (
         type AS opp_type,
         opp_segment
     FROM {{ref('opportunities_with_contacts')}}
+    WHERE type='New Business'
 
 ), final AS (
 
@@ -17,17 +18,16 @@ WITH base AS (
         person_id,
         marketing_created_date,
         opp_created_date,
-        opp_type,
         opp_segment,
         {{ dbt_utils.datediff("marketing_created_date","opp_created_date",'day')}} AS lead_to_opp_velocity
     FROM base
     WHERE opp_created_date >= marketing_created_date
+    
 )
 
 SELECT
 opp_segment,
-opp_type,
 DATE_TRUNC('year',marketing_created_date) AS marketing_created_year,
-AVG(lead_to_opp_velocity)
+AVG(lead_to_opp_velocity) AS avg_lead_to_opp_velocity
 FROM final
-GROUP BY 1,2,3
+GROUP BY 1,2

@@ -28,6 +28,6 @@ SELECT
 opp_segment,
 opp_type,
 DATE_TRUNC('year',opp_created_date) AS opp_created_year,
-AVG(lead_to_opp_velocity)
+AVG(lead_to_opp_velocity) AS avg_lead_to_opp_velocity
 FROM final
 GROUP BY 1,2,3
