@@ -36,6 +36,6 @@ SELECT
 won_segment,
 won_type,
 DATE_TRUNC('year',won_date) AS cw_year,
-AVG(cw_velocity)
+AVG(cw_velocity) AS avg_cw_velocity
 FROM final
 GROUP BY 1,2,3
