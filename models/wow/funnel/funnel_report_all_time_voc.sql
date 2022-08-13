@@ -28,6 +28,10 @@ WITH base AS (
         ELSE industry
     END AS industry,
     CASE
+        WHEN industry_bucket IS null THEN 'blank'
+        ELSE industry_bucket
+    END AS industry_bucket,
+    CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
     END AS channel_bucket

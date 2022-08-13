@@ -19,6 +19,7 @@ SELECT
     current_ma,
     company_size_rev,
     industry,
+    industry_bucket,
     segment,
     -- DateTime Fields
     last_modified_date,
@@ -85,6 +86,7 @@ SELECT
     de_current_ma,
     company_size_rev,
     industry,
+    industry_bucket,
     segment,
     -- DateTime Fields
     last_modified_date,

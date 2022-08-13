@@ -8,6 +8,7 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         created_date AS date
     FROM {{ref('funnel_report_all_time_leads')}}
@@ -18,6 +19,7 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         mql_date
     FROM {{ref('funnel_report_all_time_mqls')}}
@@ -28,6 +30,7 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sal_date
     FROM {{ref('funnel_report_all_time_sals')}}
@@ -38,6 +41,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sql_date
     FROM {{ref('funnel_report_all_time_sqls')}}
@@ -48,6 +52,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sqo_date
     FROM {{ref('funnel_report_all_time_sqos')}}
@@ -58,6 +63,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         demo_date
     FROM {{ref('funnel_report_all_time_demo')}}
@@ -68,6 +74,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         voc_date
     FROM {{ref('funnel_report_all_time_voc')}}
@@ -78,6 +85,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         closing_date
     FROM {{ref('funnel_report_all_time_closing')}}
@@ -88,6 +96,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         won_date
     FROM {{ref('funnel_report_all_time_won')}}
@@ -98,6 +107,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         lost_date
     FROM {{ref('funnel_report_all_time_lost')}}
@@ -125,6 +135,10 @@ SELECT DISTINCT
         WHEN industry IS null THEN 'blank'
         ELSE industry
     END AS industry,
+    CASE
+        WHEN industry_bucket IS null THEN 'blank'
+        ELSE industry_bucket
+    END AS industry_bucket,
     CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket

@@ -28,6 +28,10 @@ WITH base AS (
         ELSE opp_source_xf.industry
     END AS industry,
     CASE
+        WHEN industry_bucket IS null THEN 'blank'
+        ELSE industry_bucket
+    END AS industry_bucket,
+    CASE
         WHEN opp_source_xf.channel_bucket IS null THEN 'blank'
         ELSE opp_source_xf.channel_bucket
     END AS channel_bucket

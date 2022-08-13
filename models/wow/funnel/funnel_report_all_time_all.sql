@@ -8,6 +8,7 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         created_date AS date
     FROM {{ref('funnel_report_all_time_leads')}}
@@ -18,6 +19,7 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         mql_date
     FROM {{ref('funnel_report_all_time_mqls')}}
@@ -28,6 +30,7 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sal_date
     FROM {{ref('funnel_report_all_time_sals')}}
@@ -38,6 +41,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sql_date
     FROM {{ref('funnel_report_all_time_sqls')}}
@@ -48,6 +52,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sqo_date
     FROM {{ref('funnel_report_all_time_sqos')}}
@@ -58,6 +63,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         demo_date
     FROM {{ref('funnel_report_all_time_demo')}}
@@ -68,6 +74,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         voc_date
     FROM {{ref('funnel_report_all_time_voc')}}
@@ -78,6 +85,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         closing_date
     FROM {{ref('funnel_report_all_time_closing')}}
@@ -88,6 +96,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         won_date
     FROM {{ref('funnel_report_all_time_won')}}
@@ -98,6 +107,7 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         lost_date
     FROM {{ref('funnel_report_all_time_lost')}}
@@ -111,10 +121,11 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         created_date
     FROM {{ref('funnel_report_all_time_leads')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), mql_base AS (
 
@@ -125,10 +136,11 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         mql_date
     FROM {{ref('funnel_report_all_time_mqls')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), sal_base AS (
 
@@ -139,10 +151,11 @@ WITH base AS (
         lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sal_date
     FROM {{ref('funnel_report_all_time_sals')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), sql_base AS (
 
@@ -153,10 +166,11 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sql_date
     FROM {{ref('funnel_report_all_time_sqls')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), sqo_base AS (
 
@@ -167,10 +181,11 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         sqo_date
     FROM {{ref('funnel_report_all_time_sqos')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), demo_base AS (
 
@@ -181,10 +196,11 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         demo_date
     FROM {{ref('funnel_report_all_time_demo')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), voc_base AS (
 
@@ -195,10 +211,11 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         voc_date
     FROM {{ref('funnel_report_all_time_voc')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), closing_base AS (
 
@@ -209,10 +226,11 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         closing_date
     FROM {{ref('funnel_report_all_time_closing')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), won_base AS (
 
@@ -223,10 +241,11 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         won_date
     FROM {{ref('funnel_report_all_time_won')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), lost_base AS (
 
@@ -237,10 +256,11 @@ WITH base AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket,
         lost_date
     FROM {{ref('funnel_report_all_time_lost')}}
-    GROUP BY 2,3,4,5,6,7,8
+    GROUP BY 2,3,4,5,6,7,8,9
 
 ), final AS (
 
@@ -250,6 +270,7 @@ WITH base AS (
         base.lead_source,
         base.segment,
         base.industry,
+        base.industry_bucket,
         base.channel_bucket,
         base.date,
         CASE 
@@ -373,7 +394,7 @@ WITH base AS (
     AND base.industry=lost_base.industry
     AND base.channel_bucket=lost_base.channel_bucket
     AND base.date=lost_base.lost_date
-    GROUP BY 1,2,3,4,5,6,7
+    GROUP BY 1,2,3,4,5,6,7,8
 
 )
 

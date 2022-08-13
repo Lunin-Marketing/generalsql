@@ -8,6 +8,7 @@ owner_id,
 opp_source_xf.is_closed,
 opp_source_xf.is_won,
 discovery_date,
+close_day AS close_date,
 stage_name,
 opp_lead_source,
 case 
@@ -27,6 +28,7 @@ billing_country AS country,
 account_global_region,
 opp_source_xf.segment,
 opp_source_xf.industry,
+opp_source_xf.industry_bucket,
 channel_bucket,
 opp_source_xf.company_size_rev
 FROM {{ref('opp_source_xf')}}

@@ -19,7 +19,14 @@ FROM "acton".salesforce."lead"
         email,
         lead_source,
         status AS lead_status,
-        industry,
+        de_industry_c AS industry,
+        CASE
+            WHEN de_industry_c IN ('Business Services') THEN 'Business Services'
+            WHEN de_industry_c IN ('Finance','Insurance') THEN 'Finance'
+            WHEN de_industry_c IN ('Manufacturing') THEN 'Manufacturing'
+            WHEN de_industry_c IN ('Software','Telecommunications') THEN 'SoftCom'
+            ELSE 'Other'
+        END AS industry_bucket,
         annual_revenue,
         number_of_employees,
         owner_id AS lead_owner_id,

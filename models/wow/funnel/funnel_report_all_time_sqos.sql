@@ -6,6 +6,7 @@ WITH base AS (
         sqo_source_xf.opportunity_id AS sqo_id,
         CONCAT('https://acton.my.salesforce.com/',sqo_source_xf.opportunity_id) AS sqo_url,
         sqo_source_xf.discovery_date AS sqo_date,
+        close_date,
         acv,
         CASE
         WHEN account_global_region IS null THEN 'blank'
@@ -27,6 +28,10 @@ WITH base AS (
         WHEN industry IS null THEN 'blank'
         ELSE industry
     END AS industry,
+    CASE
+        WHEN industry_bucket IS null THEN 'blank'
+        ELSE industry_bucket
+    END AS industry_bucket,
     CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
