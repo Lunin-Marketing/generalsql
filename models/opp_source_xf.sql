@@ -117,6 +117,13 @@ FROM "acton".salesforce."opportunity"
         quote_line.sbqq_primary_quote,
         contract_source_xf.contract_acv,
         account.industry,
+        CASE
+            WHEN account.industry IN ('Business Services') THEN 'Business Services'
+            WHEN account.industry IN ('Finance','Insurance') THEN 'Finance'
+            WHEN account.industry IN ('Manufacturing') THEN 'Manufacturing'
+            WHEN account.industry IN ('Software','Telecommunications') THEN 'SoftCom'
+            ELSE 'Other'
+        END AS industry_bucket,
         --account.segment,
         CASE
             WHEN base.type IN ('New Business','Upsell','Trigger Renewal','Trigger Up','Non-Monetary Mod','Admin Opp','Partner New','Partner UpSell','Admin Conversion') THEN true
@@ -157,7 +164,7 @@ FROM "acton".salesforce."opportunity"
     base.id=quote_line.opportunity_id
     LEFT JOIN "acton".salesforce."account" account ON
     base.account_id=account.id
-    {{dbt_utils.group_by(n=97) }}
+    {{dbt_utils.group_by(n=98) }}
 
 ), intermediate_acv_formula AS (
 
@@ -252,6 +259,7 @@ FROM "acton".salesforce."opportunity"
       intermediate.sbqq_product_subscription_term,
       intermediate.contract_acv,
       intermediate.industry,
+      intermediate.industry_bucket,
       --intermediate.segment,
       intermediate.include_in_acv_deal_size,
       intermediate.age,
@@ -271,7 +279,7 @@ FROM "acton".salesforce."opportunity"
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    {{dbt_utils.group_by(n=99) }}
+    {{dbt_utils.group_by(n=100) }}
 
 ), intermediate_acv_sum AS (
     
@@ -366,6 +374,7 @@ FROM "acton".salesforce."opportunity"
       intermediate_acv_formula.sbqq_product_subscription_term,
       intermediate_acv_formula.contract_acv,
       intermediate_acv_formula.industry,
+      intermediate_acv_formula.industry_bucket,
      -- intermediate_acv_formula.segment,
       intermediate_acv_formula.include_in_acv_deal_size,
       intermediate_acv_formula.age,
@@ -378,7 +387,7 @@ FROM "acton".salesforce."opportunity"
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    {{dbt_utils.group_by(n=92) }}
+    {{dbt_utils.group_by(n=93) }}
 
 ), intermediate_acv_deal_size AS (
     

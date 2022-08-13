@@ -30,6 +30,7 @@ SELECT
     opp_source_xf.company_size_rev,
     opp_source_xf.segment,
     opp_source_xf.industry,
+    opp_source_xf.industry_bucket,
     opp_source_xf.channel_bucket
 FROM {{ref('opp_source_xf')}}
 LEFT JOIN {{ref('user_source_xf')}} ON

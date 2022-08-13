@@ -13,6 +13,7 @@ SELECT
     lead_source,
     segment,
     industry,
+    industry_bucket,
     channel_bucket
 FROM {{ref('person_source_xf')}}
 WHERE person_owner_id != '00Ga0000003Nugr'

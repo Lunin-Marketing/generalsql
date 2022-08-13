@@ -20,6 +20,7 @@ SELECT
     account_global_region,
     opp_source_xf.segment,
     opp_source_xf.industry,
+    opp_source_xf.industry_bucket,
     channel_bucket
 FROM {{ref('opp_source_xf')}}
 LEFT JOIN {{ref('account_source_xf')}} ON

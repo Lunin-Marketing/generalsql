@@ -24,7 +24,7 @@ WITH opp_and_acct_base AS (
     LEFT JOIN {{ref('user_source_xf')}} onboarding ON
     account_source_xf.onboarding_specialist=onboarding.user_id
     WHERE stage_name = 'Implement'
-    AND is_current_customer = 'true'
+   -- AND is_current_customer = 'true'
     AND opp_source_xf.account_id != '0011O00002LeGkEQAV'
     AND account_type != 'Partner Owned'
 
@@ -60,7 +60,7 @@ SELECT DISTINCT
     ao_instance_user_source_xf.ao_user_id,
     ao_instance_user_source_xf.is_marketing_user,
     opp_and_acct_base.onboarding_completion_date,
-    ao_user_date_created
+    ao_instance_user_source_xf.ao_user_created_date
 FROM {{ref('ao_instance_user_source_xf')}}
 LEFT JOIN {{ref('contact_source_xf')}} ON
 contact_source_xf.contact_id=ao_instance_user_source_xf.ao_user_contact_id
@@ -68,4 +68,6 @@ LEFT JOIN opp_and_acct_base ON
 opp_and_acct_base.account_id=contact_source_xf.account_id
 WHERE 1=1
 AND is_marketing_user = 'true'
-AND close_date >= '2022-06-29'
+AND customer_since >= '2022-01-01'
+AND customer_since < CURRENT_DATE-60
+AND ao_user_created_date >= '2022-06-01'

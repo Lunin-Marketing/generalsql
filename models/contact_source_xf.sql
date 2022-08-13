@@ -95,7 +95,14 @@ FROM "acton".salesforce."contact"
         END AS company_size_rev,
         account_source_xf.global_region,
         account_source_xf.segment,
-        account_source_xf.industry,
+        account_source_xf.de_industry AS industry,
+        CASE
+            WHEN account_source_xf.de_industry IN ('Business Services') THEN 'Business Services'
+            WHEN account_source_xf.de_industry IN ('Finance','Insurance') THEN 'Finance'
+            WHEN account_source_xf.de_industry IN ('Manufacturing') THEN 'Manufacturing'
+            WHEN account_source_xf.de_industry IN ('Software','Telecommunications') THEN 'SoftCom'
+            ELSE 'Other'
+        END AS industry_bucket,
         CASE 
             WHEN LOWER(channel_lead_creation_c) = 'organic' THEN 'Organic'
             WHEN LOWER(channel_lead_creation_c) IS null THEN 'Unknown'
