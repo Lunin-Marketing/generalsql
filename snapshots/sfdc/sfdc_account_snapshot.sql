@@ -7,6 +7,7 @@
         strategy='timestamp',
         updated_at='systemmodstamp'
     )
+    
 }}
 
 SELECT *
