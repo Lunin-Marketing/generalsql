@@ -12,6 +12,8 @@ WITH base AS (
     LEFT JOIN {{ref('opp_source_xf')}} ON 
     opportunity_history_xf.opportunity_id=opp_source_xf.opportunity_id
     WHERE voc_date IS null
+    AND type IN ('New Business','UpSell','Renewal')
+    AND field_modified_at >= '2021-01-01'
 
 ), final AS (
 

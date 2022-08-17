@@ -15,7 +15,7 @@ WITH base AS (
     WHERE mql_most_recent_date IS null
     AND field ='X9883_Lead_Score__c'
     AND new_value::Decimal >= '50.0'
-    AND old_value::Decimal <= '50.0'
+    AND old_value::Decimal < '50.0'
     UNION ALL
     SELECT 
         contact_history_xf.contact_id,
@@ -30,7 +30,7 @@ WITH base AS (
     WHERE mql_most_recent_date IS null
     AND field ='X9883_Lead_Score__c'
     AND new_value::Decimal >= '50.0'
-    AND old_value::Decimal <= '50.0'
+    AND old_value::Decimal < '50.0'
 
 ), final AS (
 

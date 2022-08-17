@@ -37,6 +37,7 @@ WITH base AS (
         ROW_NUMBER() OVER(PARTITION BY lead_id ORDER BY field_modified_at) AS event_number
     FROM base 
     WHERE field ='X9883_Lead_Score__c'
+    AND new_value > '0.0'
     ORDER BY lead_id,field_modified_at
 
 )

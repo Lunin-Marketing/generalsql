@@ -6,6 +6,7 @@ WITH base AS (
         sqo_source_xf.opportunity_id AS sqo_id,
         CONCAT('https://acton.my.salesforce.com/',sqo_source_xf.opportunity_id) AS sqo_url,
         sqo_source_xf.discovery_date AS sqo_date,
+        created_date,
         close_date,
         acv,
         CASE
