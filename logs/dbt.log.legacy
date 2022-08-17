@@ -6169,3 +6169,394 @@ drop table if exists "acton"."dbt_actonmarketing"."funnel_report_all_time_leads_
 2022-08-17 14:57:28.713032 (Thread-42): handling status request
 2022-08-17 14:57:28.714490 (Thread-42): 14:57:28  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '344be7fb-9b4e-48af-86be-c4687a0f1415', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f84a483d7c0>]}
 2022-08-17 14:57:28.714993 (Thread-42): sending response (<Response 1276 bytes [200 OK]>) to 10.0.12.143
+2022-08-17 14:57:57.639326 (Thread-43): 14:57:57  Unable to do partial parsing because config vars, config profile, or config target have changed
+2022-08-17 14:57:57.639727 (Thread-43): 14:57:57  Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '344be7fb-9b4e-48af-86be-c4687a0f1415', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f84e003e9d0>]}
+2022-08-17 14:57:58.298364 (Thread-43): 14:57:58  Parsing macros/relations.sql
+2022-08-17 14:57:58.300249 (Thread-43): 14:57:58  Parsing macros/adapters.sql
+2022-08-17 14:57:58.322375 (Thread-43): 14:57:58  Parsing macros/catalog.sql
+2022-08-17 14:57:58.324655 (Thread-43): 14:57:58  Parsing macros/materializations/snapshot_merge.sql
+2022-08-17 14:57:58.326334 (Thread-43): 14:57:58  Parsing macros/adapters/metadata.sql
+2022-08-17 14:57:58.333578 (Thread-43): 14:57:58  Parsing macros/adapters/columns.sql
+2022-08-17 14:57:58.343250 (Thread-43): 14:57:58  Parsing macros/adapters/freshness.sql
+2022-08-17 14:57:58.346184 (Thread-43): 14:57:58  Parsing macros/adapters/persist_docs.sql
+2022-08-17 14:57:58.350523 (Thread-43): 14:57:58  Parsing macros/adapters/relation.sql
+2022-08-17 14:57:58.360349 (Thread-43): 14:57:58  Parsing macros/adapters/schema.sql
+2022-08-17 14:57:58.362502 (Thread-43): 14:57:58  Parsing macros/adapters/indexes.sql
+2022-08-17 14:57:58.365188 (Thread-43): 14:57:58  Parsing macros/get_custom_name/get_custom_schema.sql
+2022-08-17 14:57:58.367569 (Thread-43): 14:57:58  Parsing macros/get_custom_name/get_custom_alias.sql
+2022-08-17 14:57:58.369063 (Thread-43): 14:57:58  Parsing macros/get_custom_name/get_custom_database.sql
+2022-08-17 14:57:58.370620 (Thread-43): 14:57:58  Parsing macros/etc/datetime.sql
+2022-08-17 14:57:58.378745 (Thread-43): 14:57:58  Parsing macros/etc/statement.sql
+2022-08-17 14:57:58.383049 (Thread-43): 14:57:58  Parsing macros/generic_test_sql/unique.sql
+2022-08-17 14:57:58.383766 (Thread-43): 14:57:58  Parsing macros/generic_test_sql/not_null.sql
+2022-08-17 14:57:58.384357 (Thread-43): 14:57:58  Parsing macros/generic_test_sql/accepted_values.sql
+2022-08-17 14:57:58.385704 (Thread-43): 14:57:58  Parsing macros/generic_test_sql/relationships.sql
+2022-08-17 14:57:58.386596 (Thread-43): 14:57:58  Parsing macros/materializations/configs.sql
+2022-08-17 14:57:58.388894 (Thread-43): 14:57:58  Parsing macros/materializations/hooks.sql
+2022-08-17 14:57:58.392693 (Thread-43): 14:57:58  Parsing macros/materializations/models/table/table.sql
+2022-08-17 14:57:58.400031 (Thread-43): 14:57:58  Parsing macros/materializations/models/table/create_table_as.sql
+2022-08-17 14:57:58.402839 (Thread-43): 14:57:58  Parsing macros/materializations/models/view/create_or_replace_view.sql
+2022-08-17 14:57:58.405539 (Thread-43): 14:57:58  Parsing macros/materializations/models/view/helpers.sql
+2022-08-17 14:57:58.406841 (Thread-43): 14:57:58  Parsing macros/materializations/models/view/create_view_as.sql
+2022-08-17 14:57:58.409150 (Thread-43): 14:57:58  Parsing macros/materializations/models/view/view.sql
+2022-08-17 14:57:58.416080 (Thread-43): 14:57:58  Parsing macros/materializations/models/incremental/incremental.sql
+2022-08-17 14:57:58.425814 (Thread-43): 14:57:58  Parsing macros/materializations/models/incremental/on_schema_change.sql
+2022-08-17 14:57:58.440761 (Thread-43): 14:57:58  Parsing macros/materializations/models/incremental/is_incremental.sql
+2022-08-17 14:57:58.442290 (Thread-43): 14:57:58  Parsing macros/materializations/models/incremental/merge.sql
+2022-08-17 14:57:58.453154 (Thread-43): 14:57:58  Parsing macros/materializations/models/incremental/column_helpers.sql
+2022-08-17 14:57:58.457606 (Thread-43): 14:57:58  Parsing macros/materializations/seeds/helpers.sql
+2022-08-17 14:57:58.473415 (Thread-43): 14:57:58  Parsing macros/materializations/seeds/seed.sql
+2022-08-17 14:57:58.479319 (Thread-43): 14:57:58  Parsing macros/materializations/tests/helpers.sql
+2022-08-17 14:57:58.481123 (Thread-43): 14:57:58  Parsing macros/materializations/tests/test.sql
+2022-08-17 14:57:58.485475 (Thread-43): 14:57:58  Parsing macros/materializations/tests/where_subquery.sql
+2022-08-17 14:57:58.487277 (Thread-43): 14:57:58  Parsing macros/materializations/snapshots/helpers.sql
+2022-08-17 14:57:58.498273 (Thread-43): 14:57:58  Parsing macros/materializations/snapshots/strategies.sql
+2022-08-17 14:57:58.514544 (Thread-43): 14:57:58  Parsing macros/materializations/snapshots/snapshot_merge.sql
+2022-08-17 14:57:58.516268 (Thread-43): 14:57:58  Parsing macros/materializations/snapshots/snapshot.sql
+2022-08-17 14:57:58.527463 (Thread-43): 14:57:58  Parsing tests/generic/builtin.sql
+2022-08-17 14:57:58.530438 (Thread-43): 14:57:58  Parsing macros/sql/pivot.sql
+2022-08-17 14:57:58.534321 (Thread-43): 14:57:58  Parsing macros/sql/star.sql
+2022-08-17 14:57:58.538188 (Thread-43): 14:57:58  Parsing macros/sql/surrogate_key.sql
+2022-08-17 14:57:58.541582 (Thread-43): 14:57:58  Parsing macros/sql/get_query_results_as_dict.sql
+2022-08-17 14:57:58.543858 (Thread-43): 14:57:58  Parsing macros/sql/date_spine.sql
+2022-08-17 14:57:58.548386 (Thread-43): 14:57:58  Parsing macros/sql/get_column_values.sql
+2022-08-17 14:57:58.553504 (Thread-43): 14:57:58  Parsing macros/sql/groupby.sql
+2022-08-17 14:57:58.554875 (Thread-43): 14:57:58  Parsing macros/sql/get_tables_by_pattern_sql.sql
+2022-08-17 14:57:58.560844 (Thread-43): 14:57:58  Parsing macros/sql/nullcheck_table.sql
+2022-08-17 14:57:58.562467 (Thread-43): 14:57:58  Parsing macros/sql/get_tables_by_prefix_sql.sql
+2022-08-17 14:57:58.564115 (Thread-43): 14:57:58  Parsing macros/sql/get_relations_by_pattern.sql
+2022-08-17 14:57:58.567418 (Thread-43): 14:57:58  Parsing macros/sql/get_relations_by_prefix.sql
+2022-08-17 14:57:58.570708 (Thread-43): 14:57:58  Parsing macros/sql/safe_add.sql
+2022-08-17 14:57:58.572336 (Thread-43): 14:57:58  Parsing macros/sql/haversine_distance.sql
+2022-08-17 14:57:58.578125 (Thread-43): 14:57:58  Parsing macros/sql/unpivot.sql
+2022-08-17 14:57:58.585703 (Thread-43): 14:57:58  Parsing macros/sql/generate_series.sql
+2022-08-17 14:57:58.589892 (Thread-43): 14:57:58  Parsing macros/sql/nullcheck.sql
+2022-08-17 14:57:58.591519 (Thread-43): 14:57:58  Parsing macros/sql/union.sql
+2022-08-17 14:57:58.599517 (Thread-43): 14:57:58  Parsing macros/materializations/insert_by_period_materialization.sql
+2022-08-17 14:57:58.623037 (Thread-43): 14:57:58  Parsing macros/jinja_helpers/pretty_time.sql
+2022-08-17 14:57:58.624347 (Thread-43): 14:57:58  Parsing macros/jinja_helpers/slugify.sql
+2022-08-17 14:57:58.625563 (Thread-43): 14:57:58  Parsing macros/jinja_helpers/log_info.sql
+2022-08-17 14:57:58.626704 (Thread-43): 14:57:58  Parsing macros/jinja_helpers/pretty_log_format.sql
+2022-08-17 14:57:58.627814 (Thread-43): 14:57:58  Parsing macros/web/get_url_parameter.sql
+2022-08-17 14:57:58.629383 (Thread-43): 14:57:58  Parsing macros/web/get_url_path.sql
+2022-08-17 14:57:58.631894 (Thread-43): 14:57:58  Parsing macros/web/get_url_host.sql
+2022-08-17 14:57:58.633893 (Thread-43): 14:57:58  Parsing macros/schema_tests/expression_is_true.sql
+2022-08-17 14:57:58.635671 (Thread-43): 14:57:58  Parsing macros/schema_tests/not_constant.sql
+2022-08-17 14:57:58.636951 (Thread-43): 14:57:58  Parsing macros/schema_tests/sequential_values.sql
+2022-08-17 14:57:58.639675 (Thread-43): 14:57:58  Parsing macros/schema_tests/not_null_proportion.sql
+2022-08-17 14:57:58.641843 (Thread-43): 14:57:58  Parsing macros/schema_tests/at_least_one.sql
+2022-08-17 14:57:58.643099 (Thread-43): 14:57:58  Parsing macros/schema_tests/equality.sql
+2022-08-17 14:57:58.646694 (Thread-43): 14:57:58  Parsing macros/schema_tests/test_not_null_where.sql
+2022-08-17 14:57:58.648141 (Thread-43): 14:57:58  Parsing macros/schema_tests/equal_rowcount.sql
+2022-08-17 14:57:58.649772 (Thread-43): 14:57:58  Parsing macros/schema_tests/not_accepted_values.sql
+2022-08-17 14:57:58.651902 (Thread-43): 14:57:58  Parsing macros/schema_tests/test_unique_where.sql
+2022-08-17 14:57:58.653343 (Thread-43): 14:57:58  Parsing macros/schema_tests/mutually_exclusive_ranges.sql
+2022-08-17 14:57:58.661890 (Thread-43): 14:57:58  Parsing macros/schema_tests/relationships_where.sql
+2022-08-17 14:57:58.664048 (Thread-43): 14:57:58  Parsing macros/schema_tests/accepted_range.sql
+2022-08-17 14:57:58.666427 (Thread-43): 14:57:58  Parsing macros/schema_tests/fewer_rows_than.sql
+2022-08-17 14:57:58.668079 (Thread-43): 14:57:58  Parsing macros/schema_tests/unique_combination_of_columns.sql
+2022-08-17 14:57:58.670822 (Thread-43): 14:57:58  Parsing macros/schema_tests/recency.sql
+2022-08-17 14:57:58.672559 (Thread-43): 14:57:58  Parsing macros/schema_tests/cardinality_equality.sql
+2022-08-17 14:57:58.674503 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/split_part.sql
+2022-08-17 14:57:58.676312 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/length.sql
+2022-08-17 14:57:58.677592 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/current_timestamp.sql
+2022-08-17 14:57:58.681197 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/right.sql
+2022-08-17 14:57:58.683400 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/hash.sql
+2022-08-17 14:57:58.684833 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/replace.sql
+2022-08-17 14:57:58.686093 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/cast_bool_to_text.sql
+2022-08-17 14:57:58.687511 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/concat.sql
+2022-08-17 14:57:58.688545 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/_is_relation.sql
+2022-08-17 14:57:58.689692 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/identifier.sql
+2022-08-17 14:57:58.691517 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/datediff.sql
+2022-08-17 14:57:58.700843 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/dateadd.sql
+2022-08-17 14:57:58.703600 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/datatypes.sql
+2022-08-17 14:57:58.709318 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/position.sql
+2022-08-17 14:57:58.710854 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/literal.sql
+2022-08-17 14:57:58.711809 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/_is_ephemeral.sql
+2022-08-17 14:57:58.713699 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/width_bucket.sql
+2022-08-17 14:57:58.718661 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/date_trunc.sql
+2022-08-17 14:57:58.720152 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/except.sql
+2022-08-17 14:57:58.721215 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/safe_cast.sql
+2022-08-17 14:57:58.723200 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/last_day.sql
+2022-08-17 14:57:58.726623 (Thread-43): 14:57:58  Parsing macros/cross_db_utils/intersect.sql
+2022-08-17 14:57:59.032063 (Thread-43): 14:57:59  1699: static parser successfully parsed sal_source_ss_xf.sql
+2022-08-17 14:57:59.034728 (Thread-43): 14:57:59  1699: static parser successfully parsed sql_source_ss_xf.sql
+2022-08-17 14:57:59.037255 (Thread-43): 14:57:59  1699: static parser successfully parsed opp_closing_source_xf.sql
+2022-08-17 14:57:59.039441 (Thread-43): 14:57:59  1603: static parser failed on account_source_xf.sql
+2022-08-17 14:57:59.045816 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on account_source_xf.sql
+2022-08-17 14:57:59.046855 (Thread-43): 14:57:59  1699: static parser successfully parsed contact_history_xf.sql
+2022-08-17 14:57:59.049097 (Thread-43): 14:57:59  1699: static parser successfully parsed new_business_acv_influenced_by_opens_FY21_xf.sql
+2022-08-17 14:57:59.051595 (Thread-43): 14:57:59  1699: static parser successfully parsed opportunities_with_contacts.sql
+2022-08-17 14:57:59.053998 (Thread-43): 14:57:59  1699: static parser successfully parsed product_xf.sql
+2022-08-17 14:57:59.056439 (Thread-43): 14:57:59  1699: static parser successfully parsed new_biz_acv_infl_by_opens_FY21.sql
+2022-08-17 14:57:59.058564 (Thread-43): 14:57:59  1699: static parser successfully parsed lead_history_xf.sql
+2022-08-17 14:57:59.060700 (Thread-43): 14:57:59  1699: static parser successfully parsed sqos_influenced_by_email_opens_xf.sql
+2022-08-17 14:57:59.062862 (Thread-43): 14:57:59  1699: static parser successfully parsed person_source_xf.sql
+2022-08-17 14:57:59.064856 (Thread-43): 14:57:59  1699: static parser successfully parsed user_source_xf.sql
+2022-08-17 14:57:59.067027 (Thread-43): 14:57:59  1699: static parser successfully parsed email_clicks_ao_xf.sql
+2022-08-17 14:57:59.069354 (Thread-43): 14:57:59  1603: static parser failed on opp_source_xf.sql
+2022-08-17 14:57:59.079465 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on opp_source_xf.sql
+2022-08-17 14:57:59.080662 (Thread-43): 14:57:59  1699: static parser successfully parsed lead_mql_source_xf.sql
+2022-08-17 14:57:59.083824 (Thread-43): 14:57:59  1699: static parser successfully parsed opp_voc_source_ss_xf.sql
+2022-08-17 14:57:59.086056 (Thread-43): 14:57:59  1699: static parser successfully parsed email_opens_ao_xf.sql
+2022-08-17 14:57:59.088862 (Thread-43): 14:57:59  1699: static parser successfully parsed lead_source_ss_xf.sql
+2022-08-17 14:57:59.090983 (Thread-43): 14:57:59  1699: static parser successfully parsed sqos_influenced_by_email_clicks_xf.sql
+2022-08-17 14:57:59.093185 (Thread-43): 14:57:59  1699: static parser successfully parsed task_source_xf.sql
+2022-08-17 14:57:59.095419 (Thread-43): 14:57:59  1699: static parser successfully parsed sqo_source_xf.sql
+2022-08-17 14:57:59.097709 (Thread-43): 14:57:59  1699: static parser successfully parsed opp_demo_source_xf.sql
+2022-08-17 14:57:59.099953 (Thread-43): 14:57:59  1699: static parser successfully parsed opp_sales_source_xf.sql
+2022-08-17 14:57:59.102208 (Thread-43): 14:57:59  1699: static parser successfully parsed opp_voc_source_xf.sql
+2022-08-17 14:57:59.104456 (Thread-43): 14:57:59  1699: static parser successfully parsed lead_source_xf.sql
+2022-08-17 14:57:59.106377 (Thread-43): 14:57:59  1699: static parser successfully parsed contract_source_xf.sql
+2022-08-17 14:57:59.108533 (Thread-43): 14:57:59  1699: static parser successfully parsed opportunity_history_xf.sql
+2022-08-17 14:57:59.110847 (Thread-43): 14:57:59  1699: static parser successfully parsed opp_closing_source_ss_xf.sql
+2022-08-17 14:57:59.112965 (Thread-43): 14:57:59  1699: static parser successfully parsed ao_instance_user_source_xf.sql
+2022-08-17 14:57:59.115141 (Thread-43): 14:57:59  1699: static parser successfully parsed opportunity_line_item_xf.sql
+2022-08-17 14:57:59.117435 (Thread-43): 14:57:59  1699: static parser successfully parsed sqo_source_ss_xf.sql
+2022-08-17 14:57:59.119957 (Thread-43): 14:57:59  1699: static parser successfully parsed sqls_influenced_by_email_clicks_xf.sql
+2022-08-17 14:57:59.122290 (Thread-43): 14:57:59  1699: static parser successfully parsed opp_demo_source_ss_xf.sql
+2022-08-17 14:57:59.124378 (Thread-43): 14:57:59  1699: static parser successfully parsed quote_line.sql
+2022-08-17 14:57:59.126771 (Thread-43): 14:57:59  1699: static parser successfully parsed new_business_acv_influenced_by_aps_FY21_xf.sql
+2022-08-17 14:57:59.128743 (Thread-43): 14:57:59  1699: static parser successfully parsed date_base_xf.sql
+2022-08-17 14:57:59.130879 (Thread-43): 14:57:59  1699: static parser successfully parsed sql_source_xf.sql
+2022-08-17 14:57:59.132858 (Thread-43): 14:57:59  1699: static parser successfully parsed kpi_targets.sql
+2022-08-17 14:57:59.135225 (Thread-43): 14:57:59  1699: static parser successfully parsed sal_source_xf.sql
+2022-08-17 14:57:59.137634 (Thread-43): 14:57:59  1699: static parser successfully parsed contact_source_xf.sql
+2022-08-17 14:57:59.139904 (Thread-43): 14:57:59  1699: static parser successfully parsed lead_mql_source_ss_xf.sql
+2022-08-17 14:57:59.142059 (Thread-43): 14:57:59  1699: static parser successfully parsed sqls_influenced_by_email_opens_xf.sql
+2022-08-17 14:57:59.143996 (Thread-43): 14:57:59  1699: static parser successfully parsed ao_instance_source_xf.sql
+2022-08-17 14:57:59.146182 (Thread-43): 14:57:59  1699: static parser successfully parsed test/test.sql
+2022-08-17 14:57:59.148668 (Thread-43): 14:57:59  1699: static parser successfully parsed new_user/new_account_welcome_series_list.sql
+2022-08-17 14:57:59.151277 (Thread-43): 14:57:59  1699: static parser successfully parsed new_user/new_user_welcome_series_list.sql
+2022-08-17 14:57:59.153826 (Thread-43): 14:57:59  1699: static parser successfully parsed funnel_date_updates/marketing_lead_creation_date_history_xf.sql
+2022-08-17 14:57:59.156051 (Thread-43): 14:57:59  1699: static parser successfully parsed funnel_date_updates/opp_demo_date_history_xf.sql
+2022-08-17 14:57:59.158657 (Thread-43): 14:57:59  1699: static parser successfully parsed funnel_date_updates/working_date_history_xf.sql
+2022-08-17 14:57:59.160875 (Thread-43): 14:57:59  1699: static parser successfully parsed funnel_date_updates/opp_closing_date_history_xf.sql
+2022-08-17 14:57:59.163262 (Thread-43): 14:57:59  1699: static parser successfully parsed funnel_date_updates/mql_date_history_xf.sql
+2022-08-17 14:57:59.165590 (Thread-43): 14:57:59  1699: static parser successfully parsed funnel_date_updates/opp_discovery_date_history_xf.sql
+2022-08-17 14:57:59.167856 (Thread-43): 14:57:59  1699: static parser successfully parsed funnel_date_updates/opp_voc_date_history_xf.sql
+2022-08-17 14:57:59.170195 (Thread-43): 14:57:59  1699: static parser successfully parsed pipeline/pipeline_2021_1H_PPC.sql
+2022-08-17 14:57:59.172485 (Thread-43): 14:57:59  1699: static parser successfully parsed qoq/leads/qoq_mktg_created_leads_by_attribution.sql
+2022-08-17 14:57:59.174627 (Thread-43): 14:57:59  1699: static parser successfully parsed campaign_reporting/marketo_ap_reporting.sql
+2022-08-17 14:57:59.176794 (Thread-43): 14:57:59  1699: static parser successfully parsed campaign_reporting/marketo_persons_influenced.sql
+2022-08-17 14:57:59.179113 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_leads.sql
+2022-08-17 14:57:59.181638 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_sqos_ss.sql
+2022-08-17 14:57:59.184322 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_by_week_pipeline.sql
+2022-08-17 14:57:59.186433 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_ss_conversion.sql
+2022-08-17 14:57:59.188718 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_sals.sql
+2022-08-17 14:57:59.191756 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters_industry.sql
+2022-08-17 14:57:59.194412 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_ss_xf.sql
+2022-08-17 14:57:59.196709 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_sqls.sql
+2022-08-17 14:57:59.198671 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_l20_velocity_opp.sql
+2022-08-17 14:57:59.203622 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_l20_velocity_opp.sql
+2022-08-17 14:57:59.204979 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_sqls.sql
+2022-08-17 14:57:59.207324 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_sqos_ss.sql
+2022-08-17 14:57:59.209692 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_sals.sql
+2022-08-17 14:57:59.212412 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_by_week_xf.sql
+2022-08-17 14:57:59.215043 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_ss_xf.sql
+2022-08-17 14:57:59.217480 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_lost.sql
+2022-08-17 14:57:59.219731 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_sqls.sql
+2022-08-17 14:57:59.222009 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_sals.sql
+2022-08-17 14:57:59.224358 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_voc_ss.sql
+2022-08-17 14:57:59.226755 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_sqos_to_target.sql
+2022-08-17 14:57:59.229044 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_closing.sql
+2022-08-17 14:57:59.231328 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_mqls.sql
+2022-08-17 14:57:59.233938 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_combined_na.sql
+2022-08-17 14:57:59.236244 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_closing.sql
+2022-08-17 14:57:59.238739 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_closing.sql
+2022-08-17 14:57:59.240907 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_sqos.sql
+2022-08-17 14:57:59.243151 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_demo.sql
+2022-08-17 14:57:59.245690 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters_date.sql
+2022-08-17 14:57:59.247979 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_voc_ss.sql
+2022-08-17 14:57:59.250549 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_sqos_ss.sql
+2022-08-17 14:57:59.252903 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_mqls.sql
+2022-08-17 14:57:59.255170 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_mqls.sql
+2022-08-17 14:57:59.257366 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_conversion_emea.sql
+2022-08-17 14:57:59.259860 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_asp_to_target.sql
+2022-08-17 14:57:59.262166 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_demo.sql
+2022-08-17 14:57:59.264316 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_intrapipe_to_target.sql
+2022-08-17 14:57:59.266612 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_sqls.sql
+2022-08-17 14:57:59.268917 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_voc_ss.sql
+2022-08-17 14:57:59.271411 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_mqls.sql
+2022-08-17 14:57:59.273998 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_demo.sql
+2022-08-17 14:57:59.276108 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_won.sql
+2022-08-17 14:57:59.278421 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_demo.sql
+2022-08-17 14:57:59.280751 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_sals.sql
+2022-08-17 14:57:59.283699 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_combined.sql
+2022-08-17 14:57:59.285764 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_sal2sql_velocity.sql
+2022-08-17 14:57:59.290335 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_sal2sql_velocity.sql
+2022-08-17 14:57:59.291493 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_by_week_na_xf.sql
+2022-08-17 14:57:59.293816 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_closing.sql
+2022-08-17 14:57:59.296309 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_leads.sql
+2022-08-17 14:57:59.298452 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_cwpipe_to_target.sql
+2022-08-17 14:57:59.300780 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_leads.sql
+2022-08-17 14:57:59.302839 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_l20_velocity_opp_annual.sql
+2022-08-17 14:57:59.307533 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_l20_velocity_opp_annual.sql
+2022-08-17 14:57:59.308920 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_leads.sql
+2022-08-17 14:57:59.310933 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_sqo2demo_velocity.sql
+2022-08-17 14:57:59.316038 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_sqo2demo_velocity.sql
+2022-08-17 14:57:59.317230 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_voc.sql
+2022-08-17 14:57:59.463820 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_closing_ss.sql
+2022-08-17 14:57:59.466287 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_demo_ss.sql
+2022-08-17 14:57:59.468702 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_won.sql
+2022-08-17 14:57:59.471700 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters_segment.sql
+2022-08-17 14:57:59.473809 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_clos2cw_velocity.sql
+2022-08-17 14:57:59.478571 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_clos2cw_velocity.sql
+2022-08-17 14:57:59.479807 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_sqls_to_target.sql
+2022-08-17 14:57:59.482306 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_won.sql
+2022-08-17 14:57:59.484408 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_conversion_na.sql
+2022-08-17 14:57:59.486531 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_sals.sql
+2022-08-17 14:57:59.488586 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_sql2sqo_velocity.sql
+2022-08-17 14:57:59.493602 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_sql2sqo_velocity.sql
+2022-08-17 14:57:59.495053 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_lost.sql
+2022-08-17 14:57:59.497469 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_l2m_to_target.sql
+2022-08-17 14:57:59.499788 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_mqls_ss.sql
+2022-08-17 14:57:59.501886 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_sqls.sql
+2022-08-17 14:57:59.504437 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_closing_ss.sql
+2022-08-17 14:57:59.506705 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_won.sql
+2022-08-17 14:57:59.508969 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_sqls_ss.sql
+2022-08-17 14:57:59.511041 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_closing.sql
+2022-08-17 14:57:59.513896 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters_channelbucket.sql
+2022-08-17 14:57:59.516220 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_leads_target.sql
+2022-08-17 14:57:59.519049 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters_leadsource.sql
+2022-08-17 14:57:59.521483 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_voc.sql
+2022-08-17 14:57:59.524252 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_xf.sql
+2022-08-17 14:57:59.526567 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_sals_ss.sql
+2022-08-17 14:57:59.529102 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_leads_ss.sql
+2022-08-17 14:57:59.531671 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters_companysizerev.sql
+2022-08-17 14:57:59.533759 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_close_won_velocity.sql
+2022-08-17 14:57:59.538808 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_close_won_velocity.sql
+2022-08-17 14:57:59.540844 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_voc.sql
+2022-08-17 14:57:59.543213 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_sals_ss.sql
+2022-08-17 14:57:59.545647 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_churn.sql
+2022-08-17 14:57:59.547962 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_voc.sql
+2022-08-17 14:57:59.550531 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_by_week_ss_xf.sql
+2022-08-17 14:57:59.553697 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_combined_emea.sql
+2022-08-17 14:57:59.555779 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_l20_velocity_mlc.sql
+2022-08-17 14:57:59.561256 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_l20_velocity_mlc.sql
+2022-08-17 14:57:59.562696 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_m2sql_to_target.sql
+2022-08-17 14:57:59.565084 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_sqos.sql
+2022-08-17 14:57:59.567668 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_sqls_ss.sql
+2022-08-17 14:57:59.569754 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_voc2closing_velocity.sql
+2022-08-17 14:57:59.574614 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_voc2closing_velocity.sql
+2022-08-17 14:57:59.575957 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_sqos.sql
+2022-08-17 14:57:59.578231 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_m2sal_velocity.sql
+2022-08-17 14:57:59.582970 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_m2sal_velocity.sql
+2022-08-17 14:57:59.584778 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters_globalregion.sql
+2022-08-17 14:57:59.586920 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_mqls.sql
+2022-08-17 14:57:59.589394 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_xf.sql
+2022-08-17 14:57:59.591986 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_sql2sqo_to_target.sql
+2022-08-17 14:57:59.594075 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_demo2voc_velocity.sql
+2022-08-17 14:57:59.598863 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_demo2voc_velocity.sql
+2022-08-17 14:57:59.600206 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_leads_ss.sql
+2022-08-17 14:57:59.602714 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_fy_leads.sql
+2022-08-17 14:57:59.604959 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_mqls_to_target.sql
+2022-08-17 14:57:59.606922 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_l20_velocity_mlc_annual.sql
+2022-08-17 14:57:59.611484 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_l20_velocity_mlc_annual.sql
+2022-08-17 14:57:59.612880 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_sqos.sql
+2022-08-17 14:57:59.615393 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_won.sql
+2022-08-17 14:57:59.617511 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_rolling3mo_conversion.sql
+2022-08-17 14:57:59.620351 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_xf.sql
+2022-08-17 14:57:59.622459 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_demo.sql
+2022-08-17 14:57:59.625130 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_conversion.sql
+2022-08-17 14:57:59.627719 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_leads_ss.sql
+2022-08-17 14:57:59.629759 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_close_won_velocity_annual.sql
+2022-08-17 14:57:59.634588 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_close_won_velocity_annual.sql
+2022-08-17 14:57:59.635925 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_sqos.sql
+2022-08-17 14:57:59.639559 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_closing_ss.sql
+2022-08-17 14:57:59.641997 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_churn.sql
+2022-08-17 14:57:59.644323 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_demo_ss.sql
+2022-08-17 14:57:59.646705 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_lost.sql
+2022-08-17 14:57:59.649016 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_fy_mqls.sql
+2022-08-17 14:57:59.651426 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_leads_to_target.sql
+2022-08-17 14:57:59.653712 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_mqls_ss.sql
+2022-08-17 14:57:59.656336 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_filters.sql
+2022-08-17 14:57:59.658626 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_sals_ss.sql
+2022-08-17 14:57:59.660932 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_sqopipe_to_target.sql
+2022-08-17 14:57:59.663520 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_lost.sql
+2022-08-17 14:57:59.665603 (Thread-43): 14:57:59  1603: static parser failed on wow/funnel/funnel_report_all_time_l2m_velocity.sql
+2022-08-17 14:57:59.670503 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on wow/funnel/funnel_report_all_time_l2m_velocity.sql
+2022-08-17 14:57:59.671858 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_sqls_ss.sql
+2022-08-17 14:57:59.675139 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_all.sql
+2022-08-17 14:57:59.677338 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_conversions.sql
+2022-08-17 14:57:59.679431 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_by_week_emea_xf.sql
+2022-08-17 14:57:59.681520 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_all_time_leads.sql
+2022-08-17 14:57:59.683774 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_previous_week_voc.sql
+2022-08-17 14:57:59.686267 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_quarter_demo_ss.sql
+2022-08-17 14:57:59.688574 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/funnel/funnel_report_current_week_mqls_ss.sql
+2022-08-17 14:57:59.690902 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/handraisers/hr_l12w_type.sql
+2022-08-17 14:57:59.693283 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/handraisers/hr_sal_l12w_type.sql
+2022-08-17 14:57:59.695659 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/handraisers/hr_lw_type.sql
+2022-08-17 14:57:59.698434 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/won/wow_won_l12w_all.sql
+2022-08-17 14:57:59.700931 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/lost/wow_lost_l12w_all.sql
+2022-08-17 14:57:59.703297 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/lost/wow_churn_l12w.sql
+2022-08-17 14:57:59.705707 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqos/wow_sqo_lw_companysize.sql
+2022-08-17 14:57:59.708109 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqos/wow_sqo_l12w_all.sql
+2022-08-17 14:57:59.710815 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqos/wow_sqo_lw_attribution.sql
+2022-08-17 14:57:59.713230 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqos/wow_sqo_l12w_mm.sql
+2022-08-17 14:57:59.715702 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqos/wow_sqo_lw.sql
+2022-08-17 14:57:59.718110 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqos/wow_sqo_lw_dealsize.sql
+2022-08-17 14:57:59.720564 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw2.sql
+2022-08-17 14:57:59.723356 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd.sql
+2022-08-17 14:57:59.726402 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_na.sql
+2022-08-17 14:57:59.728596 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_ss_conversion.sql
+2022-08-17 14:57:59.730704 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_ss_conversion.sql
+2022-08-17 14:57:59.733075 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw2.sql
+2022-08-17 14:57:59.735883 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_na.sql
+2022-08-17 14:57:59.738133 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_emea_conversion.sql
+2022-08-17 14:57:59.740282 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_na_ss_conversion.sql
+2022-08-17 14:57:59.742406 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_emea_conversion.sql
+2022-08-17 14:57:59.745348 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_emea_ss.sql
+2022-08-17 14:57:59.748054 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw.sql
+2022-08-17 14:57:59.750200 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_ss_conversion.sql
+2022-08-17 14:57:59.752323 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_emea_conversion.sql
+2022-08-17 14:57:59.754778 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_conversion_delta.sql
+2022-08-17 14:57:59.756886 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_na_ss_conversion.sql
+2022-08-17 14:57:59.759542 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_emea_ss.sql
+2022-08-17 14:57:59.762273 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw.sql
+2022-08-17 14:57:59.765222 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_na.sql
+2022-08-17 14:57:59.768973 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_na_ss.sql
+2022-08-17 14:57:59.771478 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_conversion2.sql
+2022-08-17 14:57:59.774156 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_emea.sql
+2022-08-17 14:57:59.776280 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_na_conversion.sql
+2022-08-17 14:57:59.779126 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_ss.sql
+2022-08-17 14:57:59.782019 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_conversion2.sql
+2022-08-17 14:57:59.784200 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_conversion.sql
+2022-08-17 14:57:59.787007 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_emea.sql
+2022-08-17 14:57:59.789183 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_na_conversion.sql
+2022-08-17 14:57:59.792104 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_na_ss.sql
+2022-08-17 14:57:59.794272 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_na_conversion.sql
+2022-08-17 14:57:59.796467 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_conversion.sql
+2022-08-17 14:57:59.799228 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_ss.sql
+2022-08-17 14:57:59.801738 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_emea_ss_conversion.sql
+2022-08-17 14:57:59.804751 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_emea.sql
+2022-08-17 14:57:59.807283 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_qtd_conversion2.sql
+2022-08-17 14:57:59.810205 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_ss.sql
+2022-08-17 14:57:59.812453 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_lw_conversion.sql
+2022-08-17 14:57:59.814812 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/summary/wow_summary_pw_emea_ss_conversion.sql
+2022-08-17 14:57:59.816912 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/disco calls/wow_disco_scheduled.sql
+2022-08-17 14:57:59.819281 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/disco calls/wow_disco_pastdue.sql
+2022-08-17 14:57:59.821806 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/disco calls/wow_disco_missing.sql
+2022-08-17 14:57:59.824472 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/leads/wow_last_week_mql_source.sql
+2022-08-17 14:57:59.826637 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/leads/wow_weektracker.sql
+2022-08-17 14:57:59.829252 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/leads/wow_last_12week_mm_lead_source.sql
+2022-08-17 14:57:59.832051 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/leads/wow_last_week_lead_source.sql
+2022-08-17 14:57:59.834860 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/leads/wow_last_12week_mm_mql_source.sql
+2022-08-17 14:57:59.837663 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqls/wow_lw_sql_attribution.sql
+2022-08-17 14:57:59.840228 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqls/wow_l12w_mm_sql.sql
+2022-08-17 14:57:59.843226 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqls/wow_lw_sql_companysize.sql
+2022-08-17 14:57:59.846282 (Thread-43): 14:57:59  1699: static parser successfully parsed wow/sqls/wow_l12w_sql.sql
+2022-08-17 14:57:59.848302 (Thread-43): 14:57:59  1699: static parser successfully parsed cohort_model/avg_lead_to_cw_cohort_count.sql
+2022-08-17 14:57:59.850456 (Thread-43): 14:57:59  1699: static parser successfully parsed cohort_model/avg_lead_to_cw_cohort.sql
+2022-08-17 14:57:59.852541 (Thread-43): 14:57:59  1603: static parser failed on cohort_model/lead_to_cw_cohort.sql
+2022-08-17 14:57:59.859615 (Thread-43): 14:57:59  1602: parser fallback to jinja rendering on cohort_model/lead_to_cw_cohort.sql
+2022-08-17 14:58:00.015219 (Thread-43): 14:58:00  Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '344be7fb-9b4e-48af-86be-c4687a0f1415', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f84e00390d0>]}
+2022-08-17 14:58:00.483796 (Thread-44): handling status request
+2022-08-17 14:58:00.484318 (Thread-44): 14:58:00  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '344be7fb-9b4e-48af-86be-c4687a0f1415', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f8457791dc0>]}
+2022-08-17 14:58:00.489101 (Thread-44): sending response (<Response 119843 bytes [200 OK]>) to 10.0.12.143
+2022-08-17 14:58:00.555652 (Thread-45): handling status request
+2022-08-17 14:58:00.558126 (Thread-45): 14:58:00  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '344be7fb-9b4e-48af-86be-c4687a0f1415', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f84a4959730>]}
+2022-08-17 14:58:00.561624 (Thread-45): sending response (<Response 119843 bytes [200 OK]>) to 10.0.12.143
+2022-08-17 14:58:12.000299 (Thread-46): handling status request
+2022-08-17 14:58:12.000720 (Thread-46): 14:58:12  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '344be7fb-9b4e-48af-86be-c4687a0f1415', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f845773ef40>]}
+2022-08-17 14:58:12.004094 (Thread-46): sending response (<Response 119843 bytes [200 OK]>) to 10.0.12.143
