@@ -1,4 +1,4 @@
-{% snapshot sfdc_account_snapshot3 %}
+{% snapshot sfdc_account_snapshot4 %}
 
 {{
     config (
@@ -7,6 +7,7 @@
         strategy='timestamp',
         updated_at='systemmodstamp'
     )
+    
 }}
 
 SELECT *
