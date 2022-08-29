@@ -46,6 +46,11 @@ FROM "acton".salesforce."account"
         base.onboarding_completion_date_c AS onboarding_completion_date,
         base.customer_since_c AS customer_since,
         base.onboarding_specialist_c AS onboarding_specialist,
+        base.executive_sponsor_c AS executive_sponsor,
+        base.assigned_account_tier_c AS assigned_account_tier,
+        base.business_model_c AS business_model,
+        base.contract_type_c AS contract_type,
+        base.delivered_support_tier_c AS delivered_support_tier,
         parent.name AS account_parent_name,
         base.deliverability_consultant_c AS deliverability_consultant_id,
         sdr.user_email AS sdr_email,
@@ -69,6 +74,7 @@ FROM "acton".salesforce."account"
         deliverability.user_email AS account_deliverability_consultant_email,
         deliverability.user_full_name AS account_deliverability_consultant,
         opp_source_xf.is_closed,
+        contract_source_xf.end_date,
         CASE 
             WHEN base.annual_revenue <= 49999999 THEN 'SMB'
             WHEN base.annual_revenue > 49999999 AND base.annual_revenue <= 499999999 THEN 'Mid-Market'
@@ -90,7 +96,8 @@ FROM "acton".salesforce."account"
             WHEN base.billing_country IS NOT null AND base.billing_country IN ('US','CA') AND base.billing_state IS null  THEN 'NA-NO-STATEPROV'
             WHEN base.billing_country IS NOT null AND base.billing_state IS NOT null THEN 'ROW'
             ELSE 'Unknown'
-        END AS global_region
+        END AS global_region,
+        contract_source_xf.end_date+1 AS renewal_date
         -- "Renewal_Notice_Date__c" AS renewal_notice_date,
     FROM base
     LEFT JOIN "acton".salesforce."account" AS parent ON
@@ -107,7 +114,9 @@ FROM "acton".salesforce."account"
     base.deliverability_consultant_c=deliverability.user_id
     LEFT JOIN "acton"."dbt_actonmarketing"."opp_source_xf" ON
     base.id=opp_source_xf.account_id
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58
+    LEFT JOIN "acton"."dbt_actonmarketing"."contract_source_xf" ON
+    base.current_contract_c=contract_source_xf.contract_id
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64
 
 )
 
