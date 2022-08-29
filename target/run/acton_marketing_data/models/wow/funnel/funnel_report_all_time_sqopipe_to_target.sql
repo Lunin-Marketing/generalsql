@@ -14,7 +14,6 @@ WITH sqopipe_target AS (
     WHERE kpi = 'target_new_cw_pipe'
     --WHERE kpi = 'target_sqo_pipe'
     
-
 ), actual_sqopipe AS (
 
     SELECT

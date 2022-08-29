@@ -42,6 +42,11 @@ FROM "acton".salesforce."account"
         base.onboarding_completion_date_c AS onboarding_completion_date,
         base.customer_since_c AS customer_since,
         base.onboarding_specialist_c AS onboarding_specialist,
+        base.executive_sponsor_c AS executive_sponsor,
+        base.assigned_account_tier_c AS assigned_account_tier,
+        base.business_model_c AS business_model,
+        base.contract_type_c AS contract_type,
+        base.delivered_support_tier_c AS delivered_support_tier,
         parent.name AS account_parent_name,
         base.deliverability_consultant_c AS deliverability_consultant_id,
         sdr.user_email AS sdr_email,
@@ -65,6 +70,7 @@ FROM "acton".salesforce."account"
         deliverability.user_email AS account_deliverability_consultant_email,
         deliverability.user_full_name AS account_deliverability_consultant,
         opp_source_xf.is_closed,
+        contract_source_xf.end_date,
         CASE 
             WHEN base.annual_revenue <= 49999999 THEN 'SMB'
             WHEN base.annual_revenue > 49999999 AND base.annual_revenue <= 499999999 THEN 'Mid-Market'
@@ -86,7 +92,8 @@ FROM "acton".salesforce."account"
             WHEN base.billing_country IS NOT null AND base.billing_country IN ('US','CA') AND base.billing_state IS null  THEN 'NA-NO-STATEPROV'
             WHEN base.billing_country IS NOT null AND base.billing_state IS NOT null THEN 'ROW'
             ELSE 'Unknown'
-        END AS global_region
+        END AS global_region,
+        contract_source_xf.end_date+1 AS renewal_date
         -- "Renewal_Notice_Date__c" AS renewal_notice_date,
     FROM base
     LEFT JOIN "acton".salesforce."account" AS parent ON
@@ -103,7 +110,9 @@ FROM "acton".salesforce."account"
     base.deliverability_consultant_c=deliverability.user_id
     LEFT JOIN {{ref('opp_source_xf')}} ON
     base.id=opp_source_xf.account_id
-    {{dbt_utils.group_by(n=58) }}
+    LEFT JOIN {{ref('contract_source_xf')}} ON
+    base.current_contract_c=contract_source_xf.contract_id
+    {{dbt_utils.group_by(n=64) }}
 
 )
 
