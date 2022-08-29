@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 WITH base AS (
 SELECT *
-FROM "acton".salesforce.task
+FROM {{ source('salesforce', 'task') }}
 
 ), final AS (
 

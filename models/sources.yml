@@ -4,3 +4,18 @@ sources:
   - name: salesforce
     tables:
       - name: account
+      - name: act_on_instance_c
+      - name: act_on_instance_user_c
+      - name: campaign_member
+      - name: campaign
+      - name: contact_history
+      - name: contact
+      - name: contract
+      - name: lead_history
+      - name: lead
+      - name: opportunity
+      - name: opportunity_field_history
+      - name: opportunity_line_item
+      - name: product_2
+      - name: task
+      - name: user
