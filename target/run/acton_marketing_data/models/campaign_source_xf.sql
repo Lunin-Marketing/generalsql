@@ -7,7 +7,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton".salesforce."campaign"
+FROM "acton"."salesforce"."campaign"
 
 ), final AS (
 

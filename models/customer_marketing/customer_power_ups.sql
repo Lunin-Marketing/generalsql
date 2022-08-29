@@ -2,7 +2,7 @@
 
 WITH base AS (
 
-    SELECT
+    SELECT DISTINCT
         campaign_member.campaign_id,
         campaign.campaign_name,
         campaign_member.lead_or_contact_id,
@@ -39,6 +39,7 @@ ON campaign_member.campaign_id=campaign_influence.influence_campaign_id
 LEFT JOIN {{ref('opp_source_xf')}} opp
 ON campaign_influence.influence_opportunity_id=opp.opportunity_id
 WHERE campaign.parent_campaign_id LIKE '7015Y000002UBBi%'
+AND campaign_member_status NOT IN ('Initial','Sent')
 
 )
 

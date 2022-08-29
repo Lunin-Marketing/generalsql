@@ -7,7 +7,7 @@ WITH person_base AS (
         contact_id AS person_id,
         email,
         is_hand_raiser,
-        mql_most_recent_date,
+        mql_most_recent_date AS mql_created_date,
         contact_owner_id AS owner_id,
         channel_lead_creation,
         medium_lead_creation,
@@ -62,7 +62,7 @@ SELECT
     person_base.source_lead_creation,
     person_base.lead_source,
     person_base.marketing_created_date,
-    person_base.mql_most_recent_date,
+    person_base.mql_created_date,
     person_base.working_date,
     person_base.company_size_rev,
     person_base.global_region,
@@ -96,7 +96,7 @@ SELECT
     opp_base.industry AS opp_industry,
     opp_base.channel_bucket AS opp_channel_bucket,
     CASE 
-        WHEN mql_most_recent_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' THEN 1
+        WHEN mql_created_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' THEN 1
         ELSE 0
     END AS is_mql,
     CASE 
@@ -125,4 +125,5 @@ person_base.account_id=opp_base.account_id
 LEFT JOIN {{ref('account_source_xf')}} AS account_base ON
 person_base.account_id=account_base.account_id
 WHERE opportunity_id IS NOT null
+AND opp_base.created_date >= '2021-01-01'
 ORDER BY 4

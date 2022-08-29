@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton".salesforce."opportunity_field_history"
+FROM "acton"."salesforce"."opportunity_field_history"
 
 )
 

@@ -39,6 +39,7 @@ ON campaign_member.campaign_id=campaign_influence.influence_campaign_id
 LEFT JOIN "acton"."dbt_actonmarketing"."opp_source_xf" opp
 ON campaign_influence.influence_opportunity_id=opp.opportunity_id
 WHERE campaign.parent_campaign_id LIKE '7015Y000002UBBi%'
+AND campaign_member_status NOT IN ('Initial','Sent')
 
 )
 

@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton".salesforce."act_on_instance_user_c"
+FROM "acton"."salesforce"."act_on_instance_user_c"
 
 ), final AS (
     SELECT

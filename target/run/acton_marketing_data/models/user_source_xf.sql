@@ -7,7 +7,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton".salesforce.user
+FROM "acton"."salesforce"."user"
 
 )
 

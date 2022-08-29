@@ -6,7 +6,7 @@
 
 WITH base AS (
 SELECT *
-FROM "acton".salesforce."contract"
+FROM "acton"."salesforce"."contract"
 
 ), final AS (
 SELECT
