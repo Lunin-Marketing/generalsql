@@ -2,7 +2,7 @@
 
 WITH base AS (
 SELECT *
-FROM "acton".salesforce."opportunity_line_item"
+FROM {{ source('salesforce', 'opportunity_line_item') }}
 
 ), final AS (
     SELECT 

@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton".salesforce."lead_history"
+FROM {{ source('salesforce', 'lead_history') }}
 
 )
 

@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton".salesforce."campaign"
+FROM {{ source('salesforce', 'campaign') }}
 
 ), final AS (
 
