@@ -6,6 +6,7 @@ sources:
       - name: account
       - name: act_on_instance_c
       - name: act_on_instance_user_c
+      - name: campaign_influence
       - name: campaign_member
       - name: campaign
       - name: contact_history

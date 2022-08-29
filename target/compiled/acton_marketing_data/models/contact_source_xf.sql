@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton".salesforce."contact"
+FROM "acton"."salesforce"."contact"
 
 ), final AS (
 

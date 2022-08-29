@@ -2,7 +2,7 @@
 
 WITH base AS (
 SELECT *
-FROM "acton".salesforce."opportunity"
+FROM "acton"."salesforce"."opportunity"
 
 ), intermediate AS (
 

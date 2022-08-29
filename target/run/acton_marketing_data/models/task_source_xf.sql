@@ -5,7 +5,7 @@
     
 WITH base AS (
 SELECT *
-FROM "acton".salesforce.task
+FROM "acton"."salesforce"."task"
 
 ), final AS (
 
