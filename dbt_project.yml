@@ -37,6 +37,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   acton_marketing_data:
           materialized: table
+          
+sources:
+  - name: salesforce
+    tables:
+      - name: account
 
 sources:
   - name: salesforce
