@@ -38,6 +38,11 @@ models:
   acton_marketing_data:
           materialized: table
 
+sources:
+  - name: salesforce
+    tables:
+      - name: account
+
 #repositories:
     # Be sure to replace VERSION_NUMBER below!
  #   - https://github.com/fishtown-analytics/dbt-utils.git@0.8.0
