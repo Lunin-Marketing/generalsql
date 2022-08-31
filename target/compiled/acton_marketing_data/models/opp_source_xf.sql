@@ -46,15 +46,20 @@ FROM "acton"."salesforce"."opportunity"
         renewal_acv_value_c AS renewal_acv,
         channel_lead_creation_c AS opp_channel_lead_creation,
         medium_lead_creation_c AS opp_medium_lead_creation,
-        DATE_TRUNC('day',date_time_reached_discovery_c)::Date AS discovery_date,
+        DATE_TRUNC('day',discovery_date_c)::Date AS discovery_date,
         DATE_TRUNC('day',date_reached_confirmed_value_c)::Date AS confirmed_value_date,
         DATE_TRUNC('day',date_reached_contract_c)::Date AS negotiation_date,
-        DATE_TRUNC('day',date_time_reached_demo_c)::Date AS demo_date,
+        DATE_TRUNC('day',date_reached_demo_c)::Date AS demo_date,
         DATE_TRUNC('day',date_reached_solution_c)::Date AS solution_date,
         DATE_TRUNC('day',date_reached_closing_c)::Date AS closing_date,
         DATE_TRUNC('day',date_time_reached_implement_c)::Date AS implement_date,
-        DATE_TRUNC('day',date_time_reached_sql_c)::Date AS sql_date,
+        DATE_TRUNC('day',sql_date_c)::Date AS sql_date,
         DATE_TRUNC('day',date_time_reached_voc_negotiate_c)::Date AS voc_date,
+        DATE_TRUNC('day',date_time_reached_discovery_c)::Date AS discovery_day_time,
+        DATE_TRUNC('day',date_time_reached_demo_c)::Date AS demo_day_time,
+        DATE_TRUNC('day',date_time_reached_implement_c)::Date AS implement_day_time,
+        DATE_TRUNC('day',date_time_reached_sql_c)::Date AS sql_day_time,
+        DATE_TRUNC('day',date_time_reached_voc_negotiate_c)::Date AS voc_day_time,
         oc_utm_channel_c AS opp_channel_opportunity_creation,
         oc_utm_medium_c AS opp_medium_opportunity_creation,
         oc_utm_content_c AS opp_content_opportunity_creation, 
@@ -176,7 +181,7 @@ FROM "acton"."salesforce"."opportunity"
     base.id=quote_line.opportunity_id
     LEFT JOIN "acton".salesforce."account" account ON
     base.account_id=account.id
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103
 
 ), intermediate_acv_formula AS (
 
@@ -214,6 +219,11 @@ FROM "acton"."salesforce"."opportunity"
       intermediate.implement_date,
       intermediate.sql_date,
       intermediate.voc_date,
+      intermediate.discovery_day_time,
+      intermediate.demo_day_time,
+      intermediate.implement_day_time,
+      intermediate.sql_day_time,
+      intermediate.voc_day_time,
       intermediate.opp_channel_opportunity_creation,
       intermediate.opp_medium_opportunity_creation,
       intermediate.opp_content_opportunity_creation,
@@ -291,7 +301,7 @@ FROM "acton"."salesforce"."opportunity"
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105
 
 ), intermediate_acv_sum AS (
     
@@ -327,6 +337,11 @@ FROM "acton"."salesforce"."opportunity"
       intermediate_acv_formula.confirmed_value_date,
       intermediate_acv_formula.closing_date,
       intermediate_acv_formula.implement_date,
+      intermediate_acv_formula.discovery_day_time,
+      intermediate_acv_formula.demo_day_time,
+      intermediate_acv_formula.implement_day_time,
+      intermediate_acv_formula.sql_day_time,
+      intermediate_acv_formula.voc_day_time,
       intermediate_acv_formula.sql_date,
       intermediate_acv_formula.voc_date,
       intermediate_acv_formula.opp_channel_opportunity_creation,
@@ -399,7 +414,7 @@ FROM "acton"."salesforce"."opportunity"
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98
 
 ), intermediate_acv_deal_size AS (
     
@@ -419,7 +434,7 @@ FROM "acton"."salesforce"."opportunity"
         ELSE acv_formula
       END AS acv_deal_size_usd
     FROM intermediate_acv_sum
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106
 
 ), final AS (
 
