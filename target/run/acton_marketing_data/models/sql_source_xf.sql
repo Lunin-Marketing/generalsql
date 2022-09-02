@@ -7,6 +7,9 @@
 SELECT
     opportunity_id AS sql_id,
     opportunity_name,
+    opp_source_xf.account_name,
+    owner_name,
+    sdr_name,
     opp_source_xf.is_closed,
     opp_source_xf.is_won,
     created_date,

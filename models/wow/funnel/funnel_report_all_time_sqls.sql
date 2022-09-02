@@ -6,6 +6,11 @@ WITH base AS (
         sql_source_xf.sql_id,
         CONCAT('https://acton.my.salesforce.com/',sql_source_xf.sql_id) AS sql_url,
         sql_source_xf.created_date AS sql_date,
+        account_name,
+        opportunity_name,
+        type,
+        owner_name,
+        sdr_name,
         CASE
         WHEN account_global_region IS null THEN 'blank'
         ELSE account_global_region

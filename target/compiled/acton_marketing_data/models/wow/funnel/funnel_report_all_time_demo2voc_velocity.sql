@@ -10,7 +10,8 @@ WITH demo_opp AS (
         opp_lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_demo"
 
 ),  voc_opp AS (
@@ -23,7 +24,8 @@ WITH demo_opp AS (
         opp_lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_voc"
     
 ), final AS (
@@ -38,6 +40,7 @@ WITH demo_opp AS (
         voc_opp.segment,
         voc_opp.industry,
         voc_opp.channel_bucket,
+        voc_opp.industry_bucket,
         
 
     
@@ -57,6 +60,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    industry_bucket,
     voc_date,
     demo2voc_velocity
 FROM final

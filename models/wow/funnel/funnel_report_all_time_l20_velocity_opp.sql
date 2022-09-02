@@ -12,13 +12,15 @@ WITH base AS (
         segment,
         industry,
         channel_bucket,
+        industry_bucket,
         opp_created_date,
         account_global_region,
         opp_company_size_rev,
         opp_lead_source,
         opp_segment,
         opp_industry,
-        opp_channel_bucket
+        opp_channel_bucket,
+        opp_industry_bucket
     FROM {{ref('opportunities_with_contacts')}}
     WHERE type='New Business'
 
@@ -34,6 +36,7 @@ WITH base AS (
         opp_segment,
         opp_industry,
         opp_channel_bucket,
+        opp_industry_bucket,
         {{ dbt_utils.datediff("marketing_created_date","opp_created_date",'day')}} AS lead_to_opp_velocity
     FROM base
     WHERE opp_created_date >= marketing_created_date
@@ -46,6 +49,7 @@ SELECT
     opp_segment,
     opp_industry,
     opp_channel_bucket,
+    opp_industry_bucket,
     opp_created_date,
     lead_to_opp_velocity
 FROM final

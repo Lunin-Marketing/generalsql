@@ -10,7 +10,8 @@ WITH sqo_opp AS (
         opp_lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM {{ref('funnel_report_all_time_sqos')}}
 
 ),  demo_opp AS (
@@ -23,7 +24,8 @@ WITH sqo_opp AS (
         opp_lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM {{ref('funnel_report_all_time_demo')}}
     
 ), final AS (
@@ -38,6 +40,7 @@ WITH sqo_opp AS (
         demo_opp.segment,
         demo_opp.industry,
         demo_opp.channel_bucket,
+        demo_opp.industry_bucket,
         {{ dbt_utils.datediff("sqo_date","demo_date",'day')}} AS sqo2demo_velocity
     FROM demo_opp
     LEFT JOIN sqo_opp ON 
@@ -51,6 +54,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    industry_bucket,
     demo_date,
     sqo2demo_velocity
 FROM final

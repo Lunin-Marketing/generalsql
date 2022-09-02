@@ -14,6 +14,9 @@ FROM "acton"."salesforce"."opportunity"
         base.id AS opportunity_id,
         base.is_deleted,
         base.account_id,
+        account.name AS account_name,
+        account.sdr_c AS sdr_id,
+        sdr.user_name AS sdr_name,
         CASE
             WHEN account.billing_country IS NOT null AND account.billing_country IN ('GB','UK','IE','DE','DK','FI','IS','NO','SE','FR','AL','AD','AM','AT','BY','BE','BA','BG','HR','CS','CY','CZ','EE','FX','GE','GR','HU','IT','LV','LI','LT','LU','MK','MT','MD','MC','ME','NL','PL','PT','RO','SM','RS','SJ','SK','SI','ES','CH','UA','VA','FO','GI','GG','IM','JE','XK','RU') THEN 'EUROPE'
             WHEN account.billing_country IS NOT null AND account.billing_country IN ('JP','KR','CN','MN','TW','VN','HK','LA','TH','KH','PH','MY','SG','ID','LK','IN','NP','BT','MM','PK','AF','KG','UZ','TM','KZ') THEN 'APJ'
@@ -38,7 +41,8 @@ FROM "acton"."salesforce"."opportunity"
         lead_source AS opp_lead_source,
         is_closed,
         is_won,
-        base.owner_id, 
+        base.owner_id,
+        owner.user_name AS owner_name, 
         base.created_date AS created_day,
         DATE_TRUNC('day',base.created_date)::Date AS created_date,
         DATE_TRUNC('day',base.last_modified_date)::Date AS last_modified_date,
@@ -185,7 +189,11 @@ FROM "acton"."salesforce"."opportunity"
     base.id=quote_line.opportunity_id
     LEFT JOIN "acton".salesforce."account" account ON
     base.account_id=account.id
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103
+    LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" owner ON
+    base.owner_id=owner.user_id
+    LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" sdr ON
+    account.sdr_c=sdr.user_id
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107
 
 ), intermediate_acv_formula AS (
 
@@ -193,6 +201,9 @@ FROM "acton"."salesforce"."opportunity"
       intermediate.opportunity_id,
       intermediate.is_deleted,
       intermediate.account_id,
+      intermediate.account_name,
+      intermediate.sdr_id,
+      intermediate.sdr_name,
       intermediate.company_size_rev,
       intermediate.account_global_region,
       intermediate.opportunity_name,
@@ -203,6 +214,7 @@ FROM "acton"."salesforce"."opportunity"
       intermediate.is_closed,
       intermediate.is_won,
       intermediate.owner_id,
+      intermediate.owner_name,
       intermediate.created_day,
       intermediate.created_date,
       intermediate.last_modified_date,
@@ -305,7 +317,7 @@ FROM "acton"."salesforce"."opportunity"
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109
 
 ), intermediate_acv_sum AS (
     
@@ -313,6 +325,9 @@ FROM "acton"."salesforce"."opportunity"
       intermediate_acv_formula.opportunity_id,
       intermediate_acv_formula.is_deleted,
       intermediate_acv_formula.account_id,
+      intermediate_acv_formula.account_name,
+      intermediate_acv_formula.sdr_id,
+      intermediate_acv_formula.sdr_name,
       intermediate_acv_formula.account_global_region,
       intermediate_acv_formula.company_size_rev,
       intermediate_acv_formula.opportunity_name,
@@ -323,6 +338,7 @@ FROM "acton"."salesforce"."opportunity"
       intermediate_acv_formula.is_closed,
       intermediate_acv_formula.is_won,
       intermediate_acv_formula.owner_id,
+      intermediate_acv_formula.owner_name,
       intermediate_acv_formula.created_day,
       intermediate_acv_formula.created_date,
       intermediate_acv_formula.last_modified_date,
@@ -418,7 +434,7 @@ FROM "acton"."salesforce"."opportunity"
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102
 
 ), intermediate_acv_deal_size AS (
     
@@ -438,7 +454,7 @@ FROM "acton"."salesforce"."opportunity"
         ELSE acv_formula
       END AS acv_deal_size_usd
     FROM intermediate_acv_sum
-    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110
 
 ), final AS (
 

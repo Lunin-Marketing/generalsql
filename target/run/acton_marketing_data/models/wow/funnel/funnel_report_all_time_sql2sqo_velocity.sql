@@ -14,7 +14,8 @@ WITH sqo_opp AS (
         opp_lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqos"
 
 ),  sql_opp AS (
@@ -27,7 +28,8 @@ WITH sqo_opp AS (
         opp_lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
     
 ), final AS (
@@ -42,6 +44,7 @@ WITH sqo_opp AS (
         sqo_opp.segment,
         sqo_opp.industry,
         sqo_opp.channel_bucket,
+        sqo_opp.industry_bucket,
         
 
     
@@ -61,6 +64,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    industry_bucket,
     sqo_date,
     sql2sqo_velocity
 FROM final
