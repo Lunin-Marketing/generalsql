@@ -20,6 +20,7 @@ WITH person_base AS (
         segment,
         account_id,
         channel_bucket,
+        industry_bucket,
         industry,
         'Contact' AS record_type
     FROM "acton"."dbt_actonmarketing"."contact_source_xf"
@@ -43,6 +44,7 @@ WITH person_base AS (
         segment,
         person_account_id,
         channel_bucket,
+        industry_bucket,
         industry,
         'Lead' AS record_type
     FROM "acton"."dbt_actonmarketing"."lead_source_xf"
@@ -69,6 +71,7 @@ SELECT
     person_base.account_id,
     person_base.person_status,
     person_base.industry,
+    person_base.industry_bucket,
     person_base.record_type,
     account_base.is_current_customer, 
     account_base.account_name,
@@ -94,6 +97,7 @@ SELECT
     opp_base.account_global_region,
     opp_base.company_size_rev AS opp_company_size_rev,
     opp_base.industry AS opp_industry,
+    opp_base.industry_bucket AS opp_industry_bucket,
     opp_base.channel_bucket AS opp_channel_bucket,
     CASE 
         WHEN mql_created_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' THEN 1

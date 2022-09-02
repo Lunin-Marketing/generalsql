@@ -14,7 +14,8 @@ WITH sals AS (
         lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sals"
 
 ),  mqls AS (
@@ -27,7 +28,8 @@ WITH sals AS (
         lead_source,
         segment,
         industry,
-        channel_bucket
+        channel_bucket,
+        industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
     
 ), final AS (
@@ -42,6 +44,7 @@ WITH sals AS (
         sals.segment,
         sals.industry,
         sals.channel_bucket,
+        sals.industry_bucket,
         
 
     
@@ -61,6 +64,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    industry_bucket,
     sal_date,
     m2sal_velocity
 FROM final

@@ -6,6 +6,12 @@ WITH base AS (
         person_source_xf.person_id AS lead_id,
         CONCAT('https://acton.my.salesforce.com/',person_source_xf.person_id) AS lead_url,
         person_source_xf.marketing_created_date AS created_date,
+        company,
+        first_name,
+        last_name,
+        title,
+        person_status,
+        country,
     CASE
         WHEN global_region IS null THEN 'blank'
         ELSE global_region

@@ -16,13 +16,15 @@ WITH base AS (
         segment,
         industry,
         channel_bucket,
+        industry_bucket,
         opp_created_date,
         account_global_region,
         opp_company_size_rev,
         opp_lead_source,
         opp_segment,
         opp_industry,
-        opp_channel_bucket
+        opp_channel_bucket,
+        opp_industry_bucket
     FROM "acton"."dbt_actonmarketing"."opportunities_with_contacts"
     WHERE type='New Business'
 
@@ -38,6 +40,7 @@ WITH base AS (
         opp_segment,
         opp_industry,
         opp_channel_bucket,
+        opp_industry_bucket,
         
 
     
@@ -56,6 +59,7 @@ SELECT
     opp_segment,
     opp_industry,
     opp_channel_bucket,
+    opp_industry_bucket,
     opp_created_date,
     sal2sql_velocity
 FROM final

@@ -8,6 +8,8 @@ SELECT
 opportunity_id,
 opportunity_name,
 user_name AS owner_name,
+opp_source_xf.account_name,
+sdr_name,
 owner_id,
 opp_source_xf.is_closed,
 opp_source_xf.is_won,
