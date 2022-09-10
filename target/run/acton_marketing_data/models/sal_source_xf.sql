@@ -13,6 +13,7 @@ SELECT
     person_status,
     country,
     global_region,
+    company,
     company_size_rev,
     lead_source,
     segment,

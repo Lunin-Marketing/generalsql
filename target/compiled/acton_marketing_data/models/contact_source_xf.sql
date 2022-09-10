@@ -10,6 +10,8 @@ FROM "acton"."salesforce"."contact"
     SELECT 
         base.id AS contact_id,
         base.is_deleted,
+        base.created_by_id,
+        creator.user_name AS created_by_name,
         base.account_id,
         account_source_xf.account_name,
         base.first_name,
@@ -121,6 +123,8 @@ FROM "acton"."salesforce"."contact"
     base.account_id=account_source_xf.account_id
     LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" ON
     base.owner_id=user_source_xf.user_id
+    LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" creator ON
+    base.created_by_id=creator.user_id
 
 )
 

@@ -7,6 +7,7 @@
 SELECT
 opportunity_id,
 opportunity_name,
+opp_source_xf.account_name,
 user_name AS owner_name,
 close_day AS close_date,
 opp_lead_source,
@@ -16,6 +17,10 @@ opp_source_opportunity_creation,
 opp_channel_lead_creation,
 opp_medium_lead_creation,
 opp_source_lead_creation,
+opp_offer_asset_name_lead_creation,
+opp_offer_asset_subtype_lead_creation,
+opp_offer_asset_topic_lead_creation,
+opp_offer_asset_type_lead_creation,
 type,
 case 
 when type in ('New Business') then 'New Business'

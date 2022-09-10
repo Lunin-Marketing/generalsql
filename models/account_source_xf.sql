@@ -16,6 +16,13 @@ FROM {{ source('salesforce', 'account') }}
         base.billing_postal_code,
         base.billing_country,
         base.industry,
+        CASE
+            WHEN base.industry IN ('Business Services') THEN 'Business Services'
+            WHEN base.industry IN ('Finance','Insurance') THEN 'Finance'
+            WHEN base.industry IN ('Manufacturing') THEN 'Manufacturing'
+            WHEN base.industry IN ('Software','Telecommunications') THEN 'SoftCom'
+            ELSE 'Other'
+        END AS default_industry_bucket,
         base.annual_revenue,
         base.number_of_employees,
         base.owner_id AS account_owner_id,
@@ -31,6 +38,13 @@ FROM {{ source('salesforce', 'account') }}
         base.de_current_crm_c AS de_current_crm,
         base.de_current_marketing_automation_c AS de_current_ma,
         base.de_industry_c AS de_industry,
+        CASE
+            WHEN base.de_industry_c IN ('Business Services') THEN 'Business Services'
+            WHEN base.de_industry_c IN ('Finance','Insurance') THEN 'Finance'
+            WHEN base.de_industry_c IN ('Manufacturing') THEN 'Manufacturing'
+            WHEN base.de_industry_c IN ('Software','Telecommunications') THEN 'SoftCom'
+            ELSE 'Other'
+        END AS industry_bucket,
         base.de_parent_company_c AS de_account_parent_name,
         base.de_ultimate_parent_company_c AS de_ultimate_parent_account_name,
         base.ao_instance_number_c AS ao_instance_number,
@@ -112,7 +126,7 @@ FROM {{ source('salesforce', 'account') }}
     base.id=opp_source_xf.account_id
     LEFT JOIN {{ref('contract_source_xf')}} ON
     base.current_contract_c=contract_source_xf.contract_id
-    {{dbt_utils.group_by(n=64) }}
+    {{dbt_utils.group_by(n=66) }}
 
 )
 

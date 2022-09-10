@@ -3,6 +3,7 @@
 SELECT
     -- Key ID
     lead_id AS person_id,
+
     -- Firmographic Information
     email,
     first_name,
@@ -11,6 +12,7 @@ SELECT
     country,
     lead_status AS person_status,
     global_region,
+
     -- Account Information
     company,
     annual_revenue,
@@ -21,6 +23,7 @@ SELECT
     industry,
     industry_bucket,
     segment,
+
     -- DateTime Fields
     last_modified_date,
     created_date,
@@ -28,12 +31,16 @@ SELECT
     mql_most_recent_date,
     working_date,
     marketing_created_date,
+
     -- Other Key Information    
     lead_source,    
     lead_owner_id AS person_owner_id,
+    lead_score,
     firmographic_demographic_lead_score,
     no_longer_with_company,
     is_hand_raiser,
+    created_by_name,
+
     --Attribution Data
     campaign_first_touch,
     campaign_last_touch,
@@ -70,6 +77,7 @@ UNION ALL
 SELECT
     -- Key ID
     contact_id AS person_id,
+
     -- Firmographic Information
     email,
     first_name,
@@ -78,6 +86,7 @@ SELECT
     mailing_country,
     contact_status AS person_status,
     global_region,
+
     -- Account Information
     account_name,
     annual_revenue,
@@ -88,6 +97,7 @@ SELECT
     industry,
     industry_bucket,
     segment,
+    
     -- DateTime Fields
     last_modified_date,
     created_date,
@@ -95,12 +105,16 @@ SELECT
     mql_most_recent_date,
     working_date,
     marketing_created_date,
+
     -- Other Key Information    
     lead_source,    
     contact_owner_id AS person_owner_id,
+    lead_score,
     firmographic_demographic_lead_score,
     is_no_longer_with_company,
     is_hand_raiser,
+    created_by_name,
+
     --Attribution Data
     campaign_first_touch,
     campaign_last_touch,

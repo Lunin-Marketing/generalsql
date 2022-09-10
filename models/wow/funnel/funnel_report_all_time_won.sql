@@ -6,7 +6,12 @@ WITH base AS (
         opp_sales_source_xf.opportunity_id AS won_id,
         CONCAT('https://acton.my.salesforce.com/',opp_sales_source_xf.opportunity_id) AS won_url,
         opp_sales_source_xf.close_date AS won_date,
+        account_name,
         acv,
+        opp_offer_asset_name_lead_creation,
+        opp_offer_asset_subtype_lead_creation,
+        opp_offer_asset_topic_lead_creation,
+        opp_offer_asset_type_lead_creation,
         CASE
         WHEN account_global_region IS null THEN 'blank'
         ELSE account_global_region
