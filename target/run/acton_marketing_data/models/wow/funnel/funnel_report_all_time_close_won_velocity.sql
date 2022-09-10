@@ -14,6 +14,7 @@ WITH won_opp AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_won"
 
@@ -27,6 +28,7 @@ WITH won_opp AS (
         opp_lead_source,
         segment,
         industry,
+        industry_bucket,
         channel_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
     
@@ -41,6 +43,7 @@ WITH won_opp AS (
         won_opp.opp_lead_source,
         won_opp.segment,
         won_opp.industry,
+        won_opp.industry_bucket,
         won_opp.channel_bucket,
         
 
@@ -61,6 +64,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    industry_bucket,
     won_date,
     cw_velocity
 FROM final

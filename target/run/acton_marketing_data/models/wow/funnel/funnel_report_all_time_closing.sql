@@ -10,6 +10,7 @@ WITH base AS (
         opp_closing_source_xf.opportunity_id AS closing_id,
         CONCAT('https://acton.my.salesforce.com/',opp_closing_source_xf.opportunity_id) AS closing_url,
         acv,
+        account_name,
         opp_closing_source_xf.closing_date AS closing_date,
         CASE
         WHEN account_global_region IS null THEN 'blank'

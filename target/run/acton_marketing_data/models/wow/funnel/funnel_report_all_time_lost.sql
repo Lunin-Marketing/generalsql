@@ -9,6 +9,7 @@ WITH base AS (
         SELECT DISTINCT
         opp_source_xf.opportunity_id AS lost_id,
         CONCAT('https://acton.my.salesforce.com/',opp_source_xf.opportunity_id) AS lost_url,
+        opp_source_xf.account_name,
         acv_deal_size_usd,
         opp_source_xf.close_date AS lost_date,
         CASE

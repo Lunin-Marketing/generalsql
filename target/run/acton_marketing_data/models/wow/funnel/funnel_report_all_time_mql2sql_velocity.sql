@@ -4,47 +4,43 @@
   as (
     
 
-WITH sqls AS (
+WITH base AS (
 
     SELECT
-        sql_id,
-        sql_date,
-        account_global_region AS global_region,
-        company_size_rev,
-        opp_lead_source AS lead_source,
-        segment,
-        industry,
-        channel_bucket,
-        industry_bucket
-    FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
-
-),  mqls AS (
-
-    SELECT
-        mql_id,
-        mql_date,
+        person_id,
+        mql_created_date AS mql_date,
+        opportunity_id,
         global_region,
         company_size_rev,
         lead_source,
         segment,
         industry,
         channel_bucket,
-        industry_bucket
-    FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
-    
+        industry_bucket,
+        opp_created_date AS sql_date,
+        account_global_region,
+        opp_company_size_rev,
+        opp_lead_source,
+        opp_segment,
+        opp_industry,
+        opp_channel_bucket,
+        opp_industry_bucket
+    FROM "acton"."dbt_actonmarketing"."opportunities_with_contacts"
+    WHERE type='New Business'
+
 ), final AS (
 
     SELECT
-        sql_id,
-        sql_date,
+        person_id,
         mql_date,
-        sqls.global_region,
-        sqls.company_size_rev,
-        sqls.lead_source,
-        sqls.segment,
-        sqls.industry,
-        sqls.channel_bucket,
-        sqls.industry_bucket,
+        sql_date,
+        opp_company_size_rev,
+        opp_lead_source,
+        account_global_region,
+        opp_segment,
+        opp_industry,
+        opp_channel_bucket,
+        opp_industry_bucket,
         
 
     
@@ -52,19 +48,18 @@ WITH sqls AS (
     
 
  AS mql2sql_velocity
-    FROM sqls
-    LEFT JOIN mqls ON 
-    sqls.sql_id=mqls.mql_id
+    FROM base
+    WHERE sql_date >= mql_date
 )
 
 SELECT
-    global_region,
-    company_size_rev,
-    lead_source,
-    segment,
-    industry,
-    channel_bucket,
-    industry_bucket,
+    account_global_region,
+    opp_company_size_rev,
+    opp_lead_source,
+    opp_segment,
+    opp_industry,
+    opp_channel_bucket,
+    opp_industry_bucket,
     sql_date,
     mql2sql_velocity
 FROM final

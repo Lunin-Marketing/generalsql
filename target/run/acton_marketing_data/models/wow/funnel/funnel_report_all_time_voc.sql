@@ -9,6 +9,7 @@ WITH base AS (
     SELECT DISTINCT
         opp_voc_source_xf.opportunity_id AS voc_id,
         CONCAT('https://acton.my.salesforce.com/',opp_voc_source_xf.opportunity_id) AS voc_url,
+        account_name,
         acv,
         opp_voc_source_xf.negotiation_date AS voc_date,
         CASE

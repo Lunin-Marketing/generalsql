@@ -10,6 +10,7 @@ WITH base AS (
         opp_demo_source_xf.opportunity_id AS demo_id,
         CONCAT('https://acton.my.salesforce.com/',opp_demo_source_xf.opportunity_id) AS demo_url,
         acv,
+        account_name,
         opp_demo_source_xf.demo_date AS demo_date,
         CASE
         WHEN account_global_region IS null THEN 'blank'

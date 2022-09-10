@@ -1,0 +1,37 @@
+{{ config(materialized='table') }}
+
+SELECT *
+FROM {{ref('topo_closing')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_demos')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_leads')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_lost')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_mqls')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_pipe')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_sals')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_sqls')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_sqos')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_voc')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_won_acv')}}
+UNION ALL
+SELECT *
+FROM {{ref('topo_won')}}

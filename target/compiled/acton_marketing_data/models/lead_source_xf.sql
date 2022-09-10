@@ -10,6 +10,8 @@ FROM "acton"."salesforce"."lead"
     SELECT
         id AS lead_id,
         is_deleted,
+        base.created_by_id,
+        creator.user_name AS created_by_name,
         first_name,
         last_name, 
         title,
@@ -119,6 +121,8 @@ FROM "acton"."salesforce"."lead"
         END AS global_region,
         COALESCE(account_c,lean_data_a_2_b_account_c) AS person_account_id
     FROM base
+    LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" creator ON
+    base.created_by_id=creator.user_id
     WHERE base.owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
 
 )
