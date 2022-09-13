@@ -29,8 +29,8 @@ WITH base AS (
         ELSE opp_source_xf.industry
     END AS industry,
     CASE
-        WHEN industry_bucket IS null THEN 'blank'
-        ELSE industry_bucket
+        WHEN opp_source_xf.industry_bucket IS null THEN 'blank'
+        ELSE opp_source_xf.industry_bucket
     END AS industry_bucket,
     CASE
         WHEN opp_source_xf.channel_bucket IS null THEN 'blank'
@@ -41,7 +41,7 @@ WITH base AS (
     opp_source_xf.account_id=account_source_xf.account_id
     WHERE opp_source_xf.close_date IS NOT null
     AND opp_source_xf.type = 'New Business'
-    AND opp_source_xf.stage_name IN ('Closed – Lost No Resources / Budget','Closed – Lost Not Ready / No Decision','Closed – Lost Product Deficiency','Closed - Lost to Competitor')
+    AND opp_source_xf.stage_name IN ('Closed – Lost No Resources / Budget','Closed – Lost Not Ready / No Decision','Closed – Lost Product Deficiency','Closed - Lost to Competitor', 'Closed Lost')
 
 )
 

@@ -2,7 +2,9 @@
 
   create  table "acton"."dbt_actonmarketing"."topo_sqos__dbt_tmp"
   as (
-    SELECT
+    
+
+SELECT
     segment,
     opp_lead_source AS lead_source,
     account_global_region AS global_region,
