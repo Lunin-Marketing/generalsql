@@ -20,3 +20,11 @@ sources:
       - name: product_2
       - name: task
       - name: user
+  - name: data_studio_s3
+    tables:
+      - name: data_studio_emails
+      - name: data_studio_forms
+      - name: data_studio_landingpages
+      - name: data_studio_media
+      - name: data_studio_webinars
+      - name: data_studio_webpages

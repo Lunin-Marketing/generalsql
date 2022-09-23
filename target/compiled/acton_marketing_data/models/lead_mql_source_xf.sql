@@ -6,6 +6,7 @@ SELECT
     is_hand_raiser,
     mql_created_date,
     mql_most_recent_date,
+    working_date,
     person_status,
     country,
     company,
