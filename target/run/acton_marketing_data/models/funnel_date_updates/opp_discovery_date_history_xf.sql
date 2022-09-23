@@ -8,6 +8,7 @@ WITH base AS (
 
     SELECT 
         opportunity_history_xf.opportunity_id,
+        opp_source_xf.type AS opp_type,
         opportunity_history_xf.field_modified_at,
         opportunity_history_xf.field,
         opportunity_history_xf.old_value,
@@ -23,6 +24,7 @@ WITH base AS (
 
     SELECT
         opportunity_id,
+        opp_type,
         old_value,
         new_value,
         field_modified_at,
@@ -36,6 +38,7 @@ WITH base AS (
 
 SELECT 
     opportunity_id,
+    opp_type,
     old_value,
     new_value,
     field_modified_at

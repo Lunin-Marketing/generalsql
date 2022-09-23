@@ -10,6 +10,7 @@ WITH base AS (
         lead_mql_source_xf.person_id AS mql_id,
         CONCAT('https://acton.my.salesforce.com/',lead_mql_source_xf.person_id) AS mql_url,
         lead_mql_source_xf.mql_most_recent_date AS mql_date,
+        lead_mql_source_xf.working_date,
         company,
         first_name,
         last_name,
@@ -45,7 +46,6 @@ WITH base AS (
         ELSE channel_bucket
     END AS channel_bucket
     FROM "acton"."dbt_actonmarketing"."lead_mql_source_xf"
-   -- WHERE lead_mql_source_xf.mql_most_recent_date IS NOT null
 
 )
 
