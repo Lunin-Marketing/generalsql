@@ -7,8 +7,8 @@ WITH base AS (
         CONCAT('https://acton.my.salesforce.com/',opp_sales_source_xf.opportunity_id) AS won_url,
         opp_sales_source_xf.close_date AS won_date,
         account_name,
+        type AS opp_type,
         acv,
-        opp_offer_asset_name_lead_creation,
         opp_offer_asset_subtype_lead_creation,
         opp_offer_asset_topic_lead_creation,
         opp_offer_asset_type_lead_creation,
@@ -39,9 +39,12 @@ WITH base AS (
     CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
-    END AS channel_bucket
+    END AS channel_bucket,
+    CASE
+        WHEN opp_offer_asset_name_lead_creation IS null THEN 'blank'
+        ELSE opp_offer_asset_name_lead_creation
+    END AS offer_asset_name_lead_creation
     FROM "acton"."dbt_actonmarketing"."opp_sales_source_xf"
-    WHERE type = 'New Business'
 
 )
 

@@ -24,7 +24,8 @@ SELECT
     opp_source_xf.segment,
     opp_source_xf.industry,
     opp_source_xf.industry_bucket,
-    channel_bucket
+    channel_bucket,
+    opp_source_xf.opp_offer_asset_name_lead_creation
 FROM "acton"."dbt_actonmarketing"."opp_source_xf"
 LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" ON
 opp_source_xf.account_id=account_source_xf.account_id

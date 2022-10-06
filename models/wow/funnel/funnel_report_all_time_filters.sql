@@ -10,7 +10,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        created_date AS date
+        is_hand_raiser,
+        offer_asset_name_lead_creation,
+        created_date AS date,
+        null AS opp_type
     FROM {{ref('funnel_report_all_time_leads')}}
     UNION ALL
     SELECT DISTINCT
@@ -21,7 +24,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        mql_date
+        is_hand_raiser,
+        offer_asset_name_lead_creation,
+        mql_date,
+        null AS opp_type
     FROM {{ref('funnel_report_all_time_mqls')}}
     UNION ALL
     SELECT DISTINCT
@@ -32,7 +38,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        sal_date
+        is_hand_raiser,
+        offer_asset_name_lead_creation,
+        sal_date,
+        null AS opp_type
     FROM {{ref('funnel_report_all_time_sals')}}
     UNION ALL
     SELECT DISTINCT
@@ -43,7 +52,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        sql_date
+        FALSE AS is_hand_raiser,
+        offer_asset_name_lead_creation,
+        sql_date,
+        opp_type
     FROM {{ref('funnel_report_all_time_sqls')}}
     UNION ALL
     SELECT DISTINCT
@@ -54,7 +66,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        sqo_date
+        FALSE AS is_hand_raiser,
+        offer_asset_name_lead_creation,
+        sqo_date,
+        opp_type
     FROM {{ref('funnel_report_all_time_sqos')}}
     UNION ALL
     SELECT DISTINCT
@@ -65,7 +80,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        demo_date
+        FALSE AS is_hand_raiser,
+        offer_asset_name_lead_creation,
+        demo_date,
+        opp_type
     FROM {{ref('funnel_report_all_time_demo')}}
     UNION ALL
     SELECT DISTINCT
@@ -76,7 +94,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        voc_date
+        FALSE AS is_hand_raiser,
+        offer_asset_name_lead_creation,
+        voc_date,
+        opp_type
     FROM {{ref('funnel_report_all_time_voc')}}
     UNION ALL
     SELECT DISTINCT
@@ -87,7 +108,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        closing_date
+        FALSE AS is_hand_raiser,
+        offer_asset_name_lead_creation,
+        closing_date,
+        opp_type
     FROM {{ref('funnel_report_all_time_closing')}}
     UNION ALL
     SELECT DISTINCT
@@ -98,7 +122,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        won_date
+        FALSE AS is_hand_raiser,
+        offer_asset_name_lead_creation,
+        won_date,
+        opp_type
     FROM {{ref('funnel_report_all_time_won')}}
     UNION ALL
     SELECT DISTINCT
@@ -109,7 +136,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
-        lost_date
+        FALSE AS is_hand_raiser,
+        offer_asset_name_lead_creation,
+        lost_date,
+        opp_type
     FROM {{ref('funnel_report_all_time_lost')}}
 
 )
@@ -143,5 +173,14 @@ SELECT DISTINCT
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
     END AS channel_bucket,
+    CASE
+        WHEN offer_asset_name_lead_creation IS null THEN 'blank'
+        ELSE offer_asset_name_lead_creation
+    END AS offer_asset_name_lead_creation,
+    CASE
+        WHEN opp_type IS null THEN 'blank'
+        ELSE opp_type
+    END AS opp_type,
+    is_hand_raiser,
     date
 FROM base
