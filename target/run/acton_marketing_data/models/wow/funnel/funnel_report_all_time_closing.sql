@@ -11,6 +11,7 @@ WITH base AS (
         CONCAT('https://acton.my.salesforce.com/',opp_closing_source_xf.opportunity_id) AS closing_url,
         acv,
         account_name,
+        type AS opp_type,
         opp_closing_source_xf.closing_date AS closing_date,
         CASE
         WHEN account_global_region IS null THEN 'blank'
@@ -39,9 +40,12 @@ WITH base AS (
     CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
-    END AS channel_bucket
+    END AS channel_bucket,
+    CASE
+        WHEN opp_offer_asset_name_lead_creation IS null THEN 'blank'
+        ELSE opp_offer_asset_name_lead_creation
+    END AS offer_asset_name_lead_creation
     FROM "acton"."dbt_actonmarketing"."opp_closing_source_xf"
-    WHERE type = 'New Business'
 
 )
 

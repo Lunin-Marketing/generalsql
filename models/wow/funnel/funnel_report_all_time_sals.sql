@@ -8,6 +8,7 @@ WITH base AS (
         sal_source_xf.working_date AS sal_date,
         sal_source_xf.mql_most_recent_date AS mql_date,
         company,
+        is_hand_raiser,
         CASE
         WHEN global_region IS null THEN 'blank'
         ELSE global_region
@@ -35,7 +36,11 @@ WITH base AS (
     CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
-    END AS channel_bucket
+    END AS channel_bucket,
+    CASE
+        WHEN offer_asset_name_lead_creation IS null THEN 'blank'
+        ELSE offer_asset_name_lead_creation
+    END AS offer_asset_name_lead_creation
     FROM {{ref('sal_source_xf')}}
 
 )

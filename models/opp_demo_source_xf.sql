@@ -32,7 +32,8 @@ SELECT
     opp_source_xf.segment,
     opp_source_xf.industry,
     opp_source_xf.industry_bucket,
-    opp_source_xf.channel_bucket
+    opp_source_xf.channel_bucket,
+    opp_source_xf.opp_offer_asset_name_lead_creation
 FROM {{ref('opp_source_xf')}}
 LEFT JOIN {{ref('user_source_xf')}} ON
 opp_source_xf.owner_id=user_source_xf.user_id

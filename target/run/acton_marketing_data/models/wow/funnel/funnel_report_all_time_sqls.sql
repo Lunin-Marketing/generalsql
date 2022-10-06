@@ -12,7 +12,7 @@ WITH base AS (
         sql_source_xf.created_date AS sql_date,
         account_name,
         opportunity_name,
-        type,
+        type AS opp_type,
         owner_name,
         sdr_name,
         CASE
@@ -42,9 +42,12 @@ WITH base AS (
     CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
-    END AS channel_bucket
+    END AS channel_bucket,
+    CASE
+        WHEN opp_offer_asset_name_lead_creation IS null THEN 'blank'
+        ELSE opp_offer_asset_name_lead_creation
+    END AS offer_asset_name_lead_creation
     FROM "acton"."dbt_actonmarketing"."sql_source_xf"
-    WHERE type = 'New Business'
 
 )
 

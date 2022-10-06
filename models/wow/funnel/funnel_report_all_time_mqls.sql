@@ -13,6 +13,7 @@ WITH base AS (
         title,
         person_status,
         country,
+        is_hand_raiser,
         CASE
         WHEN global_region IS null THEN 'blank'
         ELSE global_region
@@ -40,7 +41,11 @@ WITH base AS (
     CASE
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
-    END AS channel_bucket
+    END AS channel_bucket,
+    CASE
+        WHEN offer_asset_name_lead_creation IS null THEN 'blank'
+        ELSE offer_asset_name_lead_creation
+    END AS offer_asset_name_lead_creation
     FROM {{ref('lead_mql_source_xf')}}
 
 )

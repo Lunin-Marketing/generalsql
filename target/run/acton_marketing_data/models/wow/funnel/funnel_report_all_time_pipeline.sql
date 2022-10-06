@@ -13,7 +13,7 @@ WITH base AS (
         account_name,
         opportunity_name,
         stage_name,
-        type,
+        type AS opp_type,
         owner_name,
         sdr_name,
         created_date,
@@ -48,7 +48,6 @@ WITH base AS (
         ELSE channel_bucket
     END AS channel_bucket
     FROM "acton"."dbt_actonmarketing"."sqo_source_xf"
-    WHERE type = 'New Business'
 
 ) , final AS (
 
@@ -57,7 +56,7 @@ WITH base AS (
         sqo_date,
         opportunity_name,
         stage_name,
-        type,
+        opp_type,
         acv,
         account_global_region,
         company_size_rev,

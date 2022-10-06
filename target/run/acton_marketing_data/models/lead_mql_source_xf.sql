@@ -24,7 +24,8 @@ SELECT
     segment,
     industry,
     industry_bucket,
-    channel_bucket
+    channel_bucket,
+    offer_asset_name_lead_creation
 FROM "acton"."dbt_actonmarketing"."person_source_xf"
 WHERE mql_most_recent_date IS NOT null
 AND person_owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
