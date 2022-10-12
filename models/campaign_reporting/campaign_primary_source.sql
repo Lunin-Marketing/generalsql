@@ -38,6 +38,8 @@ WITH base AS (
         person.email,
         person.person_status,
         person.lead_score,
+        person.mql_most_recent_date,
+        person.working_date,
 
     --Account Info
         person.lean_data_account_id AS account_id,

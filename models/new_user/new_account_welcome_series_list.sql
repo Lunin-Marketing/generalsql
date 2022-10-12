@@ -47,9 +47,18 @@ SELECT DISTINCT
         WHEN opp_and_acct_base.account_csm_photo IS null THEN 'https://success.act-on.com/cdnr/forpcid1/acton/attachment/9883/f-fa8432de-9cea-4bf7-b6d4-eca1c9656b82/1/-/-/-/-/NewUserWelcomeSeries-EM3-Support.png'
         ELSE opp_and_acct_base.account_csm_photo 
     END AS account_csm_photo,
-    opp_and_acct_base.onboarding_specialist,
-    opp_and_acct_base.onboarding_specialist_email,
-    opp_and_acct_base.onboarding_specialist_photo,
+    CASE
+        WHEN opp_and_acct_base.onboarding_specialist IS null THEN 'marjorie.waniata@act-on.com'
+        ELSE opp_and_acct_base.onboarding_specialist
+    END AS onboarding_specialist,
+    CASE
+        WHEN opp_and_acct_base.onboarding_specialist_email IS null THEN 'marjorie.waniata@act-on.com'
+        ELSE opp_and_acct_base.onboarding_specialist_email
+    END AS onboarding_specialist_email,
+    CASE 
+        WHEN opp_and_acct_base.onboarding_specialist_photo IS null THEN 'https://success.act-on.com/cdnr/forpcid1/acton/attachment/9883/f-776f2a0d-032b-406f-9b3b-f4990bc2e601/1/-/-/-/-/Marj_Waniata.png'
+        ELSE opp_and_acct_base.onboarding_specialist_photo
+    END AS onboarding_specialist_photo,
     opp_and_acct_base.account_owner,
     opp_and_acct_base.account_owner_email,
     opp_and_acct_base.account_owner_photo,
