@@ -11,6 +11,9 @@ FROM {{ source('salesforce', 'opportunity') }}
         base.is_deleted,
         base.account_id,
         account.name AS account_name,
+        --account.account_csm_name,
+        --account.account_owner_name,
+        account.current_customer_c AS is_current_customer,
         account.sdr_c AS sdr_id,
         sdr.user_name AS sdr_name,
         CASE
@@ -177,7 +180,7 @@ FROM {{ source('salesforce', 'opportunity') }}
     base.owner_id=owner.user_id
     LEFT JOIN {{ref('user_source_xf')}} sdr ON
     account.sdr_c=sdr.user_id
-    {{dbt_utils.group_by(n=107) }}
+    {{dbt_utils.group_by(n=108) }}
 
 ), intermediate_acv_formula AS (
 
@@ -186,6 +189,7 @@ FROM {{ source('salesforce', 'opportunity') }}
       intermediate.is_deleted,
       intermediate.account_id,
       intermediate.account_name,
+      intermediate.is_current_customer,
       intermediate.sdr_id,
       intermediate.sdr_name,
       intermediate.company_size_rev,
@@ -301,7 +305,7 @@ FROM {{ source('salesforce', 'opportunity') }}
       --intermediate.product_code,
       --intermediate.product_family,
     FROM intermediate
-    {{dbt_utils.group_by(n=109) }}
+    {{dbt_utils.group_by(n=110) }}
 
 ), intermediate_acv_sum AS (
     
@@ -310,6 +314,7 @@ FROM {{ source('salesforce', 'opportunity') }}
       intermediate_acv_formula.is_deleted,
       intermediate_acv_formula.account_id,
       intermediate_acv_formula.account_name,
+      intermediate_acv_formula.is_current_customer,
       intermediate_acv_formula.sdr_id,
       intermediate_acv_formula.sdr_name,
       intermediate_acv_formula.account_global_region,
@@ -418,7 +423,7 @@ FROM {{ source('salesforce', 'opportunity') }}
       SUM(intermediate_acv_formula.annual_price) AS annual_price,
       SUM(intermediate_acv_formula.acv_formula) AS acv_formula
     FROM intermediate_acv_formula
-    {{dbt_utils.group_by(n=102) }}
+    {{dbt_utils.group_by(n=103) }}
 
 ), intermediate_acv_deal_size AS (
     
@@ -438,7 +443,7 @@ FROM {{ source('salesforce', 'opportunity') }}
         ELSE acv_formula
       END AS acv_deal_size_usd
     FROM intermediate_acv_sum
-    {{dbt_utils.group_by(n=110) }}
+    {{dbt_utils.group_by(n=111) }}
 
 ), final AS (
 

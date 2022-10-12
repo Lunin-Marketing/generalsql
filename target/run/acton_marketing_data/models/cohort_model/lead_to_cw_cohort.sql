@@ -18,15 +18,18 @@ WITH base AS (
         global_region,
         segment,
         channel_bucket,
+        industry,
+        industry_bucket,
+        lead_source,
         marketing_created_date::Date,
         mql_created_date::Date,
-        CASE 
-            WHEN person_status NOT IN ('Current Customer','Partner','Bad Data','No Fit') THEN mql_created_date::Date
-            ELSE null
-        END AS sal_created_date,
+        working_date AS sal_created_date,
         person_status,
         opp_created_date::Date,
         discovery_date::Date,
+        demo_date::Date,
+        voc_date::Date,
+        closing_date::Date,
         close_date::Date,
         CASE
             WHEN is_won = true THEN close_date::Date
@@ -40,15 +43,27 @@ WITH base AS (
         channel_lead_creation,
         medium_lead_creation,
         source_lead_creation,
+        person_offer_asset_name_lead_creation,
+        opp_lead_source,
+        opp_segment,
+        account_global_region,
+        opp_company_size_rev,
+        opp_industry,
+        opp_industry_bucket,
+        opp_channel_bucket,
+        opp_offer_asset_name_lead_creation,
+        type AS opp_type,
+        is_hand_raiser,
         is_mql,
         is_sal,
         is_sql,
         is_sqo,
+        is_demo,
+        is_voc,
+        is_closing,
         is_cl,
         is_cw
     FROM base
-    WHERE marketing_created_date >= '2021-01-01'
-    --AND person_status != 'Current Customer'
 
 ), final AS (
 

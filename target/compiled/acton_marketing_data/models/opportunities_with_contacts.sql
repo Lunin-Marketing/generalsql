@@ -3,56 +3,31 @@
 WITH person_base AS (
 
     SELECT
-        contact_id AS person_id,
+        person_id,
         email,
         is_hand_raiser,
+        person_owner_id AS owner_id,
+        channel_lead_creation,
+        medium_lead_creation,
+        source_lead_creation,
+        lead_source,
+        marketing_created_date,
         mql_most_recent_date AS mql_created_date,
-        contact_owner_id AS owner_id,
-        channel_lead_creation,
-        medium_lead_creation,
-        source_lead_creation,
-        lead_source,
-        marketing_created_date,
         working_date,
-        contact_status AS person_status,
+        person_status,
         company_size_rev,
         global_region,
         segment,
-        account_id,
+        lean_data_account_id AS account_id,
         channel_bucket,
         industry_bucket,
         industry,
-        'Contact' AS record_type
-    FROM "acton"."dbt_actonmarketing"."contact_source_xf"
+        offer_asset_name_lead_creation
+    FROM "acton"."dbt_actonmarketing"."person_source_xf"
     WHERE marketing_created_date >= '2021-01-01'
-    UNION ALL
-    SELECT
-        lead_id AS person_id,
-        email,
-        is_hand_raiser,
-        mql_most_recent_date,
-        lead_owner_id AS owner_id,
-        channel_lead_creation,
-        medium_lead_creation,
-        source_lead_creation,
-        lead_source,
-        marketing_created_date,
-        working_date,
-        lead_status AS person_status,
-        company_size_rev,
-        global_region,
-        segment,
-        person_account_id,
-        channel_bucket,
-        industry_bucket,
-        industry,
-        'Lead' AS record_type
-    FROM "acton"."dbt_actonmarketing"."lead_source_xf"
-    WHERE is_converted = false
-    AND marketing_created_date >= '2021-01-01'
 )
 
-SELECT 
+SELECT DISTINCT
     person_base.person_id,
     person_base.email,
     person_base.is_hand_raiser,
@@ -71,13 +46,14 @@ SELECT
     person_base.account_id,
     person_base.person_status,
     person_base.industry,
+    person_base.offer_asset_name_lead_creation AS person_offer_asset_name_lead_creation,
     person_base.industry_bucket,
-    person_base.record_type,
-    account_base.is_current_customer, 
-    account_base.account_name,
-    account_base.account_owner_name,
-    account_base.account_csm_name,
+    -- account_base.is_current_customer, 
+    -- account_base.account_name,
+    -- account_base.account_owner_name,
+    -- account_base.account_csm_name,
    -- account_base.
+    opp_base.is_current_customer,
     opp_base.opportunity_id,
     opp_base.opportunity_name,
     opp_base.is_won,
@@ -99,22 +75,35 @@ SELECT
     opp_base.industry AS opp_industry,
     opp_base.industry_bucket AS opp_industry_bucket,
     opp_base.channel_bucket AS opp_channel_bucket,
+    opp_base.opp_offer_asset_name_lead_creation,
     CASE 
-        WHEN mql_created_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' THEN 1
+        WHEN mql_created_date IS NOT null AND email NOT LIKE '%act-on%' THEN 1
         ELSE 0
     END AS is_mql,
     CASE 
-        WHEN working_date IS NOT null AND email NOT LIKE '%act-on%' AND lead_source = 'Marketing' AND person_status NOT IN ('Current Customer','Partner','Bad Data','No Fit') THEN 1
+        WHEN working_date IS NOT null AND email NOT LIKE '%act-on%' AND person_status NOT IN ('Current Customer','Partner','Bad Data','No Fit') THEN 1
         ELSE 0
     END AS is_sal,
     CASE
-        WHEN opp_base.created_date IS NOT null AND opp_base.type = 'New Business' AND opp_base.stage_name NOT IN ('Closed - Duplicate','Closed - Admin Remove') THEN 1
+        WHEN opp_base.created_date IS NOT null AND opp_base.stage_name NOT IN ('Closed - Duplicate','Closed - Admin Remove') THEN 1
         ELSE 0
     END AS is_sql,
     CASE
-        WHEN opp_base.discovery_date IS NOT null AND opp_base.type = 'New Business' AND opp_base.stage_name NOT IN ('Closed - Duplicate','Closed - Admin Remove') THEN 1
+        WHEN opp_base.discovery_date IS NOT null AND opp_base.stage_name NOT IN ('Closed - Duplicate','Closed - Admin Remove') THEN 1
         ELSE 0
     END AS is_sqo,
+    CASE
+        WHEN opp_base.demo_date IS NOT null AND opp_base.stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery') THEN 1
+        ELSE 0
+    END AS is_demo,
+    CASE
+        WHEN opp_base.voc_date IS NOT null AND opp_base.stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo') THEN 1
+        ELSE 0
+    END AS is_voc,
+    CASE
+        WHEN opp_base.closing_date IS NOT null AND opp_base.stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo','VOC/Negotiate') THEN 1
+        ELSE 0
+    END AS is_closing,
     CASE
         WHEN opp_base.is_closed = true AND opp_base.is_won = false THEN 1
         ELSE 0
@@ -126,8 +115,8 @@ SELECT
 FROM person_base
 LEFT JOIN "acton"."dbt_actonmarketing"."opp_source_xf" AS opp_base ON
 person_base.account_id=opp_base.account_id
-LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" AS account_base ON
-person_base.account_id=account_base.account_id
-WHERE opportunity_id IS NOT null
-AND opp_base.created_date >= '2021-01-01'
+-- LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" AS account_base ON
+-- person_base.account_id=account_base.account_id
+--  WHERE (opp_base.created_date IS null
+--  OR opp_base.created_date >= '2021-01-01')
 ORDER BY 4
