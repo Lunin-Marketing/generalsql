@@ -25,7 +25,7 @@ WITH person_base AS (
         industry,
         offer_asset_name_lead_creation
     FROM {{ref('person_source_xf')}}
-    WHERE marketing_created_date >= '2021-01-01'
+    --WHERE marketing_created_date >= '2021-01-01'
 )
 
 SELECT DISTINCT
@@ -114,10 +114,5 @@ SELECT DISTINCT
         ELSE 0
     END AS is_cw
 FROM person_base
-LEFT JOIN {{ref('opp_source_xf')}} AS opp_base ON
+FULL JOIN {{ref('opp_source_xf')}} AS opp_base ON
 person_base.account_id=opp_base.account_id
--- LEFT JOIN {{ref('account_source_xf')}} AS account_base ON
--- person_base.account_id=account_base.account_id
---  WHERE (opp_base.created_date IS null
---  OR opp_base.created_date >= '2021-01-01')
-ORDER BY 4
