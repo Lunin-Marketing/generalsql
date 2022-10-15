@@ -44,7 +44,11 @@ WITH base AS (
     CASE
         WHEN offer_asset_name_lead_creation IS null THEN 'blank'
         ELSE offer_asset_name_lead_creation
-    END AS offer_asset_name_lead_creation
+    END AS offer_asset_name_lead_creation,
+    CASE
+        WHEN campaign_lead_creation IS null THEN 'blank'
+        ELSE campaign_lead_creation
+    END AS campaign_lead_creation
     FROM "acton"."dbt_actonmarketing"."sal_source_xf"
 
 )

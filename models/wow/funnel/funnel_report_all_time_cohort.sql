@@ -9,9 +9,12 @@ WITH base AS (
         mql_created_date,
         sal_created_date,
         person_status,
+        email,
+        person_owner_id,
 
     --opp fields
         opportunity_id,
+        stage_name,
         opp_type,
         opp_created_date,
         discovery_date,
@@ -153,6 +156,7 @@ SELECT
 --opp fields
         opportunity_id,
         opp_type,
+        stage_name,
         opp_created_date,
         discovery_date,
         demo_date,

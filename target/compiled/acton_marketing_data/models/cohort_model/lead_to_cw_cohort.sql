@@ -9,7 +9,9 @@ WITH base AS (
 
     SELECT
         person_id,
+        email,
         opportunity_id,
+        owner_id AS person_owner_id,
         company_size_rev,
         global_region,
         segment,
@@ -40,6 +42,7 @@ WITH base AS (
         medium_lead_creation,
         source_lead_creation,
         person_offer_asset_name_lead_creation,
+        stage_name,
         opp_lead_source,
         opp_segment,
         account_global_region,
@@ -50,6 +53,7 @@ WITH base AS (
         opp_offer_asset_name_lead_creation,
         type AS opp_type,
         is_hand_raiser,
+        is_current_customer,
         is_mql,
         is_sal,
         is_sql,
