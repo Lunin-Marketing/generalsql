@@ -22,3 +22,4 @@ SELECT
     ip_address,
     e_mail_domain AS email_domain
 FROM {{ref('ao_webpages')}}
+WHERE contact_e_mail IS NOT null

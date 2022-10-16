@@ -3,59 +3,60 @@
 WITH base AS (
 
     SELECT 
+        touchpoint_id,
         action,
         action_time,
-        cookie_id,
-        asset_id,
-        asset_title,
-        ip_address,
-        record_id,
-        referral_url,
-        response_email,
         action_day,
-        unique_visitor_id,
+        asset_id,
         email,
-        touchpoint_id,
+        asset_title,
+        subject_line,
+        from_address,
+        clicked_url,
+        clickthrough_link_name,
+        referral_url,
+        event_id,
         asset_type
     FROM {{ref('ao_combined')}}
 
 ), first_touch_base AS (
 
     SELECT
-        email,
+        touchpoint_id,
         action,
         action_time,
-        cookie_id,
-        asset_id,
-        asset_title,
-        ip_address,
-        record_id,
-        referral_url,
-        response_email,
         action_day,
-        unique_visitor_id,
-        touchpoint_id,
+        asset_id,
+        email,
+        asset_title,
+        subject_line,
+        from_address,
+        clicked_url,
+        clickthrough_link_name,
+        referral_url,
+        event_id,
         asset_type,
-        ROW_NUMBER() OVER (PARTITION BY email ORDER BY action_time ) AS touchpoint_number
+        ROW_NUMBER() OVER (PARTITION BY email ORDER BY action_time ASC ) AS touchpoint_number
     FROM base
 
 )
 
 SELECT
     email,
+    touchpoint_id,
     action,
     action_time,
-    cookie_id,
+    action_day,
     asset_id,
     asset_title,
-    ip_address,
-    record_id,
+    subject_line,
+    from_address,
+    clicked_url,
+    clickthrough_link_name,
     referral_url,
-    response_email,
-    action_day,
-    unique_visitor_id,
-    touchpoint_id,
+    event_id,
     asset_type,
+    'First Touch' AS touchpoint_position,
     '1' AS first_touch_weight
 FROM first_touch_base
 WHERE touchpoint_number = 1

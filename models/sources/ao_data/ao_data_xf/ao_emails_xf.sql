@@ -19,3 +19,6 @@ SELECT
     clicked_url,
     clickthrough_link_name
 FROM {{ref('ao_emails')}}
+WHERE action != 'SENT'
+AND recipient_e_mail IS NOT null
+AND recipient_e_mail NOT LIKE 'unknown%'
