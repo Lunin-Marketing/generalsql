@@ -3,58 +3,58 @@
 WITH base AS (
 
     SELECT 
+        touchpoint_id,
         action,
         action_time,
-        cookie_id,
-        asset_id,
-        asset_title,
-        ip_address,
-        record_id,
-        referral_url,
-        response_email,
         action_day,
-        unique_visitor_id,
+        asset_id,
         email,
-        touchpoint_id,
+        asset_title,
+        subject_line,
+        from_address,
+        clicked_url,
+        clickthrough_link_name,
+        referral_url,
+        event_id,
         asset_type
     FROM {{ref('ao_combined')}}
 
 ), first_touch_base AS (
 
     SELECT
-        email,
+        touchpoint_id,
         action,
         action_time,
-        cookie_id,
-        asset_id,
-        asset_title,
-        ip_address,
-        record_id,
-        referral_url,
-        response_email,
         action_day,
-        unique_visitor_id,
-        touchpoint_id,
+        asset_id,
+        email,
+        asset_title,
+        subject_line,
+        from_address,
+        clicked_url,
+        clickthrough_link_name,
+        referral_url,
+        event_id,
         asset_type,
-        ROW_NUMBER() OVER (PARTITION BY email ORDER BY action_time ) AS touchpoint_number
+        ROW_NUMBER() OVER (PARTITION BY email ORDER BY action_time ASC) AS touchpoint_number
     FROM base
 
 ), first_touch_final AS (
 
     SELECT
-        email,
+        touchpoint_id,
         action,
         action_time,
-        cookie_id,
-        asset_id,
-        asset_title,
-        ip_address,
-        record_id,
-        referral_url,
-        response_email,
         action_day,
-        unique_visitor_id,
-        touchpoint_id,
+        asset_id,
+        email,
+        asset_title,
+        subject_line,
+        from_address,
+        clicked_url,
+        clickthrough_link_name,
+        referral_url,
+        event_id,
         asset_type,
         'first_touch' AS touchpoint_position,
         .5 AS u_shaped_weight_prep
@@ -64,39 +64,42 @@ WITH base AS (
 ), lead_creation_base AS (
 
       SELECT
-        email,
+        touchpoint_id,
         action,
         action_time,
-        cookie_id,
-        asset_id,
-        asset_title,
-        ip_address,
-        record_id,
-        referral_url,
-        response_email,
         action_day,
-        unique_visitor_id,
-        touchpoint_id,
+        asset_id,
+        base.email,
+        asset_title,
+        subject_line,
+        from_address,
+        clicked_url,
+        clickthrough_link_name,
+        referral_url,
+        event_id,
         asset_type,
-        ROW_NUMBER() OVER (PARTITION BY email ORDER BY action_time ) AS touchpoint_number
+        ROW_NUMBER() OVER (PARTITION BY base.email ORDER BY action_time ASC) AS touchpoint_number
     FROM base
+    LEFT JOIN {{ref('person_source_xf')}} person ON
+    base.email=person.email
+    WHERE action_day=person.created_date
 
 ), lead_creation_final AS (
 
     SELECT
-        email,
+        touchpoint_id,
         action,
         action_time,
-        cookie_id,
-        asset_id,
-        asset_title,
-        ip_address,
-        record_id,
-        referral_url,
-        response_email,
         action_day,
-        unique_visitor_id,
-        touchpoint_id,
+        asset_id,
+        email,
+        asset_title,
+        subject_line,
+        from_address,
+        clicked_url,
+        clickthrough_link_name,
+        referral_url,
+        event_id,
         asset_type,
         'lead_creation_touch' AS touchpoint_position,
         .5 AS u_shaped_weight_prep
@@ -113,21 +116,21 @@ WITH base AS (
 )
 
 SELECT 
-    email,
+    touchpoint_id,
     action,
     action_time,
-    cookie_id,
-    asset_id,
-    asset_title,
-    ip_address,
-    record_id,
-    referral_url,
-    response_email,
     action_day,
-    unique_visitor_id,
-    touchpoint_id,
+    asset_id,
+    email,
+    asset_title,
+    subject_line,
+    from_address,
+    clicked_url,
+    clickthrough_link_name,
+    referral_url,
+    event_id,
     asset_type,
     touchpoint_position,
     SUM(u_shaped_weight_prep) AS u_shaped_weight
 FROM unioned
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+{{dbt_utils.group_by(n=15)}}

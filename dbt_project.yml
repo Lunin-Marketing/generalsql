@@ -3,7 +3,7 @@
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
 name: 'acton_marketing_data'
-version: '1.0.0'
+version: '1.2.0'
 config-version: 2
 require-dbt-version: ">=1.0.0"
 
@@ -38,6 +38,8 @@ models:
   acton_marketing_data:
           materialized: table
           
+vars:
+    "dbt_date:time_zone": "America/Los_Angeles"
 #repositories:
     # Be sure to replace VERSION_NUMBER below!
  #   - https://github.com/fishtown-analytics/dbt-utils.git@0.8.0
