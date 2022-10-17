@@ -42,12 +42,8 @@ WITH base AS (
         opp_channel_bucket,
         opp_industry_bucket,
         
-
-    
         ((sql_date)::date - (mql_date)::date)
-    
-
- AS mql2sql_velocity
+     AS mql2sql_velocity
     FROM base
     WHERE sql_date >= mql_date
 )

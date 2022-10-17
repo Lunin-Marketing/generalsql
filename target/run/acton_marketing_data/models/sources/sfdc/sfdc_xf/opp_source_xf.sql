@@ -147,19 +147,11 @@ FROM "acton"."salesforce"."opportunity"
         END AS include_in_acv_deal_size,
         CASE
             WHEN is_closed = true THEN 
-
-    
         ((base.close_date)::date - (base.created_date)::date)
     
-
-
             ELSE 
-
-    
         ((CURRENT_DATE)::date - (base.created_date)::date)
     
-
-
         END AS age,
         CASE
             WHEN opportunity_line_item_xf.sbqq_subscription_type = 'Renewable' AND opportunity_line_item_xf.product_code != 'SOW-MNTH-CUST' THEN SUM(total_price)

@@ -42,12 +42,8 @@ WITH base AS (
         opp_channel_bucket,
         opp_industry_bucket,
         
-
-    
         ((opp_created_date)::date - (marketing_created_date)::date)
-    
-
- AS lead_to_opp_velocity
+     AS lead_to_opp_velocity
     FROM base
     WHERE opp_created_date >= marketing_created_date
 )

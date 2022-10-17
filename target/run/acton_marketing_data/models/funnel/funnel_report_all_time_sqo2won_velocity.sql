@@ -46,12 +46,8 @@ WITH sqo_opp AS (
         won_opp.channel_bucket,
         won_opp.industry_bucket,
         
-
-    
         ((won_date)::date - (sqo_date)::date)
-    
-
- AS sqo2won_velocity
+     AS sqo2won_velocity
     FROM won_opp
     LEFT JOIN sqo_opp ON 
     won_opp.won_id=sqo_opp.sqo_id

@@ -42,12 +42,8 @@ WITH voc_opp AS (
         closing_opp.industry_bucket,
         closing_opp.channel_bucket,
         
-
-    
         ((closing_date)::date - (voc_date)::date)
-    
-
- AS voc2closing_velocity
+     AS voc2closing_velocity
     FROM closing_opp
     LEFT JOIN voc_opp ON 
     closing_opp.closing_id=voc_opp.voc_id

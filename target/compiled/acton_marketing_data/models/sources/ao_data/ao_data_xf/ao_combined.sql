@@ -4,15 +4,7 @@ WITH emails AS (
 
     SELECT
     -- IDs
-        md5(cast(coalesce(cast(action_time as 
-    varchar
-), '') || '-' || coalesce(cast(message_id as 
-    varchar
-), '') || '-' || coalesce(cast(email as 
-    varchar
-), '') as 
-    varchar
-)) AS touchpoint_id,
+        md5(cast(coalesce(cast(action_time as TEXT), '') || '-' || coalesce(cast(message_id as TEXT), '') || '-' || coalesce(cast(email as TEXT), '') as TEXT)) AS touchpoint_id,
         message_id,
         email,
         record_id,
@@ -35,15 +27,7 @@ WITH emails AS (
 
     SELECT
     -- IDs
-        md5(cast(coalesce(cast(action_time as 
-    varchar
-), '') || '-' || coalesce(cast(form_id as 
-    varchar
-), '') || '-' || coalesce(cast(email as 
-    varchar
-), '') as 
-    varchar
-)) AS touchpoint_id,
+        md5(cast(coalesce(cast(action_time as TEXT), '') || '-' || coalesce(cast(form_id as TEXT), '') || '-' || coalesce(cast(email as TEXT), '') as TEXT)) AS touchpoint_id,
         form_id,
         email,
         unique_visitor_id,
@@ -67,15 +51,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        md5(cast(coalesce(cast(action_time as 
-    varchar
-), '') || '-' || coalesce(cast(landing_page_id as 
-    varchar
-), '') || '-' || coalesce(cast(email as 
-    varchar
-), '') as 
-    varchar
-)) AS touchpoint_id,
+        md5(cast(coalesce(cast(action_time as TEXT), '') || '-' || coalesce(cast(landing_page_id as TEXT), '') || '-' || coalesce(cast(email as TEXT), '') as TEXT)) AS touchpoint_id,
         landing_page_id,
         email,
         record_id,
@@ -102,15 +78,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        md5(cast(coalesce(cast(action_time as 
-    varchar
-), '') || '-' || coalesce(cast(media_id as 
-    varchar
-), '') || '-' || coalesce(cast(email as 
-    varchar
-), '') as 
-    varchar
-)) AS touchpoint_id,
+        md5(cast(coalesce(cast(action_time as TEXT), '') || '-' || coalesce(cast(media_id as TEXT), '') || '-' || coalesce(cast(email as TEXT), '') as TEXT)) AS touchpoint_id,
         media_id,
         email,
         record_id,
@@ -134,15 +102,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        md5(cast(coalesce(cast(action_time as 
-    varchar
-), '') || '-' || coalesce(cast(webinar_id as 
-    varchar
-), '') || '-' || coalesce(cast(email as 
-    varchar
-), '') as 
-    varchar
-)) AS touchpoint_id,
+        md5(cast(coalesce(cast(action_time as TEXT), '') || '-' || coalesce(cast(webinar_id as TEXT), '') || '-' || coalesce(cast(email as TEXT), '') as TEXT)) AS touchpoint_id,
         webinar_id,
         email,
         record_id,
@@ -165,15 +125,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        md5(cast(coalesce(cast(action_time as 
-    varchar
-), '') || '-' || coalesce(cast(page_url as 
-    varchar
-), '') || '-' || coalesce(cast(email as 
-    varchar
-), '') as 
-    varchar
-)) AS touchpoint_id,
+        md5(cast(coalesce(cast(action_time as TEXT), '') || '-' || coalesce(cast(page_url as TEXT), '') || '-' || coalesce(cast(email as TEXT), '') as TEXT)) AS touchpoint_id,
         email,
         unique_visitor_id,
 

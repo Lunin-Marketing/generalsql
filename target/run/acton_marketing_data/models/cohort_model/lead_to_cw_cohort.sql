@@ -23,6 +23,7 @@ WITH base AS (
         industry,
         industry_bucket,
         lead_source,
+        person_created_date,
         marketing_created_date::Date,
         mql_created_date::Date,
         working_date AS sal_created_date,
@@ -75,62 +76,38 @@ WITH base AS (
         intermediate.*,
         CASE 
             WHEN mql_created_date>=marketing_created_date THEN 
-
-    
         ((mql_created_date)::date - (marketing_created_date)::date)
-    
-
- 
+     
             ELSE 0 
         END AS days_to_mql,
         CASE 
             WHEN sal_created_date>=mql_created_date THEN 
-
-    
         ((sal_created_date)::date - (mql_created_date)::date)
-    
-
- 
+     
             ELSE 0 
         END AS  days_to_sal,
         CASE 
             WHEN opp_created_date>=sal_created_date THEN 
-
-    
         ((opp_created_date)::date - (sal_created_date)::date)
-    
-
- 
+     
             ELSE 0 
         END AS  days_to_sql,
         CASE 
             WHEN discovery_date>=opp_created_date THEN 
-
-    
         ((discovery_date)::date - (opp_created_date)::date)
-    
-
- 
+     
             ELSE 0 
         END AS  days_to_sqo,
         CASE 
             WHEN cw_date>=discovery_date THEN 
-
-    
         ((cw_date)::date - (discovery_date)::date)
-    
-
- 
+     
             ELSE 0 
         END AS  days_to_won,
         CASE 
             WHEN cl_date>=discovery_date THEN 
-
-    
         ((cl_date)::date - (discovery_date)::date)
-    
-
- 
+     
             ELSE 0 
         END AS  days_to_closed_lost
     FROM intermediate

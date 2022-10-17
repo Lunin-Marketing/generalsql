@@ -19,6 +19,7 @@ WITH base AS (
         industry,
         industry_bucket,
         lead_source,
+        person_created_date,
         marketing_created_date::Date,
         mql_created_date::Date,
         working_date AS sal_created_date,

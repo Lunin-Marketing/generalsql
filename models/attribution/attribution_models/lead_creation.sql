@@ -18,6 +18,21 @@ WITH base AS (
         event_id,
         asset_type
     FROM {{ref('ao_combined')}}
+    WHERE asset_type = 'form'
+
+), person_source_prep AS (
+
+    SELECT
+        email,
+        {{ dbt_date.convert_timezone("created_date::Timestamp", "America/Los_Angeles") }} AS created_date
+    FROM {{ref('person_source_xf')}}
+
+), person_source AS (
+
+    SELECT
+        email,
+        created_date::Date AS created_date
+    FROM person_source_prep
 
 ), lead_creation_base AS (
 
@@ -38,7 +53,7 @@ WITH base AS (
         asset_type,
         ROW_NUMBER() OVER (PARTITION BY base.email ORDER BY action_time ASC ) AS touchpoint_number
     FROM base
-    LEFT JOIN {{ref('person_source_xf')}} person ON
+    LEFT JOIN person_source person ON
     base.email=person.email
     WHERE action_day=person.created_date
 
@@ -59,8 +74,10 @@ SELECT
     referral_url,
     event_id,
     asset_type,
-    'Lead Creation' AS touchpoint_position,
-    '1' AS lead_creation_weight
+    true AS lc_position,
+    1 AS lead_creation_weight,
+    .5 AS u_shaped_weight,
+    .3 AS w_shaped_weight,
+    .225 AS full_path_weight
 FROM lead_creation_base
 WHERE touchpoint_number = 1
-AND email = '100443596@alumnos.uc3m.es'

@@ -1,7 +1,17 @@
-{{ config(materialized='table') }}
+WITH base AS (
 
-SELECT DISTINCT
-   person_id
-FROM {{ref('funnel_report_all_time_cohort')}}
-WHERE mql_created_date >= '2022-08-01'
-AND mql_created_date <= '2022-09-30'
+SELECT *
+FROM {{ source('salesforce', 'lead') }}
+
+), intermediate AS (
+
+SELECT
+    created_date::Timestamp AS created_date
+FROM base
+WHERE email ='100443596@alumnos.uc3m.es'
+
+)
+
+SELECT
+    {{ dbt_date.convert_timezone("created_date", "America/Los_Angeles") }} As create_date
+FROM intermediate

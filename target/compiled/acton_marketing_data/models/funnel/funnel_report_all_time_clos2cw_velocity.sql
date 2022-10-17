@@ -42,12 +42,8 @@ WITH won_opp AS (
         won_opp.industry_bucket,
         won_opp.channel_bucket,
         
-
-    
         ((won_date)::date - (closing_date)::date)
-    
-
- AS closing2cw_velocity
+     AS closing2cw_velocity
     FROM won_opp
     LEFT JOIN closing_opp ON 
     won_opp.won_id=closing_opp.closing_id
