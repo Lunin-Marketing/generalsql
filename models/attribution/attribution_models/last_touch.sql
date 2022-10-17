@@ -56,7 +56,7 @@ SELECT
     referral_url,
     event_id,
     asset_type,
-    'Last Touch' AS touchpoint_position,
-    '1' AS last_touch_weight
+    true AS lt_position,
+    1 AS last_touch_weight
 FROM last_touch_base
 WHERE touchpoint_number = 1

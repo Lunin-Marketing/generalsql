@@ -39,7 +39,8 @@ models:
           materialized: table
           
 vars:
-    "dbt_date:time_zone": "America/Los_Angeles"
+    "dbt_date:time_zone": "UTC"
+    # "dbt_date:time_zone": "America/Los_Angeles"
 #repositories:
     # Be sure to replace VERSION_NUMBER below!
  #   - https://github.com/fishtown-analytics/dbt-utils.git@0.8.0

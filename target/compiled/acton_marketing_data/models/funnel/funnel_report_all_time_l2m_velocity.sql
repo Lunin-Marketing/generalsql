@@ -42,12 +42,8 @@ WITH leads AS (
         mqls.industry_bucket,
         mqls.channel_bucket,
         
-
-    
         ((mql_date)::date - (created_date)::date)
-    
-
- AS l2m_velocity
+     AS l2m_velocity
     FROM mqls
     LEFT JOIN leads ON 
     mqls.mql_id=leads.lead_id

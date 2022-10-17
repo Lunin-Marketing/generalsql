@@ -27,12 +27,8 @@ WITH closed_won AS (
         won_segment,
         won_type,
         
-
-    
         ((won_date)::date - (sql_date)::date)
-    
-
- AS cw_velocity
+     AS cw_velocity
     FROM closed_won
     LEFT JOIN created_opp ON 
     closed_won.won_id=created_opp.sql_id

@@ -42,12 +42,8 @@ WITH sals AS (
         sals.channel_bucket,
         sals.industry_bucket,
         
-
-    
         ((sal_date)::date - (mql_date)::date)
-    
-
- AS m2sal_velocity
+     AS m2sal_velocity
     FROM sals
     LEFT JOIN mqls ON 
     sals.sal_id=mqls.mql_id

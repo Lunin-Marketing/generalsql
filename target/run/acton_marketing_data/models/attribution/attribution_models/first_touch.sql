@@ -60,7 +60,11 @@ SELECT
     referral_url,
     event_id,
     asset_type,
-    '1' AS first_touch_weight
+    true AS ft_position,
+    1 AS first_touch_weight,
+    .5 AS u_shaped_weight,
+    .3 AS w_shaped_weight,
+    .225 AS full_path_weight
 FROM first_touch_base
 WHERE touchpoint_number = 1
   );

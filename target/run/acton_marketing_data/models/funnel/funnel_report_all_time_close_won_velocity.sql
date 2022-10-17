@@ -46,12 +46,8 @@ WITH won_opp AS (
         won_opp.industry_bucket,
         won_opp.channel_bucket,
         
-
-    
         ((won_date)::date - (sql_date)::date)
-    
-
- AS cw_velocity
+     AS cw_velocity
     FROM won_opp
     LEFT JOIN sql_opp ON 
     won_opp.won_id=sql_opp.sql_id

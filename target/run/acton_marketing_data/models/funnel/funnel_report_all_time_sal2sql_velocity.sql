@@ -42,12 +42,8 @@ WITH base AS (
         opp_channel_bucket,
         opp_industry_bucket,
         
-
-    
         ((opp_created_date)::date - (working_date)::date)
-    
-
- AS sal2sql_velocity
+     AS sal2sql_velocity
     FROM base
     WHERE opp_created_date >= working_date
 )
