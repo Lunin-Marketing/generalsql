@@ -9,6 +9,11 @@ SELECT
 
 -- LP Attributes
     landing_page_title,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_campaign=',2),'&',1) AS campaign,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_channel=',2),'&',1) AS channel,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_source=',2),'&',1) AS source,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_medium=',2),'&',1) AS medium,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_content=',2),'&',1) AS content,
     clicked_url,
     clickthrough_link_name,
     referral_url,

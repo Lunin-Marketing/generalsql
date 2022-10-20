@@ -63,7 +63,7 @@ SELECT
     referral_url,
     event_id,
     asset_type,
-    true AS oc_position,
+    'OC' AS oc_position,
     1 AS opp_creation_weight,
     .3 AS w_shaped_weight,
     .225 AS full_path_weight

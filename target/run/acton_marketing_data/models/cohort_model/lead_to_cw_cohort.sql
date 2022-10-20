@@ -43,6 +43,7 @@ WITH base AS (
             ELSE null
         END AS cl_date,
         is_won,
+        acv,
         channel_lead_creation,
         medium_lead_creation,
         source_lead_creation,

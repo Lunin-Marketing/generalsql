@@ -141,6 +141,9 @@ WITH ao_combined AS (
         ao_combined.action_time,
         ao_combined.action_day,
 
+    --Opportunity Information
+        lead_to_cw_cohort.acv,
+
     --Touchpoint Information
         ao_combined.action,
         ao_combined.asset_id,
@@ -152,13 +155,7 @@ WITH ao_combined AS (
         ao_combined.referral_url,
         ao_combined.event_id,
         ao_combined.asset_type,
-        --touchpoint_position,
-
-    --Touchpoint Positions
-        ft_position,
-        lt_position,
-        oc_position,
-        lc_position,
+        CONCAT_WS(',',first_touch.ft_position,lead_creation.lc_position,opportunity_creation.oc_position,last_touch.lt_position) AS touchpoint_position,
 
     --Touchpoint Weights
         final_prep.first_touch_weight,
@@ -167,7 +164,16 @@ WITH ao_combined AS (
         final_prep.u_shaped_weight,
         final_prep.w_shaped_weight,
         final_prep.full_path_weight,
-        final_prep.linear_weight
+        final_prep.linear_weight,
+
+    --Touchpoint ACV Weights
+        lead_to_cw_cohort.acv*final_prep.first_touch_weight AS first_touch_acv,
+        lead_to_cw_cohort.acv*final_prep.lead_creation_weight AS lead_creation_acv,
+        lead_to_cw_cohort.acv*final_prep.opp_creation_weight AS opp_creation_acv,
+        lead_to_cw_cohort.acv*final_prep.u_shaped_weight AS u_shaped_acv,
+        lead_to_cw_cohort.acv*final_prep.w_shaped_weight AS w_shaped_acv,
+        lead_to_cw_cohort.acv*final_prep.full_path_weight AS full_path_acv,
+        lead_to_cw_cohort.acv*final_prep.linear_weight AS linear_acv
     FROM ao_combined
     LEFT JOIN final_prep ON
     ao_combined.touchpoint_id=final_prep.touchpoint_id

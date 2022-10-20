@@ -24,7 +24,14 @@ WITH emails AS (
         action_time,
         action_day,
         clicked_url,
-        clickthrough_link_name
+        clickthrough_link_name,
+    
+    --Attribution Attributes
+        campaign,
+        channel,
+        content,
+        medium,
+        source
     FROM "acton"."dbt_actonmarketing"."ao_emails_xf"
 
 ), forms AS (
@@ -46,6 +53,13 @@ WITH emails AS (
         action_day,
         referral_url,
 
+    --Attribution Attributes
+        -- campaign,
+        -- channel,
+        -- content,
+        -- medium,
+        -- source
+
     --Other Data
         ip_address,
         cookie_id
@@ -66,6 +80,13 @@ WITH emails AS (
         clicked_url,
         clickthrough_link_name,
         referral_url,
+
+        --Attribution Attributes
+        campaign,
+        channel,
+        content,
+        medium,
+        source,
 
     -- Action Data
         action,
@@ -101,6 +122,27 @@ WITH emails AS (
         ip_address,
         email_domain
     FROM "acton"."dbt_actonmarketing"."ao_media_xf"
+
+), tasks AS (
+
+    SELECT
+    --IDs
+        md5(cast(coalesce(cast(activity_date as TEXT), '') || '-' || coalesce(cast(task_id as TEXT), '') || '-' || coalesce(cast(email as TEXT), '') as TEXT)) AS touchpoint_id,
+        task_id,
+        person_id,
+        owner_id,
+        account_id,
+        email,
+
+    --Task Data
+        task_subject,
+        activity_date,
+        task_status,
+        task_type,
+        is_closed,
+        task_created_date,
+        close_date
+    FROM "acton"."dbt_actonmarketing"."task_source_xf"
 
 ), webinars AS (
 
@@ -138,6 +180,13 @@ WITH emails AS (
         referral_url,
         visitor_type,
         url_path,
+
+    --Attribution Attributes
+        campaign,
+        channel,
+        content,
+        medium,
+        source,
         
     -- Action Data
         action,
@@ -164,6 +213,11 @@ WITH emails AS (
         subject_line,
         from_address,
         clicked_url,
+        campaign,
+        channel,
+        content,
+        medium,
+        source,
         clickthrough_link_name,
         null AS referral_url,
         null AS event_id,
@@ -181,6 +235,11 @@ WITH emails AS (
         null AS subject_line,
         null AS from_address,
         null AS clicked_url,
+        null AS campaign,
+        null AS channel,
+        null AS content,
+        null AS medium,
+        null AS source,
         null AS clickthrough_link_name,
         referral_url,
         null AS event_id,
@@ -198,6 +257,11 @@ WITH emails AS (
         null AS subject_line,
         null AS from_address,
         clicked_url,
+        campaign,
+        channel,
+        content,
+        medium,
+        source,
         clickthrough_link_name,
         referral_url,
         null AS event_id,
@@ -215,11 +279,38 @@ WITH emails AS (
         null AS subject_line,
         null AS from_address,
         null AS clicked_url,
+        null AS campaign,
+        null AS channel,
+        null AS content,
+        null AS medium,
+        null AS source,
         null AS clickthrough_link_name,
         null AS referral_url,
         null AS event_id,
         'media' AS asset_type
     FROM media
+    UNION ALL
+    SELECT
+        touchpoint_id,
+        task_type AS action,
+        activity_date::timestamp AS action_time,
+        activity_date AS action_day,
+        task_id AS asset_id,
+        email,
+        task_subject AS asset_title,
+        null AS subject_line,
+        null AS from_address,
+        null AS clicked_url,
+        null AS campaign,
+        null AS channel,
+        null AS content,
+        null AS medium,
+        null AS source,
+        null AS clickthrough_link_name,
+        null AS referral_url,
+        null AS event_id,
+        'task' AS asset_type   
+    FROM tasks
     UNION ALL
     SELECT
         touchpoint_id,
@@ -232,6 +323,11 @@ WITH emails AS (
         null AS subject_line,
         null AS from_address,
         null AS clicked_url,
+        null AS campaign,
+        null AS channel,
+        null AS content,
+        null AS medium,
+        null AS source,
         null AS clickthrough_link_name,
         null AS referral_url,
         event_id,
@@ -249,6 +345,11 @@ WITH emails AS (
         null AS subject_line,
         null AS from_address,
         null AS clicked_url,
+        campaign,
+        channel,
+        content,
+        medium,
+        source,
         null AS clickthrough_link_name,
         referral_url,
         null AS event_id,
