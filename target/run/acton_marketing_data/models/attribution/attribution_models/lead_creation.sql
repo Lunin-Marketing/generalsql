@@ -78,7 +78,7 @@ SELECT
     referral_url,
     event_id,
     asset_type,
-    true AS lc_position,
+    'LC' AS lc_position,
     1 AS lead_creation_weight,
     .5 AS u_shaped_weight,
     .3 AS w_shaped_weight,

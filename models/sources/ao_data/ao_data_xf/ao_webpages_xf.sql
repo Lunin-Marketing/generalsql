@@ -10,6 +10,11 @@ SELECT
     referral_url,
     visitor_type,
     url_path_info AS url_path,
+    SPLIT_PART(SPLIT_PART(page_url,'utm_campaign=',2),'&',1) AS campaign,
+    SPLIT_PART(SPLIT_PART(page_url,'utm_channel=',2),'&',1) AS channel,
+    SPLIT_PART(SPLIT_PART(page_url,'utm_source=',2),'&',1) AS source,
+    SPLIT_PART(SPLIT_PART(page_url,'utm_medium=',2),'&',1) AS medium,
+    SPLIT_PART(SPLIT_PART(page_url,'utm_content=',2),'&',1) AS content,
     
 -- Action Data
     action,

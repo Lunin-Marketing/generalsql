@@ -11,7 +11,9 @@ SELECT
     form_title,
 
 --Action Attributes
-    action,
+    CASE
+        WHEN action IN ('INSERT','UPDATE') THEN 'SUBMIT'
+    END AS action,
     action_time,
     action_day,
     referral_url,

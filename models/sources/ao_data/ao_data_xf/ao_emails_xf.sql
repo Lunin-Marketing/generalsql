@@ -16,9 +16,14 @@ SELECT
     action,
     action_time,
     action_day,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_campaign=',2),'&',1) AS campaign,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_channel=',2),'&',1) AS channel,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_source=',2),'&',1) AS source,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_medium=',2),'&',1) AS medium,
+    SPLIT_PART(SPLIT_PART(clicked_url,'utm_content=',2),'&',1) AS content,
     clicked_url,
     clickthrough_link_name
 FROM {{ref('ao_emails')}}
-WHERE action != 'SENT'
+WHERE action = 'CLICKED'
 AND recipient_e_mail IS NOT null
 AND recipient_e_mail NOT LIKE 'unknown%'

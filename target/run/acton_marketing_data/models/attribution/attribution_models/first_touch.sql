@@ -60,7 +60,7 @@ SELECT
     referral_url,
     event_id,
     asset_type,
-    true AS ft_position,
+    'FT' AS ft_position,
     1 AS first_touch_weight,
     .5 AS u_shaped_weight,
     .3 AS w_shaped_weight,

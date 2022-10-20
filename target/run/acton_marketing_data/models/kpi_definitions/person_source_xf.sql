@@ -42,7 +42,10 @@ SELECT
     lead_score,
     firmographic_demographic_lead_score,
     no_longer_with_company,
-    is_hand_raiser,
+    CASE
+        WHEN is_hand_raiser = true THEN 'Yes'
+        ELSE 'No'
+    END AS is_hand_raiser,
     created_by_name,
 
     --Attribution Data
@@ -116,7 +119,10 @@ SELECT
     lead_score,
     firmographic_demographic_lead_score,
     is_no_longer_with_company,
-    is_hand_raiser,
+    CASE
+        WHEN is_hand_raiser = true THEN 'Yes'
+        ELSE 'No'
+    END AS is_hand_raiser,
     created_by_name,
 
     --Attribution Data
