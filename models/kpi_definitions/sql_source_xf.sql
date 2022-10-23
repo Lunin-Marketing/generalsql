@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-SELECT
+SELECT DISTINCT
     opportunity_id AS sql_id,
     opportunity_name,
     opp_source_xf.account_name,
@@ -25,7 +25,8 @@ SELECT
     opp_source_xf.industry,
     opp_source_xf.industry_bucket,
     channel_bucket,
-    opp_source_xf.opp_offer_asset_name_lead_creation
+    opp_source_xf.opp_offer_asset_name_lead_creation,
+    acv_deal_size_usd AS acv
 FROM {{ref('opp_source_xf')}}
 LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
