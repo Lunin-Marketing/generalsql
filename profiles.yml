@@ -1,0 +1,16 @@
+config:
+    send_anonymous_usage_stats: False
+    use_colors: True
+
+deployment:
+  target: postgres
+  outputs:
+    postgres:
+      type: postgres
+      host: "actonmarketing3.ccpllfcuzumj.us-west-2.rds.amazonaws.com"
+      user: "postgres"
+      pass: "Acton123!"
+      port: "5432"
+      dbname: "acton"
+      schema: "Postgres"
+      threads: 5
