@@ -36,7 +36,7 @@ WITH base AS (
         referral_url,
         event_id,
         asset_type,
-        ROW_NUMBER() OVER (PARTITION BY base.email ORDER BY action_time ASC ) AS touchpoint_number
+        ROW_NUMBER() OVER (PARTITION BY cohort.opportunity_id ORDER BY action_time ASC ) AS touchpoint_number
     FROM base
     LEFT JOIN {{ref('lead_to_cw_cohort')}} cohort ON
     base.email=cohort.email

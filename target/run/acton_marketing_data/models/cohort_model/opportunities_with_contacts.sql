@@ -71,7 +71,7 @@ SELECT DISTINCT
     opp_base.implement_date,
     opp_base.close_date,
     opp_base.stage_name,
-    opp_base.acv,
+    opp_base.acv_deal_size_usd AS acv,
     opp_base.opp_lead_source,
     opp_base.type,
     opp_base.is_closed,

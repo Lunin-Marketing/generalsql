@@ -115,8 +115,8 @@ WITH ao_combined AS (
         w_shaped_weight,
         full_path_weight,
         linear_weight
-    FROM unioned_final
-    LEFT JOIN linear_final ON
+    FROM linear_final
+    LEFT JOIN unioned_final ON
     unioned_final.touchpoint_id=linear_final.touchpoint_id
 
 ), final AS (
