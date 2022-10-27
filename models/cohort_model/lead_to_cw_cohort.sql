@@ -57,14 +57,50 @@ WITH base AS (
         is_hand_raiser,
         is_current_customer,
         is_mql,
+        CASE
+            WHEN is_mql = 1 THEN person_id
+            ELSE null
+        END AS mql_id,
         is_sal,
+        CASE
+            WHEN is_sal = 1 THEN person_id
+            ELSE null
+        END AS sal_id,
         is_sql,
+        CASE
+            WHEN is_sql = 1 THEN opportunity_id
+            ELSE null
+        END AS sql_id,
         is_sqo,
+        CASE
+            WHEN is_sqo = 1 THEN opportunity_id
+            ELSE null
+        END AS sqo_id,
         is_demo,
+        CASE
+            WHEN is_demo = 1 THEN opportunity_id
+            ELSE null
+        END AS demo_id,
         is_voc,
+        CASE
+            WHEN is_voc = 1 THEN opportunity_id
+            ELSE null
+        END AS voc_id,
         is_closing,
+        CASE
+            WHEN is_closing = 1 THEN opportunity_id
+            ELSE null
+        END AS closing_id,
         is_cl,
-        is_cw
+        CASE
+            WHEN is_cl = 1 THEN opportunity_id
+            ELSE null
+        END AS cl_id,
+        is_cw,
+        CASE
+            WHEN is_cw = 1 THEN opportunity_id
+            ELSE null
+        END AS cw_id
     FROM base
 
 ), final AS (
