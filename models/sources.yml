@@ -17,6 +17,7 @@ sources:
       - name: opportunity
       - name: opportunity_field_history
       - name: opportunity_line_item
+      - name: opportunity_contact_role
       - name: product_2
       - name: task
       - name: user

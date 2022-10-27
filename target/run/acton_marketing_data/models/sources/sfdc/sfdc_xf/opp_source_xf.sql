@@ -482,6 +482,9 @@ FROM "acton"."salesforce"."opportunity"
 )
 
 SELECT DISTINCT
-*
+final.*,
+contact_role_contact_id
 FROM final
+LEFT JOIN "acton"."dbt_actonmarketing"."contact_role_xf" ON
+final.opportunity_id=contact_role_xf.contact_role_opportunity_id
   );

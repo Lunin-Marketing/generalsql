@@ -7,10 +7,10 @@ deployment:
   outputs:
     postgres:
       type: postgres
-      host: "actonmarketing3.ccpllfcuzumj.us-west-2.rds.amazonaws.com"
-      user: "postgres"
-      pass: "Acton123!"
-      port: "5432"
-      dbname: "acton"
+      host: "{{ env_var('DBT_HOST') }}"
+      user: "{{ env_var('DBT_USER') }}"
+      pass: "{{ env_var('DBT_PASSWORD') }}"
+      port: "{{ env_var('DBT_PORT') }}"
+      dbname: "{{ env_var('DBT_DATABASE') }}"
       schema: "Postgres"
       threads: 5

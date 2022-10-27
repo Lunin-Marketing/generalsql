@@ -17,6 +17,7 @@ SELECT
     global_region,
     company_size_rev,
     lead_source,
+    lead_score,
     segment,
     industry,
     industry_bucket,
