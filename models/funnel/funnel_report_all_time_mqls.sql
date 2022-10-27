@@ -11,6 +11,7 @@ WITH base AS (
         first_name,
         last_name,
         title,
+        lead_score,
         person_status,
         country,
         is_hand_raiser,
