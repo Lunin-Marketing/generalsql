@@ -2,29 +2,30 @@
 
 WITH base AS (
     SELECT DISTINCT
+        person_source_xf.person_id,
         channel_lead_creation,
         medium_lead_creation,
         source_lead_creation,
-        CASE 
-            WHEN LOWER(channel_lead_creation) = 'organic' THEN 'Organic'
-            WHEN LOWER(channel_lead_creation) IS null THEN 'Unknown'
-            WHEN LOWER(channel_lead_creation) = 'social' AND LOWER(medium_lead_creation) = 'social-organic' THEN 'Social - Organic'
-            WHEN LOWER(channel_lead_creation) = 'social' AND LOWER(medium_lead_creation) = 'social-paid' THEN 'Paid Social'
-            WHEN LOWER(channel_lead_creation) = 'ppc' THEN 'PPC/Paid Search'
-            WHEN LOWER(channel_lead_creation) = 'email' AND LOWER(source_lead_creation) like '%act-on%' THEN 'Paid Email' 
-            WHEN LOWER(channel_lead_creation) = 'ppl' AND LOWER(medium_lead_creation) = 'syndication partner' THEN 'PPL'
-            WHEN LOWER(channel_lead_creation) IN ('prospecting','ppl') AND LOWER(medium_lead_creation) = 'intent partner' THEN 'Intent Partners'
-            WHEN LOWER(channel_lead_creation) = 'event' THEN 'Events and Trade Shows'
-            WHEN LOWER(channel_lead_creation) = 'partner' THEN 'Partners'
-            ELSE 'Other'
-        END AS channel_bucket
-    FROM "acton"."dbt_actonmarketing"."lead_source_xf"
+        offer_asset_name_lead_creation,
+        offer_asset_topic_lead_creation,
+        channel_bucket,
+        task_subject,
+        task_type,
+        task_created_date
+    FROM "acton"."dbt_actonmarketing"."person_source_xf"
+    LEFT JOIN "acton"."dbt_actonmarketing"."task_source_xf" ON
+    person_source_xf.person_id=task_source_xf.person_id
+    WHERE mql_most_recent_date >= '2022-10-01'
+    AND channel_bucket IN ('Other','Unknown')
+    AND channel_lead_creation IS null
+    AND medium_lead_creation IS null
+    AND source_lead_creation IS null
+    AND offer_asset_name_lead_creation IS null
+    AND offer_asset_topic_lead_creation IS null
+    
 
 )
 
 SELECT 
-    channel_lead_creation,
-    medium_lead_creation,
-    source_lead_creation
+    person_id AS leads
 FROM base
-WHERE channel_bucket = 'Other'

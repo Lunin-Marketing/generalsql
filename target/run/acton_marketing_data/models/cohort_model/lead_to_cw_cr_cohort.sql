@@ -52,7 +52,7 @@ WITH base AS (
         person_offer_asset_subtype_lead_creation,
         person_offer_asset_topic_lead_creation,
         person_offer_asset_type_lead_creation,
-        person_offer_asset_name_lead_creation
+        person_offer_asset_name_lead_creation,
         stage_name,
         opp_lead_source,
         opp_segment,
