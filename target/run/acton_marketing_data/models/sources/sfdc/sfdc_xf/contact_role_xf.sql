@@ -19,6 +19,7 @@ FROM "acton"."salesforce"."opportunity_contact_role"
         END AS contact_role,
         is_primary AS contact_role_is_primary
     FROM base
+    WHERE base.is_deleted = 'False'
 
 )
 

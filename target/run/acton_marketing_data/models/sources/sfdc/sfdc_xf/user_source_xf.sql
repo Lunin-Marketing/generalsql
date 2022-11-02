@@ -38,4 +38,5 @@ FROM "acton"."salesforce"."user"
         my_territory_c AS user_territory,
         photo_c AS user_photo
 FROM base
+WHERE base.is_deleted = 'False'
   );
