@@ -181,6 +181,7 @@ FROM {{ source('salesforce', 'opportunity') }}
     LEFT JOIN {{ref('user_source_xf')}} sdr ON
     account.sdr_c=sdr.user_id
     {{dbt_utils.group_by(n=108) }}
+    WHERE base.is_deleted = 'False'
 
 ), intermediate_acv_formula AS (
 

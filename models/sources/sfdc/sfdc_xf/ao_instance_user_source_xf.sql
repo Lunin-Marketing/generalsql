@@ -29,6 +29,7 @@ FROM {{ source('salesforce', 'act_on_instance_user_c') }}
     FROM base
     LEFT JOIN {{ref('ao_instance_source_xf')}} ON
     base.act_on_instance_c=ao_instance_source_xf.ao_instance_id
+    WHERE base.is_deleted = 'False'
     
 )
 

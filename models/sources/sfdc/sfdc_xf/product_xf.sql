@@ -19,6 +19,7 @@ WITH base AS (
         sbqq_subscription_type_c AS sbqq_subscription_type,
         product_category_c AS product_category
     FROM base
+    WHERE base.is_deleted = 'False'
 
 )
 

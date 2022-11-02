@@ -24,6 +24,7 @@ FROM {{ source('salesforce', 'campaign_member') }}
         DATE_TRUNC('day',base.first_responded_date)::Date AS campaign_member_first_responded_date,
         is_deleted AS is_deleted_campaign_member
     FROM base
+    WHERE base.is_deleted = 'False'
 
 )
 
