@@ -31,6 +31,7 @@ FROM "acton"."salesforce"."opportunity_line_item"
         sbqq_parent_id_c AS sbqq_parent_id,
         opp_product_family_text_c AS product_family
     FROM base
+    WHERE base.is_deleted = 'False'
 
 )
 

@@ -36,6 +36,7 @@ CASE
     ELSE 0
 END AS arr_loss_amount
 FROM base
+WHERE base.is_deleted = 'False'
 
 )
 
