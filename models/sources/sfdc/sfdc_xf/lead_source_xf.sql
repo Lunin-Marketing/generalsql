@@ -82,8 +82,10 @@ FROM {{ source('salesforce', 'lead') }}
         ft_utm_campaign_c AS campaign_first_touch,
         channel_lead_creation_c AS lead_channel_forecast,
         email_bounced_reason,
+        email_bounced_reason_c AS email_bounced_reason_new,
         legitimate_basis_c AS legitimate_basis,
         email_bounced_date,
+        email_bounced_date_c AS email_bounced_date_new,
         source_lead_creation_c AS source_lead_creation,
         campaign_lead_creation_c AS campaign_lead_creation,
         firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
@@ -134,11 +136,15 @@ FROM {{ source('salesforce', 'lead') }}
 )
 
 SELECT 
-final.*,
-CASE
-    WHEN global_region IN ('EUROPE','ROW','AUNZ') THEN 'EMEA'
-    WHEN company_size_rev IN ('SMB') OR company_size_rev IS null THEN 'Velocity'
-    WHEN company_size_rev IN ('Mid-Market','Enterprise') THEN 'Upmarket'
-    ELSE null
-END AS segment
+    final.*,
+    CASE
+        WHEN global_region IN ('EUROPE','ROW','AUNZ') THEN 'EMEA'
+        WHEN company_size_rev IN ('SMB') OR company_size_rev IS null THEN 'Velocity'
+        WHEN company_size_rev IN ('Mid-Market','Enterprise') THEN 'Upmarket'
+        ELSE null
+    END AS segment,
+    CASE
+        WHEN lead_status = 'Current Customer' THEN true
+        ELSE False
+    END AS is_current_customer
 FROM final

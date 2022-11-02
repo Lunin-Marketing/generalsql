@@ -73,6 +73,8 @@ FROM {{ source('salesforce', 'contact') }}
         base.firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
         base.last_name, 
         base.data_enrich_company_name_c AS de_account_name,
+        base.email_bounced_date_c AS email_bounced_date_new,
+        base.email_bounced_reason_c AS email_bounced_reason_new,
         DATE_TRUNC('day',date_time_to_working_c)::Date AS working_date,
         account_source_xf.account_owner_id,
         account_source_xf.account_owner_name,
