@@ -14,7 +14,7 @@ WITH base AS (
         owner_name,
         sdr_name,
         close_date,
-        acv,
+        acv_deal_size_usd AS acv,
         CASE
         WHEN account_global_region IS null THEN 'blank'
         ELSE account_global_region
