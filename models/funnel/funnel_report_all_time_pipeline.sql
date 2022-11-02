@@ -3,8 +3,8 @@
 WITH base AS (
 
     SELECT DISTINCT
-        opportunity_id AS sqo_id,
-        CONCAT('https://acton.my.salesforce.com/',opportunity_id) AS sqo_url,
+        opportunity_id AS pipeline_id,
+        CONCAT('https://acton.my.salesforce.com/',opportunity_id) AS pipeline_url,
         discovery_date AS sqo_date,
         created_date AS created_date,
         opp_source_xf.account_name,
@@ -53,7 +53,7 @@ WITH base AS (
 ) , final AS (
 
     SELECT DISTINCT
-        sqo_id,
+        pipeline_id,
         sqo_date,
         created_date,
         opportunity_name,
