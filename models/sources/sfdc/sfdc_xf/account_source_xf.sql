@@ -126,8 +126,9 @@ FROM {{ source('salesforce', 'account') }}
     base.id=opp_source_xf.account_id
     LEFT JOIN {{ref('contract_source_xf')}} ON
     base.current_contract_c=contract_source_xf.contract_id
-    {{dbt_utils.group_by(n=66) }}
     WHERE base.is_deleted = 'False'
+    {{dbt_utils.group_by(n=66) }}
+
 
 )
 
