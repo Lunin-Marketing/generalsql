@@ -10,13 +10,13 @@ WITH base AS (
         sqo_source_xf.opportunity_id AS sqo_id,
         CONCAT('https://acton.my.salesforce.com/',sqo_source_xf.opportunity_id) AS sqo_url,
         sqo_source_xf.discovery_date AS sqo_date,
+        sqo_source_xf.created_date AS created_date,
         account_name,
         opportunity_name,
         stage_name,
         type AS opp_type,
         owner_name,
         sdr_name,
-        created_date,
         close_date,
         acv,
         CASE
@@ -51,9 +51,10 @@ WITH base AS (
 
 ) , final AS (
 
-    SELECT
+    SELECT DISTINCT
         sqo_id,
         sqo_date,
+        created_date,
         opportunity_name,
         stage_name,
         opp_type,
