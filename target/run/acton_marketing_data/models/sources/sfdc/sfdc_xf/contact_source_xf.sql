@@ -134,6 +134,7 @@ FROM "acton"."salesforce"."contact"
     base.owner_id=user_source_xf.user_id
     LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" creator ON
     base.created_by_id=creator.user_id
+    WHERE base.is_deleted = 'False'
 
 )
 

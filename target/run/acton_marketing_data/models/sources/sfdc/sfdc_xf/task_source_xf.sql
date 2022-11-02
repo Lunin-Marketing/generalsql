@@ -31,6 +31,7 @@ FROM "acton"."salesforce"."task"
         closed_date_c AS close_date
     FROM base
     WHERE who_id IS NOT null
+    AND base.is_deleted = 'False'
 
 ), final AS (
 

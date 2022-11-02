@@ -20,6 +20,7 @@ FROM "acton"."salesforce"."campaign_influence"
         influence AS influence_amount,
         revenue_share
     FROM base
+    WHERE base.is_deleted = 'False'
 
 )
 
