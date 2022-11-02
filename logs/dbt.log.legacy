@@ -25428,3 +25428,594 @@ drop table if exists "acton"."dbt_actonmarketing"."funnel_report_all_time_pipeli
 2022-11-02 13:54:49.335958 (Thread-12643): handling status request
 2022-11-02 13:54:49.336360 (Thread-12643): 13:54:49  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbf180f7a60>]}
 2022-11-02 13:54:49.336841 (Thread-12643): sending response (<Response 1651 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 13:55:06.968934 (Thread-12644): 13:55:06  Unable to do partial parsing because config vars, config profile, or config target have changed
+2022-11-02 13:55:06.969344 (Thread-12644): 13:55:06  Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbf181c0880>]}
+2022-11-02 13:55:07.164194 (Thread-12645): handling status request
+2022-11-02 13:55:07.164593 (Thread-12645): 13:55:07  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbfb80d9430>]}
+2022-11-02 13:55:07.165063 (Thread-12645): sending response (<Response 180 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 13:55:07.557079 (Thread-12644): 13:55:07  Parsing macros/common/refresh_external_table.sql
+2022-11-02 13:55:07.558701 (Thread-12644): 13:55:07  Parsing macros/common/get_external_build_plan.sql
+2022-11-02 13:55:07.559887 (Thread-12644): 13:55:07  Parsing macros/common/create_external_table.sql
+2022-11-02 13:55:07.560988 (Thread-12644): 13:55:07  Parsing macros/common/stage_external_sources.sql
+2022-11-02 13:55:07.571429 (Thread-12644): 13:55:07  Parsing macros/catalog.sql
+2022-11-02 13:55:07.573689 (Thread-12644): 13:55:07  Parsing macros/relations.sql
+2022-11-02 13:55:07.575004 (Thread-12644): 13:55:07  Parsing macros/adapters.sql
+2022-11-02 13:55:07.600906 (Thread-12644): 13:55:07  Parsing macros/materializations/snapshot_merge.sql
+2022-11-02 13:55:07.602535 (Thread-12644): 13:55:07  Parsing macros/utils/datediff.sql
+2022-11-02 13:55:07.608593 (Thread-12644): 13:55:07  Parsing macros/utils/any_value.sql
+2022-11-02 13:55:07.609109 (Thread-12644): 13:55:07  Parsing macros/utils/last_day.sql
+2022-11-02 13:55:07.610319 (Thread-12644): 13:55:07  Parsing macros/utils/split_part.sql
+2022-11-02 13:55:07.611350 (Thread-12644): 13:55:07  Parsing macros/utils/dateadd.sql
+2022-11-02 13:55:07.612015 (Thread-12644): 13:55:07  Parsing macros/utils/listagg.sql
+2022-11-02 13:55:07.613430 (Thread-12644): 13:55:07  Parsing macros/etc/statement.sql
+2022-11-02 13:55:07.617659 (Thread-12644): 13:55:07  Parsing macros/etc/datetime.sql
+2022-11-02 13:55:07.625641 (Thread-12644): 13:55:07  Parsing macros/adapters/apply_grants.sql
+2022-11-02 13:55:07.638656 (Thread-12644): 13:55:07  Parsing macros/adapters/freshness.sql
+2022-11-02 13:55:07.641472 (Thread-12644): 13:55:07  Parsing macros/adapters/columns.sql
+2022-11-02 13:55:07.650575 (Thread-12644): 13:55:07  Parsing macros/adapters/relation.sql
+2022-11-02 13:55:07.664435 (Thread-12644): 13:55:07  Parsing macros/adapters/schema.sql
+2022-11-02 13:55:07.666610 (Thread-12644): 13:55:07  Parsing macros/adapters/persist_docs.sql
+2022-11-02 13:55:07.670926 (Thread-12644): 13:55:07  Parsing macros/adapters/metadata.sql
+2022-11-02 13:55:07.677674 (Thread-12644): 13:55:07  Parsing macros/adapters/indexes.sql
+2022-11-02 13:55:07.680272 (Thread-12644): 13:55:07  Parsing macros/get_custom_name/get_custom_database.sql
+2022-11-02 13:55:07.681797 (Thread-12644): 13:55:07  Parsing macros/get_custom_name/get_custom_schema.sql
+2022-11-02 13:55:07.684153 (Thread-12644): 13:55:07  Parsing macros/get_custom_name/get_custom_alias.sql
+2022-11-02 13:55:07.686141 (Thread-12644): 13:55:07  Parsing macros/materializations/hooks.sql
+2022-11-02 13:55:07.690466 (Thread-12644): 13:55:07  Parsing macros/materializations/configs.sql
+2022-11-02 13:55:07.692932 (Thread-12644): 13:55:07  Parsing macros/materializations/seeds/seed.sql
+2022-11-02 13:55:07.699377 (Thread-12644): 13:55:07  Parsing macros/materializations/seeds/helpers.sql
+2022-11-02 13:55:07.716429 (Thread-12644): 13:55:07  Parsing macros/materializations/tests/test.sql
+2022-11-02 13:55:07.720643 (Thread-12644): 13:55:07  Parsing macros/materializations/tests/helpers.sql
+2022-11-02 13:55:07.722340 (Thread-12644): 13:55:07  Parsing macros/materializations/tests/where_subquery.sql
+2022-11-02 13:55:07.724088 (Thread-12644): 13:55:07  Parsing macros/materializations/models/view/helpers.sql
+2022-11-02 13:55:07.725367 (Thread-12644): 13:55:07  Parsing macros/materializations/models/view/create_or_replace_view.sql
+2022-11-02 13:55:07.728501 (Thread-12644): 13:55:07  Parsing macros/materializations/models/view/create_view_as.sql
+2022-11-02 13:55:07.730705 (Thread-12644): 13:55:07  Parsing macros/materializations/models/view/view.sql
+2022-11-02 13:55:07.735978 (Thread-12644): 13:55:07  Parsing macros/materializations/models/incremental/column_helpers.sql
+2022-11-02 13:55:07.740190 (Thread-12644): 13:55:07  Parsing macros/materializations/models/incremental/incremental.sql
+2022-11-02 13:55:07.748796 (Thread-12644): 13:55:07  Parsing macros/materializations/models/incremental/on_schema_change.sql
+2022-11-02 13:55:07.762878 (Thread-12644): 13:55:07  Parsing macros/materializations/models/incremental/is_incremental.sql
+2022-11-02 13:55:07.764351 (Thread-12644): 13:55:07  Parsing macros/materializations/models/incremental/merge.sql
+2022-11-02 13:55:07.780026 (Thread-12644): 13:55:07  Parsing macros/materializations/models/table/create_table_as.sql
+2022-11-02 13:55:07.782905 (Thread-12644): 13:55:07  Parsing macros/materializations/models/table/table.sql
+2022-11-02 13:55:07.788673 (Thread-12644): 13:55:07  Parsing macros/materializations/snapshots/strategies.sql
+2022-11-02 13:55:07.804730 (Thread-12644): 13:55:07  Parsing macros/materializations/snapshots/snapshot_merge.sql
+2022-11-02 13:55:07.806403 (Thread-12644): 13:55:07  Parsing macros/materializations/snapshots/snapshot.sql
+2022-11-02 13:55:07.824242 (Thread-12644): 13:55:07  Parsing macros/materializations/snapshots/helpers.sql
+2022-11-02 13:55:07.836274 (Thread-12644): 13:55:07  Parsing macros/generic_test_sql/not_null.sql
+2022-11-02 13:55:07.843662 (Thread-12644): 13:55:07  Parsing macros/generic_test_sql/relationships.sql
+2022-11-02 13:55:07.844524 (Thread-12644): 13:55:07  Parsing macros/generic_test_sql/unique.sql
+2022-11-02 13:55:07.845227 (Thread-12644): 13:55:07  Parsing macros/generic_test_sql/accepted_values.sql
+2022-11-02 13:55:07.846541 (Thread-12644): 13:55:07  Parsing macros/utils/intersect.sql
+2022-11-02 13:55:07.847370 (Thread-12644): 13:55:07  Parsing macros/utils/position.sql
+2022-11-02 13:55:07.848479 (Thread-12644): 13:55:07  Parsing macros/utils/escape_single_quotes.sql
+2022-11-02 13:55:07.849534 (Thread-12644): 13:55:07  Parsing macros/utils/safe_cast.sql
+2022-11-02 13:55:07.850773 (Thread-12644): 13:55:07  Parsing macros/utils/cast_bool_to_text.sql
+2022-11-02 13:55:07.851864 (Thread-12644): 13:55:07  Parsing macros/utils/datediff.sql
+2022-11-02 13:55:07.853105 (Thread-12644): 13:55:07  Parsing macros/utils/concat.sql
+2022-11-02 13:55:07.860622 (Thread-12644): 13:55:07  Parsing macros/utils/length.sql
+2022-11-02 13:55:07.861574 (Thread-12644): 13:55:07  Parsing macros/utils/any_value.sql
+2022-11-02 13:55:07.862506 (Thread-12644): 13:55:07  Parsing macros/utils/data_types.sql
+2022-11-02 13:55:07.868228 (Thread-12644): 13:55:07  Parsing macros/utils/right.sql
+2022-11-02 13:55:07.869337 (Thread-12644): 13:55:07  Parsing macros/utils/last_day.sql
+2022-11-02 13:55:07.871096 (Thread-12644): 13:55:07  Parsing macros/utils/split_part.sql
+2022-11-02 13:55:07.873102 (Thread-12644): 13:55:07  Parsing macros/utils/date_trunc.sql
+2022-11-02 13:55:07.874143 (Thread-12644): 13:55:07  Parsing macros/utils/literal.sql
+2022-11-02 13:55:07.875065 (Thread-12644): 13:55:07  Parsing macros/utils/hash.sql
+2022-11-02 13:55:07.876150 (Thread-12644): 13:55:07  Parsing macros/utils/except.sql
+2022-11-02 13:55:07.876991 (Thread-12644): 13:55:07  Parsing macros/utils/bool_or.sql
+2022-11-02 13:55:07.877917 (Thread-12644): 13:55:07  Parsing macros/utils/replace.sql
+2022-11-02 13:55:07.879117 (Thread-12644): 13:55:07  Parsing macros/utils/dateadd.sql
+2022-11-02 13:55:07.880509 (Thread-12644): 13:55:07  Parsing macros/utils/listagg.sql
+2022-11-02 13:55:07.882740 (Thread-12644): 13:55:07  Parsing tests/generic/builtin.sql
+2022-11-02 13:55:07.885622 (Thread-12644): 13:55:07  Parsing macros/sql/pivot.sql
+2022-11-02 13:55:07.889499 (Thread-12644): 13:55:07  Parsing macros/sql/star.sql
+2022-11-02 13:55:07.893057 (Thread-12644): 13:55:07  Parsing macros/sql/get_table_types_sql.sql
+2022-11-02 13:55:07.894563 (Thread-12644): 13:55:07  Parsing macros/sql/deduplicate.sql
+2022-11-02 13:55:07.901180 (Thread-12644): 13:55:07  Parsing macros/sql/surrogate_key.sql
+2022-11-02 13:55:07.904568 (Thread-12644): 13:55:07  Parsing macros/sql/get_query_results_as_dict.sql
+2022-11-02 13:55:07.906763 (Thread-12644): 13:55:07  Parsing macros/sql/date_spine.sql
+2022-11-02 13:55:07.910657 (Thread-12644): 13:55:07  Parsing macros/sql/get_column_values.sql
+2022-11-02 13:55:07.915892 (Thread-12644): 13:55:07  Parsing macros/sql/groupby.sql
+2022-11-02 13:55:07.917199 (Thread-12644): 13:55:07  Parsing macros/sql/get_tables_by_pattern_sql.sql
+2022-11-02 13:55:07.923451 (Thread-12644): 13:55:07  Parsing macros/sql/nullcheck_table.sql
+2022-11-02 13:55:07.925050 (Thread-12644): 13:55:07  Parsing macros/sql/get_tables_by_prefix_sql.sql
+2022-11-02 13:55:07.926646 (Thread-12644): 13:55:07  Parsing macros/sql/get_relations_by_pattern.sql
+2022-11-02 13:55:07.930283 (Thread-12644): 13:55:07  Parsing macros/sql/get_relations_by_prefix.sql
+2022-11-02 13:55:07.933496 (Thread-12644): 13:55:07  Parsing macros/sql/safe_add.sql
+2022-11-02 13:55:07.935067 (Thread-12644): 13:55:07  Parsing macros/sql/haversine_distance.sql
+2022-11-02 13:55:07.940529 (Thread-12644): 13:55:07  Parsing macros/sql/unpivot.sql
+2022-11-02 13:55:07.947956 (Thread-12644): 13:55:07  Parsing macros/sql/generate_series.sql
+2022-11-02 13:55:07.952010 (Thread-12644): 13:55:07  Parsing macros/sql/width_bucket.sql
+2022-11-02 13:55:07.956839 (Thread-12644): 13:55:07  Parsing macros/sql/nullcheck.sql
+2022-11-02 13:55:07.958433 (Thread-12644): 13:55:07  Parsing macros/sql/union.sql
+2022-11-02 13:55:07.969384 (Thread-12644): 13:55:07  Parsing macros/sql/get_filtered_columns_in_relation.sql
+2022-11-02 13:55:07.972065 (Thread-12644): 13:55:07  Parsing macros/materializations/insert_by_period_materialization.sql
+2022-11-02 13:55:07.995542 (Thread-12644): 13:55:07  Parsing macros/jinja_helpers/pretty_time.sql
+2022-11-02 13:55:07.996782 (Thread-12644): 13:55:07  Parsing macros/jinja_helpers/_is_relation.sql
+2022-11-02 13:55:07.997863 (Thread-12644): 13:55:07  Parsing macros/jinja_helpers/slugify.sql
+2022-11-02 13:55:07.999002 (Thread-12644): 13:55:07  Parsing macros/jinja_helpers/_is_ephemeral.sql
+2022-11-02 13:55:08.000847 (Thread-12644): 13:55:08  Parsing macros/jinja_helpers/log_info.sql
+2022-11-02 13:55:08.001958 (Thread-12644): 13:55:08  Parsing macros/jinja_helpers/pretty_log_format.sql
+2022-11-02 13:55:08.003038 (Thread-12644): 13:55:08  Parsing macros/web/get_url_parameter.sql
+2022-11-02 13:55:08.004528 (Thread-12644): 13:55:08  Parsing macros/web/get_url_path.sql
+2022-11-02 13:55:08.006791 (Thread-12644): 13:55:08  Parsing macros/web/get_url_host.sql
+2022-11-02 13:55:08.008560 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/array_concat.sql
+2022-11-02 13:55:08.010578 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/current_timestamp.sql
+2022-11-02 13:55:08.014407 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/array_append.sql
+2022-11-02 13:55:08.016975 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/array_construct.sql
+2022-11-02 13:55:08.020698 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/cast_array_to_string.sql
+2022-11-02 13:55:08.024106 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/split_part.sql
+2022-11-02 13:55:08.026334 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/escape_single_quotes.sql
+2022-11-02 13:55:08.028138 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/length.sql
+2022-11-02 13:55:08.029622 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/right.sql
+2022-11-02 13:55:08.031176 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/hash.sql
+2022-11-02 13:55:08.032566 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/any_value.sql
+2022-11-02 13:55:08.033941 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/replace.sql
+2022-11-02 13:55:08.035489 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/cast_bool_to_text.sql
+2022-11-02 13:55:08.036850 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/bool_or.sql
+2022-11-02 13:55:08.038265 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/concat.sql
+2022-11-02 13:55:08.039666 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/xdb_deprecation_warning.sql
+2022-11-02 13:55:08.041430 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/identifier.sql
+2022-11-02 13:55:08.043069 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/listagg.sql
+2022-11-02 13:55:08.044911 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/datediff.sql
+2022-11-02 13:55:08.046490 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/dateadd.sql
+2022-11-02 13:55:08.048132 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/datatypes.sql
+2022-11-02 13:55:08.054886 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/position.sql
+2022-11-02 13:55:08.056406 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/literal.sql
+2022-11-02 13:55:08.057763 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/date_trunc.sql
+2022-11-02 13:55:08.059201 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/except.sql
+2022-11-02 13:55:08.060527 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/safe_cast.sql
+2022-11-02 13:55:08.062002 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/last_day.sql
+2022-11-02 13:55:08.063463 (Thread-12644): 13:55:08  Parsing macros/cross_db_utils/deprecated/intersect.sql
+2022-11-02 13:55:08.064794 (Thread-12644): 13:55:08  Parsing macros/generic_tests/expression_is_true.sql
+2022-11-02 13:55:08.066532 (Thread-12644): 13:55:08  Parsing macros/generic_tests/not_constant.sql
+2022-11-02 13:55:08.067778 (Thread-12644): 13:55:08  Parsing macros/generic_tests/sequential_values.sql
+2022-11-02 13:55:08.070582 (Thread-12644): 13:55:08  Parsing macros/generic_tests/not_null_proportion.sql
+2022-11-02 13:55:08.072721 (Thread-12644): 13:55:08  Parsing macros/generic_tests/at_least_one.sql
+2022-11-02 13:55:08.073954 (Thread-12644): 13:55:08  Parsing macros/generic_tests/equality.sql
+2022-11-02 13:55:08.077391 (Thread-12644): 13:55:08  Parsing macros/generic_tests/test_not_null_where.sql
+2022-11-02 13:55:08.078800 (Thread-12644): 13:55:08  Parsing macros/generic_tests/equal_rowcount.sql
+2022-11-02 13:55:08.080439 (Thread-12644): 13:55:08  Parsing macros/generic_tests/not_accepted_values.sql
+2022-11-02 13:55:08.082476 (Thread-12644): 13:55:08  Parsing macros/generic_tests/test_unique_where.sql
+2022-11-02 13:55:08.083890 (Thread-12644): 13:55:08  Parsing macros/generic_tests/mutually_exclusive_ranges.sql
+2022-11-02 13:55:08.092594 (Thread-12644): 13:55:08  Parsing macros/generic_tests/relationships_where.sql
+2022-11-02 13:55:08.094683 (Thread-12644): 13:55:08  Parsing macros/generic_tests/accepted_range.sql
+2022-11-02 13:55:08.097037 (Thread-12644): 13:55:08  Parsing macros/generic_tests/fewer_rows_than.sql
+2022-11-02 13:55:08.098642 (Thread-12644): 13:55:08  Parsing macros/generic_tests/unique_combination_of_columns.sql
+2022-11-02 13:55:08.101383 (Thread-12644): 13:55:08  Parsing macros/generic_tests/recency.sql
+2022-11-02 13:55:08.103028 (Thread-12644): 13:55:08  Parsing macros/generic_tests/cardinality_equality.sql
+2022-11-02 13:55:08.104935 (Thread-12644): 13:55:08  Parsing macros/plugins/bigquery/get_external_build_plan.sql
+2022-11-02 13:55:08.106800 (Thread-12644): 13:55:08  Parsing macros/plugins/bigquery/create_external_table.sql
+2022-11-02 13:55:08.112319 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/refresh_external_table.sql
+2022-11-02 13:55:08.114499 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/get_external_build_plan.sql
+2022-11-02 13:55:08.117749 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/create_external_table.sql
+2022-11-02 13:55:08.122596 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/snowpipe/create_snowpipe.sql
+2022-11-02 13:55:08.124255 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/snowpipe/refresh_snowpipe.sql
+2022-11-02 13:55:08.125911 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/snowpipe/create_empty_table.sql
+2022-11-02 13:55:08.127272 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/snowpipe/get_copy_sql.sql
+2022-11-02 13:55:08.130567 (Thread-12644): 13:55:08  Parsing macros/plugins/snowflake/helpers/is_csv.sql
+2022-11-02 13:55:08.135853 (Thread-12644): 13:55:08  Parsing macros/plugins/spark/refresh_external_table.sql
+2022-11-02 13:55:08.136759 (Thread-12644): 13:55:08  Parsing macros/plugins/spark/get_external_build_plan.sql
+2022-11-02 13:55:08.139244 (Thread-12644): 13:55:08  Parsing macros/plugins/spark/create_external_table.sql
+2022-11-02 13:55:08.143479 (Thread-12644): 13:55:08  Parsing macros/plugins/spark/helpers/recover_partitions.sql
+2022-11-02 13:55:08.144709 (Thread-12644): 13:55:08  Parsing macros/plugins/spark/helpers/dropif.sql
+2022-11-02 13:55:08.145535 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/refresh_external_table.sql
+2022-11-02 13:55:08.154696 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/get_external_build_plan.sql
+2022-11-02 13:55:08.156451 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/create_external_table.sql
+2022-11-02 13:55:08.159507 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/helpers/transaction.sql
+2022-11-02 13:55:08.160062 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/helpers/dropif.sql
+2022-11-02 13:55:08.160892 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/helpers/paths.sql
+2022-11-02 13:55:08.162559 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/helpers/add_partitions.sql
+2022-11-02 13:55:08.165989 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/helpers/is_ext_tbl.sql
+2022-11-02 13:55:08.168214 (Thread-12644): 13:55:08  Parsing macros/plugins/redshift/helpers/render_macro.sql
+2022-11-02 13:55:08.170540 (Thread-12644): 13:55:08  Parsing macros/plugins/sqlserver/get_external_build_plan.sql
+2022-11-02 13:55:08.172536 (Thread-12644): 13:55:08  Parsing macros/plugins/sqlserver/create_external_table.sql
+2022-11-02 13:55:08.175884 (Thread-12644): 13:55:08  Parsing macros/plugins/sqlserver/helpers/dropif.sql
+2022-11-02 13:55:08.176917 (Thread-12644): 13:55:08  Parsing macros/common/refresh_external_table.sql
+2022-11-02 13:55:08.177945 (Thread-12644): 13:55:08  Parsing macros/common/get_external_build_plan.sql
+2022-11-02 13:55:08.178982 (Thread-12644): 13:55:08  Parsing macros/common/create_external_table.sql
+2022-11-02 13:55:08.180017 (Thread-12644): 13:55:08  Parsing macros/common/stage_external_sources.sql
+2022-11-02 13:55:08.189765 (Thread-12644): 13:55:08  Parsing macros/common/helpers/transaction.sql
+2022-11-02 13:55:08.190739 (Thread-12644): 13:55:08  Parsing macros/common/helpers/dropif.sql
+2022-11-02 13:55:08.191766 (Thread-12644): 13:55:08  Parsing macros/get_date_dimension.sql
+2022-11-02 13:55:08.213375 (Thread-12644): 13:55:08  Parsing macros/get_base_dates.sql
+2022-11-02 13:55:08.218252 (Thread-12644): 13:55:08  Parsing macros/calendar_date/week_end.sql
+2022-11-02 13:55:08.220542 (Thread-12644): 13:55:08  Parsing macros/calendar_date/n_weeks_ago.sql
+2022-11-02 13:55:08.228038 (Thread-12644): 13:55:08  Parsing macros/calendar_date/day_of_year.sql
+2022-11-02 13:55:08.229890 (Thread-12644): 13:55:08  Parsing macros/calendar_date/to_unixtimestamp.sql
+2022-11-02 13:55:08.231624 (Thread-12644): 13:55:08  Parsing macros/calendar_date/next_week.sql
+2022-11-02 13:55:08.232491 (Thread-12644): 13:55:08  Parsing macros/calendar_date/yesterday.sql
+2022-11-02 13:55:08.233047 (Thread-12646): handling status request
+2022-11-02 13:55:08.233824 (Thread-12644): 13:55:08  Parsing macros/calendar_date/iso_week_of_year.sql
+2022-11-02 13:55:08.234173 (Thread-12646): 13:55:08  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbf381a6eb0>]}
+2022-11-02 13:55:08.236987 (Thread-12644): 13:55:08  Parsing macros/calendar_date/month_name.sql
+2022-11-02 13:55:08.237470 (Thread-12646): sending response (<Response 180 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 13:55:08.240399 (Thread-12644): 13:55:08  Parsing macros/calendar_date/day_name.sql
+2022-11-02 13:55:08.243955 (Thread-12644): 13:55:08  Parsing macros/calendar_date/next_month_name.sql
+2022-11-02 13:55:08.244742 (Thread-12644): 13:55:08  Parsing macros/calendar_date/date_part.sql
+2022-11-02 13:55:08.246193 (Thread-12644): 13:55:08  Parsing macros/calendar_date/n_days_ago.sql
+2022-11-02 13:55:08.247264 (Thread-12644): 13:55:08  Parsing macros/calendar_date/now.sql
+2022-11-02 13:55:08.249095 (Thread-12644): 13:55:08  Parsing macros/calendar_date/next_month.sql
+2022-11-02 13:55:08.249679 (Thread-12644): 13:55:08  Parsing macros/calendar_date/iso_week_end.sql
+2022-11-02 13:55:08.252055 (Thread-12644): 13:55:08  Parsing macros/calendar_date/n_months_ago.sql
+2022-11-02 13:55:08.252988 (Thread-12644): 13:55:08  Parsing macros/calendar_date/next_month_number.sql
+2022-11-02 13:55:08.253661 (Thread-12644): 13:55:08  Parsing macros/calendar_date/week_of_year.sql
+2022-11-02 13:55:08.255371 (Thread-12644): 13:55:08  Parsing macros/calendar_date/iso_week_start.sql
+2022-11-02 13:55:08.257802 (Thread-12644): 13:55:08  Parsing macros/calendar_date/from_unixtimestamp.sql
+2022-11-02 13:55:08.262945 (Thread-12644): 13:55:08  Parsing macros/calendar_date/convert_timezone.sql
+2022-11-02 13:55:08.267857 (Thread-12644): 13:55:08  Parsing macros/calendar_date/round_timestamp.sql
+2022-11-02 13:55:08.268528 (Thread-12644): 13:55:08  Parsing macros/calendar_date/day_of_month.sql
+2022-11-02 13:55:08.269552 (Thread-12644): 13:55:08  Parsing macros/calendar_date/periods_since.sql
+2022-11-02 13:55:08.270266 (Thread-12644): 13:55:08  Parsing macros/calendar_date/n_months_away.sql
+2022-11-02 13:55:08.271135 (Thread-12644): 13:55:08  Parsing macros/calendar_date/n_days_away.sql
+2022-11-02 13:55:08.271865 (Thread-12644): 13:55:08  Parsing macros/calendar_date/last_week.sql
+2022-11-02 13:55:08.272441 (Thread-12644): 13:55:08  Parsing macros/calendar_date/day_of_week.sql
+2022-11-02 13:55:08.279189 (Thread-12644): 13:55:08  Parsing macros/calendar_date/n_weeks_away.sql
+2022-11-02 13:55:08.280101 (Thread-12644): 13:55:08  Parsing macros/calendar_date/tomorrow.sql
+2022-11-02 13:55:08.280775 (Thread-12644): 13:55:08  Parsing macros/calendar_date/last_month.sql
+2022-11-02 13:55:08.281343 (Thread-12644): 13:55:08  Parsing macros/calendar_date/week_start.sql
+2022-11-02 13:55:08.284059 (Thread-12644): 13:55:08  Parsing macros/calendar_date/last_month_name.sql
+2022-11-02 13:55:08.284801 (Thread-12644): 13:55:08  Parsing macros/calendar_date/today.sql
+2022-11-02 13:55:08.285357 (Thread-12644): 13:55:08  Parsing macros/calendar_date/last_month_number.sql
+2022-11-02 13:55:08.286014 (Thread-12644): 13:55:08  Parsing macros/fiscal_date/get_fiscal_periods.sql
+2022-11-02 13:55:08.287665 (Thread-12644): 13:55:08  Parsing macros/fiscal_date/get_fiscal_year_dates.sql
+2022-11-02 13:55:08.775640 (Thread-12644): 13:55:08  1699: static parser successfully parsed test/test2.sql
+2022-11-02 13:55:08.778117 (Thread-12644): 13:55:08  1603: static parser failed on test/test.sql
+2022-11-02 13:55:08.782868 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on test/test.sql
+2022-11-02 13:55:08.784163 (Thread-12644): 13:55:08  1699: static parser successfully parsed test/test3.sql
+2022-11-02 13:55:08.786189 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_aso.sql
+2022-11-02 13:55:08.788416 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_sqls.sql
+2022-11-02 13:55:08.790350 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_sql2sqo.sql
+2022-11-02 13:55:08.792287 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_mqls.sql
+2022-11-02 13:55:08.794488 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_leads.sql
+2022-11-02 13:55:08.796788 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_mql2sql.sql
+2022-11-02 13:55:08.800196 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_sqo_pipe.sql
+2022-11-02 13:55:08.802312 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_sqos.sql
+2022-11-02 13:55:08.804455 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel_to_target/funnel_to_target_lead2mql.sql
+2022-11-02 13:55:08.807570 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters_industry.sql
+2022-11-02 13:55:08.810583 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_mql2sql_velocity.sql
+2022-11-02 13:55:08.815398 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_mql2sql_velocity model triggered this warning.
+2022-11-02 13:55:08.817051 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_mql2sql_velocity.sql
+2022-11-02 13:55:08.818397 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_l20_velocity_opp.sql
+2022-11-02 13:55:08.823109 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_l20_velocity_opp model triggered this warning.
+2022-11-02 13:55:08.824783 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_l20_velocity_opp.sql
+2022-11-02 13:55:08.826958 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_lost.sql
+2022-11-02 13:55:08.829614 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_sqos_to_target.sql
+2022-11-02 13:55:08.832191 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_sqos.sql
+2022-11-02 13:55:08.835858 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters_date.sql
+2022-11-02 13:55:08.838131 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_pipeline.sql
+2022-11-02 13:55:08.840356 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_asp_to_target.sql
+2022-11-02 13:55:08.842489 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_intrapipe_to_target.sql
+2022-11-02 13:55:08.845004 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_won.sql
+2022-11-02 13:55:08.847034 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_sal2sql_velocity.sql
+2022-11-02 13:55:08.851103 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_sal2sql_velocity model triggered this warning.
+2022-11-02 13:55:08.852521 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_sal2sql_velocity.sql
+2022-11-02 13:55:08.853861 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_cwpipe_to_target.sql
+2022-11-02 13:55:08.856024 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_l20_velocity_opp_annual.sql
+2022-11-02 13:55:08.859850 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_l20_velocity_opp_annual model triggered this warning.
+2022-11-02 13:55:08.861197 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_l20_velocity_opp_annual.sql
+2022-11-02 13:55:08.862340 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_sqo2demo_velocity.sql
+2022-11-02 13:55:08.867272 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_sqo2demo_velocity model triggered this warning.
+2022-11-02 13:55:08.868868 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_sqo2demo_velocity.sql
+2022-11-02 13:55:08.870144 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_voc.sql
+2022-11-02 13:55:08.873141 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters_segment.sql
+2022-11-02 13:55:08.875872 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_clos2cw_velocity.sql
+2022-11-02 13:55:08.880032 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_clos2cw_velocity model triggered this warning.
+2022-11-02 13:55:08.881736 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_clos2cw_velocity.sql
+2022-11-02 13:55:08.883404 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_sqls_to_target.sql
+2022-11-02 13:55:08.886243 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_sals.sql
+2022-11-02 13:55:08.889269 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_sql2sqo_velocity.sql
+2022-11-02 13:55:08.894174 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_sql2sqo_velocity model triggered this warning.
+2022-11-02 13:55:08.896060 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_sql2sqo_velocity.sql
+2022-11-02 13:55:08.897800 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_l2m_to_target.sql
+2022-11-02 13:55:08.899984 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_sqls.sql
+2022-11-02 13:55:08.902139 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_cohort.sql
+2022-11-02 13:55:08.904862 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_closing.sql
+2022-11-02 13:55:08.908560 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters_channelbucket.sql
+2022-11-02 13:55:08.911738 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters_leadsource.sql
+2022-11-02 13:55:08.913798 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_sqo2won_velocity.sql
+2022-11-02 13:55:08.918066 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_sqo2won_velocity model triggered this warning.
+2022-11-02 13:55:08.919428 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_sqo2won_velocity.sql
+2022-11-02 13:55:08.921347 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters_companysizerev.sql
+2022-11-02 13:55:08.923680 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_close_won_velocity.sql
+2022-11-02 13:55:08.928675 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_close_won_velocity model triggered this warning.
+2022-11-02 13:55:08.930017 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_close_won_velocity.sql
+2022-11-02 13:55:08.931123 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_l20_velocity_mlc.sql
+2022-11-02 13:55:08.934713 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_l20_velocity_mlc model triggered this warning.
+2022-11-02 13:55:08.936071 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_l20_velocity_mlc.sql
+2022-11-02 13:55:08.937441 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_m2sql_to_target.sql
+2022-11-02 13:55:08.939527 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_voc2closing_velocity.sql
+2022-11-02 13:55:08.943407 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_voc2closing_velocity model triggered this warning.
+2022-11-02 13:55:08.944782 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_voc2closing_velocity.sql
+2022-11-02 13:55:08.946196 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_m2sal_velocity.sql
+2022-11-02 13:55:08.950510 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_m2sal_velocity model triggered this warning.
+2022-11-02 13:55:08.951876 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_m2sal_velocity.sql
+2022-11-02 13:55:08.953816 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters_globalregion.sql
+2022-11-02 13:55:08.956902 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_mqls.sql
+2022-11-02 13:55:08.959981 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_sql2sqo_to_target.sql
+2022-11-02 13:55:08.962492 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_demo2voc_velocity.sql
+2022-11-02 13:55:08.966541 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_demo2voc_velocity model triggered this warning.
+2022-11-02 13:55:08.967991 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_demo2voc_velocity.sql
+2022-11-02 13:55:08.969358 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_mqls_to_target.sql
+2022-11-02 13:55:08.971461 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_l20_velocity_mlc_annual.sql
+2022-11-02 13:55:08.976120 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_l20_velocity_mlc_annual model triggered this warning.
+2022-11-02 13:55:08.977441 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_l20_velocity_mlc_annual.sql
+2022-11-02 13:55:08.978678 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_demo.sql
+2022-11-02 13:55:08.980968 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_close_won_velocity_annual.sql
+2022-11-02 13:55:08.984492 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_close_won_velocity_annual model triggered this warning.
+2022-11-02 13:55:08.985807 (Thread-12644): 13:55:08  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_close_won_velocity_annual.sql
+2022-11-02 13:55:08.987023 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_leads_to_target.sql
+2022-11-02 13:55:08.989888 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_filters.sql
+2022-11-02 13:55:08.992413 (Thread-12644): 13:55:08  1699: static parser successfully parsed funnel/funnel_report_all_time_sqopipe_to_target.sql
+2022-11-02 13:55:08.993076 (Thread-12647): handling status request
+2022-11-02 13:55:08.995442 (Thread-12644): 13:55:08  1603: static parser failed on funnel/funnel_report_all_time_l2m_velocity.sql
+2022-11-02 13:55:08.995784 (Thread-12647): 13:55:08  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c243670>]}
+2022-11-02 13:55:08.999503 (Thread-12644): 13:55:08  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.funnel_report_all_time_l2m_velocity model triggered this warning.
+2022-11-02 13:55:09.000000 (Thread-12647): sending response (<Response 180 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 13:55:09.001427 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on funnel/funnel_report_all_time_l2m_velocity.sql
+2022-11-02 13:55:09.004462 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel/funnel_report_all_time_all.sql
+2022-11-02 13:55:09.006675 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel/funnel_report_all_time_conversions.sql
+2022-11-02 13:55:09.008970 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel/funnel_report_all_time_leads.sql
+2022-11-02 13:55:09.011041 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/date_base_xf.sql
+2022-11-02 13:55:09.013475 (Thread-12644): 13:55:09  1603: static parser failed on sources/sfdc/sfdc_xf/account_source_xf.sql
+2022-11-02 13:55:09.020347 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on sources/sfdc/sfdc_xf/account_source_xf.sql
+2022-11-02 13:55:09.021576 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/contact_history_xf.sql
+2022-11-02 13:55:09.023745 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/contact_role_xf.sql
+2022-11-02 13:55:09.025885 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/product_xf.sql
+2022-11-02 13:55:09.028305 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/lead_history_xf.sql
+2022-11-02 13:55:09.030443 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/campaign_member_source_xf.sql
+2022-11-02 13:55:09.032628 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/user_source_xf.sql
+2022-11-02 13:55:09.035037 (Thread-12644): 13:55:09  1603: static parser failed on sources/sfdc/sfdc_xf/opp_source_xf.sql
+2022-11-02 13:55:09.044732 (Thread-12644): 13:55:09  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.opp_source_xf model triggered this warning.
+2022-11-02 13:55:09.045302 (Thread-12644): 13:55:09  Warning: the `datediff` macro is now provided in dbt Core. It is no longer available in dbt_utils and backwards compatibility will be removed in a future version of the package. Use `datediff` (no prefix) instead. The acton_marketing_data.opp_source_xf model triggered this warning.
+2022-11-02 13:55:09.048628 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on sources/sfdc/sfdc_xf/opp_source_xf.sql
+2022-11-02 13:55:09.049826 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/lead_source_ss_xf.sql
+2022-11-02 13:55:09.052015 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/task_source_xf.sql
+2022-11-02 13:55:09.054355 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/lead_source_xf.sql
+2022-11-02 13:55:09.057030 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/contract_source_xf.sql
+2022-11-02 13:55:09.059524 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/opportunity_history_xf.sql
+2022-11-02 13:55:09.062194 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/ao_instance_user_source_xf.sql
+2022-11-02 13:55:09.064746 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/opportunity_line_item_xf.sql
+2022-11-02 13:55:09.067367 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/quote_line.sql
+2022-11-02 13:55:09.069680 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/campaign_influence_xf.sql
+2022-11-02 13:55:09.072500 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/campaign_source_xf.sql
+2022-11-02 13:55:09.075623 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/contact_source_xf.sql
+2022-11-02 13:55:09.077885 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/sfdc/sfdc_xf/ao_instance_source_xf.sql
+2022-11-02 13:55:09.080051 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_raw/ao_emails.sql
+2022-11-02 13:55:09.082444 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_raw/ao_webinars.sql
+2022-11-02 13:55:09.085232 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_raw/ao_email_to_uid.sql
+2022-11-02 13:55:09.087429 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_raw/ao_forms.sql
+2022-11-02 13:55:09.090268 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_raw/ao_landingpages.sql
+2022-11-02 13:55:09.093097 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_raw/ao_media.sql
+2022-11-02 13:55:09.096169 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_raw/ao_webpages.sql
+2022-11-02 13:55:09.099019 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_xf/ao_webpages_xf.sql
+2022-11-02 13:55:09.101305 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_xf/ao_media_xf.sql
+2022-11-02 13:55:09.103702 (Thread-12644): 13:55:09  1603: static parser failed on sources/ao_data/ao_data_xf/ao_combined.sql
+2022-11-02 13:55:09.120109 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on sources/ao_data/ao_data_xf/ao_combined.sql
+2022-11-02 13:55:09.121345 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_xf/ao_forms_xf.sql
+2022-11-02 13:55:09.123463 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_xf/ao_emails_xf.sql
+2022-11-02 13:55:09.125924 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_xf/ao_webinars_xf.sql
+2022-11-02 13:55:09.128078 (Thread-12644): 13:55:09  1699: static parser successfully parsed sources/ao_data/ao_data_xf/ao_landingpages_xf.sql
+2022-11-02 13:55:09.130233 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_leads.sql
+2022-11-02 13:55:09.133170 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_all.sql
+2022-11-02 13:55:09.136504 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_won_acv.sql
+2022-11-02 13:55:09.138666 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_mqls.sql
+2022-11-02 13:55:09.140860 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_sqls.sql
+2022-11-02 13:55:09.143009 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_sals.sql
+2022-11-02 13:55:09.145222 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_closing.sql
+2022-11-02 13:55:09.147650 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_lost.sql
+2022-11-02 13:55:09.149837 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_sqos.sql
+2022-11-02 13:55:09.152008 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_pipe.sql
+2022-11-02 13:55:09.154130 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_won.sql
+2022-11-02 13:55:09.156343 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_demos.sql
+2022-11-02 13:55:09.158750 (Thread-12644): 13:55:09  1699: static parser successfully parsed topo_model/topo_voc.sql
+2022-11-02 13:55:09.161207 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel_date_updates/marketing_lead_creation_date_history_xf.sql
+2022-11-02 13:55:09.163400 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel_date_updates/opp_demo_date_history_xf.sql
+2022-11-02 13:55:09.165855 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel_date_updates/working_date_history_xf.sql
+2022-11-02 13:55:09.168372 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel_date_updates/opp_closing_date_history_xf.sql
+2022-11-02 13:55:09.170775 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel_date_updates/mql_date_history_xf.sql
+2022-11-02 13:55:09.173014 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel_date_updates/opp_discovery_date_history_xf.sql
+2022-11-02 13:55:09.175190 (Thread-12644): 13:55:09  1699: static parser successfully parsed funnel_date_updates/opp_voc_date_history_xf.sql
+2022-11-02 13:55:09.177362 (Thread-12644): 13:55:09  1699: static parser successfully parsed campaign_reporting/marketo_persons_influenced.sql
+2022-11-02 13:55:09.180165 (Thread-12644): 13:55:09  1699: static parser successfully parsed campaign_reporting/campaign_primary_source.sql
+2022-11-02 13:55:09.182325 (Thread-12644): 13:55:09  1699: static parser successfully parsed attribution/attribution_models/first_touch.sql
+2022-11-02 13:55:09.184424 (Thread-12644): 13:55:09  1603: static parser failed on attribution/attribution_models/lead_creation.sql
+2022-11-02 13:55:09.189972 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on attribution/attribution_models/lead_creation.sql
+2022-11-02 13:55:09.191188 (Thread-12644): 13:55:09  1699: static parser successfully parsed attribution/attribution_models/last_touch.sql
+2022-11-02 13:55:09.193329 (Thread-12644): 13:55:09  1603: static parser failed on attribution/attribution_models/lead_creation2.sql
+2022-11-02 13:55:09.199283 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on attribution/attribution_models/lead_creation2.sql
+2022-11-02 13:55:09.200468 (Thread-12644): 13:55:09  1603: static parser failed on attribution/attribution_models/first_touch2.sql
+2022-11-02 13:55:09.205306 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on attribution/attribution_models/first_touch2.sql
+2022-11-02 13:55:09.207007 (Thread-12644): 13:55:09  1699: static parser successfully parsed attribution/attribution_models/combined_attribution3.sql
+2022-11-02 13:55:09.209119 (Thread-12644): 13:55:09  1603: static parser failed on attribution/attribution_models/opportunity_creation2.sql
+2022-11-02 13:55:09.214891 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on attribution/attribution_models/opportunity_creation2.sql
+2022-11-02 13:55:09.215990 (Thread-12644): 13:55:09  1699: static parser successfully parsed attribution/attribution_models/custom_model.sql
+2022-11-02 13:55:09.218515 (Thread-12644): 13:55:09  1699: static parser successfully parsed attribution/attribution_models/combined_attribution2.sql
+2022-11-02 13:55:09.221444 (Thread-12644): 13:55:09  1699: static parser successfully parsed attribution/attribution_models/combined_attribution.sql
+2022-11-02 13:55:09.223692 (Thread-12644): 13:55:09  1699: static parser successfully parsed attribution/attribution_models/opportunity_creation.sql
+2022-11-02 13:55:09.226314 (Thread-12644): 13:55:09  1699: static parser successfully parsed customer_marketing/customer_power_ups.sql
+2022-11-02 13:55:09.228893 (Thread-12644): 13:55:09  1699: static parser successfully parsed customer_marketing/new_user/new_account_welcome_series_list.sql
+2022-11-02 13:55:09.231567 (Thread-12644): 13:55:09  1699: static parser successfully parsed customer_marketing/new_user/new_user_welcome_series_list.sql
+2022-11-02 13:55:09.233677 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/sal_source_ss_xf.sql
+2022-11-02 13:55:09.235800 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/sql_source_ss_xf.sql
+2022-11-02 13:55:09.238037 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/opp_closing_source_xf.sql
+2022-11-02 13:55:09.240239 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/person_source_xf.sql
+2022-11-02 13:55:09.242583 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/lead_mql_source_xf.sql
+2022-11-02 13:55:09.244853 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/opp_voc_source_ss_xf.sql
+2022-11-02 13:55:09.247109 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/sqo_source_xf.sql
+2022-11-02 13:55:09.249494 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/opp_demo_source_xf.sql
+2022-11-02 13:55:09.251883 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/opp_sales_source_xf.sql
+2022-11-02 13:55:09.254411 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/opp_voc_source_xf.sql
+2022-11-02 13:55:09.256773 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/opp_closing_source_ss_xf.sql
+2022-11-02 13:55:09.259085 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/sqo_source_ss_xf.sql
+2022-11-02 13:55:09.261464 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/opp_demo_source_ss_xf.sql
+2022-11-02 13:55:09.263909 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/sql_source_xf.sql
+2022-11-02 13:55:09.266022 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/kpi_targets.sql
+2022-11-02 13:55:09.268192 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/sal_source_xf.sql
+2022-11-02 13:55:09.270306 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/lead_mql_source_ss_xf.sql
+2022-11-02 13:55:09.272487 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/disco calls/wow_disco_scheduled.sql
+2022-11-02 13:55:09.274963 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/disco calls/wow_disco_pastdue.sql
+2022-11-02 13:55:09.277358 (Thread-12644): 13:55:09  1699: static parser successfully parsed kpi_definitions/disco calls/wow_disco_missing.sql
+2022-11-02 13:55:09.279567 (Thread-12644): 13:55:09  1699: static parser successfully parsed cohort_model/opportunities_with_contacts.sql
+2022-11-02 13:55:09.281579 (Thread-12644): 13:55:09  1699: static parser successfully parsed cohort_model/avg_lead_to_cw_cohort_count.sql
+2022-11-02 13:55:09.283539 (Thread-12644): 13:55:09  1699: static parser successfully parsed cohort_model/avg_lead_to_cw_cohort.sql
+2022-11-02 13:55:09.286053 (Thread-12644): 13:55:09  1699: static parser successfully parsed cohort_model/opportunities_with_contactroles.sql
+2022-11-02 13:55:09.288234 (Thread-12644): 13:55:09  1603: static parser failed on cohort_model/lead_to_cw_cr_cohort.sql
+2022-11-02 13:55:09.295851 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on cohort_model/lead_to_cw_cr_cohort.sql
+2022-11-02 13:55:09.297079 (Thread-12644): 13:55:09  1603: static parser failed on cohort_model/lead_to_cw_cohort.sql
+2022-11-02 13:55:09.304605 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on cohort_model/lead_to_cw_cohort.sql
+2022-11-02 13:55:09.306067 (Thread-12644): 13:55:09  1603: static parser failed on cohort_model/lead_to_cw_cohort2.sql
+2022-11-02 13:55:09.312820 (Thread-12644): 13:55:09  1602: parser fallback to jinja rendering on cohort_model/lead_to_cw_cohort2.sql
+2022-11-02 13:55:09.519571 (Thread-12644): 13:55:09  Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba593cc70>]}
+2022-11-02 13:55:09.755126 (Thread-12648): handling status request
+2022-11-02 13:55:09.755649 (Thread-12648): 13:55:09  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbdb87e6400>]}
+2022-11-02 13:55:09.759705 (Thread-12648): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:01:07.562091 (Thread-12649): handling status request
+2022-11-02 14:01:07.563437 (Thread-12649): 14:01:07  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbf18040610>]}
+2022-11-02 14:01:07.567532 (Thread-12649): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:03:47.768612 (Thread-12650): handling status request
+2022-11-02 14:03:47.769788 (Thread-12650): 14:03:47  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b27b47f0>]}
+2022-11-02 14:03:47.773781 (Thread-12650): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:03:47.774606 (Thread-12651): handling ps request
+2022-11-02 14:03:47.775377 (Thread-12651): 14:03:47  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c19d1f0>]}
+2022-11-02 14:03:47.778189 (Thread-12651): sending response (<Response 36132 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:03:47.930149 (Thread-12652): handling ps request
+2022-11-02 14:03:47.930549 (Thread-12652): 14:03:47  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbfb836a430>]}
+2022-11-02 14:03:47.954390 (Thread-12652): sending response (<Response 36132 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:17.342852 (Thread-12653): handling status request
+2022-11-02 14:04:17.343305 (Thread-12653): 14:04:17  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c3f64f0>]}
+2022-11-02 14:04:17.348333 (Thread-12653): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:17.358298 (Thread-12654): handling ps request
+2022-11-02 14:04:17.358623 (Thread-12654): 14:04:17  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c0363a0>]}
+2022-11-02 14:04:17.361351 (Thread-12654): sending response (<Response 36132 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:17.370277 (Thread-12655): handling ps request
+2022-11-02 14:04:17.370605 (Thread-12655): 14:04:17  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbfb824b2e0>]}
+2022-11-02 14:04:17.373153 (Thread-12655): sending response (<Response 36132 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:21.574801 (Thread-12656): handling ps request
+2022-11-02 14:04:21.575218 (Thread-12656): 14:04:21  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c1e9ee0>]}
+2022-11-02 14:04:21.578078 (Thread-12656): sending response (<Response 36132 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:21.585572 (Thread-12657): handling status request
+2022-11-02 14:04:21.585888 (Thread-12657): 14:04:21  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c4cea90>]}
+2022-11-02 14:04:21.589932 (Thread-12657): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:21.597072 (Thread-12658): handling ps request
+2022-11-02 14:04:21.597384 (Thread-12658): 14:04:21  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbfb824b2e0>]}
+2022-11-02 14:04:21.600140 (Thread-12658): sending response (<Response 36132 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:22.089824 (Thread-12659): handling status request
+2022-11-02 14:04:22.090229 (Thread-12659): 14:04:22  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c3f6d60>]}
+2022-11-02 14:04:22.094216 (Thread-12659): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:33.491786 (Thread-12660): handling run_sql request
+2022-11-02 14:04:33.492207 (Thread-12660): 14:04:33  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbfb836a940>]}
+2022-11-02 14:04:33.506065 (Thread-12661): handling ps request
+2022-11-02 14:04:33.533133 (Thread-12661): 14:04:33  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d5f490>]}
+2022-11-02 14:04:33.546361 (Thread-12661): sending response (<Response 36669 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:33.820118 (Thread-12662): handling poll request
+2022-11-02 14:04:33.820539 (Thread-12662): 14:04:33  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c3ed520>]}
+2022-11-02 14:04:33.821073 (Thread-12662): sending response (<Response 446 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:33.829033 (Thread-12663): handling poll request
+2022-11-02 14:04:33.829320 (Thread-12663): 14:04:33  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c2542e0>]}
+2022-11-02 14:04:33.829717 (Thread-12663): sending response (<Response 446 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:34.058396 (Thread-12664): handling status request
+2022-11-02 14:04:34.058802 (Thread-12664): 14:04:34  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c254ee0>]}
+2022-11-02 14:04:34.064044 (Thread-12664): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:34.160166 (Thread-12665): handling ps request
+2022-11-02 14:04:34.160619 (Thread-12665): 14:04:34  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbe78544640>]}
+2022-11-02 14:04:34.163451 (Thread-12665): sending response (<Response 36669 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:35.838112 (Thread-12660): sending response (<Response 133 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:35.875730 (MainThread): 14:04:35  Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '3aaaedb6-6aa2-4903-8b70-262734941bea', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f27ec37c130>]}
+2022-11-02 14:04:35.876295 (MainThread): 14:04:35  Found 159 models, 0 tests, 7 snapshots, 0 analyses, 598 macros, 0 operations, 0 seed files, 26 sources, 0 exposures, 0 metrics
+2022-11-02 14:04:35.876894 (Thread-1): 14:04:35  Acquiring new postgres connection "rpc.acton_marketing_data.request"
+2022-11-02 14:04:35.877035 (Thread-1): 14:04:35  Began compiling node rpc.acton_marketing_data.request
+2022-11-02 14:04:35.877192 (Thread-1): 14:04:35  Compiling rpc.acton_marketing_data.request
+2022-11-02 14:04:35.880898 (Thread-1): 14:04:35  finished collecting timing info
+2022-11-02 14:04:35.881037 (Thread-1): 14:04:35  Began executing node rpc.acton_marketing_data.request
+2022-11-02 14:04:35.881134 (Thread-1): 14:04:35  Using postgres connection "rpc.acton_marketing_data.request"
+2022-11-02 14:04:35.881205 (Thread-1): 14:04:35  On rpc.acton_marketing_data.request: SELECT
+    sqo_id,
+    acv
+FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_pipeline"
+WHERE sqo_date >= '2022-10-01'
+limit 500
+/* limit added automatically by dbt cloud */
+2022-11-02 14:04:35.881279 (Thread-1): 14:04:35  Opening a new connection, currently in state init
+2022-11-02 14:04:36.077869 (Thread-12666): handling poll request
+2022-11-02 14:04:36.078260 (Thread-12666): 14:04:36  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc19c36b6a0>]}
+2022-11-02 14:04:36.078893 (Thread-12666): sending response (<Response 4044 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:36.138625 (Thread-12667): handling ps request
+2022-11-02 14:04:36.138958 (Thread-12667): 14:04:36  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d2d460>]}
+2022-11-02 14:04:36.141880 (Thread-12667): sending response (<Response 36664 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:36.226713 (Thread-12668): handling poll request
+2022-11-02 14:04:36.227124 (Thread-12668): 14:04:36  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d3f250>]}
+2022-11-02 14:04:36.227777 (Thread-12668): sending response (<Response 4044 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:36.323839 (Thread-12669): handling status request
+2022-11-02 14:04:36.324189 (Thread-12669): 14:04:36  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d3f9d0>]}
+2022-11-02 14:04:36.328273 (Thread-12669): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:36.396281 (Thread-1): 14:04:36  SQL status: SELECT 101 in 0.51 seconds
+2022-11-02 14:04:36.398305 (Thread-1): 14:04:36  finished collecting timing info
+2022-11-02 14:04:36.398477 (Thread-1): 14:04:36  On rpc.acton_marketing_data.request: Close
+2022-11-02 14:04:36.493977 (Thread-12670): handling poll request
+2022-11-02 14:04:36.494374 (Thread-12670): 14:04:36  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d3d6d0>]}
+2022-11-02 14:04:36.495005 (Thread-12670): sending response (<Response 5061 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:37.741148 (Thread-12671): handling poll request
+2022-11-02 14:04:37.741552 (Thread-12671): 14:04:37  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d3d9d0>]}
+2022-11-02 14:04:37.742585 (Thread-12671): sending response (<Response 6202 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:38.331235 (Thread-12672): handling poll request
+2022-11-02 14:04:38.331655 (Thread-12672): 14:04:38  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbf5805f6a0>]}
+2022-11-02 14:04:38.332697 (Thread-12672): sending response (<Response 10822 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:38.474162 (Thread-12673): handling ps request
+2022-11-02 14:04:38.474565 (Thread-12673): 14:04:38  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbfb81893d0>]}
+2022-11-02 14:04:38.477376 (Thread-12673): sending response (<Response 36689 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:38.550823 (Thread-12674): handling poll request
+2022-11-02 14:04:38.551191 (Thread-12674): 14:04:38  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbdb87e6a30>]}
+2022-11-02 14:04:38.552195 (Thread-12674): sending response (<Response 10822 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:38.574018 (Thread-12675): handling status request
+2022-11-02 14:04:38.574280 (Thread-12675): 14:04:38  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba593c700>]}
+2022-11-02 14:04:38.578141 (Thread-12675): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:38.851080 (Thread-12676): handling ps request
+2022-11-02 14:04:38.851481 (Thread-12676): 14:04:38  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d3d310>]}
+2022-11-02 14:04:38.854283 (Thread-12676): sending response (<Response 36689 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:04:56.623321 (Thread-12677): handling status request
+2022-11-02 14:04:56.623761 (Thread-12677): 14:04:56  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba593cfd0>]}
+2022-11-02 14:04:56.627740 (Thread-12677): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:05:28.268754 (Thread-12678): handling status request
+2022-11-02 14:05:28.269153 (Thread-12678): 14:05:28  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba593cc70>]}
+2022-11-02 14:05:28.273081 (Thread-12678): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:06:22.943733 (Thread-12679): handling status request
+2022-11-02 14:06:22.944133 (Thread-12679): 14:06:22  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba593ca90>]}
+2022-11-02 14:06:22.948091 (Thread-12679): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:06:23.243109 (Thread-12680): handling ps request
+2022-11-02 14:06:23.243489 (Thread-12680): 14:06:23  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbba593cb20>]}
+2022-11-02 14:06:23.246268 (Thread-12680): sending response (<Response 36689 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:06:23.268431 (Thread-12681): handling ps request
+2022-11-02 14:06:23.268757 (Thread-12681): 14:06:23  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d2dee0>]}
+2022-11-02 14:06:23.271431 (Thread-12681): sending response (<Response 36689 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:06:23.971956 (Thread-12682): handling status request
+2022-11-02 14:06:23.972357 (Thread-12682): 14:06:23  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d44550>]}
+2022-11-02 14:06:23.999070 (Thread-12682): sending response (<Response 140959 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:07:02.175723 (Thread-12683): handling ps request
+2022-11-02 14:07:02.176138 (Thread-12683): 14:07:02  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc1b2d44b80>]}
+2022-11-02 14:07:02.179027 (Thread-12683): sending response (<Response 36689 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:07:09.238766 (Thread-12685): handling status request
+2022-11-02 14:07:09.239325 (Thread-12685): 14:07:09  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbbf872bfd0>]}
+2022-11-02 14:07:09.239812 (Thread-12685): sending response (<Response 180 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:07:09.605246 (Thread-12684): 14:07:09  Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+2022-11-02 14:07:09.606255 (Thread-12684): 14:07:09  Partial parsing: updated file: acton_marketing_data://models/funnel/funnel_report_all_time_pipeline.sql
+2022-11-02 14:07:09.614320 (Thread-12684): 14:07:09  1699: static parser successfully parsed funnel/funnel_report_all_time_pipeline.sql
+2022-11-02 14:07:09.686764 (Thread-12684): 14:07:09  Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbb9dc319d0>]}
+2022-11-02 14:07:10.383407 (Thread-12686): handling status request
+2022-11-02 14:07:10.383856 (Thread-12686): 14:07:10  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbf383e5640>]}
+2022-11-02 14:07:10.384360 (Thread-12686): sending response (<Response 1651 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:07:16.307748 (Thread-12687): handling poll request
+2022-11-02 14:07:16.308159 (Thread-12687): 14:07:16  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbe787e7a30>]}
+2022-11-02 14:07:16.312829 (Thread-12687): sending response (<Response 134637 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:07:16.321901 (Thread-12688): handling poll request
+2022-11-02 14:07:16.322231 (Thread-12688): 14:07:16  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbf38650460>]}
+2022-11-02 14:07:16.326360 (Thread-12688): sending response (<Response 134637 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:07:16.329847 (Thread-12689): handling ps request
+2022-11-02 14:07:16.330115 (Thread-12689): 14:07:16  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbe98077730>]}
+2022-11-02 14:07:16.332797 (Thread-12689): sending response (<Response 36689 bytes [200 OK]>) to 10.0.138.163
+2022-11-02 14:07:16.480283 (Thread-12690): handling run_sql request
+2022-11-02 14:07:16.480695 (Thread-12690): 14:07:16  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbfb836a940>]}
+2022-11-02 14:07:16.581849 (Thread-12691): handling status request
+2022-11-02 14:07:16.582649 (Thread-12691): 14:07:16  Sending event: {'category': 'dbt', 'action': 'rpc_request', 'label': '5103c7f0-7b36-4879-8079-cfc6394d410d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fbbf8731af0>]}
+2022-11-02 14:07:16.583507 (Thread-12691): sending response (<Response 1651 bytes [200 OK]>) to 10.0.138.163
