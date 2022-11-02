@@ -136,4 +136,4 @@ WITH base AS (
 )
 
 SELECT *
-FROM final  
+FROM final

@@ -29,3 +29,6 @@ sources:
       - name: data_studio_media
       - name: data_studio_webinars
       - name: data_studio_webpages
+  - name: public
+    tables:
+      - name: kpi_targets
