@@ -117,6 +117,7 @@ FROM "acton".salesforce."lead"
         COALESCE(account_c,lean_data_a_2_b_account_c) AS person_account_id
     FROM base
     WHERE base.owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
+    AND base.is_deleted = 'False'
 
 )
 

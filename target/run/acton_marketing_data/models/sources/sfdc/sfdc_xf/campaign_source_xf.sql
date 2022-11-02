@@ -43,6 +43,7 @@ FROM "acton"."salesforce"."campaign"
     FROM base
     LEFT JOIN base parent ON 
     base.parent_id=parent.id
+    WHERE base.is_deleted = 'False'
 
 )
 
