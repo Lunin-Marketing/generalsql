@@ -18,6 +18,7 @@ FROM {{ source('salesforce', 'act_on_instance_c') }}
         parent_account_c AS ao_instance_parent_account,
         ao_parent_id_c AS ao_instance_parent_account_id 
     FROM base
+    WHERE base.is_deleted = 'False'
 )
 
 SELECT *

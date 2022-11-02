@@ -33,6 +33,7 @@ WITH base AS (
     base.id=sbqq_quote_c.id
     LEFT JOIN {{ref('product_xf')}} ON
     base.sbqq_product_c=product_xf.product_id
+    WHERE base.is_deleted = 'False'
 
 )   
 

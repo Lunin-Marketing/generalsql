@@ -129,6 +129,7 @@ FROM {{ source('salesforce', 'lead') }}
     LEFT JOIN {{ref('user_source_xf')}} creator ON
     base.created_by_id=creator.user_id
     WHERE base.owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
+    AND base.is_deleted = 'False'
 
 )
 
