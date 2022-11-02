@@ -23,6 +23,7 @@ SELECT
     industry,
     industry_bucket,
     segment,
+    is_current_customer,
 
     -- DateTime Fields
     last_modified_date,
@@ -31,6 +32,7 @@ SELECT
     mql_most_recent_date,
     working_date,
     marketing_created_date,
+    email_bounced_date_new,
 
     -- Other Key Information    
     lead_source,    
@@ -43,6 +45,7 @@ SELECT
         ELSE 'No'
     END AS is_hand_raiser,
     created_by_name,
+    email_bounced_reason_new,
 
     --Attribution Data
     campaign_first_touch,
@@ -100,6 +103,7 @@ SELECT
     industry,
     industry_bucket,
     segment,
+    is_current_customer,
     
     -- DateTime Fields
     last_modified_date,
@@ -108,6 +112,7 @@ SELECT
     mql_most_recent_date,
     working_date,
     marketing_created_date,
+    email_bounced_date_new,
 
     -- Other Key Information    
     lead_source,    
@@ -120,6 +125,7 @@ SELECT
         ELSE 'No'
     END AS is_hand_raiser,
     created_by_name,
+    email_bounced_reason_new,
 
     --Attribution Data
     campaign_first_touch,
