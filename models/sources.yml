@@ -32,3 +32,6 @@ sources:
   - name: public
     tables:
       - name: kpi_targets
+      - name: gauge_placeholder
+      - name: date_base
+      - name: placeholder

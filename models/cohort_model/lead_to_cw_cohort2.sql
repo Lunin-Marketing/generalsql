@@ -4,8 +4,8 @@ WITH base AS (
 
     SELECT *
     FROM {{ref('opportunities_with_contacts')}}
-    WHERE person_created_date >= '2022-08-01'
-    AND opp_created_date >= '2022-08-01'
+    WHERE person_created_date >= '2022-09-01'
+    AND opp_created_date >= '2022-09-01'
 
 ), intermediate AS (
 
