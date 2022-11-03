@@ -22,8 +22,8 @@ WITH kpi_base AS (
 ), final AS (
 
     SELECT
-        kpi,
-        kpi_target,
+        kpi AS leads,
+        kpi_target AS leads_target,
         kpi/kpi_target AS pct_to_target
     FROM kpi_base
     LEFT JOIN kpi_target ON
