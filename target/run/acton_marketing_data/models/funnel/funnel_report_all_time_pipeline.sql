@@ -72,13 +72,18 @@ WITH base AS (
         industry_bucket,
         channel_bucket,
         CASE
+            WHEN stage_name = 'SQL' THEN '0.SQL'
             WHEN stage_name = 'Discovery' THEN '1.SQO'
-            WHEN stage_name = 'Demo' THEN '2.Demo'
-            WHEN stage_name = 'VOC/Negotiate' THEN '3.VOC'
-            WHEN stage_name = 'Closing' THEN '4.Closing'
-            WHEN stage_name = 'Implement' THEN '5.Closed Won'
-            WHEN LOWER(stage_name) LIKE '%lost%' THEN '6.Closed Lost'
-            WHEN stage_name = 'Not Renewed' THEN '7.Not Renewed'
+            WHEN LOWER(stage_name) like '%demo%' THEN '2.Demo'
+            WHEN stage_name = 'Champion Confirmed' THEN '3.Champion'
+            WHEN stage_name = 'VOC/Negotiate' THEN '4.VOC'
+            WHEN stage_name = 'Closing' THEN '5.Closing'
+            WHEN stage_name = 'Implement' THEN '6.Closed Won'
+            WHEN LOWER(stage_name) LIKE '%lost%' THEN '7.Closed Lost'
+            WHEN stage_name = 'Renewed' THEN '8.Renewed'
+            WHEN stage_name = 'Not Renewed' THEN '9.Not Renewed'
+            WHEN stage_name = 'SQL - No Opportunity' THEN '10.SQL - No Opp'
+            ELSE stage_name
         END AS current_stage
     FROM base
 

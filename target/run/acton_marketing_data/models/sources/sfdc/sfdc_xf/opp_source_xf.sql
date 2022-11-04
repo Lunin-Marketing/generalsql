@@ -10,7 +10,7 @@ FROM "acton"."salesforce"."opportunity"
 
 ), intermediate AS (
 
-    SELECT DISTINCT
+    SELECT
         base.id AS opportunity_id,
         base.is_deleted,
         base.account_id,
