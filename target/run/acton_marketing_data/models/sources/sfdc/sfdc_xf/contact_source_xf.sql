@@ -77,6 +77,8 @@ FROM "acton"."salesforce"."contact"
         base.firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
         base.last_name, 
         base.data_enrich_company_name_c AS de_account_name,
+        base.email_bounced_date_c AS email_bounced_date_new,
+        base.email_bounced_reason_c AS email_bounced_reason_new,
         DATE_TRUNC('day',date_time_to_working_c)::Date AS working_date,
         account_source_xf.account_owner_id,
         account_source_xf.account_owner_name,
@@ -94,6 +96,7 @@ FROM "acton"."salesforce"."contact"
         account_source_xf.account_deliverability_consultant_email,
         account_source_xf.account_deliverability_consultant,
         user_source_xf.user_email AS owner_email,
+        account_source_xf.target_account,
         CASE
             WHEN account_source_xf.annual_revenue <= 49999999 THEN 'SMB'
             WHEN account_source_xf.annual_revenue > 49999999 AND account_source_xf.annual_revenue <= 499999999 THEN 'Mid-Market'

@@ -18,12 +18,13 @@ opp_offer_asset_subtype_lead_creation,
 opp_offer_asset_topic_lead_creation,
 opp_offer_asset_type_lead_creation,
 type,
+opp_source_xf.target_account,
 case 
 when type in ('New Business') then 'New Business'
 when type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down','Trigger Renewal','Renewal','Multiyear Renewal','Admin Conversion','One Time','Downsell') then 'Upsell'
 else null
 end as grouped_type,
-acv,
+acv_deal_size_usd AS acv,
 billing_country AS country,
 account_global_region,
     opp_source_xf.company_size_rev,

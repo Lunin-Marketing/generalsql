@@ -11,6 +11,7 @@ WITH won_opp AS (
         segment,
         industry,
         industry_bucket,
+        target_account,
         channel_bucket
     FROM {{ref('funnel_report_all_time_won')}}
 
@@ -25,6 +26,7 @@ WITH won_opp AS (
         segment,
         industry,
         industry_bucket,
+        target_account,
         channel_bucket
     FROM {{ref('funnel_report_all_time_sqls')}}
     
@@ -39,6 +41,7 @@ WITH won_opp AS (
         won_opp.opp_lead_source,
         won_opp.segment,
         won_opp.industry,
+        won_opp.target_account,
         won_opp.industry_bucket,
         won_opp.channel_bucket,
         {{ dbt_utils.datediff("sql_date","won_date",'day')}} AS cw_velocity
@@ -55,6 +58,7 @@ SELECT
     industry,
     channel_bucket,
     industry_bucket,
+    target_account,
     won_date,
     cw_velocity
 FROM final

@@ -18,6 +18,7 @@ SELECT DISTINCT
     opp_medium_lead_creation,
     opp_source_lead_creation,
     type,
+    opp_source_xf.target_account,
     billing_country AS country,
     opp_source_xf.company_size_rev,
     account_global_region,

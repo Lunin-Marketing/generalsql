@@ -15,6 +15,7 @@ WITH won_opp AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_won"
 
@@ -29,6 +30,7 @@ WITH won_opp AS (
         segment,
         industry,
         industry_bucket,
+        target_account,
         channel_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_closing"
     
@@ -44,6 +46,7 @@ WITH won_opp AS (
         won_opp.segment,
         won_opp.industry,
         won_opp.industry_bucket,
+        won_opp.target_account,
         won_opp.channel_bucket,
         
         ((won_date)::date - (closing_date)::date)
@@ -60,6 +63,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    target_account,
     industry_bucket,
     won_date,
     closing2cw_velocity

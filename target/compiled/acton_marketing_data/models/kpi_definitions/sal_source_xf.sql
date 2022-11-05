@@ -15,6 +15,7 @@ SELECT
     segment,
     industry,
     industry_bucket,
+    target_account,
     channel_bucket,
     offer_asset_name_lead_creation,
     campaign_lead_creation

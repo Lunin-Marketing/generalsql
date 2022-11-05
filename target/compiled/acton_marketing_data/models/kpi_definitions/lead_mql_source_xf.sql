@@ -20,6 +20,7 @@ SELECT
     lead_score,
     segment,
     industry,
+    target_account,
     industry_bucket,
     channel_bucket,
     offer_asset_name_lead_creation,
