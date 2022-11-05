@@ -44,6 +44,10 @@ WITH base AS (
         ELSE channel_bucket
     END AS channel_bucket,
     CASE
+        WHEN target_account IS null THEN false
+        ELSE target_account
+    END AS target_account,
+    CASE
         WHEN opp_offer_asset_name_lead_creation IS null THEN 'blank'
         ELSE opp_offer_asset_name_lead_creation
     END AS offer_asset_name_lead_creation

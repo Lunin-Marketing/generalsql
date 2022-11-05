@@ -44,6 +44,10 @@ WITH base AS (
         ELSE opp_source_xf.industry_bucket
     END AS industry_bucket,
     CASE
+        WHEN opp_source_xf.target_account IS null THEN false
+        ELSE opp_source_xf.target_account
+    END AS target_account,
+    CASE
         WHEN opp_source_xf.channel_bucket IS null THEN 'blank'
         ELSE opp_source_xf.channel_bucket
     END AS channel_bucket

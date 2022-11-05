@@ -12,6 +12,7 @@ SELECT
     solution_date,
     confirmed_value_date,
     stage_name,
+    opp_source_xf.target_account,
     opp_lead_source,
     CASE 
         WHEN type in ('New Business') THEN 'New Business'

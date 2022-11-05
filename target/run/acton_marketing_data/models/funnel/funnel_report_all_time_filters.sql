@@ -14,6 +14,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         is_hand_raiser,
         offer_asset_name_lead_creation,
         created_date AS date,
@@ -29,6 +30,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         is_hand_raiser,
         offer_asset_name_lead_creation,
         mql_date,
@@ -44,6 +46,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         is_hand_raiser,
         offer_asset_name_lead_creation,
         sal_date,
@@ -59,6 +62,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
         sql_date,
@@ -74,6 +78,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
         sqo_date,
@@ -89,6 +94,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
         demo_date,
@@ -104,6 +110,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
         voc_date,
@@ -119,6 +126,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
         closing_date,
@@ -134,6 +142,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
         won_date,
@@ -149,6 +158,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
         lost_date,
@@ -200,6 +210,10 @@ SELECT DISTINCT
         ELSE is_working
     END AS is_working,
     is_hand_raiser,
+    CASE
+        WHEN target_account IS null THEN false
+        ELSE target_account
+    END AS target_account,
     date
 FROM base
   );

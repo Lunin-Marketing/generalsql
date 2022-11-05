@@ -15,6 +15,7 @@ SELECT
     closing_date,
     stage_name,
     opp_lead_source,
+    opp_source_xf.target_account,
     CASE 
         WHEN type in ('New Business') THEN 'New Business'
         WHEN type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down','Trigger Renewal','Renewal','Multiyear Renewal','Admin Conversion','One Time','Downsell') THEN 'Upsell'

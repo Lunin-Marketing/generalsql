@@ -11,6 +11,7 @@ WITH demo_opp AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket
     FROM {{ref('funnel_report_all_time_demo')}}
 
@@ -25,6 +26,7 @@ WITH demo_opp AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket
     FROM {{ref('funnel_report_all_time_voc')}}
     
@@ -40,6 +42,7 @@ WITH demo_opp AS (
         voc_opp.segment,
         voc_opp.industry,
         voc_opp.channel_bucket,
+        voc_opp.target_account,
         voc_opp.industry_bucket,
         {{ dbt_utils.datediff("demo_date","voc_date",'day')}} AS demo2voc_velocity
     FROM voc_opp
@@ -54,6 +57,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    target_account,
     industry_bucket,
     voc_date,
     demo2voc_velocity

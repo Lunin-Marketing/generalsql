@@ -133,6 +133,7 @@ FROM "acton"."salesforce"."opportunity"
         quote_line.sbqq_primary_quote,
         contract_source_xf.contract_acv,
         account.industry,
+        account.target_account_c AS target_account,
         CASE
             WHEN account.industry IN ('Business Services') THEN 'Business Services'
             WHEN account.industry IN ('Finance','Insurance') THEN 'Finance'
