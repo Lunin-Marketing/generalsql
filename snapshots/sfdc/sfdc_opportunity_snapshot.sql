@@ -10,6 +10,6 @@
 }}
 
 SELECT *
-FROM {{ref('opp_source_xf')}}
+FROM {{ref('opp_source_base')}}
 
 {% endsnapshot %}
