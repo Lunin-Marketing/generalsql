@@ -11,6 +11,7 @@ WITH leads AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_leads"
 
@@ -25,6 +26,7 @@ WITH leads AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
     
@@ -40,6 +42,7 @@ WITH leads AS (
         mqls.segment,
         mqls.industry,
         mqls.industry_bucket,
+        mqls.target_account,
         mqls.channel_bucket,
         
         ((mql_date)::date - (created_date)::date)
@@ -57,6 +60,7 @@ SELECT
     industry,
     channel_bucket,
     industry_bucket,
+    target_account,
     mql_date,
     l2m_velocity
 FROM final

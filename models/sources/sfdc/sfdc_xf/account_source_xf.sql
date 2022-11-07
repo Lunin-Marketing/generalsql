@@ -83,18 +83,18 @@ FROM {{ source('salesforce', 'account') }}
         onboarding.user_full_name AS onboarding_specialist_name,
         deliverability.user_email AS account_deliverability_consultant_email,
         deliverability.user_full_name AS account_deliverability_consultant,
-        opp_source_xf.is_closed,
+        --opp_source_xf.is_closed,
         contract_source_xf.end_date,
         CASE 
             WHEN base.annual_revenue <= 49999999 THEN 'SMB'
             WHEN base.annual_revenue > 49999999 AND base.annual_revenue <= 499999999 THEN 'Mid-Market'
             WHEN base.annual_revenue > 499999999 THEN 'Enterprise'
         END AS company_size_rev,
-        COUNT(DISTINCT opp_source_xf.opportunity_id) AS number_of_open_opportunities,
-        CASE 
-            WHEN opp_source_xf.is_closed = false THEN COUNT(DISTINCT opp_source_xf.opportunity_id)
-            ELSE 0
-        END AS number_of_open_opps,
+        -- COUNT(DISTINCT opp_source_xf.opportunity_id) AS number_of_open_opportunities,
+        -- CASE 
+        --     WHEN opp_source_xf.is_closed = false THEN COUNT(DISTINCT opp_source_xf.opportunity_id)
+        --     ELSE 0
+        -- END AS number_of_open_opps,
         CASE
             WHEN base.billing_country IS NOT null AND base.billing_country IN ('GB','UK','IE','DE','DK','FI','IS','NO','SE','FR','AL','AD','AM','AT','BY','BE','BA','BG','HR','CS','CY','CZ','EE','FX','GE','GR','HU','IT','LV','LI','LT','LU','MK','MT','MD','MC','ME','NL','PL','PT','RO','SM','RS','SJ','SK','SI','ES','CH','UA','VA','FO','GI','GG','IM','JE','XK','RU') THEN 'EUROPE'
             WHEN base.billing_country IS NOT null AND base.billing_country IN ('JP','KR','CN','MN','TW','VN','HK','LA','TH','KH','PH','MY','SG','ID','LK','IN','NP','BT','MM','PK','AF','KG','UZ','TM','KZ') THEN 'APJ'
@@ -122,12 +122,12 @@ FROM {{ source('salesforce', 'account') }}
     base.onboarding_specialist_c=onboarding.user_id
     LEFT JOIN {{ref('user_source_xf')}} AS deliverability ON
     base.deliverability_consultant_c=deliverability.user_id
-    LEFT JOIN {{ref('opp_source_xf')}} ON
-    base.id=opp_source_xf.account_id
+    -- LEFT JOIN {{ref('opp_source_xf')}} ON
+    -- base.id=opp_source_xf.account_id
     LEFT JOIN {{ref('contract_source_xf')}} ON
     base.current_contract_c=contract_source_xf.contract_id
     WHERE base.is_deleted = 'False'
-    {{dbt_utils.group_by(n=66) }}
+   -- {{dbt_utils.group_by(n=66) }}
 
 
 )
