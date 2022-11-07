@@ -12,6 +12,7 @@ WITH voc_opp AS (
         account_global_region,
         company_size_rev,
         opp_lead_source,
+        target_account,
         segment,
         industry,
         channel_bucket,
@@ -26,6 +27,7 @@ WITH voc_opp AS (
         account_global_region,
         company_size_rev,
         opp_lead_source,
+        target_account,
         segment,
         industry,
         channel_bucket,
@@ -43,6 +45,7 @@ WITH voc_opp AS (
         closing_opp.opp_lead_source,
         closing_opp.segment,
         closing_opp.industry,
+        closing_opp.target_account,
         closing_opp.industry_bucket,
         closing_opp.channel_bucket,
         
@@ -60,6 +63,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    target_account,
     industry_bucket,
     closing_date,
     voc2closing_velocity

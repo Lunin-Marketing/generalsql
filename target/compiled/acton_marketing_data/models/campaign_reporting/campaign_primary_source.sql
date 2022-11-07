@@ -64,7 +64,7 @@ WITH base AS (
     --Opportunity Info
         campaign_influence.influence_opportunity_id AS opportunity_id,
         opp.opportunity_name,
-        opp.acv AS acv_deal_size_usd,
+        opp.acv_deal_size_usd,
         opp.created_date,
         opp.discovery_date,
         opp.close_date,
@@ -75,7 +75,7 @@ WITH base AS (
             WHEN is_won = true THEN influence_opportunity_id
             END AS won_opportunity_id,
         CASE 
-            WHEN is_won = true THEN acv
+            WHEN is_won = true THEN acv_deal_size_usd
             END AS won_opportunity_acv
 FROM "acton"."dbt_actonmarketing"."campaign_member_source_xf" campaign_member
 LEFT JOIN "acton"."dbt_actonmarketing"."campaign_source_xf" campaign
