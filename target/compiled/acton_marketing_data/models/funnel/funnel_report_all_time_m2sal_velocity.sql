@@ -10,6 +10,7 @@ WITH sals AS (
         lead_source,
         segment,
         industry,
+        target_account,
         channel_bucket,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sals"
@@ -24,6 +25,7 @@ WITH sals AS (
         lead_source,
         segment,
         industry,
+        target_account,
         channel_bucket,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
@@ -39,6 +41,7 @@ WITH sals AS (
         sals.lead_source,
         sals.segment,
         sals.industry,
+        sals.target_account,
         sals.channel_bucket,
         sals.industry_bucket,
         
@@ -56,6 +59,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    target_account,
     industry_bucket,
     sal_date,
     m2sal_velocity
