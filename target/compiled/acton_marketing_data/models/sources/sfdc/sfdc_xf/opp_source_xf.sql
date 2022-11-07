@@ -36,7 +36,18 @@ FROM "acton"."dbt_actonmarketing"."opp_source_base"
         renewal_stage,
         forecast_category,
 
-    --Flages
+    --Account Info
+        account_source_xf.segment,
+        account_source_xf.sdr,
+        account_source_xf.industry,
+        account_source_xf.target_account,
+        account_source_xf.industry_bucket,
+        account_source_xf.global_region AS account_global_region,
+        account_source_xf.company_size_rev,
+        account_source_xf.is_current_customer,
+        account_source_xf.account_name,
+
+    --Flags
         base.is_deleted,
         is_closed,
         is_won,
@@ -104,37 +115,9 @@ FROM "acton"."dbt_actonmarketing"."opp_source_base"
         opp_campaign_opportunity_creation,
         opp_campaign_first_touch,
         channel_bucket
-
-
-        
-          
-        --acv_deal_size_override,
-        --lead_grade_at_conversion,
-        
-        
-        -- quota_credit_renewal,
-        
-        -- quota_credit,
-        
-        -- quota_credit_new_business,
-        -- quota_credit_one_time,
-        -- submitted_for_approval,
-        -- acv_add_back,
-        -- trigger_renewal_value,
-        -- opportunity_line_item_xf.sbqq_subscription_type,
-        -- quote_line.sbqq_product_subscription_term,
-        -- opportunity_line_item_xf.product_code,
-        -- opportunity_line_item_xf.product_family,
-        -- opportunity_line_item_xf.total_price,
-        -- opportunity_line_item_xf.annual_price,
-        -- quote_line.sbqq_primary_quote,
     FROM base
-    -- LEFT JOIN "acton"."dbt_actonmarketing"."contract_source_xf" ON
-    -- base.opportunity_id=contract_source_xf.contract_opportunity_id
-    -- LEFT JOIN "acton"."dbt_actonmarketing"."opportunity_line_item_xf" ON
-    -- base.opportunity_id=opportunity_line_item_xf.opportunity_id
-    -- LEFT JOIN "acton"."dbt_actonmarketing"."quote_line" ON
-    -- base.opportunity_id=quote_line.opportunity_id
+    LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" ON
+    base.account_id=account_source_xf.account_id
     LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" owner ON
     base.owner_id=owner.user_id
     LEFT JOIN "acton"."dbt_actonmarketing"."contact_role_xf" ON

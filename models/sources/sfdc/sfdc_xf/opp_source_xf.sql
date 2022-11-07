@@ -42,7 +42,7 @@ FROM {{ref('opp_source_base')}}
         account_source_xf.industry,
         account_source_xf.target_account,
         account_source_xf.industry_bucket,
-        account_source_xf.account_global_region,
+        account_source_xf.global_region AS account_global_region,
         account_source_xf.company_size_rev,
         account_source_xf.is_current_customer,
         account_source_xf.account_name,
