@@ -38,7 +38,7 @@ FROM {{ref('opp_source_base')}}
 
     --Account Info
         account_source_xf.segment,
-        account_source_xf.sdr,
+        account_source_xf.sdr AS sdr_name,
         account_source_xf.industry,
         account_source_xf.target_account,
         account_source_xf.industry_bucket,

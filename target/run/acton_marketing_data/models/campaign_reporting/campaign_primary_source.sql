@@ -81,18 +81,18 @@ WITH base AS (
         CASE 
             WHEN is_won = true THEN acv_deal_size_usd
             END AS won_opportunity_acv
-FROM "acton"."dbt_actonmarketing"."campaign_member_source_xf" campaign_member
-LEFT JOIN "acton"."dbt_actonmarketing"."campaign_source_xf" campaign
-ON campaign_member.campaign_id=campaign.campaign_id
-LEFT JOIN "acton"."dbt_actonmarketing"."person_source_xf" person
-ON campaign_member.lead_or_contact_id=person.person_id
-LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" account
-ON person.lean_data_account_id=account.account_id
-LEFT JOIN "acton"."dbt_actonmarketing"."campaign_influence_xf" campaign_influence
-ON campaign_member.campaign_id=campaign_influence.influence_campaign_id
-AND campaign_influence.influence_contact_id=person.person_id
-LEFT JOIN "acton"."dbt_actonmarketing"."opp_source_xf" opp
-ON campaign_influence.influence_opportunity_id=opp.opportunity_id
+    FROM "acton"."dbt_actonmarketing"."campaign_member_source_xf" campaign_member
+    LEFT JOIN "acton"."dbt_actonmarketing"."campaign_source_xf" campaign
+    ON campaign_member.campaign_id=campaign.campaign_id
+    LEFT JOIN "acton"."dbt_actonmarketing"."person_source_xf" person
+    ON campaign_member.lead_or_contact_id=person.person_id
+    LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" account
+    ON person.lean_data_account_id=account.account_id
+    LEFT JOIN "acton"."dbt_actonmarketing"."campaign_influence_xf" campaign_influence
+    ON campaign_member.campaign_id=campaign_influence.influence_campaign_id
+    AND campaign_influence.influence_contact_id=person.person_id
+    LEFT JOIN "acton"."dbt_actonmarketing"."opp_source_xf" opp
+    ON campaign_influence.influence_opportunity_id=opp.opportunity_id
 
 )
 
