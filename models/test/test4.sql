@@ -2,6 +2,9 @@
 
 SELECT DISTINCT
     opportunity_id,
-    opp_lead_source
+    opp_channel_lead_creation,
+    opp_medium_lead_creation,
+    opp_source_lead_creation
 FROM {{ref('opp_source_xf')}}
-WHERE opp_lead_source NOT IN ('Marketing','SDR','Sales','Channel','CSM','Zendesk')
+WHERE opp_channel_lead_creation IN ('parnter','syndication partner','tradeshow')
+OR opp_medium_lead_creation = 'test'
