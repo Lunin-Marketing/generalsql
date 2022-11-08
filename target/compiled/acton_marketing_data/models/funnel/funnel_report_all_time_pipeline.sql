@@ -70,6 +70,7 @@ WITH base AS (
         segment,
         industry,
         industry_bucket,
+        target_account,
         channel_bucket,
         CASE
             WHEN stage_name = 'SQL' THEN '0.SQL'
