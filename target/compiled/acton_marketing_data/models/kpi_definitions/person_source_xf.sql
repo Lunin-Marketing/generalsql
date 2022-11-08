@@ -12,6 +12,7 @@ SELECT
     lead_source_xf.country,
     lead_source_xf.lead_status AS person_status,
     lead_source_xf.global_region,
+    lead_source_xf.created_by_id,
 
     -- Account Information
     lead_source_xf.company,
@@ -95,6 +96,7 @@ SELECT
     mailing_country,
     contact_status AS person_status,
     global_region,
+    created_by_id,
 
     -- Account Information
     account_name,

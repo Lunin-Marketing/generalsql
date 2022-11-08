@@ -9,12 +9,12 @@ WITH base AS (
         lead_history_xf.old_value,
         lead_history_xf.new_value,
         mql_most_recent_date,
+        lead_status,
         'lead' AS type
     FROM "acton"."dbt_actonmarketing"."lead_history_xf"
     LEFT JOIN "acton"."dbt_actonmarketing"."lead_source_xf" ON 
     lead_history_xf.lead_id=lead_source_xf.lead_id
     WHERE mql_most_recent_date >= '2022-02-01'
-    AND lead_score != '0'
     AND field ='X9883_Lead_Score__c'
     AND new_value::Decimal >= '50.0'
     AND old_value::Decimal < '50.0'
@@ -26,15 +26,16 @@ WITH base AS (
         contact_history_xf.old_value,
         contact_history_xf.new_value,
         mql_most_recent_date,
+        contact_status,
         'contact' AS type
     FROM "acton"."dbt_actonmarketing"."contact_history_xf"
     LEFT JOIN "acton"."dbt_actonmarketing"."contact_source_xf" ON 
     contact_history_xf.contact_id=contact_source_xf.contact_id
     WHERE mql_most_recent_date >= '2022-02-01'
-    AND lead_score != '0'
     AND field ='X9883_Lead_Score__c'
     AND new_value::Decimal >= '50.0'
     AND old_value::Decimal < '50.0'
+    AND is_current_customer = False
 
 ), final AS (
 
@@ -44,6 +45,7 @@ WITH base AS (
         new_value,
         field_modified_at,
         mql_most_recent_date,
+        lead_status,
         type,
         ROW_NUMBER() OVER(PARTITION BY lead_id ORDER BY field_modified_at) AS event_number
     FROM base 
@@ -57,6 +59,7 @@ SELECT
     new_value,
     field_modified_at,
     mql_most_recent_date,
+    lead_status,
     type
 FROM final
 WHERE event_number = 1
