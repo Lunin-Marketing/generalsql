@@ -48,6 +48,7 @@ SELECT
     END AS is_hand_raiser,
     lead_source_xf.created_by_name,
     lead_source_xf.email_bounced_reason_new,
+    lead_source_xf.most_recent_salesloft_cadence,
 
     --Attribution Data
     lead_source_xf.campaign_first_touch,

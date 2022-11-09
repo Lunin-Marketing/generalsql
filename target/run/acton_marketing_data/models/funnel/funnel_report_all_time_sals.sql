@@ -11,7 +11,9 @@ WITH base AS (
         CONCAT('https://acton.my.salesforce.com/',sal_source_xf.person_id) AS sal_url,
         sal_source_xf.working_date AS sal_date,
         sal_source_xf.mql_most_recent_date AS mql_date,
+        person_status,
         company,
+        most_recent_salesloft_cadence,
         is_hand_raiser,
         CASE
         WHEN global_region IS null THEN 'blank'

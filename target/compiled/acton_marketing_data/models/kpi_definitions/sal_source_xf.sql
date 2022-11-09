@@ -18,6 +18,7 @@ SELECT
     target_account,
     channel_bucket,
     offer_asset_name_lead_creation,
+    most_recent_salesloft_cadence,
     campaign_lead_creation
 FROM "acton"."dbt_actonmarketing"."person_source_xf"
 WHERE person_owner_id != '00Ga0000003Nugr'
