@@ -28,6 +28,7 @@ SELECT
     industry_bucket,
     channel_bucket,
     offer_asset_name_lead_creation,
+    most_recent_salesloft_cadence,
     campaign_lead_creation
 FROM "acton"."dbt_actonmarketing"."person_source_xf"
 WHERE mql_most_recent_date IS NOT null

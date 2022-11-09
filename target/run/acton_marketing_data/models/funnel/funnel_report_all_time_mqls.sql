@@ -19,6 +19,7 @@ WITH base AS (
         person_status,
         country,
         is_hand_raiser,
+        most_recent_salesloft_cadence,
         CASE 
             WHEN working_date IS null then 'No'
             ELSE 'Yes'

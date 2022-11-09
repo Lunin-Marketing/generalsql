@@ -47,5 +47,4 @@ LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE discovery_date IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','SQL - No Opportunity')
---AND type = 'New Business'
   );
