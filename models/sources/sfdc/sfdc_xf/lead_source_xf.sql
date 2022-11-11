@@ -90,6 +90,7 @@ FROM {{ source('salesforce', 'lead') }}
         campaign_lead_creation_c AS campaign_lead_creation,
         firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
         base.sales_loft_most_recent_cadence_name_c AS most_recent_salesloft_cadence,
+        base.looking_for_ma_c AS looking_for_ma,
         do_not_contact_c AS do_not_contact,
         form_consent_opt_in_c AS form_consent_opt_in,
         CASE 
