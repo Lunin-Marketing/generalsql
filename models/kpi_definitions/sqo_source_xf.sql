@@ -34,6 +34,7 @@ opp_source_xf.segment,
 opp_source_xf.industry,
 opp_source_xf.industry_bucket,
 channel_bucket,
+channel_bucket_details,
 opp_source_xf.company_size_rev,
 opp_source_xf.opp_offer_asset_name_lead_creation
 FROM {{ref('opp_source_xf')}}

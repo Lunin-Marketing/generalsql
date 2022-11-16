@@ -44,6 +44,10 @@ WITH base AS (
         ELSE opp_source_xf.target_account
     END AS target_account,
     CASE
+        WHEN channel_bucket_details IS null THEN 'blank'
+        ELSE channel_bucket_details
+    END AS channel_bucket_details,
+    CASE
         WHEN opp_source_xf.channel_bucket IS null THEN 'blank'
         ELSE opp_source_xf.channel_bucket
     END AS channel_bucket
@@ -72,6 +76,7 @@ WITH base AS (
         industry_bucket,
         target_account,
         channel_bucket,
+        channel_bucket_details,
         CASE
             WHEN stage_name = 'SQL' THEN '0.SQL'
             WHEN stage_name = 'Discovery' THEN '1.SQO'

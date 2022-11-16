@@ -10,6 +10,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -26,6 +27,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -42,6 +44,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -58,6 +61,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -74,6 +78,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -90,6 +95,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -106,6 +112,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -122,6 +129,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -138,6 +146,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -154,6 +163,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         'No' AS is_hand_raiser,
         offer_asset_name_lead_creation,
@@ -193,6 +203,10 @@ SELECT DISTINCT
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
     END AS channel_bucket,
+    CASE
+        WHEN channel_bucket_details IS null THEN 'blank'
+        ELSE channel_bucket_details
+    END AS channel_bucket_details,
     CASE
         WHEN offer_asset_name_lead_creation IS null THEN 'blank'
         ELSE offer_asset_name_lead_creation

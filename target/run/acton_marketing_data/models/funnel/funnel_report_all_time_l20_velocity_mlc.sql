@@ -16,6 +16,7 @@ WITH base AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket,
         opp_created_date,
         account_global_region,
@@ -37,6 +38,7 @@ WITH base AS (
         account_global_region,
         opp_company_size_rev,
         opp_lead_source,
+        target_account,
         opp_segment,
         opp_industry,
         opp_channel_bucket,
@@ -55,6 +57,7 @@ SELECT
     opp_segment,
     opp_industry,
     opp_channel_bucket,
+    target_account,
     opp_industry_bucket,
     marketing_created_date,
     lead_to_opp_velocity

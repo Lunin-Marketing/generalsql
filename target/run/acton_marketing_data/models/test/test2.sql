@@ -5,10 +5,13 @@
     
 
 SELECT
-    person_id
+    person_id,
+    mql_most_recent_date,
+    looking_for_ma,
+    is_hand_raiser
 FROM "acton"."dbt_actonmarketing"."person_source_xf"
-WHERE channel_lead_creation IS null
-AND medium_lead_creation  IS null
-AND source_lead_creation IS null
-AND created_date < '2020-06-01'
+WHERE lead_score = 50
+AND (LOWER(looking_for_ma) = 'yes'
+    OR LOWER(is_hand_raiser) = 'true')
+AND mql_most_recent_date IS NOT null
   );

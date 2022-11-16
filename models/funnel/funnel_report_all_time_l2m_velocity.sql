@@ -11,6 +11,7 @@ WITH leads AS (
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         industry_bucket
     FROM {{ref('funnel_report_all_time_leads')}}
@@ -26,6 +27,7 @@ WITH leads AS (
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         industry_bucket
     FROM {{ref('funnel_report_all_time_mqls')}}
@@ -44,6 +46,7 @@ WITH leads AS (
         mqls.industry_bucket,
         mqls.target_account,
         mqls.channel_bucket,
+        mqls.channel_bucket_details,
         {{ dbt_utils.datediff("created_date","mql_date",'day')}} AS l2m_velocity
     FROM mqls
     LEFT JOIN leads ON 
@@ -57,6 +60,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     industry_bucket,
     target_account,
     mql_date,

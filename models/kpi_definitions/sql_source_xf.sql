@@ -26,6 +26,7 @@ SELECT DISTINCT
     opp_source_xf.industry,
     opp_source_xf.industry_bucket,
     channel_bucket,
+    channel_bucket_details,
     opp_source_xf.opp_offer_asset_name_lead_creation,
     acv_deal_size_usd AS acv
 FROM {{ref('opp_source_xf')}}

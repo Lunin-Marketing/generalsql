@@ -11,6 +11,7 @@ WITH sqo_opp AS (
         segment,
         industry,
         target_account,
+        channel_bucket_details,
         channel_bucket,
         industry_bucket
     FROM {{ref('funnel_report_all_time_sqos')}}
@@ -26,6 +27,7 @@ WITH sqo_opp AS (
         segment,
         industry,
         target_account,
+        channel_bucket_details,
         channel_bucket,
         industry_bucket
     FROM {{ref('funnel_report_all_time_won')}}
@@ -43,6 +45,7 @@ WITH sqo_opp AS (
         won_opp.industry,
         won_opp.target_account,
         won_opp.channel_bucket,
+        won_opp.channel_bucket_details,
         won_opp.industry_bucket,
         {{ dbt_utils.datediff("sqo_date","won_date",'day')}} AS sqo2won_velocity
     FROM won_opp
@@ -58,6 +61,7 @@ SELECT
     industry,
     channel_bucket,
     industry_bucket,
+    channel_bucket_details,
     target_account,
     won_date,
     sqo2won_velocity

@@ -38,6 +38,10 @@ WITH base AS (
         ELSE opp_source_xf.channel_bucket
     END AS channel_bucket,
     CASE
+        WHEN channel_bucket_details IS null THEN 'blank'
+        ELSE channel_bucket_details
+    END AS channel_bucket_details,
+    CASE
         WHEN opp_source_xf.target_account IS null THEN false
         ELSE opp_source_xf.target_account
     END AS target_account,

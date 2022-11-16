@@ -11,6 +11,7 @@ WITH voc_opp AS (
         target_account,
         segment,
         industry,
+        channel_bucket_details,
         channel_bucket,
         industry_bucket
     FROM {{ref('funnel_report_all_time_voc')}}
@@ -26,6 +27,7 @@ WITH voc_opp AS (
         target_account,
         segment,
         industry,
+        channel_bucket_details,
         channel_bucket,
         industry_bucket
     FROM {{ref('funnel_report_all_time_closing')}}
@@ -44,6 +46,7 @@ WITH voc_opp AS (
         closing_opp.target_account,
         closing_opp.industry_bucket,
         closing_opp.channel_bucket,
+        closing_opp.channel_bucket_details,
         {{ dbt_utils.datediff("voc_date","closing_date",'day')}} AS voc2closing_velocity
     FROM closing_opp
     LEFT JOIN voc_opp ON 
@@ -57,6 +60,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     target_account,
     industry_bucket,
     closing_date,

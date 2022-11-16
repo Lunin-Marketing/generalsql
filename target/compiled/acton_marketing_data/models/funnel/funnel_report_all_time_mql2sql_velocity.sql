@@ -12,6 +12,7 @@ WITH base AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket,
         opp_created_date AS sql_date,
         account_global_region,
@@ -34,6 +35,7 @@ WITH base AS (
         opp_lead_source,
         account_global_region,
         opp_segment,
+        target_account,
         opp_industry,
         opp_channel_bucket,
         opp_industry_bucket,
@@ -51,6 +53,7 @@ SELECT
     opp_segment,
     opp_industry,
     opp_channel_bucket,
+    target_account,
     opp_industry_bucket,
     sql_date,
     mql2sql_velocity
