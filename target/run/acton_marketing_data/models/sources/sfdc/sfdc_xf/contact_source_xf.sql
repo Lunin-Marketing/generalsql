@@ -80,6 +80,7 @@ FROM "acton"."salesforce"."contact"
         base.email_bounced_date_c AS email_bounced_date_new,
         base.email_bounced_reason_c AS email_bounced_reason_new,
         DATE_TRUNC('day',date_time_to_working_c)::Date AS working_date,
+        base.looking_for_ma_c AS looking_for_ma,
         account_source_xf.account_owner_id,
         account_source_xf.account_owner_name,
         account_source_xf.annual_revenue,
@@ -135,6 +136,7 @@ FROM "acton"."salesforce"."contact"
             WHEN LOWER(medium_lead_creation_c) = 'virtualevent' THEN 'Events and Trade Shows'
             WHEN LOWER(channel_lead_creation_c) = 'prospecting' AND LOWER(medium_lead_creation_c) = 'sdr' THEN 'SDR'
             WHEN LOWER(channel_lead_creation_c) = 'prospecting' AND LOWER(medium_lead_creation_c) = 'rsm' THEN 'RSM'
+            WHEN LOWER(channel_lead_creation_c) = 'predates attribution' AND LOWER(medium_lead_creation_c) = 'predates attribution' THEN 'Predates Attribution'
             ELSE 'Other'
         END AS channel_bucket
     FROM base

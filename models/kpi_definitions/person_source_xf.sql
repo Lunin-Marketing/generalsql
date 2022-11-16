@@ -165,6 +165,7 @@ SELECT
     offer_asset_type_first_touch,
     offer_asset_type_last_touch,
     offer_asset_type_lead_creation,
-    channel_bucket
+    channel_bucket,
+    channel_bucket_details
 FROM {{ref('contact_source_xf')}}
 WHERE is_deleted = FALSE

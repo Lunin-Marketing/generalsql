@@ -17,6 +17,7 @@ SELECT
     industry_bucket,
     target_account,
     channel_bucket,
+    channel_bucket_details,
     offer_asset_name_lead_creation,
     most_recent_salesloft_cadence,
     campaign_lead_creation

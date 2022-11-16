@@ -90,6 +90,7 @@ FROM "acton"."salesforce"."lead"
         campaign_lead_creation_c AS campaign_lead_creation,
         firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
         base.sales_loft_most_recent_cadence_name_c AS most_recent_salesloft_cadence,
+        base.looking_for_ma_c AS looking_for_ma,
         do_not_contact_c AS do_not_contact,
         form_consent_opt_in_c AS form_consent_opt_in,
         CASE 
@@ -119,6 +120,7 @@ FROM "acton"."salesforce"."lead"
             WHEN LOWER(medium_lead_creation_c) = 'virtualevent' THEN 'Events and Trade Shows'
             WHEN LOWER(channel_lead_creation_c) = 'prospecting' AND LOWER(medium_lead_creation_c) = 'sdr' THEN 'SDR'
             WHEN LOWER(channel_lead_creation_c) = 'prospecting' AND LOWER(medium_lead_creation_c) = 'rsm' THEN 'RSM'
+            WHEN LOWER(channel_lead_creation_c) = 'predates attribution' AND LOWER(medium_lead_creation_c) = 'predates attribution' THEN 'Predates Attribution'
             ELSE 'Other'
         END AS channel_bucket,
         CASE

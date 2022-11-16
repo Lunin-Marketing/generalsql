@@ -16,6 +16,7 @@ WITH base AS (
         segment,
         industry,
         channel_bucket,
+        target_account,
         industry_bucket,
         opp_created_date,
         account_global_region,
@@ -39,6 +40,7 @@ WITH base AS (
         opp_lead_source,
         opp_segment,
         opp_industry,
+        target_account,
         opp_channel_bucket,
         opp_industry_bucket,
         
@@ -56,6 +58,7 @@ SELECT
     opp_industry,
     opp_channel_bucket,
     opp_industry_bucket,
+    target_account,
     opp_created_date,
     lead_to_opp_velocity
 FROM final
