@@ -16,6 +16,7 @@ WITH won_opp AS (
         industry,
         industry_bucket,
         target_account,
+        channel_bucket_details,
         channel_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_won"
 
@@ -31,6 +32,7 @@ WITH won_opp AS (
         industry,
         industry_bucket,
         target_account,
+        channel_bucket_details,
         channel_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
     
@@ -48,6 +50,7 @@ WITH won_opp AS (
         won_opp.target_account,
         won_opp.industry_bucket,
         won_opp.channel_bucket,
+        won_opp.channel_bucket_details,
         
         ((won_date)::date - (sql_date)::date)
      AS cw_velocity
@@ -63,6 +66,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     industry_bucket,
     target_account,
     won_date,

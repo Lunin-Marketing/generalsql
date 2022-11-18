@@ -8,6 +8,7 @@ SELECT DISTINCT
     sdr_name,
     opp_source_xf.is_closed,
     opp_source_xf.is_won,
+    account_source_xf.is_current_customer,
     created_date,
     stage_name,
     opp_lead_source,

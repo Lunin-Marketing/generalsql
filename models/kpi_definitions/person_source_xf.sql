@@ -79,7 +79,8 @@ SELECT
     lead_source_xf.offer_asset_type_first_touch,
     lead_source_xf.offer_asset_type_last_touch,
     lead_source_xf.offer_asset_type_lead_creation,
-    lead_source_xf.channel_bucket
+    lead_source_xf.channel_bucket,
+    channel_bucket_details
 FROM {{ref('lead_source_xf')}}
 LEFT JOIN {{ref('account_source_xf')}} ON
 lead_source_xf.lean_data_account_id=account_source_xf.account_id

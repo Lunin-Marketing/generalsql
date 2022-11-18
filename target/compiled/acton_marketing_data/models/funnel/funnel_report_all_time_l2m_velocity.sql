@@ -8,9 +8,12 @@ WITH leads AS (
         global_region,
         company_size_rev,
         lead_source,
+        is_hand_raiser,
+        is_current_customer,
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_leads"
@@ -23,9 +26,12 @@ WITH leads AS (
         global_region,
         company_size_rev,
         lead_source,
+        is_hand_raiser,
+        is_current_customer,
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
@@ -40,10 +46,13 @@ WITH leads AS (
         mqls.company_size_rev,
         mqls.lead_source,
         mqls.segment,
+        mqls.is_hand_raiser,
+        mqls.is_current_customer,
         mqls.industry,
         mqls.industry_bucket,
         mqls.target_account,
         mqls.channel_bucket,
+        mqls.channel_bucket_details,
         
         ((mql_date)::date - (created_date)::date)
      AS l2m_velocity
@@ -56,9 +65,12 @@ SELECT
     global_region,
     company_size_rev,
     lead_source,
+    is_hand_raiser,
+    is_current_customer,
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     industry_bucket,
     target_account,
     mql_date,

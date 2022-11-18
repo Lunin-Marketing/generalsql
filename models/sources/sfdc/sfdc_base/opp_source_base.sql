@@ -32,7 +32,9 @@ FROM {{ source('salesforce', 'opportunity') }}
         DATE_TRUNC('day',discovery_date_c)::Date AS discovery_date,
         DATE_TRUNC('day',date_reached_confirmed_value_c)::Date AS confirmed_value_date,
         DATE_TRUNC('day',date_reached_contract_c)::Date AS negotiation_date,
-        DATE_TRUNC('day',date_reached_demo_c)::Date AS demo_date,
+        DATE_TRUNC('day',date_reached_demo_c)::Date AS date_reached_demo,
+        DATE_TRUNC('day',date_reached_demo_confirmed_c)::Date AS date_reached_demo_confirmed,
+        DATE_TRUNC('day',date_reached_demo_complete_c)::Date AS date_reached_demo_complete,
         DATE_TRUNC('day',date_reached_solution_c)::Date AS solution_date,
         DATE_TRUNC('day',date_reached_closing_c)::Date AS closing_date,
         DATE_TRUNC('day',date_time_reached_implement_c)::Date AS implement_date,
@@ -104,6 +106,7 @@ FROM {{ source('salesforce', 'opportunity') }}
 
     SELECT
         intermediate.*,
+        COALESCE(date_reached_demo,date_reached_demo_confirmed,date_reached_demo_complete) AS demo_date,
         CASE 
             WHEN acv_deal_size_usd <= '9999' THEN '< 10K'
             WHEN acv_deal_size_usd > '9999' AND acv_deal_size_usd <= '14999' THEN '10-15K'
@@ -186,6 +189,7 @@ FROM {{ source('salesforce', 'opportunity') }}
             WHEN LOWER(opp_channel_lead_creation) = 'predates attribution' AND LOWER(opp_medium_lead_creation) = 'predates attribution' THEN 'Predates Attribution'
             ELSE 'Other'
         END AS channel_bucket
+        FROM intermediate
 )
 
 SELECT 

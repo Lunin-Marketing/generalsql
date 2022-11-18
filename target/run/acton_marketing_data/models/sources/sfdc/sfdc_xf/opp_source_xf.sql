@@ -118,7 +118,8 @@ FROM "acton"."dbt_actonmarketing"."opp_source_base"
         opp_source_lead_creation,
         opp_campaign_opportunity_creation,
         opp_campaign_first_touch,
-        channel_bucket
+        channel_bucket,
+        channel_bucket_details
     FROM base
     LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" ON
     base.account_id=account_source_xf.account_id

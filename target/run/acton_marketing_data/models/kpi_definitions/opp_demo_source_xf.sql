@@ -17,6 +17,7 @@ SELECT
     confirmed_value_date,
     stage_name,
     opp_source_xf.target_account,
+    account_source_xf.is_current_customer,
     opp_lead_source,
     CASE 
         WHEN type in ('New Business') THEN 'New Business'
@@ -38,6 +39,7 @@ SELECT
     opp_source_xf.industry,
     opp_source_xf.industry_bucket,
     opp_source_xf.channel_bucket,
+    channel_bucket_details,
     opp_source_xf.opp_offer_asset_name_lead_creation
 FROM "acton"."dbt_actonmarketing"."opp_source_xf"
 LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" ON

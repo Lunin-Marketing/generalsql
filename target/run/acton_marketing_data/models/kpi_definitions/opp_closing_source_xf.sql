@@ -16,6 +16,7 @@ SELECT
     stage_name,
     opp_lead_source,
     opp_source_xf.target_account,
+    account_source_xf.is_current_customer,
     CASE 
         WHEN type in ('New Business') THEN 'New Business'
         WHEN type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down','Trigger Renewal','Renewal','Multiyear Renewal','Admin Conversion','One Time','Downsell') THEN 'Upsell'
@@ -36,6 +37,7 @@ SELECT
     opp_source_xf.industry,
     opp_source_xf.industry_bucket,
     opp_source_xf.channel_bucket,
+    opp_source_xf.channel_bucket_details,
     opp_source_xf.opp_offer_asset_name_lead_creation
 FROM "acton"."dbt_actonmarketing"."opp_source_xf"
 LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" ON
@@ -43,5 +45,5 @@ opp_source_xf.owner_id=user_source_xf.user_id
 LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE closing_date IS NOT null
-AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo','VOC/Negotiate','Implement')
+AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed','SQL','Discovery','Demo','VOC/Negotiate','SQL - No Opportunity')
   );

@@ -13,6 +13,7 @@ SELECT
     opp_source_xf.is_closed,
     opp_source_xf.is_won,
     voc_date AS negotiation_date,
+    account_source_xf.is_current_customer,
     stage_name,
     opp_lead_source,
     CASE 
@@ -36,6 +37,7 @@ SELECT
     opp_source_xf.industry,
     opp_source_xf.industry_bucket,
     opp_source_xf.channel_bucket,
+    channel_bucket_details,
     opp_source_xf.opp_offer_asset_name_lead_creation
 FROM "acton"."dbt_actonmarketing"."opp_source_xf"
 LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" ON
