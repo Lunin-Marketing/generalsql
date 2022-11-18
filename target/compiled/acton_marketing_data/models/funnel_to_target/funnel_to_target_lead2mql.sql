@@ -7,6 +7,7 @@ WITH lead_kpi_base AS (
         COUNT(DISTINCT lead_id) AS kpi
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_leads"
     WHERE DATE_TRUNC('Month',created_date) IN ('2022-12-01','2022-11-01','2022-10-01')
+    AND is_current_customer = false
     GROUP BY 1
 
 ), mql_kpi_base AS (
@@ -16,6 +17,7 @@ WITH lead_kpi_base AS (
         COUNT(DISTINCT mql_id) AS kpi
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
     WHERE DATE_TRUNC('Month',mql_date) IN ('2022-12-01','2022-11-01','2022-10-01')
+    AND is_current_customer = false
     GROUP BY 1
 
 ), kpi_target AS (

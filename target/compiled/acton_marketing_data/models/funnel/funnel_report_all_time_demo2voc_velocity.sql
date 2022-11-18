@@ -11,6 +11,7 @@ WITH demo_opp AS (
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_demo"
@@ -26,6 +27,7 @@ WITH demo_opp AS (
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
         target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_voc"
@@ -42,6 +44,7 @@ WITH demo_opp AS (
         voc_opp.segment,
         voc_opp.industry,
         voc_opp.channel_bucket,
+        voc_opp.channel_bucket_details,
         voc_opp.target_account,
         voc_opp.industry_bucket,
         
@@ -59,6 +62,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     target_account,
     industry_bucket,
     voc_date,

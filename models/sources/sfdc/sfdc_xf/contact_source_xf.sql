@@ -23,7 +23,7 @@ FROM {{ source('salesforce', 'contact') }}
         DATE_TRUNC('day',base.created_date)::Date AS created_date,
         base.last_modified_date,
         base.system_modstamp AS systemmodstamp,
-        base.current_customer_reference_c AS is_current_customer,
+        account_source_xf.is_current_customer AS is_current_customer,
         base.no_longer_with_company_c AS is_no_longer_with_company,
         base.hand_raiser_c AS is_hand_raiser,
         base.mql_created_date_c AS mql_created_date,

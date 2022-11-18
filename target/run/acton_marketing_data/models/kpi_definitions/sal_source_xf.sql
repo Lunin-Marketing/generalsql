@@ -8,6 +8,7 @@ SELECT
     person_id,
     email,
     is_hand_raiser,
+    is_current_customer,
     working_date,
     mql_most_recent_date,
     person_status,
@@ -21,6 +22,7 @@ SELECT
     industry_bucket,
     target_account,
     channel_bucket,
+    channel_bucket_details,
     offer_asset_name_lead_creation,
     most_recent_salesloft_cadence,
     campaign_lead_creation

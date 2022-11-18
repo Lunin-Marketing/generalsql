@@ -9,6 +9,7 @@ SELECT
     opp_source_xf.is_closed,
     opp_source_xf.is_won,
     voc_date AS negotiation_date,
+    account_source_xf.is_current_customer,
     stage_name,
     opp_lead_source,
     CASE 

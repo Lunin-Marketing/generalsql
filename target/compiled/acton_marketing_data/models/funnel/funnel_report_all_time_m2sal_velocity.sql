@@ -11,7 +11,10 @@ WITH sals AS (
         segment,
         industry,
         target_account,
+        is_hand_raiser,
+        is_current_customer,
         channel_bucket,
+        channel_bucket_details,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sals"
 
@@ -25,8 +28,11 @@ WITH sals AS (
         lead_source,
         segment,
         industry,
+        is_hand_raiser,
+        is_current_customer,
         target_account,
         channel_bucket,
+        channel_bucket_details,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
     
@@ -41,8 +47,11 @@ WITH sals AS (
         sals.lead_source,
         sals.segment,
         sals.industry,
+        sals.is_hand_raiser,
+        sals.is_current_customer,
         sals.target_account,
         sals.channel_bucket,
+        sals.channel_bucket_details,
         sals.industry_bucket,
         
         ((sal_date)::date - (mql_date)::date)
@@ -57,8 +66,11 @@ SELECT
     company_size_rev,
     lead_source,
     segment,
+    is_hand_raiser,
+    is_current_customer,
     industry,
     channel_bucket,
+    channel_bucket_details,
     target_account,
     industry_bucket,
     sal_date,

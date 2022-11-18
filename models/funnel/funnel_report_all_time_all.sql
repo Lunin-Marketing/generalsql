@@ -136,7 +136,7 @@ WITH base AS (
         channel_bucket_details,
         created_date
     FROM {{ref('funnel_report_all_time_leads')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), mql_base AS (
 
@@ -152,7 +152,7 @@ WITH base AS (
         channel_bucket_details,
         mql_date
     FROM {{ref('funnel_report_all_time_mqls')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), sal_base AS (
 
@@ -168,7 +168,7 @@ WITH base AS (
         channel_bucket_details,
         sal_date
     FROM {{ref('funnel_report_all_time_sals')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), sql_base AS (
 
@@ -184,7 +184,7 @@ WITH base AS (
         channel_bucket_details,
         sql_date
     FROM {{ref('funnel_report_all_time_sqls')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), sqo_base AS (
 
@@ -200,7 +200,7 @@ WITH base AS (
         channel_bucket_details,
         sqo_date
     FROM {{ref('funnel_report_all_time_sqos')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), demo_base AS (
 
@@ -216,7 +216,7 @@ WITH base AS (
         channel_bucket_details,
         demo_date
     FROM {{ref('funnel_report_all_time_demo')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), voc_base AS (
 
@@ -232,7 +232,7 @@ WITH base AS (
         channel_bucket_details,
         voc_date
     FROM {{ref('funnel_report_all_time_voc')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), closing_base AS (
 
@@ -248,7 +248,7 @@ WITH base AS (
         channel_bucket_details,
         closing_date
     FROM {{ref('funnel_report_all_time_closing')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), won_base AS (
 
@@ -264,7 +264,7 @@ WITH base AS (
         channel_bucket_details,
         won_date
     FROM {{ref('funnel_report_all_time_won')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), lost_base AS (
 
@@ -280,7 +280,7 @@ WITH base AS (
         channel_bucket_details,
         lost_date
     FROM {{ref('funnel_report_all_time_lost')}}
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), final AS (
 
@@ -405,7 +405,7 @@ WITH base AS (
     AND base.segment=closing_base.segment
     AND base.industry=closing_base.industry
     AND base.channel_bucket=closing_base.channel_bucket
-    AND base.channel_bucket_details=closing_base.channel_bucket_de
+    AND base.channel_bucket_details=closing_base.channel_bucket_details
     AND base.date=closing_base.closing_date
     LEFT JOIN won_base ON
     base.company_size_rev=won_base.company_size_rev
@@ -425,7 +425,7 @@ WITH base AS (
     AND base.channel_bucket=lost_base.channel_bucket
     AND base.channel_bucket_details=lost_base.channel_bucket_details
     AND base.date=lost_base.lost_date
-    GROUP BY 1,2,3,4,5,6,7,8
+    GROUP BY 1,2,3,4,5,6,7,8,9
 
 )
 
@@ -485,4 +485,4 @@ SELECT
         ELSE SUM(closing/NULLIF(lost,0))
     END AS closing_to_lost_conv
 FROM final
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18

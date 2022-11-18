@@ -15,6 +15,8 @@ WITH sqo_opp AS (
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
+        target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqos"
 
@@ -29,6 +31,8 @@ WITH sqo_opp AS (
         segment,
         industry,
         channel_bucket,
+        channel_bucket_details,
+        target_account,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
     
@@ -44,6 +48,8 @@ WITH sqo_opp AS (
         sqo_opp.segment,
         sqo_opp.industry,
         sqo_opp.channel_bucket,
+        sqo_opp.channel_bucket_details,
+        sqo_opp.target_account,
         sqo_opp.industry_bucket,
         
         ((sqo_date)::date - (sql_date)::date)
@@ -60,7 +66,9 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     industry_bucket,
+    target_account,
     sqo_date,
     sql2sqo_velocity
 FROM final

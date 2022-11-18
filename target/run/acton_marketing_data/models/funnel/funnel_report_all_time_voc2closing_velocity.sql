@@ -15,6 +15,7 @@ WITH voc_opp AS (
         target_account,
         segment,
         industry,
+        channel_bucket_details,
         channel_bucket,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_voc"
@@ -30,6 +31,7 @@ WITH voc_opp AS (
         target_account,
         segment,
         industry,
+        channel_bucket_details,
         channel_bucket,
         industry_bucket
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_closing"
@@ -48,6 +50,7 @@ WITH voc_opp AS (
         closing_opp.target_account,
         closing_opp.industry_bucket,
         closing_opp.channel_bucket,
+        closing_opp.channel_bucket_details,
         
         ((closing_date)::date - (voc_date)::date)
      AS voc2closing_velocity
@@ -63,6 +66,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     target_account,
     industry_bucket,
     closing_date,

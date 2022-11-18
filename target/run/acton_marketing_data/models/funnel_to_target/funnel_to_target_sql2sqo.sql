@@ -11,6 +11,7 @@ WITH sql_kpi_base AS (
         COUNT(DISTINCT sql_id) AS kpi
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
     WHERE DATE_TRUNC('Month',sql_date) IN ('2022-12-01','2022-11-01','2022-10-01')
+    AND opp_type = 'New Business'
     GROUP BY 1
 
 ), sqo_kpi_base AS (
@@ -20,6 +21,7 @@ WITH sql_kpi_base AS (
         COUNT(DISTINCT sqo_id) AS kpi
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqos"
     WHERE DATE_TRUNC('Month',sqo_date) IN ('2022-12-01','2022-11-01','2022-10-01')
+    AND opp_type = 'New Business'
     GROUP BY 1
 
 ), kpi_target AS (

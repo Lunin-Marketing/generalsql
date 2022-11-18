@@ -14,6 +14,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         created_date AS date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_leads"
     UNION ALL
@@ -25,6 +26,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         mql_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
     UNION ALL
@@ -36,6 +38,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         sal_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sals"
     UNION ALL
@@ -47,6 +50,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         sql_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
     UNION ALL
@@ -58,6 +62,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         sqo_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqos"
     UNION ALL
@@ -69,6 +74,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         demo_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_demo"
     UNION ALL
@@ -80,6 +86,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         voc_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_voc"
     UNION ALL
@@ -91,6 +98,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         closing_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_closing"
     UNION ALL
@@ -102,6 +110,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         won_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_won"
     UNION ALL
@@ -113,6 +122,7 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         lost_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_lost"
     
@@ -127,9 +137,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         created_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_leads"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), mql_base AS (
 
@@ -142,9 +153,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         mql_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_mqls"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), sal_base AS (
 
@@ -157,9 +169,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         sal_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sals"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), sql_base AS (
 
@@ -172,9 +185,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         sql_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqls"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), sqo_base AS (
 
@@ -187,9 +201,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         sqo_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_sqos"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), demo_base AS (
 
@@ -202,9 +217,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         demo_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_demo"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), voc_base AS (
 
@@ -217,9 +233,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         voc_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_voc"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), closing_base AS (
 
@@ -232,9 +249,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         closing_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_closing"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), won_base AS (
 
@@ -247,9 +265,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         won_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_won"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), lost_base AS (
 
@@ -262,9 +281,10 @@ WITH base AS (
         industry,
         industry_bucket,
         channel_bucket,
+        channel_bucket_details,
         lost_date
     FROM "acton"."dbt_actonmarketing"."funnel_report_all_time_lost"
-    GROUP BY 2,3,4,5,6,7,8,9
+    GROUP BY 2,3,4,5,6,7,8,9,10
 
 ), final AS (
 
@@ -276,6 +296,7 @@ WITH base AS (
         base.industry,
         base.industry_bucket,
         base.channel_bucket,
+        base.channel_bucket_details,
         base.date,
         CASE 
             WHEN SUM(leads) IS null THEN 0
@@ -325,6 +346,7 @@ WITH base AS (
     AND base.segment=lead_base.segment
     AND base.industry=lead_base.industry
     AND base.channel_bucket=lead_base.channel_bucket
+    AND base.channel_bucket_details=lead_base.channel_bucket_details
     AND base.date=lead_base.created_date
     LEFT JOIN mql_base ON
     base.company_size_rev=mql_base.company_size_rev
@@ -333,6 +355,7 @@ WITH base AS (
     AND base.segment=mql_base.segment
     AND base.industry=mql_base.industry
     AND base.channel_bucket=mql_base.channel_bucket
+    AND base.channel_bucket_details=mql_base.channel_bucket_details
     AND base.date=mql_base.mql_date
     LEFT JOIN sal_base ON
     base.company_size_rev=sal_base.company_size_rev
@@ -341,6 +364,7 @@ WITH base AS (
     AND base.segment=sal_base.segment
     AND base.industry=sal_base.industry
     AND base.channel_bucket=sal_base.channel_bucket
+    AND base.channel_bucket_details=sal_base.channel_bucket_details
     AND base.date=sal_base.sal_date
     LEFT JOIN sql_base ON
     base.company_size_rev=sql_base.company_size_rev
@@ -349,6 +373,7 @@ WITH base AS (
     AND base.segment=sql_base.segment
     AND base.industry=sql_base.industry
     AND base.channel_bucket=sql_base.channel_bucket
+    AND base.channel_bucket_details=sql_base.channel_bucket_details
     AND base.date=sql_base.sql_date
     LEFT JOIN sqo_base ON
     base.company_size_rev=sqo_base.company_size_rev
@@ -357,6 +382,7 @@ WITH base AS (
     AND base.segment=sqo_base.segment
     AND base.industry=sqo_base.industry
     AND base.channel_bucket=sqo_base.channel_bucket
+    AND base.channel_bucket_details=sqo_base.channel_bucket_details
     AND base.date=sqo_base.sqo_date
     LEFT JOIN demo_base ON
     base.company_size_rev=demo_base.company_size_rev
@@ -365,6 +391,7 @@ WITH base AS (
     AND base.segment=demo_base.segment
     AND base.industry=demo_base.industry
     AND base.channel_bucket=demo_base.channel_bucket
+    AND base.channel_bucket_details=demo_base.channel_bucket_details
     AND base.date=demo_base.demo_date
     LEFT JOIN voc_base ON
     base.company_size_rev=voc_base.company_size_rev
@@ -373,6 +400,7 @@ WITH base AS (
     AND base.segment=voc_base.segment
     AND base.industry=voc_base.industry
     AND base.channel_bucket=voc_base.channel_bucket
+    AND base.channel_bucket_details=voc_base.channel_bucket_details
     AND base.date=voc_base.voc_date
     LEFT JOIN closing_base ON
     base.company_size_rev=closing_base.company_size_rev
@@ -381,6 +409,7 @@ WITH base AS (
     AND base.segment=closing_base.segment
     AND base.industry=closing_base.industry
     AND base.channel_bucket=closing_base.channel_bucket
+    AND base.channel_bucket_details=closing_base.channel_bucket_details
     AND base.date=closing_base.closing_date
     LEFT JOIN won_base ON
     base.company_size_rev=won_base.company_size_rev
@@ -389,6 +418,7 @@ WITH base AS (
     AND base.segment=won_base.segment
     AND base.industry=won_base.industry
     AND base.channel_bucket=won_base.channel_bucket
+    AND base.channel_bucket_details=won_base.channel_bucket_details
     AND base.date=won_base.won_date
     LEFT JOIN lost_base ON
     base.company_size_rev=lost_base.company_size_rev
@@ -397,8 +427,9 @@ WITH base AS (
     AND base.segment=lost_base.segment
     AND base.industry=lost_base.industry
     AND base.channel_bucket=lost_base.channel_bucket
+    AND base.channel_bucket_details=lost_base.channel_bucket_details
     AND base.date=lost_base.lost_date
-    GROUP BY 1,2,3,4,5,6,7,8
+    GROUP BY 1,2,3,4,5,6,7,8,9
 
 )
 
@@ -409,6 +440,7 @@ SELECT
     segment,
     industry,
     channel_bucket,
+    channel_bucket_details,
     date,
     leads,
     mqls,
@@ -457,5 +489,5 @@ SELECT
         ELSE SUM(closing/NULLIF(lost,0))
     END AS closing_to_lost_conv
 FROM final
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
   );

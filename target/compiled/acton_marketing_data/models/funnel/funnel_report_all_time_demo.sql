@@ -9,6 +9,7 @@ WITH base AS (
         account_name,
         type AS opp_type,
         opp_demo_source_xf.demo_date AS demo_date,
+        is_current_customer,
         CASE
         WHEN account_global_region IS null THEN 'blank'
         ELSE account_global_region
@@ -37,6 +38,10 @@ WITH base AS (
         WHEN channel_bucket IS null THEN 'blank'
         ELSE channel_bucket
     END AS channel_bucket,
+    CASE
+        WHEN channel_bucket_details IS null THEN 'blank'
+        ELSE channel_bucket_details
+    END AS channel_bucket_details,
     CASE
         WHEN target_account IS null THEN false
         ELSE target_account

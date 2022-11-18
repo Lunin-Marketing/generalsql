@@ -4,6 +4,7 @@ SELECT
     person_id,
     email,
     is_hand_raiser,
+    is_current_customer,
     working_date,
     mql_most_recent_date,
     person_status,
