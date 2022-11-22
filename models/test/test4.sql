@@ -1,10 +1,12 @@
 {{ config(materialized='table') }}
 
-SELECT DISTINCT
-    opportunity_id,
-    opp_channel_lead_creation,
-    opp_medium_lead_creation,
-    opp_source_lead_creation
-FROM {{ref('opp_source_xf')}}
-WHERE opp_channel_lead_creation IN ('parnter','syndication partner','tradeshow')
-OR opp_medium_lead_creation = 'test'
+SELECT
+    person_id,
+    DATE_TRUNC('month',mql_most_recent_date) AS mql_month,
+    lead_score
+FROM {{ref('person_source_xf')}}
+WHERE lead_score < '120'
+AND (LOWER(is_hand_raiser) = 'yes'
+AND LOWER(looking_for_ma) = 'yes'
+)
+AND mql_most_recent_date >= '2022-07-01'

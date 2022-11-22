@@ -36,3 +36,12 @@ sources:
       - name: gauge_placeholder
       - name: date_base
       - name: placeholder
+  - name: outreach
+    tables:
+      - name: account
+      - name: opportunity
+      - name: prospect
+      - name: prospect_tag
+      - name: sequence
+      - name: sequence_tag
+      
