@@ -25,23 +25,7 @@ WITH base AS (
         lead_source,
         person_created_date,
         marketing_created_date::Date,
-        mql_created_date::Date,
-        working_date AS sal_created_date,
         person_status,
-        opp_created_date::Date,
-        discovery_date::Date,
-        demo_date::Date,
-        voc_date::Date,
-        closing_date::Date,
-        close_date::Date,
-        CASE
-            WHEN is_won = true THEN close_date::Date
-            ELSE null
-        END AS cw_date,
-        CASE 
-            WHEN is_won = false AND is_closed = true THEN close_date::Date
-            ELSE null
-        END AS cl_date,
         is_won,
         acv,
         person_campaign_lead_creation,
@@ -77,42 +61,78 @@ WITH base AS (
             WHEN is_mql = 1 THEN person_id
             ELSE null
         END AS mql_id,
+        CASE
+            WHEN is_mql = 1 THEN mql_created_date::Date
+            ELSE null
+        END AS mql_created_date,
         is_sal,
         CASE
             WHEN is_sal = 1 THEN person_id
             ELSE null
         END AS sal_id,
+        CASE
+            WHEN is_sal = 1 THEN working_date::Date
+            ELSE null
+        END AS sal_created_date,
         is_sql,
         CASE
             WHEN is_sql = 1 THEN opportunity_id
             ELSE null
         END AS sql_id,
+        CASE
+            WHEN is_sql = 1 THEN opp_created_date::Date
+            ELSE null
+        END AS sql_date,
         is_sqo,
         CASE
             WHEN is_sqo = 1 THEN opportunity_id
             ELSE null
         END AS sqo_id,
+        CASE
+            WHEN is_sqo = 1 THEN discovery_date::Date
+            ELSE null
+        END AS sqo_date,
         is_demo,
         CASE
             WHEN is_demo = 1 THEN opportunity_id
             ELSE null
         END AS demo_id,
+        CASE
+            WHEN is_demo = 1 THEN demo_date::Date
+            ELSE null
+        END AS demo_date,
         is_voc,
         CASE
             WHEN is_voc = 1 THEN opportunity_id
             ELSE null
         END AS voc_id,
+        CASE
+            WHEN is_voc = 1 THEN voc_date::Date
+            ELSE null
+        END AS voc_date,
         is_closing,
         CASE
             WHEN is_closing = 1 THEN opportunity_id
             ELSE null
         END AS closing_id,
+        CASE
+            WHEN is_closing = 1 THEN closing_date::Date
+            ELSE null
+        END AS closing_date,
         is_cl,
         CASE
             WHEN is_cl = 1 THEN opportunity_id
             ELSE null
         END AS cl_id,
+        CASE
+            WHEN is_cl = 1 AND is_won = false AND is_closed = true THEN close_date::Date
+            ELSE null
+        END AS cl_date,
         is_cw,
+        CASE
+            WHEN is_cw = 1 AND is_won = true THEN close_date::Date
+            ELSE null
+        END AS cw_date,
         CASE
             WHEN is_cw = 1 THEN opportunity_id
             ELSE null
@@ -136,26 +156,26 @@ WITH base AS (
             ELSE 0 
         END AS  days_to_sal,
         CASE 
-            WHEN opp_created_date>=sal_created_date THEN 
-        ((opp_created_date)::date - (sal_created_date)::date)
+            WHEN sql_date>=sal_created_date THEN 
+        ((sql_date)::date - (sal_created_date)::date)
      
             ELSE 0 
         END AS  days_to_sql,
         CASE 
-            WHEN discovery_date>=opp_created_date THEN 
-        ((discovery_date)::date - (opp_created_date)::date)
+            WHEN sqo_date>=sql_date THEN 
+        ((sqo_date)::date - (sql_date)::date)
      
             ELSE 0 
         END AS  days_to_sqo,
         CASE 
-            WHEN cw_date>=discovery_date THEN 
-        ((cw_date)::date - (discovery_date)::date)
+            WHEN cw_date>=sqo_date THEN 
+        ((cw_date)::date - (sqo_date)::date)
      
             ELSE 0 
         END AS  days_to_won,
         CASE 
-            WHEN cl_date>=discovery_date THEN 
-        ((cl_date)::date - (discovery_date)::date)
+            WHEN cl_date>=sqo_date THEN 
+        ((cl_date)::date - (sqo_date)::date)
      
             ELSE 0 
         END AS  days_to_closed_lost

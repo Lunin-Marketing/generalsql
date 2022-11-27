@@ -24,8 +24,8 @@ WITH base AS (
         mql_created_date::Date,
         working_date AS sal_created_date,
         person_status,
-        opp_created_date::Date,
-        discovery_date::Date,
+        opp_created_date::Date AS sql_date,
+        discovery_date::Date AS sqo_date,
         demo_date::Date,
         voc_date::Date,
         closing_date::Date,
@@ -120,26 +120,26 @@ WITH base AS (
             ELSE 0 
         END AS  days_to_sal,
         CASE 
-            WHEN opp_created_date>=sal_created_date THEN 
-        ((opp_created_date)::date - (sal_created_date)::date)
+            WHEN sql_date>=sal_created_date THEN 
+        ((sql_date)::date - (sal_created_date)::date)
      
             ELSE 0 
         END AS  days_to_sql,
         CASE 
-            WHEN discovery_date>=opp_created_date THEN 
-        ((discovery_date)::date - (opp_created_date)::date)
+            WHEN sqo_date>=sql_date THEN 
+        ((sqo_date)::date - (sql_date)::date)
      
             ELSE 0 
         END AS  days_to_sqo,
         CASE 
-            WHEN cw_date>=discovery_date THEN 
-        ((cw_date)::date - (discovery_date)::date)
+            WHEN cw_date>=sqo_date THEN 
+        ((cw_date)::date - (sqo_date)::date)
      
             ELSE 0 
         END AS  days_to_won,
         CASE 
-            WHEN cl_date>=discovery_date THEN 
-        ((cl_date)::date - (discovery_date)::date)
+            WHEN cl_date>=sqo_date THEN 
+        ((cl_date)::date - (sqo_date)::date)
      
             ELSE 0 
         END AS  days_to_closed_lost
