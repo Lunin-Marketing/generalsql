@@ -35,6 +35,12 @@ WITH person_base AS (
         offer_asset_name_lead_creation
     FROM "acton"."dbt_actonmarketing"."person_source_xf"
     --WHERE marketing_created_date >= '2021-01-01'
+
+), opp_base AS (
+    SELECT *
+    FROM "acton"."dbt_actonmarketing"."opp_source_xf"
+    WHERE type = 'New Business'
+
 )
 
 SELECT DISTINCT
@@ -136,6 +142,6 @@ SELECT DISTINCT
         ELSE 0
     END AS is_cw
 FROM person_base
-FULL JOIN "acton"."dbt_actonmarketing"."opp_source_xf" AS opp_base ON
+LEFT JOIN opp_base ON
 person_base.person_id=opp_base.contact_role_contact_id
   );
