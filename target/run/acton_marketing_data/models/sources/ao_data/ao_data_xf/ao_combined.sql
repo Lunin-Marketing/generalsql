@@ -359,4 +359,6 @@ WITH emails AS (
 
 SELECT *
 FROM combined_base
+WHERE action_day IS NOT null
+AND action_day < '2022-10-01'
   );
