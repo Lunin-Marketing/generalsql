@@ -4,31 +4,31 @@ WITH ao_combined AS (
 
    SELECT *
    FROM {{ref('ao_combined')}} 
-   WHERE action_day >= '2022-09-01'
+   WHERE action_day >= '2022-09-15'
 
 ), lead_creation AS (
 
     SELECT *
     FROM {{ref('lead_creation2')}}
-    WHERE action_day >= '2022-09-01'
+    WHERE action_day >= '2022-09-15'
 
 ), first_touch AS (
 
     SELECT *
     FROM {{ref('first_touch2')}}
-    WHERE action_day >= '2022-09-01'
+    WHERE action_day >= '2022-09-15'
 
 ), last_touch AS (
 
     SELECT *
     FROM {{ref('last_touch')}}
-    WHERE action_day >= '2022-09-01'
+    WHERE action_day >= '2022-09-15'
 
 ), opportunity_creation AS (
 
     SELECT *
     FROM {{ref('opportunity_creation2')}}
-    WHERE action_day >= '2022-09-01'
+    WHERE action_day >= '2022-09-15'
 
 ), linear_base AS (
 

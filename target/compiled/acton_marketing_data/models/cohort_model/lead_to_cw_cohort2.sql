@@ -4,8 +4,10 @@ WITH base AS (
 
     SELECT *
     FROM "acton"."dbt_actonmarketing"."opportunities_with_contacts"
-    WHERE person_created_date >= '2022-09-01'
-    AND opp_created_date >= '2022-09-01'
+    WHERE person_created_date >= '2022-09-15'
+    AND person_created_date < '2022-10-01'
+    AND opp_created_date >= '2022-09-15'
+    AND opp_created_date < '2022-10-01'
 
 ), intermediate AS (
 
