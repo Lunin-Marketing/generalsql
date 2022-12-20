@@ -70,7 +70,7 @@ SELECT DISTINCT
     person_base.offer_asset_name_lead_creation AS person_offer_asset_name_lead_creation,
     person_base.industry_bucket,
     -- account_base.is_current_customer, 
-    -- account_base.account_name,
+    opp_base.account_name,
     -- account_base.account_owner_name,
     -- account_base.account_csm_name,
    -- account_base.

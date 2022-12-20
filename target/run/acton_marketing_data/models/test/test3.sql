@@ -4,10 +4,13 @@
   as (
     
 
-SELECT
-    opportunity_id
-FROM "acton"."dbt_actonmarketing"."opp_source_xf"
+SELECT DISTINCT
+    person_id,
+    user_source_xf.profile_name,
+    created_date
+FROM "acton"."dbt_actonmarketing"."person_source_xf"
+LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" ON
+person_source_xf.created_by_id=user_source_xf.user_id
 WHERE channel_bucket = 'Unknown'
-AND created_date >= '2022-06-01'
-AND type = 'New Business'
+AND mql_most_recent_date >= '2022-10-01'
   );
