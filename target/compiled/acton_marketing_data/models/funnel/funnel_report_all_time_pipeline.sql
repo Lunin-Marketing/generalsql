@@ -87,7 +87,7 @@ WITH base AS (
             WHEN LOWER(stage_name) like '%demo%' THEN '2.Demo'
             WHEN stage_name = 'Champion Confirmed' THEN '3.Champion'
             WHEN stage_name = 'VOC/Negotiate' THEN '4.VOC'
-            WHEN stage_name = 'Closing' THEN '5.Closing'
+            WHEN stage_name IN ('Legal/Procurement','Closing') THEN '5.Closing'
             WHEN stage_name = 'Implement' THEN '6.Closed Won'
             WHEN LOWER(stage_name) LIKE '%lost%' THEN '7.Closed Lost'
             WHEN stage_name = 'Renewed' THEN '8.Renewed'

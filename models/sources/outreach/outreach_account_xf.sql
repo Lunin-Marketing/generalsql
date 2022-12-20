@@ -1,5 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT
-    id
-FROM {{source('outreach','account')}}
+SELECT *
+FROM {{source('outreach','prospect')}}
