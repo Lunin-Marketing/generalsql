@@ -1,3 +1,3 @@
 {{ config(materialized='table') }}
 SELECT *
-FROM {{ source('public', 'placeholder') }}
+FROM {{ source('common', 'placeholder') }}

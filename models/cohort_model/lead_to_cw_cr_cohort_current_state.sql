@@ -21,7 +21,7 @@ WITH base AS (
         industry_bucket,
         lead_source,
         person_created_date,
-        marketing_created_date::Date,
+        marketing_created_date::Date AS marketing_created_date,
         person_status,
         is_won,
         acv,

@@ -20,16 +20,16 @@ WITH base AS (
         industry_bucket,
         lead_source,
         person_created_date,
-        marketing_created_date::Date,
-        mql_created_date::Date,
+        marketing_created_date::Date AS marketing_created_date,
+        mql_created_date::Date AS mql_created_date,
         working_date AS sal_created_date,
         person_status,
         opp_created_date::Date AS sql_date,
         discovery_date::Date AS sqo_date,
-        demo_date::Date,
-        voc_date::Date,
-        closing_date::Date,
-        close_date::Date,
+        demo_date::Date AS demo_date,
+        voc_date::Date AS voc_date,
+        closing_date::Date AS closing_date,
+        close_date::Date AS close_date,
         CASE
             WHEN is_won = true THEN close_date::Date
             ELSE null

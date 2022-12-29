@@ -2,7 +2,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('salesforce', 'account') }}
+FROM {{ source('aws_salesforce', 'account') }}
 
 ), final AS (
 
@@ -130,7 +130,7 @@ FROM {{ source('salesforce', 'account') }}
         contract_source_xf.end_date+1 AS renewal_date
         -- "Renewal_Notice_Date__c" AS renewal_notice_date,
     FROM base
-    LEFT JOIN "acton".salesforce."account" AS parent ON
+    LEFT JOIN AO_MARKETING.aws_salesforce.account AS parent ON
     base.id=parent.parent_id
     LEFT JOIN {{ref('user_source_xf')}} AS sdr ON
     base.sdr_c=sdr.user_id

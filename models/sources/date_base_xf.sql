@@ -6,4 +6,4 @@ month,
 month_name,
 quarter,
 fy
-FROM {{ source('public', 'date_base') }}
+FROM {{ source('common', 'date_base') }}

@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 WITH base AS (
 SELECT *
-FROM {{ source('salesforce', 'act_on_instance_c') }}
+FROM {{ source('aws_salesforce', 'act_on_instance_c') }}
 
 ), final AS (
     

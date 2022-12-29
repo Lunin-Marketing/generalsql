@@ -3,7 +3,7 @@
 WITH base AS (
 
     SELECT *
-    FROM "acton".salesforce."sbqq_quote_line_c"
+    FROM {{ source('aws_salesforce', 'sbqq_quote_line_c') }}
 
 ), final AS (
 
@@ -29,7 +29,7 @@ WITH base AS (
         product_xf.product_code,
         sbqq_quote_c.sbqq_primary_c AS sbqq_primary_quote
     FROM base
-    LEFT JOIN "acton".salesforce."sbqq_quote_c" ON
+    LEFT JOIN AO_MARKETING.aws_salesforce.sbqq_quote_c ON
     base.id=sbqq_quote_c.id
     LEFT JOIN {{ref('product_xf')}} ON
     base.sbqq_product_c=product_xf.product_id

@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('public', 'kpi_targets') }}
+FROM {{ source('common', 'kpi_targets') }}
 
 )
 

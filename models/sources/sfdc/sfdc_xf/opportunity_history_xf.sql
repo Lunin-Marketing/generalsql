@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('salesforce', 'opportunity_field_history') }}
+FROM {{ source('aws_salesforce', 'opportunity_field_history') }}
 
 )
 
