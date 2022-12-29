@@ -1,12 +1,13 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."contact_role_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.contact_role_xf  as
+        (
 
 WITH base AS (
 SELECT *
-FROM "acton"."salesforce"."opportunity_contact_role"
+FROM AO_MARKETING.salesforce.opportunity_contact_role
 
 ), intermediate AS (
 
@@ -25,4 +26,6 @@ FROM "acton"."salesforce"."opportunity_contact_role"
 
 SELECT *
 FROM intermediate
-  );
+        );
+      
+  

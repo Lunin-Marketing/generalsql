@@ -1,3 +1,3 @@
 
 SELECT *
-FROM "acton"."public"."gauge_placeholder"
+FROM AO_MARKETING.public.gauge_placeholder

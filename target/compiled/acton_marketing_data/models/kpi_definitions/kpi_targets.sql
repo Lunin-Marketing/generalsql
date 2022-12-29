@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton"."public"."kpi_targets"
+FROM AO_MARKETING.public.kpi_targets
 
 )
 

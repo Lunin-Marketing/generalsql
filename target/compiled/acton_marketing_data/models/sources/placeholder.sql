@@ -1,3 +1,3 @@
 
 SELECT *
-FROM "acton"."public"."placeholder"
+FROM AO_MARKETING.public.placeholder

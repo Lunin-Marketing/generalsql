@@ -2,7 +2,7 @@
 
 WITH base AS (
 SELECT *
-FROM "acton"."salesforce"."contract"
+FROM AO_MARKETING.salesforce.contract
 
 ), final AS (
 SELECT

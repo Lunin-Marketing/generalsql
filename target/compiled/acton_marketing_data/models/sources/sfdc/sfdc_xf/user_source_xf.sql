@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton"."salesforce"."user"
+FROM AO_MARKETING.salesforce.user
 
 )
 
@@ -35,5 +35,5 @@ FROM "acton"."salesforce"."user"
         my_territory_c AS user_territory,
         photo_c AS user_photo
 FROM base
-LEFT JOIN "acton"."salesforce"."profile" ON
+LEFT JOIN AO_MARKETING.salesforce.profile ON
 base.profile_id=profile.id

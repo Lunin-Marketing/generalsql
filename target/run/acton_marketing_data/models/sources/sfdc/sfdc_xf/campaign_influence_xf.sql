@@ -1,13 +1,14 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."campaign_influence_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.campaign_influence_xf  as
+        (
 
 WITH base AS (
 
 SELECT *
-FROM "acton"."salesforce"."campaign_influence"
+FROM AO_MARKETING.salesforce.campaign_influence
 
 ), final AS (
 
@@ -26,4 +27,6 @@ FROM "acton"."salesforce"."campaign_influence"
 
 SELECT *
 FROM final
-  );
+        );
+      
+  

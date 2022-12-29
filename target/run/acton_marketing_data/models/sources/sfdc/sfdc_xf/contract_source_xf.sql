@@ -1,12 +1,13 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."contract_source_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.contract_source_xf  as
+        (
 
 WITH base AS (
 SELECT *
-FROM "acton"."salesforce"."contract"
+FROM AO_MARKETING.salesforce.contract
 
 ), final AS (
 SELECT
@@ -43,4 +44,6 @@ WHERE base.is_deleted = 'False'
 SELECT
 *
 FROM final
-  );
+        );
+      
+  

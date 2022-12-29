@@ -1,13 +1,14 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."user_source_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.user_source_xf  as
+        (
 
 WITH base AS (
 
 SELECT *
-FROM "acton"."salesforce"."user"
+FROM AO_MARKETING.salesforce.user
 
 )
 
@@ -39,6 +40,8 @@ FROM "acton"."salesforce"."user"
         my_territory_c AS user_territory,
         photo_c AS user_photo
 FROM base
-LEFT JOIN "acton"."salesforce"."profile" ON
+LEFT JOIN AO_MARKETING.salesforce.profile ON
 base.profile_id=profile.id
-  );
+        );
+      
+  

@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM "acton"."salesforce"."campaign"
+FROM AO_MARKETING.salesforce.campaign
 
 ), final AS (
 

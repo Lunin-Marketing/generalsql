@@ -1,8 +1,9 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."lead_source_ss_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.lead_source_ss_xf  as
+        (
 
 WITH base AS (
 
@@ -131,4 +132,6 @@ CASE
 END AS segment
 FROM final
 WHERE lead_status IN ('Suspect','Responded','RTM')
-  );
+        );
+      
+  

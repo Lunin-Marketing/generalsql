@@ -6,4 +6,4 @@ month,
 month_name,
 quarter,
 fy
-FROM "acton"."public"."date_base"
+FROM AO_MARKETING.public.date_base

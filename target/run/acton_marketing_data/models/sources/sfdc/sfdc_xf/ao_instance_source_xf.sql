@@ -1,11 +1,12 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."ao_instance_source_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.ao_instance_source_xf  as
+        (
 WITH base AS (
 SELECT *
-FROM "acton"."salesforce"."act_on_instance_c"
+FROM AO_MARKETING.salesforce.act_on_instance_c
 
 ), final AS (
     
@@ -27,4 +28,6 @@ FROM "acton"."salesforce"."act_on_instance_c"
 
 SELECT *
 FROM final
-  );
+        );
+      
+  

@@ -1,7 +1,7 @@
 
 WITH base AS (
 SELECT *
-FROM "acton"."salesforce"."act_on_instance_c"
+FROM AO_MARKETING.salesforce.act_on_instance_c
 
 ), final AS (
     

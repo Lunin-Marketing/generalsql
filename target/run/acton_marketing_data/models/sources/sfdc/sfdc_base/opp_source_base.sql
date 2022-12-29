@@ -1,12 +1,13 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."opp_source_base__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.opp_source_base  as
+        (
 
 WITH base AS (
 SELECT *
-FROM "acton"."salesforce"."opportunity"
+FROM AO_MARKETING.salesforce.opportunity
 
 ), intermediate AS (
 
@@ -199,4 +200,6 @@ FROM "acton"."salesforce"."opportunity"
 SELECT 
 final.*
 FROM final
-  );
+        );
+      
+  

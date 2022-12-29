@@ -1,8 +1,11 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."placeholder__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.placeholder  as
+        (
 SELECT *
-FROM "acton"."public"."placeholder"
-  );
+FROM AO_MARKETING.public.placeholder
+        );
+      
+  

@@ -1,8 +1,11 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."gauge_placeholder__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.gauge_placeholder  as
+        (
 SELECT *
-FROM "acton"."public"."gauge_placeholder"
-  );
+FROM AO_MARKETING.public.gauge_placeholder
+        );
+      
+  

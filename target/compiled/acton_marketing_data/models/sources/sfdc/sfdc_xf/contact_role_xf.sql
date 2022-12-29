@@ -2,7 +2,7 @@
 
 WITH base AS (
 SELECT *
-FROM "acton"."salesforce"."opportunity_contact_role"
+FROM AO_MARKETING.salesforce.opportunity_contact_role
 
 ), intermediate AS (
 

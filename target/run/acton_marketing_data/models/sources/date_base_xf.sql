@@ -1,8 +1,9 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."date_base_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.date_base_xf  as
+        (
 SELECT
 day::date AS day,
 week,
@@ -10,5 +11,7 @@ month,
 month_name,
 quarter,
 fy
-FROM "acton"."public"."date_base"
-  );
+FROM AO_MARKETING.public.date_base
+        );
+      
+  

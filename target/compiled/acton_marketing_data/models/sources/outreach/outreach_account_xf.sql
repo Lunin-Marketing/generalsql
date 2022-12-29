@@ -1,5 +1,4 @@
 
 
-SELECT
-    id
-FROM "acton"."outreach"."account"
+SELECT *
+FROM AO_MARKETING.outreach.prospect

@@ -1,13 +1,14 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."kpi_targets__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.kpi_targets  as
+        (
 
 WITH base AS (
 
 SELECT *
-FROM "acton"."public"."kpi_targets"
+FROM AO_MARKETING.public.kpi_targets
 
 )
 
@@ -17,4 +18,6 @@ SELECT
     kpi,
     kpi_target
 FROM base
-  );
+        );
+      
+  

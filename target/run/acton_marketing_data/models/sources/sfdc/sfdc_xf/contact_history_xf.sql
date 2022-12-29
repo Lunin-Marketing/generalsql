@@ -1,13 +1,14 @@
 
-
-  create  table "acton"."dbt_actonmarketing"."contact_history_xf__dbt_tmp"
-  as (
+  
     
+
+        create or replace transient table AO_MARKETING.dbt_snowflake.contact_history_xf  as
+        (
 
 WITH base AS (
 
 SELECT *
-FROM "acton"."salesforce"."contact_history"
+FROM AO_MARKETING.salesforce.contact_history
 
 )
 
@@ -20,4 +21,6 @@ old_value,
 new_value
 FROM base
 WHERE is_deleted = false
-  );
+        );
+      
+  
