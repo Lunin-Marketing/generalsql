@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: salesforce
+  - name: aws_salesforce
     tables:
       - name: account
       - name: act_on_instance_c
@@ -20,6 +20,7 @@ sources:
       - name: opportunity_contact_role
       - name: profile
       - name: product_2
+      - name: sbqq_quote_line_c
       - name: task
       - name: user
   - name: data_studio_s3
@@ -30,13 +31,13 @@ sources:
       - name: data_studio_media
       - name: data_studio_webinars
       - name: data_studio_webpages
-  - name: public
+  - name: common
     tables:
       - name: kpi_targets
       - name: gauge_placeholder
       - name: date_base
       - name: placeholder
-  - name: outreach
+  - name: aws_outreach
     tables:
       - name: account
       - name: opportunity

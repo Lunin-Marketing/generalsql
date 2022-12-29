@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('salesforce', 'task') }}
+FROM {{ source('aws_salesforce', 'task') }}
 
 ), renamed AS (
 

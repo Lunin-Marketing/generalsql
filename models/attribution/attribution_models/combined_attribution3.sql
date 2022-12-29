@@ -206,7 +206,7 @@ WITH ao_combined AS (
     FROM ao_combined
     LEFT JOIN final_prep ON
     ao_combined.touchpoint_id=final_prep.touchpoint_id
-    LEFT JOIN {{ref('lead_to_cw_cohort2')}} lead_to_cw_cohort ON
+    LEFT JOIN {{ref('lead_to_cw_cohort')}} lead_to_cw_cohort ON
     ao_combined.email=lead_to_cw_cohort.email
     LEFT JOIN lead_creation ON 
     ao_combined.touchpoint_id=lead_creation.touchpoint_id

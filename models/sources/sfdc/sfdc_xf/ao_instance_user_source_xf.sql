@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('salesforce', 'act_on_instance_user_c') }}
+FROM {{ source('aws_salesforce', 'act_on_instance_user_c') }}
 
 ), final AS (
     SELECT

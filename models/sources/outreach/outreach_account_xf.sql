@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 SELECT *
-FROM {{source('outreach','prospect')}}
+FROM {{source('aws_outreach','prospect')}}
