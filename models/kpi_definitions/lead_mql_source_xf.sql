@@ -15,6 +15,7 @@ SELECT
     last_name,
     title,
     person_owner_id,
+    person_owner_name,
     global_region,
     company_size_rev,
     lead_source,
