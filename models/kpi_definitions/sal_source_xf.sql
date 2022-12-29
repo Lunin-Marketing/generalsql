@@ -8,6 +8,7 @@ SELECT
     working_date,
     mql_most_recent_date,
     person_status,
+    person_owner_name,
     country,
     global_region,
     company,

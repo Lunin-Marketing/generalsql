@@ -43,6 +43,7 @@ SELECT
     -- Other Key Information    
     lead_source_xf.lead_source,    
     lead_source_xf.lead_owner_id AS person_owner_id,
+    user_source_xf.user_name AS person_owner_name,
     lead_source_xf.lead_score,
     lead_source_xf.firmographic_demographic_lead_score,
     lead_source_xf.no_longer_with_company,
@@ -88,6 +89,8 @@ SELECT
 FROM "acton"."dbt_actonmarketing"."lead_source_xf"
 LEFT JOIN "acton"."dbt_actonmarketing"."account_source_xf" ON
 lead_source_xf.lean_data_account_id=account_source_xf.account_id
+LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" ON
+lead_owner_id=user_id
 WHERE is_converted = FALSE
 AND lead_source_xf.is_deleted = FALSE
 UNION ALL
@@ -130,6 +133,7 @@ SELECT
     -- Other Key Information    
     lead_source,    
     contact_owner_id AS person_owner_id,
+    user_source_xf.user_name AS person_owner_name,
     lead_score,
     firmographic_demographic_lead_score,
     is_no_longer_with_company,
@@ -173,5 +177,7 @@ SELECT
     channel_bucket,
     channel_bucket_details
 FROM "acton"."dbt_actonmarketing"."contact_source_xf"
+LEFT JOIN "acton"."dbt_actonmarketing"."user_source_xf" ON
+contact_owner_id=user_id
 WHERE is_deleted = FALSE
   );

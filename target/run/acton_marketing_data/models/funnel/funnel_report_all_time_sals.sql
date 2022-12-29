@@ -12,6 +12,7 @@ WITH base AS (
         sal_source_xf.working_date AS sal_date,
         sal_source_xf.mql_most_recent_date AS mql_date,
         person_status,
+        person_owner_name,
         company,
         most_recent_salesloft_cadence,
         is_hand_raiser,

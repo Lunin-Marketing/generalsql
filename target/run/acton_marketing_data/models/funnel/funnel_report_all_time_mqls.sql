@@ -17,6 +17,7 @@ WITH base AS (
         title,
         lead_score,
         person_status,
+        person_owner_name,
         country,
         is_hand_raiser,
         CASE
