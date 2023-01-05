@@ -6,7 +6,7 @@ WITH sql_kpi_base AS (
         'FY22-Q4' AS kpi_month,
         COUNT(DISTINCT sql_id) AS kpi
     FROM {{ref('funnel_report_all_time_sqls')}}
-    WHERE DATE_TRUNC('Month',sql_date) IN ('2022-12-01','2022-11-01','2022-10-01')
+    WHERE DATE_TRUNC('Month',sql_date) IN ('2023-01-01','2023-02-01','2023-03-01')
     AND opp_type = 'New Business'
     GROUP BY 1
 
@@ -16,7 +16,7 @@ WITH sql_kpi_base AS (
         'FY22-Q4' AS kpi_month,
         COUNT(DISTINCT sqo_id) AS kpi
     FROM {{ref('funnel_report_all_time_sqos')}}
-    WHERE DATE_TRUNC('Month',sqo_date) IN ('2022-12-01','2022-11-01','2022-10-01')
+    WHERE DATE_TRUNC('Month',sqo_date) IN ('2023-01-01','2023-02-01','2023-03-01')
     AND opp_type = 'New Business'
     GROUP BY 1
 
@@ -26,7 +26,7 @@ WITH sql_kpi_base AS (
         'FY22-Q4' AS kpi_month,
         AVG(kpi_target) AS kpi_target
     FROM {{ref('kpi_targets')}}
-    WHERE kpi_month IN ('2022-12-01','2022-11-01','2022-10-01')
+    WHERE kpi_month IN ('2023-01-01','2023-02-01','2023-03-01')
     AND kpi_lead_source = 'total'
     AND kpi = 'target_sql2sqo_conv'
 
