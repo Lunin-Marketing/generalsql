@@ -3,7 +3,7 @@
 WITH sql_kpi_base AS (
 
     SELECT
-        'FY22-Q4' AS kpi_month,
+        'FY23-Q1' AS kpi_month,
         COUNT(DISTINCT sql_id) AS kpi
     FROM {{ref('funnel_report_all_time_sqls')}}
     WHERE DATE_TRUNC('Month',sql_date) IN ('2023-01-01','2023-02-01','2023-03-01')
@@ -13,7 +13,7 @@ WITH sql_kpi_base AS (
 ), mql_kpi_base AS (
 
     SELECT
-        'FY22-Q4' AS kpi_month,
+        'FY23-Q1' AS kpi_month,
         COUNT(DISTINCT mql_id) AS kpi
     FROM {{ref('funnel_report_all_time_mqls')}}
     WHERE DATE_TRUNC('Month',mql_date) IN ('2023-01-01','2023-02-01','2023-03-01')
@@ -23,7 +23,7 @@ WITH sql_kpi_base AS (
 ), kpi_target AS (
 
     SELECT
-        'FY22-Q4' AS kpi_month,
+        'FY23-Q1' AS kpi_month,
         AVG(kpi_target) AS kpi_target
     FROM {{ref('kpi_targets')}}
     WHERE kpi_month IN ('2023-01-01','2023-02-01','2023-03-01')
