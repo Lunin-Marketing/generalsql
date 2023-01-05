@@ -16,6 +16,7 @@ WITH base AS (
         person_owner_name,
         country,
         is_hand_raiser,
+        'New Business' AS opp_type,
         CASE
             WHEN is_current_customer IS null THEN false
             ELSE is_current_customer
@@ -54,9 +55,9 @@ WITH base AS (
             ELSE channel_bucket
         END AS channel_bucket,
         CASE
-        WHEN channel_bucket_details IS null THEN 'blank'
-        ELSE channel_bucket_details
-    END AS channel_bucket_details,
+            WHEN channel_bucket_details IS null THEN 'blank'
+            ELSE channel_bucket_details
+        END AS channel_bucket_details,
         CASE
             WHEN target_account IS null THEN false
             ELSE target_account

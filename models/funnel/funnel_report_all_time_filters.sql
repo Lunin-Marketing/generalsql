@@ -34,7 +34,7 @@ WITH base AS (
         is_current_customer,
         offer_asset_name_lead_creation,
         mql_date,
-        null AS opp_type,
+        opp_type,
         is_working
     FROM {{ref('funnel_report_all_time_mqls')}}
     UNION ALL
@@ -229,8 +229,14 @@ SELECT DISTINCT
         WHEN is_working IS null THEN 'No'
         ELSE is_working
     END AS is_working,
-    is_hand_raiser,
-    is_current_customer,
+    CASE
+        WHEN is_hand_raiser IS null THEN 'No'
+        ELSE is_hand_raiser
+    END AS is_hand_raiser,
+    CASE
+        WHEN is_current_customer IS null THEN false
+        ELSE is_current_customer
+    END AS is_current_customer,
     CASE
         WHEN target_account IS null THEN false
         ELSE target_account
