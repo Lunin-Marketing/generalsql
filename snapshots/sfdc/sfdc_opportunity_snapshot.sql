@@ -1,4 +1,4 @@
-{% snapshot sfdc_opportunity_snapshot5 %}
+{% snapshot sfdc_opportunity_snapshot %}
 
 {{
     config (
