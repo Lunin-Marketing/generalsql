@@ -1,4 +1,4 @@
-{% snapshot sfdc_ao_instance_user_snapshot2 %}
+{% snapshot sfdc_ao_instance_user_snapshot %}
 
 {{
     config (
