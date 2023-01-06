@@ -181,6 +181,42 @@ WITH base AS (
         opp_type,
         null AS is_working
     FROM {{ref('funnel_report_all_time_lost')}}
+    UNION ALL
+    SELECT DISTINCT
+        account_global_region,
+        company_size_rev,
+        opp_lead_source,
+        segment,
+        industry,
+        industry_bucket,
+        channel_bucket,
+        channel_bucket_details,
+        target_account,
+        'No' AS is_hand_raiser,
+        is_current_customer,
+        offer_asset_name_lead_creation,
+        sqo_date,
+        opp_type,
+        null AS is_working
+    FROM {{ref('funnel_report_all_time_pipeline')}}
+    UNION ALL
+    SELECT DISTINCT
+        account_global_region,
+        company_size_rev,
+        opp_lead_source,
+        segment,
+        industry,
+        industry_bucket,
+        channel_bucket,
+        channel_bucket_details,
+        target_account,
+        'No' AS is_hand_raiser,
+        is_current_customer,
+        offer_asset_name_lead_creation,
+        close_date,
+        opp_type,
+        null AS is_working
+    FROM {{ref('funnel_report_all_time_future_pipeline')}}
 
 )
 

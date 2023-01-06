@@ -3,7 +3,7 @@
 WITH base AS (
 
     SELECT *
-    FROM {{ source('aws_salesforce', 'sbqq_quote_line_c') }}
+    FROM {{ source('salesforce', 'sbqq_quote_line_c') }}
 
 ), final AS (
 

@@ -2,7 +2,7 @@
 
 WITH base AS (
 SELECT *
-FROM {{ source('aws_salesforce', 'opportunity') }}
+FROM {{ source('salesforce', 'opportunity') }}
 
 ), intermediate AS (
 

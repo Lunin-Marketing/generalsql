@@ -2,7 +2,7 @@
 
 WITH base AS (
 SELECT *
-FROM {{ source('aws_salesforce', 'contract') }}
+FROM {{ source('salesforce', 'contract') }}
 
 ), final AS (
 SELECT

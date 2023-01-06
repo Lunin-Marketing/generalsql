@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('aws_salesforce', 'user') }}
+FROM {{ source('salesforce', 'user') }}
 
 )
 
@@ -35,5 +35,5 @@ FROM {{ source('aws_salesforce', 'user') }}
         my_territory_c AS user_territory,
         photo_c AS user_photo
 FROM base
-LEFT JOIN {{ source('aws_salesforce', 'profile') }} ON
+LEFT JOIN {{ source('salesforce', 'profile') }} ON
 base.profile_id=profile.id

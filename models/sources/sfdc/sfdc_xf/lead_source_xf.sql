@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('aws_salesforce', 'lead') }}
+FROM {{ source('salesforce', 'lead') }}
 
 ), final AS (
 
@@ -102,7 +102,7 @@ FROM {{ source('aws_salesforce', 'lead') }}
         ft_utm_campaign_c AS campaign_first_touch,
         channel_lead_creation_c AS lead_channel_forecast,
         email_bounced_reason,
-        email_bounced_reason_c AS email_bounced_reason_new,
+        email_bounced_reason_new_c AS email_bounced_reason_new,
         legitimate_basis_c AS legitimate_basis,
         email_bounced_date,
         email_bounced_date_c AS email_bounced_date_new,
