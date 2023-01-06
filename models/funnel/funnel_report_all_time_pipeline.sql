@@ -54,7 +54,11 @@ WITH base AS (
         CASE
             WHEN opp_source_xf.channel_bucket IS null THEN 'blank'
             ELSE opp_source_xf.channel_bucket
-        END AS channel_bucket
+        END AS channel_bucket,
+        CASE
+            WHEN opp_offer_asset_name_lead_creation IS null THEN 'blank'
+            ELSE opp_offer_asset_name_lead_creation
+        END AS offer_asset_name_lead_creation
     FROM {{ref('opp_source_xf')}}
     LEFT JOIN {{ref('account_source_xf')}} ON
     opp_source_xf.account_id=account_source_xf.account_id
@@ -75,10 +79,12 @@ WITH base AS (
         account_global_region,
         company_size_rev,
         opp_lead_source,
+        is_current_customer,
         segment,
         industry,
         industry_bucket,
         target_account,
+        offer_asset_name_lead_creation,
         channel_bucket,
         channel_bucket_details,
         CASE

@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('aws_salesforce', 'lead') }}
+FROM {{ source('salesforce', 'lead') }}
 
 ), final AS (
 

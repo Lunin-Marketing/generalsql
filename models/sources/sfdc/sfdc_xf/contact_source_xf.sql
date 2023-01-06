@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('aws_salesforce', 'contact') }}
+FROM {{ source('salesforce', 'contact') }}
 
 ), final AS (
 
@@ -74,7 +74,7 @@ FROM {{ source('aws_salesforce', 'contact') }}
         base.last_name, 
         base.data_enrich_company_name_c AS de_account_name,
         base.email_bounced_date_c AS email_bounced_date_new,
-        base.email_bounced_reason_c AS email_bounced_reason_new,
+        base.email_bounced_reason_new_c AS email_bounced_reason_new,
         DATE_TRUNC('day',date_time_to_working_c)::Date AS working_date,
         base.looking_for_ma_c AS looking_for_ma,
         account_source_xf.account_owner_id,

@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: aws_salesforce
+  - name: salesforce
     tables:
       - name: account
       - name: act_on_instance_c
