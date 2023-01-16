@@ -14,7 +14,7 @@ WITH base AS (
     opportunity_history_xf.opportunity_id=opp_source_xf.opportunity_id
     WHERE date_reached_demo_confirmed IS null
     AND type IN ('New Business','UpSell','Renewal')
-    AND field_modified_at > '2022-09-15'
+    AND field_modified_at >= '2021-01-01'
 
 ), final AS (
 

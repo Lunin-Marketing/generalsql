@@ -41,5 +41,5 @@ LEFT JOIN {{ref('account_source_xf')}} ON
 opp_source_xf.account_id=account_source_xf.account_id
 WHERE close_day IS NOT null
 AND stage_name NOT IN ('Closed - Duplicate','Closed - Admin Removed')
-AND is_won = '1'
-
+AND (is_won = '1'
+    OR is_won = TRUE)

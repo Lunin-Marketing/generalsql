@@ -38,6 +38,7 @@ WITH base AS (
     FROM base 
     WHERE field ='X9883_Lead_Score__c'
     AND new_value > '0.0'
+    AND field_modified_at >= '2021-01-01'
     ORDER BY lead_id,field_modified_at
 
 )
