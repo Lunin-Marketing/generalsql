@@ -42,6 +42,7 @@ WITH base AS (
         type,
         ROW_NUMBER() OVER(PARTITION BY lead_id ORDER BY field_modified_at) AS event_number
     FROM base 
+    WHERE field_modified_at >= '2021-01-01'
     ORDER BY lead_id,field_modified_at
 
 )

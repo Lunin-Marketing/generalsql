@@ -6,7 +6,7 @@ FROM {{ source('salesforce', 'account') }}
 
 ), final AS (
 
-    SELECT
+    SELECT DISTINCT
         base.id AS account_id,
         base.is_deleted,
         base.name AS account_name,

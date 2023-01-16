@@ -15,7 +15,6 @@ WITH base AS (
     WHERE date_reached_demo IS null
     AND type IN ('New Business','UpSell','Renewal')
     AND field_modified_at >= '2021-01-01'
-    AND field_modified_at < '2022-09-15'
 
 ), final AS (
 

@@ -7,7 +7,7 @@ FROM {{ source('salesforce', 'contact') }}
 
 ), final AS (
 
-    SELECT 
+    SELECT DISTINCT
         base.id AS contact_id,
         base.is_deleted,
         base.created_by_id,

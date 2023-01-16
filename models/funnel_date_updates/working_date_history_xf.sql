@@ -38,6 +38,7 @@ WITH base AS (
     FROM base 
     WHERE field = 'Status'
     AND new_value = 'Working'
+    AND field_modified_at >= '2021-01-01'
     ORDER BY lead_id,field_modified_at
 
 )
