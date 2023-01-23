@@ -1,6 +1,9 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM funnel_report_all_time_filters
-WHERE date >= '2022-01-01'
-AND date <= '2022-12-31'
+SELECT
+    sql_id,
+    opp_channel_lead_creation,
+    opp_medium_lead_creation,
+    opp_source_lead_creation
+FROM sql_source_xf
+WHERE channel_bucket = 'Other'
