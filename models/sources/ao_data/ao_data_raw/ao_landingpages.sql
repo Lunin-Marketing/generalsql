@@ -2,8 +2,11 @@
 
 WITH base AS (
 
-    SELECT *
-    FROM {{ source('data_studio_s3', 'data_studio_landingpages') }}
+    SELECT
+    1 AS unique_visitor_id,
+    1 AS e_mail_address
+    -- SELECT *
+    -- FROM {{ source('data_studio_s3', 'data_studio_landingpages') }}
 
 )
 
