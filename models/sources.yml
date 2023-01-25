@@ -12,6 +12,7 @@ sources:
       - name: contact_history
       - name: contact
       - name: contract
+      - name: fivetran_formula
       - name: lead_history
       - name: lead
       - name: opportunity

@@ -1,6 +1,9 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM funnel_report_all_time_filters
-WHERE date >= '2022-01-01'
-AND date <= '2022-12-31'
+SELECT
+    sql_id,
+    opp_channel_lead_creation,
+    opp_medium_lead_creation,
+    opp_source_lead_creation
+FROM sql_source_xf
+WHERE sql_id IN ('0065Y00001gEclaQAC','0065Y00001gEdi8QAC','0065Y00001gEKpLQAW','0065Y00001gEXDGQA4','0065Y00001hUaHLQA0','0065Y00001hUaVbQAK','0065Y00001hUPo5QAG','0065Y00001hUS3DQAW','0065Y00001hUS5qQAG','0065Y00001hUtaOQAS','0065Y00001hUuR3QAK','0065Y00001hUVHpQAO','0065Y00001hUwboQAC','0065Y00001hUX4ZQAW','0065Y00001hUx6lQAC','0065Y00001hUXvDQAW')
