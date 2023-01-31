@@ -9,6 +9,7 @@ SELECT
     mql_most_recent_date,
     person_status,
     person_owner_name,
+    person_owner_id,
     country,
     global_region,
     company,

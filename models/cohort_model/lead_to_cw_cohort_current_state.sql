@@ -35,12 +35,9 @@ WITH base AS (
         person_offer_asset_type_lead_creation,
         person_offer_asset_name_lead_creation,
         person_current_customer,
-        account_name,
-        opportunity_name,
         stage_name,
         opp_lead_source,
         opp_segment,
-        target_account,
         account_global_region,
         opp_company_size_rev,
         opp_industry,
@@ -55,17 +52,16 @@ WITH base AS (
         opp_offer_asset_type_lead_creation,
         opp_subchannel_lead_creation,
         opp_offer_asset_subtype_lead_creation,
-        close_date,
         type AS opp_type,
         is_hand_raiser,
         is_current_customer,
         is_mql,
         CASE
-            WHEN is_mql = 1 AND mql_created_date>=marketing_created_date THEN person_id
+            WHEN is_mql = 1 AND mql_created_date>=marketing_created_date AND is_sal != 1 THEN person_id
             ELSE null
         END AS mql_id,
         CASE
-            WHEN is_mql = 1 AND mql_created_date>=marketing_created_date THEN mql_created_date::Date
+            WHEN is_mql = 1 AND mql_created_date>=marketing_created_date AND is_sal != 1 THEN mql_created_date::Date
             ELSE null
         END AS mql_created_date,
         is_sal,
@@ -79,47 +75,47 @@ WITH base AS (
         END AS sal_created_date,
         is_sql,
         CASE
-            WHEN is_sql = 1 AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_sql = 1 AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND stage_name = 'SQL' THEN opportunity_id
             ELSE null
         END AS sql_id,
         CASE
-            WHEN is_sql = 1 AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opp_created_date::Date
+            WHEN is_sql = 1 AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND stage_name = 'SQL' THEN opp_created_date::Date
             ELSE null
         END AS sql_date,
         is_sqo,
         CASE
-            WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND stage_name = 'Discovery' THEN opportunity_id
             ELSE null
         END AS sqo_id,
         CASE
-            WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN discovery_date::Date
+            WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND stage_name = 'Discovery' THEN discovery_date::Date
             ELSE null
         END AS sqo_date,
         is_demo,
         CASE
-            WHEN is_demo = 1 AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_demo = 1 AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND LOWER(stage_name) LIKE '%demo%' THEN opportunity_id
             ELSE null
         END AS demo_id,
         CASE
-            WHEN is_demo = 1 AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN demo_date::Date
+            WHEN is_demo = 1 AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND LOWER(stage_name) LIKE '%demo%' THEN demo_date::Date
             ELSE null
         END AS demo_date,
         is_voc,
         CASE
-            WHEN is_voc = 1 AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_voc = 1 AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND stage_name = 'VOC/Negotiate' THEN opportunity_id
             ELSE null
         END AS voc_id,
         CASE
-            WHEN is_voc = 1 AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN voc_date::Date
+            WHEN is_voc = 1 AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND stage_name = 'VOC/Negotiate' THEN voc_date::Date
             ELSE null
         END AS voc_date,
         is_closing,
         CASE
-            WHEN is_closing = 1 AND closing_date>=voc_date AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_closing = 1 AND closing_date>=voc_date AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date  AND stage_name IN ('Legal/Procurement','Closing') THEN opportunity_id
             ELSE null
         END AS closing_id,
         CASE
-            WHEN is_closing = 1 AND closing_date>=voc_date AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN closing_date::Date
+            WHEN is_closing = 1 AND closing_date>=voc_date AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date  AND stage_name IN ('Legal/Procurement','Closing') THEN closing_date::Date
             ELSE null
         END AS closing_date,
         is_cl,
