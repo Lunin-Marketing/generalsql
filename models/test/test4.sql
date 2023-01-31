@@ -2,11 +2,9 @@
 
 SELECT
     person_id,
-    DATE_TRUNC('month',mql_most_recent_date) AS mql_month,
-    lead_score
-FROM {{ref('person_source_xf')}}
-WHERE lead_score < '120'
-AND (LOWER(is_hand_raiser) = 'yes'
-AND LOWER(looking_for_ma) = 'yes'
-)
-AND mql_most_recent_date >= '2022-07-01'
+    channel_lead_creation,
+    medium_lead_creation,
+    source_lead_creation
+FROM person_source_xf
+WHERE channel_bucket = 'Other'
+AND marketing_created_date >= '2023-01-01'

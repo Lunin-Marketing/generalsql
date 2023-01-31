@@ -69,6 +69,7 @@ FROM {{ source('salesforce', 'contact') }}
         base.was_a_handraiser_lead_c AS was_a_handraiser_lead,
         base.medium_lead_creation_c AS medium_lead_creation,
         base.source_lead_creation_c AS source_lead_creation,
+        base.form_consent_opt_in_c AS form_consent_opt_in,
         base.owner_id AS contact_owner_id,
         base.firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
         base.last_name, 

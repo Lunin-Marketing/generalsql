@@ -13,6 +13,7 @@ SELECT
     lead_source_xf.lead_status AS person_status,
     lead_source_xf.global_region,
     lead_source_xf.created_by_id,
+    lead_source_xf.form_consent_opt_in,
 
     -- Account Information
     lead_source_xf.company,
@@ -103,6 +104,7 @@ SELECT
     contact_status AS person_status,
     global_region,
     created_by_id,
+    form_consent_opt_in,
 
     -- Account Information
     account_name,
