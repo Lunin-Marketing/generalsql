@@ -2,9 +2,18 @@
 
 SELECT
     person_id,
+    lead_source,
     channel_lead_creation,
     medium_lead_creation,
     source_lead_creation
 FROM person_source_xf
-WHERE channel_bucket = 'Other'
-AND marketing_created_date >= '2023-01-01'
+WHERE lead_source NOT IN ('Marketing','Sales','SDR','CSM','Channel')
+
+-- SELECT
+--     person_id,
+--     lead_source,
+--     channel_lead_creation,
+--     medium_lead_creation
+-- FROM person_source_xf
+-- WHERE lead_source = 'Marketing'
+-- AND LOWER(channel_lead_creation) = 'prospecting'
