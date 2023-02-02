@@ -38,12 +38,15 @@ sources:
       - name: gauge_placeholder
       - name: date_base
       - name: placeholder
-  - name: aws_outreach
+  - name: outreach_sf
     tables:
       - name: account
+      - name: email_address
       - name: opportunity
       - name: prospect
+      - name: prospect_email
       - name: prospect_tag
       - name: sequence
+      - name: sequence_state
       - name: sequence_tag
       

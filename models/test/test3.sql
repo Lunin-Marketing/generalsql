@@ -4,8 +4,10 @@ SELECT
     person_source_xf.person_id,
     person_source_xf.email,
     person_source_xf.global_region,
-    person_source_xf.form_consent_opt_in--,
-    -- task_source_xf.task_subject
+    person_source_xf.form_consent_opt_in,
+    channel_lead_creation,
+    medium_lead_creation,
+    source_lead_creation
 FROM person_source_xf
 -- LEFT JOIN task_source_xf
 --     ON person_source_xf.person_id=task_source_xf.person_id
