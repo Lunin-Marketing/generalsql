@@ -18,6 +18,24 @@ WITH base AS (
         created_date AS date,
         null AS opp_type,
         null AS is_working
+    FROM {{ref('funnel_report_all_time_net_new_leads')}}
+    UNION ALL
+    SELECT DISTINCT
+        global_region,
+        company_size_rev,
+        lead_source,
+        segment,
+        industry,
+        industry_bucket,
+        channel_bucket,
+        channel_bucket_details,
+        target_account,
+        is_hand_raiser,
+        is_current_customer,
+        offer_asset_name_lead_creation,
+        created_date AS date,
+        null AS opp_type,
+        null AS is_working
     FROM {{ref('funnel_report_all_time_leads')}}
     UNION ALL
     SELECT DISTINCT

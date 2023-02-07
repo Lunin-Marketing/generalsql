@@ -23,7 +23,11 @@ SELECT
     channel_bucket_details,
     offer_asset_name_lead_creation,
     most_recent_salesloft_cadence,
-    campaign_lead_creation
+    campaign_lead_creation,
+    CASE
+        WHEN working_date>=mql_most_recent_date THEN TRUE
+        ELSE FALSE
+    END AS is_sal_after_mql
 FROM {{ref('person_source_xf')}}
 WHERE person_owner_id != '00Ga0000003Nugr'
 AND working_date IS NOT null
