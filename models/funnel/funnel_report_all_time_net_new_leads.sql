@@ -3,16 +3,16 @@
 WITH base AS (
 
     SELECT DISTINCT
-        sal_source_xf.person_id AS sal_id,
-        CONCAT('https://acton.my.salesforce.com/',sal_source_xf.person_id) AS sal_url,
-        sal_source_xf.working_date AS sal_date,
-        sal_source_xf.mql_most_recent_date AS mql_date,
-        person_status,
-        person_owner_name,
+        person_source_xf.person_id AS lead_id,
+        CONCAT('https://acton.my.salesforce.com/',person_source_xf.person_id) AS lead_url,
+        person_source_xf.created_date,
         company,
-        most_recent_salesloft_cadence,
+        first_name,
+        last_name,
+        title,
+        person_status,
+        country,
         is_hand_raiser,
-        is_sal_after_mql,
         CASE
             WHEN is_current_customer IS null THEN false
             ELSE is_current_customer
@@ -61,7 +61,8 @@ WITH base AS (
             WHEN campaign_lead_creation IS null THEN 'blank'
             ELSE campaign_lead_creation
         END AS campaign_lead_creation
-    FROM {{ref('sal_source_xf')}}
+    FROM {{ref('person_source_xf')}}
+    WHERE created_date IS NOT null
 
 )
 

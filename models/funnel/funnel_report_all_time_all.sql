@@ -1,7 +1,18 @@
 {{ config(materialized='table') }}
 
 WITH base AS (
-
+    SELECT DISTINCT
+        global_region,
+        company_size_rev,
+        lead_source,
+        segment,
+        industry,
+        industry_bucket,
+        channel_bucket,
+        channel_bucket_details,
+        created_date AS date
+    FROM {{ref('funnel_report_all_time_net_new_leads')}}
+    UNION ALL
     SELECT DISTINCT
         global_region,
         company_size_rev,
@@ -122,6 +133,22 @@ WITH base AS (
         lost_date
     FROM {{ref('funnel_report_all_time_lost')}}
     
+), net_new_lead_base AS (
+
+    SELECT
+        COUNT(DISTINCT lead_id) AS leads,
+        global_region,
+        company_size_rev,
+        lead_source,
+        segment,
+        industry,
+        industry_bucket,
+        channel_bucket,
+        channel_bucket_details,
+        created_date
+    FROM {{ref('funnel_report_all_time_net_new_leads')}}
+    GROUP BY 2,3,4,5,6,7,8,9,10
+
 ), lead_base AS (
 
     SELECT
@@ -295,8 +322,12 @@ WITH base AS (
         base.channel_bucket_details,
         base.date,
         CASE 
-            WHEN SUM(leads) IS null THEN 0
-            ELSE SUM(leads) 
+            WHEN SUM(net_new_lead_base.leads) IS null THEN 0
+            ELSE SUM(net_new_lead_base.leads) 
+        END AS net_new_leads,
+        CASE 
+            WHEN SUM(lead_base.leads) IS null THEN 0
+            ELSE SUM(lead_base.leads) 
         END AS leads,
         CASE 
             WHEN SUM(mqls) IS null THEN 0
@@ -335,6 +366,15 @@ WITH base AS (
             ELSE SUM(lost) 
         END AS lost
     FROM base
+    LEFT JOIN net_new_lead_base ON 
+    base.company_size_rev=net_new_lead_base.company_size_rev
+    AND base.global_region=net_new_lead_base.global_region
+    AND base.lead_source=net_new_lead_base.lead_source
+    AND base.segment=net_new_lead_base.segment
+    AND base.industry=net_new_lead_base.industry
+    AND base.channel_bucket=net_new_lead_base.channel_bucket
+    AND base.channel_bucket_details=net_new_lead_base.channel_bucket_details
+    AND base.date=net_new_lead_base.created_date
     LEFT JOIN lead_base ON 
     base.company_size_rev=lead_base.company_size_rev
     AND base.global_region=lead_base.global_region

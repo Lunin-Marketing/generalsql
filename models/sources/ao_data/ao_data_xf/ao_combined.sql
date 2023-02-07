@@ -4,7 +4,7 @@ WITH emails AS (
 
     SELECT
     -- IDs
-        {{ dbt_utils.surrogate_key(['action_time', 'message_id','email'])}} AS touchpoint_id,
+        {{ dbt_utils.generate_surrogate_key(['action_time', 'message_id','email'])}} AS touchpoint_id,
         message_id,
         email,
         record_id,
@@ -34,7 +34,7 @@ WITH emails AS (
 
     SELECT
     -- IDs
-        {{ dbt_utils.surrogate_key(['action_time', 'form_id','email'])}} AS touchpoint_id,
+        {{ dbt_utils.generate_surrogate_key(['action_time', 'form_id','email'])}} AS touchpoint_id,
         form_id,
         email,
         unique_visitor_id,
@@ -65,7 +65,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        {{ dbt_utils.surrogate_key(['action_time', 'landing_page_id','email'])}} AS touchpoint_id,
+        {{ dbt_utils.generate_surrogate_key(['action_time', 'landing_page_id','email'])}} AS touchpoint_id,
         landing_page_id,
         email,
         record_id,
@@ -99,7 +99,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        {{ dbt_utils.surrogate_key(['action_time', 'media_id','email'])}} AS touchpoint_id,
+        {{ dbt_utils.generate_surrogate_key(['action_time', 'media_id','email'])}} AS touchpoint_id,
         media_id,
         email,
         record_id,
@@ -123,7 +123,7 @@ WITH emails AS (
 
     SELECT
     --IDs
-        {{ dbt_utils.surrogate_key(['activity_date', 'task_id','email'])}} AS touchpoint_id,
+        {{ dbt_utils.generate_surrogate_key(['activity_date', 'task_id','email'])}} AS touchpoint_id,
         task_id,
         person_id,
         owner_id,
@@ -144,7 +144,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        {{ dbt_utils.surrogate_key(['action_time', 'webinar_id','email'])}} AS touchpoint_id,
+        {{ dbt_utils.generate_surrogate_key(['action_time', 'webinar_id','email'])}} AS touchpoint_id,
         webinar_id,
         email,
         record_id,
@@ -167,7 +167,7 @@ WITH emails AS (
 
     SELECT 
     -- IDs
-        {{ dbt_utils.surrogate_key(['action_time', 'page_url','email'])}} AS touchpoint_id,
+        {{ dbt_utils.generate_surrogate_key(['action_time', 'page_url','email'])}} AS touchpoint_id,
         email,
         unique_visitor_id,
 
