@@ -26,7 +26,7 @@ WITH closed_won AS (
         won_date,
         won_segment,
         won_type,
-        {{ dbt_utils.datediff("sql_date","won_date",'day')}} AS cw_velocity
+        {{ datediff("sql_date","won_date",'day')}} AS cw_velocity
     FROM closed_won
     LEFT JOIN created_opp ON 
     closed_won.won_id=created_opp.sql_id

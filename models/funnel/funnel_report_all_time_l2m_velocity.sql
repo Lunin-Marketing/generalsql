@@ -53,7 +53,7 @@ WITH leads AS (
         mqls.target_account,
         mqls.channel_bucket,
         mqls.channel_bucket_details,
-        {{ dbt_utils.datediff("created_date","mql_date",'day')}} AS l2m_velocity
+        {{ datediff("created_date","mql_date",'day')}} AS l2m_velocity
     FROM mqls
     LEFT JOIN leads ON 
     mqls.mql_id=leads.lead_id

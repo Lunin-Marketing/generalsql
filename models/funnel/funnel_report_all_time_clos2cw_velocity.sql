@@ -47,7 +47,7 @@ WITH won_opp AS (
         won_opp.target_account,
         won_opp.channel_bucket,
         won_opp.channel_bucket_details,
-        {{ dbt_utils.datediff("closing_date","won_date",'day')}} AS closing2cw_velocity
+        {{ datediff("closing_date","won_date",'day')}} AS closing2cw_velocity
     FROM won_opp
     LEFT JOIN closing_opp ON 
     won_opp.won_id=closing_opp.closing_id

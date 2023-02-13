@@ -47,7 +47,7 @@ WITH voc_opp AS (
         closing_opp.industry_bucket,
         closing_opp.channel_bucket,
         closing_opp.channel_bucket_details,
-        {{ dbt_utils.datediff("voc_date","closing_date",'day')}} AS voc2closing_velocity
+        {{ datediff("voc_date","closing_date",'day')}} AS voc2closing_velocity
     FROM closing_opp
     LEFT JOIN voc_opp ON 
     closing_opp.closing_id=voc_opp.voc_id

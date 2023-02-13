@@ -39,7 +39,7 @@ WITH base AS (
         opp_industry,
         opp_channel_bucket,
         opp_industry_bucket,
-        {{ dbt_utils.datediff("mql_date","sql_date",'day')}} AS mql2sql_velocity
+        {{ datediff("mql_date","sql_date",'day')}} AS mql2sql_velocity
     FROM base
     WHERE sql_date >= mql_date
 )

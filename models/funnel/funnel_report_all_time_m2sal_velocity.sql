@@ -53,7 +53,7 @@ WITH sals AS (
         sals.channel_bucket,
         sals.channel_bucket_details,
         sals.industry_bucket,
-        {{ dbt_utils.datediff("mql_date","sal_date",'day')}} AS m2sal_velocity
+        {{ datediff("mql_date","sal_date",'day')}} AS m2sal_velocity
     FROM sals
     LEFT JOIN mqls ON 
     sals.sal_id=mqls.mql_id
