@@ -49,8 +49,7 @@ ON campaign_member.campaign_id=campaign_influence.influence_campaign_id
 AND campaign_influence.influence_contact_id=person.person_id
 LEFT JOIN {{ref('opp_source_xf')}} opp
 ON campaign_influence.influence_opportunity_id=opp.opportunity_id
-WHERE campaign.parent_campaign_id LIKE '7015Y000002UBBi%'
--- WHERE campaign.parent_campaign_id LIKE '7015Y000003jbcvQAA%'
+WHERE campaign.parent_campaign_id LIKE '7015Y000003jbcvQAA%'
 
 AND campaign_member_status NOT IN ('Initial','Sent')
 )
