@@ -39,7 +39,7 @@ WITH base AS (
         target_account,
         opp_channel_bucket,
         opp_industry_bucket,
-        {{ dbt_utils.datediff("marketing_created_date","opp_created_date",'day')}} AS lead_to_opp_velocity
+        {{ datediff("marketing_created_date","opp_created_date",'day')}} AS lead_to_opp_velocity
     FROM base
     WHERE opp_created_date >= marketing_created_date
 )

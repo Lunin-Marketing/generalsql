@@ -39,7 +39,7 @@ WITH base AS (
         opp_industry,
         opp_channel_bucket,
         opp_industry_bucket,
-        {{ dbt_utils.datediff("working_date","opp_created_date",'day')}} AS sal2sql_velocity
+        {{ datediff("working_date","opp_created_date",'day')}} AS sal2sql_velocity
     FROM base
     WHERE opp_created_date >= working_date
 )

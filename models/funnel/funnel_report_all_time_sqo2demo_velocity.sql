@@ -47,7 +47,7 @@ WITH sqo_opp AS (
         demo_opp.channel_bucket_details,
         demo_opp.target_account,
         demo_opp.industry_bucket,
-        {{ dbt_utils.datediff("sqo_date","demo_date",'day')}} AS sqo2demo_velocity
+        {{ datediff("sqo_date","demo_date",'day')}} AS sqo2demo_velocity
     FROM demo_opp
     LEFT JOIN sqo_opp ON 
     demo_opp.demo_id=sqo_opp.sqo_id
