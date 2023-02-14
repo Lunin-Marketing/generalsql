@@ -9,7 +9,8 @@
     )
 }}
 
-SELECT *
+SELECT DISTINCT
+contact_source_xf.*
 FROM {{ref('contact_source_xf')}}
 
 {% endsnapshot %}

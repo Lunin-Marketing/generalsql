@@ -3,7 +3,7 @@
 WITH base AS (
 
 SELECT *
-FROM {{ source('common', 'kpi_targets') }}
+FROM {{ source('common', 'kpi_targets_2022') }}
 
 )
 
@@ -13,4 +13,3 @@ SELECT
     kpi,
     kpi_target
 FROM base
-ORDER BY 1,3,2
