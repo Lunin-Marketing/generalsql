@@ -27,8 +27,8 @@ WITH lead_kpi_base AS (
         AVG(kpi_target) AS kpi_target
     FROM {{ref('kpi_targets')}}
     WHERE kpi_month IN ('2023-01-01','2023-02-01','2023-03-01')
-    AND kpi_lead_source = 'total'
-    AND kpi = 'target_l2m_conv'
+    AND kpi_lead_source LIKE '%total%'
+    AND kpi LIKE '%target_l2m_conv%'
 
 ), intermediate AS (
 

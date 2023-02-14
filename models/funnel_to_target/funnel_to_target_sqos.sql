@@ -17,8 +17,8 @@ WITH kpi_base AS (
         SUM(kpi_target) AS kpi_target
     FROM {{ref('kpi_targets')}}
     WHERE kpi_month IN ('2023-01-01','2023-02-01','2023-03-01')
-    AND kpi_lead_source = 'total'
-    AND kpi = 'target_sqos'
+    AND kpi_lead_source LIKE '%total%'
+    AND kpi LIKE '%target_sqos%'
 
 ), final AS (
 

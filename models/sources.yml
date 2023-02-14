@@ -35,6 +35,7 @@ sources:
   - name: common
     tables:
       - name: kpi_targets
+      - name: kpi_targets_2022
       - name: gauge_placeholder
       - name: date_base
       - name: placeholder
