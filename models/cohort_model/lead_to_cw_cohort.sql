@@ -39,6 +39,7 @@ WITH base AS (
         opportunity_name,
         stage_name,
         opp_lead_source,
+        closed_lost_reason,
         opp_segment,
         target_account,
         account_global_region,

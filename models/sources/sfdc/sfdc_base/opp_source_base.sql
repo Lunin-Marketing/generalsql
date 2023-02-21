@@ -73,6 +73,7 @@ FROM {{ source('salesforce', 'opportunity') }}
         DATE_TRUNC('day',discovery_call_scheduled_date_c)::Date AS discovery_call_date,
         opportunity_status_c AS opportunity_status,
         sql_status_reason_c AS sql_status_reason,
+        reason_c AS closed_lost_reason, 
         DATE_TRUNC('day',sql_date_c)::Date AS sql_day,
         DATE_TRUNC('day',discovery_call_scheduled_date_time_c)::Date AS discovery_call_scheduled_datetime,
         DATE_TRUNC('day',discovery_call_completed_date_time_c)::Date AS discovery_call_completed_datetime,
