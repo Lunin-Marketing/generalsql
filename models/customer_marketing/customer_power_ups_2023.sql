@@ -9,6 +9,7 @@ WITH base AS (
         campaign_member.campaign_member_id,
         campaign_member.campaign_member_status,
         campaign_member.campaign_member_created_date,
+        campaign_member.campaign_member_has_responded,
         person.lean_data_account_id AS account_id,
         person.created_date,
         COALESCE(account.account_name,person.company) AS account_name,
