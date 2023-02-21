@@ -80,6 +80,7 @@ SELECT DISTINCT
     opp_base.opportunity_id,
     opp_base.opportunity_name,
     opp_base.is_won,
+    opp_base.closed_lost_reason,
     opp_base.target_account,
     opp_base.created_date AS opp_created_date,
     opp_base.discovery_date,

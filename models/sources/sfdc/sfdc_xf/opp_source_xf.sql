@@ -28,6 +28,7 @@ FROM {{ref('opp_source_base')}}
         opp_lead_source,
         opp_crm,
         renewal_type,
+        closed_lost_reason,
         csm,
         marketing_channel,
         opportunity_status,
