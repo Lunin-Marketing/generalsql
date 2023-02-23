@@ -39,6 +39,12 @@ sources:
       - name: gauge_placeholder
       - name: date_base
       - name: placeholder
+      - name: fy23_customtouchpoints
+      - name: fy23_emailclicks
+      - name: fy23_formsubmissions
+      - name: fy23_landingpages
+      - name: fy23_webinars
+      - name: fy23_webpages
   - name: outreach_sf
     tables:
       - name: account

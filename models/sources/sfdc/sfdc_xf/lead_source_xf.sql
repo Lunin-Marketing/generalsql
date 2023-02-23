@@ -113,6 +113,7 @@ FROM {{ source('salesforce', 'lead') }}
         base.looking_for_ma_c AS looking_for_ma,
         do_not_contact_c AS do_not_contact,
         form_consent_opt_in_c AS form_consent_opt_in,
+        base.data_enrich_employee_count_c AS employee_count,
         CASE 
             WHEN annual_revenue <= 49999999 THEN 'SMB'
             WHEN annual_revenue > 49999999 AND annual_revenue <= 499999999 THEN 'Mid-Market'

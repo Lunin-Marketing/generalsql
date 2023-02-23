@@ -1,14 +1,18 @@
 {{ config(materialized='table') }}
 
 WITH base AS (
-
     SELECT
-    1 AS unique_visitor_id,
-    1 AS contact_e_mail
-    -- SELECT *
-    -- FROM {{ source('data_studio_s3', 'data_studio_webinars') }}
+        "Action" AS action,
+        "Action Time" AS action_time,
+        "Contact E-mail" AS contact_email,
+        "EMAIL" AS email,
+        "Submitted by Email" AS submitted_by_email
+    FROM {{ source('common', 'fy23_webinars') }}
 
 )
 
-SELECT *
+SELECT
+    action,
+    action_time::Date AS action_day,
+    COALESCE(contact_email,email,submitted_by_email) AS email
 FROM base

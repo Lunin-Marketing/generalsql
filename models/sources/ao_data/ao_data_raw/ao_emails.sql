@@ -2,12 +2,15 @@
 
 WITH base AS (
     SELECT
-    1 AS unique_visitor_id,
-    1 AS recipient_e_mail
-    -- SELECT *
-    -- FROM {{ source('data_studio_s3', 'data_studio_emails') }}
+        "Action" AS action,
+        "Action Time" AS action_time,
+        "Recipient E-mail" AS email
+    FROM {{ source('common', 'fy23_emailclicks') }}
 
 )
 
-SELECT *
+SELECT
+    action,
+    action_time::Date AS action_day,
+    email
 FROM base

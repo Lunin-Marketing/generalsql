@@ -3,12 +3,17 @@
 WITH base AS (
 
     SELECT
-    1 AS unique_visitor_id,
-    1 AS e_mail_address
-    -- SELECT *
-    -- FROM {{ source('data_studio_s3', 'data_studio_landingpages') }}
+        "Action" AS action,
+        "Action Time" AS action_time,
+        "E-mail Address" AS email_address,
+        "EMAIL" AS email,
+        "Submitted by Email" AS submitted_by_email
+    FROM {{ source('common', 'fy23_landingpages') }}
 
 )
 
-SELECT *
+SELECT
+    action,
+    action_time::Date AS action_day,
+    COALESCE(email_address,email,submitted_by_email) AS email
 FROM base
