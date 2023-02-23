@@ -14,6 +14,7 @@ SELECT
     lead_source_xf.global_region,
     lead_source_xf.created_by_id,
     lead_source_xf.form_consent_opt_in,
+    lead_source_xf.employee_count,
 
     -- Account Information
     lead_source_xf.company,
@@ -105,6 +106,7 @@ SELECT
     global_region,
     created_by_id,
     form_consent_opt_in,
+    employee_count,
 
     -- Account Information
     account_name,

@@ -95,6 +95,7 @@ FROM {{ source('salesforce', 'contact') }}
         account_source_xf.account_deliverability_consultant,
         user_source_xf.user_email AS owner_email,
         account_source_xf.target_account,
+        account_source_xf.number_of_employees AS employee_count,
         base.sales_loft_most_recent_cadence_name_c AS most_recent_salesloft_cadence,
         CASE
             WHEN account_source_xf.annual_revenue <= 49999999 THEN 'SMB'
