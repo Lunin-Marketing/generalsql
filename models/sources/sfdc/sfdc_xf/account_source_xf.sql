@@ -127,7 +127,8 @@ FROM {{ source('salesforce', 'account') }}
             WHEN base.billing_country IS NOT null AND base.billing_state IS NOT null THEN 'ROW'
             ELSE 'Unknown'
         END AS global_region,
-        contract_source_xf.end_date+1 AS renewal_date
+        contract_source_xf.end_date+1 AS renewal_date,
+        lead_id_converted_from_c AS lead_id_converted_from
         -- "Renewal_Notice_Date__c" AS renewal_notice_date,
     FROM base
     LEFT JOIN AO_MARKETING.aws_salesforce.account AS parent ON

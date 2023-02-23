@@ -17,8 +17,9 @@ FROM {{ref('opp_source_base')}}
         base.created_by_id,
         renewed_contract_id,
         primary_quote_id,
-        lead_id_converted_from,
+        base.lead_id_converted_from,
         contact_role_contact_id,
+        account_source_xf.lead_id_converted_from AS account_lead_id_converted_from,
 
     --Opp Info
         opportunity_name,
