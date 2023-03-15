@@ -52,6 +52,7 @@ WITH ao_combined AS (
         END AS negative_score
     FROM {{ref('person_source_xf')}}
     WHERE mql_most_recent_date >= '2023-02-22'
+    OR mql_created_date >= '2023-02-22'
 
 ), person_final AS (
 
@@ -62,9 +63,7 @@ WITH ao_combined AS (
             WHEN negative_score IS NULL THEN 0
             ELSE negative_score
         END AS negative_score
-        -- SUM(negative_score) AS negative_score
     FROM person_base
-    -- GROUP BY 1,2
 
 ), running_total AS (
 

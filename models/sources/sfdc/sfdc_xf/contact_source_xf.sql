@@ -204,7 +204,7 @@ FROM {{ source('salesforce', 'contact') }}
             WHEN LOWER(channel_lead_creation_c) = 'ppl' AND LOWER(medium_lead_creation_c) = 'intent partner' THEN 'PPL'
             WHEN LOWER(channel_lead_creation_c) = 'ppl' THEN 'PPL'
             WHEN LOWER(channel_lead_creation_c) = 'prospecting' AND LOWER(medium_lead_creation_c) = 'intent partner' THEN 'Prospecting'
-            WHEN LOWER(channel_lead_creation_c) = 'events' AND LOWER(medium_lead_creation_c) = 'webinar' THEN 'Events'
+            WHEN LOWER(channel_lead_creation_c) = 'events' AND LOWER(medium_lead_creation_c) = 'webinar' THEN 'Webinar'
             WHEN LOWER(channel_lead_creation_c) IN ('event','events') THEN 'Events'
             WHEN LOWER(channel_lead_creation_c) = 'partner' THEN 'Partners'
             WHEN LOWER(medium_lead_creation_c) = 'partner' THEN 'Partners'
