@@ -49,6 +49,7 @@ sources:
     tables:
       - name: account
       - name: email_address
+      - name: mailing
       - name: opportunity
       - name: prospect
       - name: prospect_email
@@ -56,4 +57,5 @@ sources:
       - name: sequence
       - name: sequence_state
       - name: sequence_tag
+      - name: users
       
