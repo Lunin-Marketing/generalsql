@@ -56,6 +56,10 @@ FROM {{ source('salesforce', 'opportunity') }}
         ft_utm_content_c AS opp_content_first_touch,
         ft_utm_medium_c AS opp_medium_first_touch,
         ft_utm_source_c AS opp_source_first_touch,
+        -- lt_utm_channel_c AS opp_channel_last_touch,
+        -- lt_utm_content_c AS opp_content_last_touch,
+        -- lt_utm_medium_c AS opp_medium_last_touch,
+        -- lt_utm_source_c AS opp_source_last_touch,
         oc_offer_asset_type_c AS opp_offer_asset_type_opportunity_creation,
         oc_offer_asset_subtype_c AS opp_offer_asset_subtype_opportunity_creation,
         oc_offer_asset_topic_c AS opp_offer_asset_topic_opportunity_creation,
@@ -126,6 +130,7 @@ FROM {{ source('salesforce', 'opportunity') }}
             WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'social_organic' THEN 'Social - Organic'
             WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'social-paid' THEN 'Social - Paid'
             WHEN LOWER(opp_channel_lead_creation) IS null AND LOWER(opp_medium_lead_creation) = 'social-paid' THEN 'Social - Paid'
+            WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'paid-social' THEN 'Paid Social'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'cpc' THEN 'PPC - Display'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'display' THEN 'PPC - Display'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'intent partner' THEN 'PPC - Intent'
@@ -167,12 +172,13 @@ FROM {{ source('salesforce', 'opportunity') }}
             WHEN LOWER(opp_channel_lead_creation) = 'product' AND LOWER(opp_medium_lead_creation) = 'product - login' THEN 'Product'
             WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'social-organic' THEN 'Social'
             WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'social_organic' THEN 'Social'
-            WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'social-paid' THEN 'Social'
-            WHEN LOWER(opp_channel_lead_creation) IS null AND LOWER(opp_medium_lead_creation) = 'social-paid' THEN 'Social'
+            WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'social-paid' THEN 'Paid Social'
+            WHEN LOWER(opp_channel_lead_creation) = 'social' AND LOWER(opp_medium_lead_creation) = 'paid-social' THEN 'Paid Social'
+            WHEN LOWER(opp_channel_lead_creation) IS null AND LOWER(opp_medium_lead_creation) = 'social-paid' THEN 'Organic Social'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'cpc' THEN 'PPC'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'display' THEN 'PPC'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'intent partner' THEN 'PPC'
-            WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'search' THEN 'PPC'
+            WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'search' THEN 'Paid Search'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) = 'social-paid' THEN 'PPC'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) IS NOT null THEN 'PPC'
             WHEN LOWER(opp_channel_lead_creation) = 'ppc' AND LOWER(opp_medium_lead_creation) IS null THEN 'PPC'
@@ -189,19 +195,63 @@ FROM {{ source('salesforce', 'opportunity') }}
             WHEN LOWER(opp_channel_lead_creation) = 'ppl' THEN 'PPL'
             WHEN LOWER(opp_channel_lead_creation) = 'prospecting' AND LOWER(opp_medium_lead_creation) = 'intent partner' THEN 'Prospecting'
             WHEN LOWER(opp_channel_lead_creation) = 'events' AND LOWER(opp_medium_lead_creation) = 'webinar' THEN 'Webinar'
-            WHEN LOWER(opp_channel_lead_creation) IN ('event','events') THEN 'Events'
-            WHEN LOWER(opp_channel_lead_creation) = 'partner' THEN 'Partners'
-            WHEN LOWER(opp_medium_lead_creation) = 'partner' THEN 'Partners'
-            WHEN LOWER(opp_medium_lead_creation) = 'virtualevent' THEN 'Events'
+            WHEN LOWER(opp_channel_lead_creation) IN ('event','events') THEN 'Event'
+            WHEN LOWER(opp_channel_lead_creation) = 'partner' THEN 'Partner'
+            WHEN LOWER(opp_medium_lead_creation) = 'partner' THEN 'Partner'
+            WHEN LOWER(opp_medium_lead_creation) = 'virtualevent' THEN 'Event'
             WHEN LOWER(opp_channel_lead_creation) = 'prospecting' AND LOWER(opp_medium_lead_creation) = 'sdr' THEN 'Prospecting'
             WHEN LOWER(opp_channel_lead_creation) = 'prospecting' AND LOWER(opp_medium_lead_creation) = 'rsm' THEN 'Prospecting'
             WHEN LOWER(opp_channel_lead_creation) = 'prospecting' AND LOWER(opp_medium_lead_creation) = 'channel management' THEN 'Prospecting'
             WHEN LOWER(opp_channel_lead_creation) = 'prospecting' AND LOWER(opp_medium_lead_creation) = 'third-party' THEN 'Prospecting'
             WHEN LOWER(opp_channel_lead_creation) = 'prospecting' THEN 'Prospecting'
-            WHEN LOWER(opp_channel_lead_creation) = 'referral' THEN 'Referral'
+            WHEN LOWER(opp_channel_lead_creation) = 'referral' THEN 'Partner_Referral'
             WHEN LOWER(opp_channel_lead_creation) = 'predates attribution' AND LOWER(opp_medium_lead_creation) = 'predates attribution' THEN 'Predates Attribution'
             ELSE 'Other'
-        END AS channel_bucket
+        END AS channel_bucket--,
+        -- CASE 
+        --     WHEN LOWER(opp_channel_last_touch) = 'organic' THEN 'Organic'
+        --     WHEN LOWER(opp_channel_last_touch) = 'direct mail' THEN 'Direct Mail'
+        --     WHEN LOWER(opp_channel_last_touch) = 'phone' THEN 'Phone'
+        --     WHEN LOWER(opp_channel_last_touch) IS null AND opp_medium_last_touch IS null AND opp_source_last_touch IS null THEN 'Unknown'
+        --     WHEN LOWER(opp_channel_last_touch) = 'product' AND LOWER(opp_medium_last_touch) = 'product - login' THEN 'Product'
+        --     WHEN LOWER(opp_channel_last_touch) = 'social' AND LOWER(opp_medium_last_touch) = 'social-organic' THEN 'Social'
+        --     WHEN LOWER(opp_channel_last_touch) = 'social' AND LOWER(opp_medium_last_touch) = 'social_organic' THEN 'Social'
+        --     WHEN LOWER(opp_channel_last_touch) = 'social' AND LOWER(opp_medium_last_touch) = 'social-paid' THEN 'Paid Social'
+        --     WHEN LOWER(opp_channel_last_touch) = 'social' AND LOWER(opp_medium_last_touch) = 'paid-social' THEN 'Paid Social'
+        --     WHEN LOWER(opp_channel_last_touch) IS null AND LOWER(opp_medium_last_touch) = 'social-paid' THEN 'Organic Social'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppc' AND LOWER(opp_medium_last_touch) = 'cpc' THEN 'PPC'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppc' AND LOWER(opp_medium_last_touch) = 'display' THEN 'PPC'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppc' AND LOWER(opp_medium_last_touch) = 'intent partner' THEN 'PPC'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppc' AND LOWER(opp_medium_last_touch) = 'search' THEN 'Paid Search'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppc' AND LOWER(opp_medium_last_touch) = 'social-paid' THEN 'PPC'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppc' AND LOWER(opp_medium_last_touch) IS NOT null THEN 'PPC'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppc' AND LOWER(opp_medium_last_touch) IS null THEN 'PPC'
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_source_last_touch) like '%act-on%' THEN 'Email' 
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_medium_last_touch) = 'email_paid' THEN 'Email'
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_medium_last_touch) = 'email-paid' THEN 'Email'
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_medium_last_touch) = 'email- paid' THEN 'Email' 
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_medium_last_touch) = 'email_inhouse' THEN 'Email' 
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_medium_last_touch) = 'paid-email' THEN 'Email' 
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_medium_last_touch) = 'email' THEN 'Email' 
+        --     WHEN LOWER(opp_channel_last_touch) = 'email' AND LOWER(opp_medium_last_touch) = 'syndication_partner' THEN 'Email' 
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppl' AND LOWER(opp_medium_last_touch) = 'syndication partner' THEN 'PPL'  
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppl' AND LOWER(opp_medium_last_touch) = 'intent partner' THEN 'PPL'
+        --     WHEN LOWER(opp_channel_last_touch) = 'ppl' THEN 'PPL'
+        --     WHEN LOWER(opp_channel_last_touch) = 'prospecting' AND LOWER(opp_medium_last_touch) = 'intent partner' THEN 'Prospecting'
+        --     WHEN LOWER(opp_channel_last_touch) = 'events' AND LOWER(opp_medium_last_touch) = 'webinar' THEN 'Webinar'
+        --     WHEN LOWER(opp_channel_last_touch) IN ('event','events') THEN 'Event'
+        --     WHEN LOWER(opp_channel_last_touch) = 'partner' THEN 'Partner'
+        --     WHEN LOWER(opp_medium_last_touch) = 'partner' THEN 'Partner'
+        --     WHEN LOWER(opp_medium_last_touch) = 'virtualevent' THEN 'Event'
+        --     WHEN LOWER(opp_channel_last_touch) = 'prospecting' AND LOWER(opp_medium_last_touch) = 'sdr' THEN 'Prospecting'
+        --     WHEN LOWER(opp_channel_last_touch) = 'prospecting' AND LOWER(opp_medium_last_touch) = 'rsm' THEN 'Prospecting'
+        --     WHEN LOWER(opp_channel_last_touch) = 'prospecting' AND LOWER(opp_medium_last_touch) = 'channel management' THEN 'Prospecting'
+        --     WHEN LOWER(opp_channel_last_touch) = 'prospecting' AND LOWER(opp_medium_last_touch) = 'third-party' THEN 'Prospecting'
+        --     WHEN LOWER(opp_channel_last_touch) = 'prospecting' THEN 'Prospecting'
+        --     WHEN LOWER(opp_channel_last_touch) = 'referral' THEN 'Partner_Referral'
+        --     WHEN LOWER(opp_channel_last_touch) = 'predates attribution' AND LOWER(opp_medium_last_touch) = 'predates attribution' THEN 'Predates Attribution'
+        --     ELSE 'Other'
+        -- END AS channel_bucket_lt
         FROM intermediate
 )
 
