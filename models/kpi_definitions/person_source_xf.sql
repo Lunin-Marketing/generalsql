@@ -28,6 +28,7 @@ SELECT
     lead_source_xf.segment,
     lead_source_xf.is_current_customer,
     account_source_xf.target_account,
+    account_source_xf.account_owner_name,
 
     -- DateTime Fields
     lead_source_xf.last_modified_date,
@@ -83,6 +84,7 @@ SELECT
     lead_source_xf.offer_asset_type_last_touch,
     lead_source_xf.offer_asset_type_lead_creation,
     lead_source_xf.channel_bucket,
+    channel_bucket_lt,
     channel_bucket_details
 FROM {{ref('lead_source_xf')}}
 LEFT JOIN {{ref('account_source_xf')}} ON
@@ -120,6 +122,7 @@ SELECT
     segment,
     is_current_customer,
     target_account,
+    account_owner_name,
     
     -- DateTime Fields
     last_modified_date,
@@ -175,6 +178,7 @@ SELECT
     offer_asset_type_last_touch,
     offer_asset_type_lead_creation,
     channel_bucket,
+    channel_bucket_lt,
     channel_bucket_details
 FROM {{ref('contact_source_xf')}}
 LEFT JOIN {{ref('user_source_xf')}} ON

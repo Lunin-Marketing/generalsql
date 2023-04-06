@@ -8,6 +8,7 @@ WITH person_base AS (
         email,
         is_hand_raiser,
         person_owner_id AS owner_id,
+        user_name, 
         lead_source,
         created_date,
         marketing_created_date,
@@ -21,7 +22,9 @@ WITH person_base AS (
         channel_bucket,
         channel_bucket_details,
         industry_bucket,
+        channel_bucket_lt,
         industry,
+        account_owner_name,
         campaign_lead_creation,
         channel_lead_creation,
         medium_lead_creation,
@@ -33,9 +36,12 @@ WITH person_base AS (
         offer_asset_name_lead_creation,
         is_current_customer
     FROM {{ref('person_source_xf')}}
+    LEFT JOIN {{ref('user_source_xf')}}
+        ON person_source_xf.person_owner_id=user_source_xf.user_id
     --WHERE marketing_created_date >= '2021-01-01'
 
 ), opp_base AS (
+    
     SELECT *
     FROM {{ref('opp_source_xf')}}
     WHERE type = 'New Business'
@@ -47,8 +53,10 @@ SELECT DISTINCT
     person_base.email,
     person_base.is_hand_raiser,
     person_base.channel_bucket,
+    person_base.channel_bucket_lt,
     person_base.channel_bucket_details,
     person_base.owner_id,
+    person_base.user_name AS person_owner,
     person_base.lead_source,
     person_base.created_date AS person_created_date,
     person_base.marketing_created_date,
@@ -71,6 +79,7 @@ SELECT DISTINCT
     person_base.offer_asset_name_lead_creation AS person_offer_asset_name_lead_creation,
     person_base.industry_bucket,
     person_base.is_current_customer AS person_current_customer,
+    person_base.account_owner_name,
     -- account_base.is_current_customer, 
     opp_base.account_name,
     -- account_base.account_owner_name,
@@ -85,6 +94,9 @@ SELECT DISTINCT
     opp_base.created_date AS opp_created_date,
     opp_base.discovery_date,
     opp_base.demo_date,
+    opp_base.date_reached_demo_confirmed,
+    opp_base.date_reached_demo_complete,
+    opp_base.negotiation_date,
     opp_base.voc_date,
     opp_base.closing_date,
     opp_base.implement_date,

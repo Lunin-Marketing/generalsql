@@ -38,6 +38,7 @@ sources:
       - name: kpi_targets_2022
       - name: gauge_placeholder
       - name: date_base
+      - name: demand_gen_cost_fy23
       - name: placeholder
       - name: fy23_customtouchpoints
       - name: fy23_emailclicks
