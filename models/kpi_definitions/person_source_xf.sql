@@ -38,6 +38,7 @@ SELECT
     lead_source_xf.working_date,
     lead_source_xf.marketing_created_date,
     lead_source_xf.email_bounced_date_new,
+    lead_source_xf.hand_raiser_date,
 
     -- Other Key Information    
     lead_source_xf.lead_source,    
@@ -132,6 +133,7 @@ SELECT
     working_date,
     marketing_created_date,
     email_bounced_date_new,
+    hand_raiser_date,
 
     -- Other Key Information    
     lead_source,    

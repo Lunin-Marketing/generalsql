@@ -131,7 +131,7 @@ WITH campaign_base AS (
         cost_final.campaign_start_date,
         cost_final.campaign_type,
         cost AS total_cost,
-        COUNT(DISTINCT opportunity_id) AS saos
+        COUNT(DISTINCT opportunity_id) AS sqos
     FROM member_opp_combined
     LEFT JOIN cost_final 
         ON member_opp_combined.campaign_type=cost_final.campaign_type
