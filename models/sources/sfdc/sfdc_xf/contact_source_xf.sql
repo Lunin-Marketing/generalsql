@@ -21,6 +21,7 @@ FROM {{ source('salesforce', 'contact') }}
         base.title,
         base.lead_source,
         DATE_TRUNC('day',base.created_date)::Date AS created_date,
+        DATE_TRUNC('day',base.hand_raiser_date_time_c)::Date AS hand_raiser_date,
         base.last_modified_date,
         base.system_modstamp AS systemmodstamp,
         account_source_xf.is_current_customer AS is_current_customer,

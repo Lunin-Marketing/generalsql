@@ -120,8 +120,8 @@ WITH campaign_base AS (
 ), final AS (
 
     SELECT DISTINCT
-        cost_final.campaign_start_date,
-        cost_final.campaign_type,
+        member_person_combined.campaign_start_date,
+        member_person_combined.campaign_type,
         cost AS total_cost,
         COUNT(DISTINCT person_id) AS mqls
     FROM member_person_combined
