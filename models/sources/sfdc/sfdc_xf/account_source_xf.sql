@@ -81,7 +81,7 @@ FROM {{ source('salesforce', 'account') }}
         base.business_model_c AS business_model,
         base.contract_type_c AS contract_type,
         base.delivered_support_tier_c AS delivered_support_tier,
-        parent.name AS account_parent_name,
+        -- parent.name AS account_parent_name,
         base.deliverability_consultant_c AS deliverability_consultant_id,
         sdr.user_email AS sdr_email,
         sdr.user_first_name AS sdr_first_name,
@@ -151,7 +151,7 @@ FROM {{ source('salesforce', 'account') }}
 
 )
 
-SELECT 
+SELECT DISTINCT
 final.*,
 CASE
     WHEN global_region IN ('EUROPE','ROW','AUNZ') THEN 'EMEA'
