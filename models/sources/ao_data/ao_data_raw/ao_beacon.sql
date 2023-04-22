@@ -1,6 +1,32 @@
 {{ config(materialized='table') }}
 
 SELECT
-    
-    
+    "recId" AS beacon_recipient_id,
+    "email" AS beacon_email,
+    "recipientName" AS beacon_recipient_name,
+    "servedPage" AS beacon_page,
+    "ipAddress" AS beacon_ip_address,
+    "os" AS beacon_os,
+    "browser" AS beacon_browser,
+    "srcType" AS beacon_source_type,
+    "srcId" AS beacon_source_id,
+    "referer" AS beacon_referrer,
+    "cookieSrcType" AS beacon_cookie_source_type,
+    "cookieSrcId" AS beacon_cookie_source_id,
+    "socialMediaType" AS beacon_social_type,
+    "socialMediaId" AS beacon_social_id,
+    "socialMediaHandle" AS beacon_social_handle,
+    "cookieId" AS beacon_cookie_id,
+    "attributionId" AS beacon_attribution_id,
+    "geo" AS beacon_geo,
+    "org" AS beacon_org,
+    "userAgent" AS beacon_user_agent,
+    "longitude" AS beacon_longitude,
+    "latitude" AS beacon_latitude,
+    "areaCode" AS beacon_area_code,
+    "postalCode" AS beacon_postal_code,
+    "accountId" AS beacon_account_id,
+    "verbKey" AS beacon_verb,
+    "dateTime" AS beacon_datetime,
+    "insertTime"  AS beacon_insert_time   
 FROM "9883Data".FACTS.BEACON_9883

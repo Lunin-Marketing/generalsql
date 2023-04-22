@@ -276,5 +276,6 @@ FROM {{ source('salesforce', 'contact') }}
 
 )
 
-SELECT *
+SELECT DISTINCT
+final.*
 FROM final
