@@ -20,6 +20,6 @@ SELECT
     "accountId" AS form_account_id,
     "verbKey" AS form_verb,
     "dateTime" AS form_date_time,
-    "insertTime" AS form_insert_time,
+    date_trunc('day', convert_timezone('America/Los_Angeles', "insertTime"))::Date AS form_insert_time,
     "fingerprint" AS form_fingerprint 
 FROM "9883Data".FACTS.FORM_9883
