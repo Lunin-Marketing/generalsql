@@ -13,5 +13,6 @@
 SELECT DISTINCT
 account_source_xf.*
 FROM {{ref('account_source_xf')}}
+WHERE account_id != '0011400001aqWNkAAM'
 
 {% endsnapshot %}

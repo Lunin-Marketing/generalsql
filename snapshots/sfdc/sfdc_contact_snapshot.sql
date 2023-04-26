@@ -12,5 +12,6 @@
 SELECT DISTINCT
 contact_source_xf.*
 FROM {{ref('contact_source_xf')}}
+WHERE contact_id != '00314000029F6xxAAC'
 
 {% endsnapshot %}
