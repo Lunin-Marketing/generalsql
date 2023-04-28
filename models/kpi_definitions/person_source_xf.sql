@@ -15,6 +15,8 @@ SELECT
     lead_source_xf.created_by_id,
     lead_source_xf.form_consent_opt_in,
     lead_source_xf.employee_count,
+    lead_source_xf.department,
+
 
     -- Account Information
     lead_source_xf.company,
@@ -110,6 +112,7 @@ SELECT
     created_by_id,
     form_consent_opt_in,
     employee_count,
+    department,
 
     -- Account Information
     account_name,

@@ -11,4 +11,4 @@ SELECT
     "dateTime" AS forget_date_time,
     "insertTime" AS forget_insert_time,
     "fingerprint" AS forget_fingerprint
-FROM "9883Data".FACTS.FORGET_9883
+FROM "9883_DATA".FACTS.FORGET_9883

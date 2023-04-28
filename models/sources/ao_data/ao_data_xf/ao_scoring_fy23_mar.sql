@@ -9,7 +9,8 @@ WITH email_click_base AS (
         3 AS lead_score
     FROM {{ref('ao_emails_xf')}}
     WHERE is_clicked=TRUE
-    AND message_click_date >= CURRENT_DATE-90
+    AND message_click_date >= '2022-12-31'
+    AND message_click_date <= '2023-03-31'
 
 ), ao_forms AS (
 
@@ -25,7 +26,8 @@ WITH email_click_base AS (
         20 AS lead_score
     FROM ao_forms
     WHERE form_response_email IS NOT null
-    AND form_date_time >= CURRENT_DATE-90
+    AND form_date_time >= '2022-12-31'
+    AND form_date_time <= '2023-03-31'
 
 ), form_calendly AS (
 
@@ -36,7 +38,8 @@ WITH email_click_base AS (
         30 AS lead_score
     FROM ao_forms
     WHERE form_response_email IS NOT null
-    AND form_date_time >= CURRENT_DATE-90
+    AND form_date_time >= '2022-12-31'
+    AND form_date_time <= '2023-03-31'
     AND form_title = 'Calendly to AO Integration'
 
 ), form_5pts_4 AS (
@@ -48,7 +51,8 @@ WITH email_click_base AS (
         5 AS lead_score
     FROM ao_forms
     WHERE form_response_email IS NOT null
-    AND form_date_time >= CURRENT_DATE-90
+    AND form_date_time >= '2022-12-31'
+    AND form_date_time <= '2023-03-31'
     AND form_title IN ('Content-Syndication-Infuse-Q3-B2B-Multi-Channel-Marketing')
 
 ), form_5pts_1 AS (
@@ -60,7 +64,8 @@ WITH email_click_base AS (
         5 AS lead_score
     FROM ao_forms
     WHERE form_response_email IS NOT null
-    AND form_date_time >= CURRENT_DATE-90
+    AND form_date_time >= '2022-12-31'
+    AND form_date_time <= '2023-03-31'
     AND form_title IN ('ContentSyndication-Infuse-Q3-TheStateOfB2BMarketingAutomation')
 
 ), form_5pts_2 AS (
@@ -72,7 +77,8 @@ WITH email_click_base AS (
         5 AS lead_score
     FROM ao_forms
     WHERE form_response_email IS NOT null
-    AND form_date_time >= CURRENT_DATE-90
+    AND form_date_time >= '2022-12-31'
+    AND form_date_time <= '2023-03-31'
     AND form_title IN ('ContentSyndication-Infuse-Q3-MarketingAutomationTrends2022')
 
 ), form_5pts_3 AS (
@@ -84,7 +90,8 @@ WITH email_click_base AS (
         5 AS lead_score
     FROM ao_forms
     WHERE form_response_email IS NOT null
-    AND form_date_time >= CURRENT_DATE-90
+    AND form_date_time >= '2022-12-31'
+    AND form_date_time <= '2023-03-31'
     AND form_title IN ('ContentSyndication-Infuse-Q3-HowtoFindaBetterMarketingAutomationSolution')
 
 ), web_base AS (
@@ -103,7 +110,8 @@ WITH email_click_base AS (
     FROM web_base
     WHERE beacon_verb = 'h'
     AND beacon_email IS NOT null
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), marketo_page_view AS (
 
@@ -116,7 +124,8 @@ WITH email_click_base AS (
     WHERE beacon_verb = 'h'
     AND beacon_email IS NOT null
     AND beacon_page LIKE '%act-on.com/marketo-vs-act-on%'
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), hubspot_page_view AS (
 
@@ -129,7 +138,8 @@ WITH email_click_base AS (
     WHERE beacon_verb = 'h'
     AND beacon_email IS NOT null
     AND beacon_page LIKE '%act-on.com/hubspot-vs-act-on/%'
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), pardot_page_view AS (
 
@@ -142,7 +152,8 @@ WITH email_click_base AS (
     WHERE beacon_verb = 'h'
     AND beacon_email IS NOT null
     AND beacon_page LIKE '%act-on.com/pardot-vs-act-on/%'
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), eloqua_page_view AS (
 
@@ -155,7 +166,8 @@ WITH email_click_base AS (
     WHERE beacon_verb = 'h'
     AND beacon_email IS NOT null
     AND beacon_page LIKE '%act-on.com/eloqua-vs-act-on/%'
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), pricing_page_view AS (
 
@@ -168,7 +180,8 @@ WITH email_click_base AS (
     WHERE beacon_verb = 'h'
     AND beacon_email IS NOT null
     AND beacon_page LIKE '%act-on.com/pricing/%'
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), case_study_page_view AS (
 
@@ -181,7 +194,8 @@ WITH email_click_base AS (
     WHERE beacon_verb = 'h'
     AND beacon_email IS NOT null
     AND beacon_page LIKE '%act-on.com/learn/case-studies/%'
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), three_point_page_view AS (
 
@@ -213,7 +227,8 @@ WITH email_click_base AS (
         OR beacon_page LIKE '%act-on.com/industries/technology/%'
         OR beacon_page LIKE '%act-on.com/industries/agencies/%'
         OR beacon_page LIKE '%act-on.com/industries/business/%')
-    AND beacon_datetime >= CURRENT_DATE-90
+    AND beacon_datetime >= '2022-12-31'
+    AND beacon_datetime <= '2023-03-31'
 
 ), webinar_base AS (
 
@@ -229,7 +244,8 @@ WITH email_click_base AS (
         -10 AS lead_score
     FROM webinar_base
     WHERE webinar_verb = 'r'
-    AND webinar_registration_date_time >= CURRENT_DATE-90
+    AND webinar_registration_date_time >= '2022-12-31'
+    AND webinar_registration_date_time <= '2023-03-31'
 
 ), webinar_att AS (
 
@@ -240,7 +256,8 @@ WITH email_click_base AS (
         50 AS lead_score
     FROM webinar_base
     WHERE webinar_verb = 'a'
-    AND webinar_start_date_time >= CURRENT_DATE-90
+    AND webinar_start_date_time >= '2022-12-31'
+    AND webinar_start_date_time <= '2023-03-31'
 
 ), ao_ctp AS (
 
@@ -249,7 +266,8 @@ WITH email_click_base AS (
         "When"::Date AS ctp_date,
         "Action" AS ctp_action
     FROM {{ref('ao_ctp_xf')}}
-    WHERE "When" >= CURRENT_DATE-90
+    WHERE "When" >= '2022-12-31'
+    AND "When" <= '2023-03-31'
 
 ), ctp_reg_event AS (
 

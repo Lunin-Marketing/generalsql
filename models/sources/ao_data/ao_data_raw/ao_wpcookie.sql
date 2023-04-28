@@ -18,4 +18,4 @@ SELECT
     "dateTime" AS cookie_date_time,
     "insertTime" AS cookie_insert_time,
     "fingerprint" AS cookie_fingerprint 
-FROM "9883Data".FACTS.WPCOOKIE_9883
+FROM "9883_DATA".FACTS.WPCOOKIE_9883

@@ -18,4 +18,4 @@ SELECT
     "dateTime" AS attribution_datetime,
     "insertTime" AS attribution_insert_time,
     "fingerprint" AS attribution_fingerprint
-FROM "9883Data".FACTS.ATTRIBUTION_9883
+FROM "9883_DATA".FACTS.ATTRIBUTION_9883

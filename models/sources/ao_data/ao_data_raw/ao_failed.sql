@@ -16,4 +16,4 @@ SELECT
     "dateTime" AS message_failed_date_time,
     "insertTime" AS message_failed_insert_time,
     "fingerprint" AS message_failed_fingerprint
-FROM "9883Data".FACTS.FAILED_9883
+FROM "9883_DATA".FACTS.FAILED_9883
