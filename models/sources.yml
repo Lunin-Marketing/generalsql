@@ -40,10 +40,7 @@ sources:
       - name: date_base
       - name: demand_gen_cost_fy23
       - name: placeholder
-      - name: fy23_customtouchpoints
-      - name: fy23_emailclicks
-      - name: fy23_formsubmissions
-      - name: fy23_landingpages
+      - name: fy23_custom_touch_points
       - name: fy23_sdr_sqo_targets
       - name: fy23_webinars
       - name: fy23_webpages

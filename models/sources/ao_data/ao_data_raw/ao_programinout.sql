@@ -15,4 +15,4 @@ SELECT
     "dateTime" AS program_date_time,
     "insertTime" AS program_insert_time,
     "fingerprint" AS program_fingerprint 
-FROM "9883Data".FACTS.PROGRAMINOUT_9883
+FROM "9883_DATA".FACTS.PROGRAMINOUT_9883

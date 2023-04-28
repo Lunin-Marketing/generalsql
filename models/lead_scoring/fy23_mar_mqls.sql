@@ -12,8 +12,9 @@ WITH base AS (
             WHEN total_lead_score >= 20 THEN SUM (total_lead_score+demo_lead_score+engagement_score)
             ELSE SUM(total_lead_score)
         END AS final_lead_score
-    FROM {{ref('ao_scoring_xf')}}
-    WHERE score_date >= CURRENT_DATE - 90
+    FROM {{ref('ao_scoring_fy23_mar')}}
+    WHERE score_date >= '2022-12-31'
+    AND score_date <= '2023-03-31'
     GROUP BY 1,2,3,4,5
 
 ), final AS (

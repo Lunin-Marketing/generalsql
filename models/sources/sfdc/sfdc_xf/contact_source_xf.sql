@@ -20,6 +20,7 @@ FROM {{ source('salesforce', 'contact') }}
         base.email,
         base.title,
         base.lead_source,
+        base.de_department_c AS department,
         DATE_TRUNC('day',base.created_date)::Date AS created_date,
         DATE_TRUNC('day',base.hand_raiser_date_time_c)::Date AS hand_raiser_date,
         base.last_modified_date,

@@ -21,4 +21,4 @@ SELECT
     "dateTime" AS media_date_time,
     "insertTime" AS media_insert_time,
     "fingerprint" AS media_fingerprint
-FROM "9883Data".FACTS.DOWNLOAD_9883
+FROM "9883_DATA".FACTS.DOWNLOAD_9883

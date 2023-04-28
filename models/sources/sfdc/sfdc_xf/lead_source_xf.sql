@@ -21,6 +21,7 @@ FROM {{ source('salesforce', 'lead') }}
         email,
         lead_source,
         status AS lead_status,
+        de_department_c AS department,
         de_industry_c AS industry,
         CASE
             WHEN de_industry_c IN ('Advertising & Marketing') THEN 'Advertising & Marketing'

@@ -13,6 +13,6 @@
 SELECT DISTINCT
 account_source_xf.*
 FROM {{ref('account_source_xf')}}
-WHERE account_id != '0011400001aqWNkAAM'
+WHERE account_id NOT IN ('0011400001aqWNkAAM','0013000000vZhqOAAS')
 
 {% endsnapshot %}
