@@ -128,7 +128,8 @@ FROM {{ source('salesforce', 'account') }}
             ELSE 'Unknown'
         END AS global_region,
         contract_source_xf.end_date+1 AS renewal_date,
-        lead_id_converted_from_c AS lead_id_converted_from
+        lead_id_converted_from_c AS lead_id_converted_from,
+        base._fivetran_synced AS updated_at
         -- "Renewal_Notice_Date__c" AS renewal_notice_date,
     FROM base
     LEFT JOIN AO_MARKETING.aws_salesforce.account AS parent ON
@@ -158,5 +159,6 @@ CASE
     WHEN company_size_rev IN ('SMB') OR company_size_rev IS null THEN 'Velocity'
     WHEN company_size_rev IN ('Mid-Market','Enterprise') THEN 'Upmarket'
     ELSE null
-END AS segment 
+END AS segment,
+account_id||'-'||updated_at AS unique_account_id
 FROM final

@@ -265,7 +265,8 @@ FROM {{ source('salesforce', 'contact') }}
             WHEN LOWER(lt_utm_channel_c) = 'referral' THEN 'Partner_Referral'
             WHEN LOWER(lt_utm_channel_c) = 'predates attribution' AND LOWER(lt_utm_medium_c) = 'predates attribution' THEN 'Predates Attribution'
             ELSE 'Other'
-        END AS channel_bucket_lt
+        END AS channel_bucket_lt,
+        base._fivetran_synced AS updated_at
     FROM base
     LEFT JOIN {{ref('account_source_xf')}} ON
     base.account_id=account_source_xf.account_id
@@ -278,5 +279,6 @@ FROM {{ source('salesforce', 'contact') }}
 )
 
 SELECT DISTINCT
-final.*
+final.*,
+contact_id||'-'||updated_at AS unique_contact_id
 FROM final
