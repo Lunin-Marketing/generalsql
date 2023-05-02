@@ -12,7 +12,7 @@
 
 SELECT DISTINCT
 account_source_xf.*
-FROM {{ref('account_source_xf')}}
+FROM {{ source('salesforce', 'account') }}
 -- WHERE account_id NOT IN ('0011400001aqWNkAAM','0013000000vZhqOAAS','0011O000023pnveQAA','0013000000XBbreAAD')
 
 {% endsnapshot %}

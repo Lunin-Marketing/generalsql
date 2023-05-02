@@ -10,6 +10,6 @@
 }}
 
 SELECT *
-FROM {{ref('ao_instance_source_xf')}}
+FROM {{ source('salesforce', 'act_on_instance_c') }}
 
 {% endsnapshot %}

@@ -13,7 +13,7 @@ WITH base AS (
             ELSE SUM(total_lead_score)
         END AS final_lead_score
     FROM {{ref('ao_scoring_xf')}}
-    WHERE score_date >= CURRENT_DATE - 90
+    WHERE score_date >= CURRENT_DATE - 1
     GROUP BY 1,2,3,4,5
 
 ), final AS (

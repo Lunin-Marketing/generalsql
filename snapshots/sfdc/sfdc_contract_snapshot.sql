@@ -10,6 +10,6 @@
 }}
 
 SELECT *
-FROM {{ref('contract_source_xf')}}
+FROM {{ source('salesforce', 'contract') }}
 
 {% endsnapshot %}
