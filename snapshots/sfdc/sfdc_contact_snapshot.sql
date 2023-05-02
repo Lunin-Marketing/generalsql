@@ -11,7 +11,7 @@
 
 SELECT
 contact_source_xf.*
-FROM {{ref('contact_source_xf')}}
+FROM {{ source('salesforce', 'contact') }}
 -- QUALIFY ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY null) = 1
 -- WHERE contact_id NOT IN ('00314000029F6xxAAC','00314000029Ev7wAAC','0035Y00005BUtF2QAL','00314000029FngnAAC')
 

@@ -10,6 +10,6 @@
 }}
 
 SELECT *
-FROM {{ref('lead_source_xf')}}
+FROM {{ source('salesforce', 'lead') }}
 
 {% endsnapshot %}

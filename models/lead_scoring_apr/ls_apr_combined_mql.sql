@@ -1225,6 +1225,7 @@ WITH apr_1 AS (
         model_date,
         ROW_NUMBER()OVER(PARTITION BY email ORDER BY model_date ASC) AS row_count
     FROM combined
+    -- WHERE DATE_TRUNC('month',score_date) = '2023-04-01'
 
 )
 

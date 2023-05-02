@@ -10,6 +10,6 @@
 }}
 
 SELECT *
-FROM {{ref('opp_source_base')}}
+FROM {{ source('salesforce', 'opportunity') }}
 
 {% endsnapshot %}
