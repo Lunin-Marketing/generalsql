@@ -1,11 +1,11 @@
-{% snapshot sfdc_contract_snapshot %}
+{% snapshot sfdc_contract_snapshots %}
 
 {{
     config (
         target_schema='snapshots',
-        unique_key = 'contract_id',
+        unique_key = 'id',
         strategy='timestamp',
-        updated_at='systemmodstamp'
+        updated_at='system_modstamp'
     )
 }}
 

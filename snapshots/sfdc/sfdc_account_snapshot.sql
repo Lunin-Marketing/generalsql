@@ -1,17 +1,16 @@
-{% snapshot sfdc_account_snapshot2 %}
+{% snapshot sfdc_account_snapshots %}
 
 {{
     config (
         target_schema='snapshots',
-        unique_key = 'unique_account_id',
+        unique_key = 'id',
         strategy='timestamp',
-        updated_at='systemmodstamp'
+        updated_at='system_modstamp'
     )
     
 }}
 
-SELECT DISTINCT
-account_source_xf.*
+SELECT *
 FROM {{ source('salesforce', 'account') }}
 -- WHERE account_id NOT IN ('0011400001aqWNkAAM','0013000000vZhqOAAS','0011O000023pnveQAA','0013000000XBbreAAD')
 

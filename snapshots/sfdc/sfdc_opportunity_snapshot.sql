@@ -1,11 +1,11 @@
-{% snapshot sfdc_opportunity_snapshot %}
+{% snapshot sfdc_opportunity_snapshots %}
 
 {{
     config (
         target_schema='snapshots',
-        unique_key = 'opportunity_id',
+        unique_key = 'id',
         strategy='timestamp',
-        updated_at='systemmodstamp'
+        updated_at='system_modstamp'
     )
 }}
 
