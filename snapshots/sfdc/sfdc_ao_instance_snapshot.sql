@@ -1,11 +1,11 @@
-{% snapshot sfdc_ao_instance_snapshot %}
+{% snapshot sfdc_ao_instance_snapshots %}
 
 {{
     config (
         target_schema='snapshots',
-        unique_key = 'ao_instance_id',
+        unique_key = 'id',
         strategy='timestamp',
-        updated_at='systemmodstamp'
+        updated_at='system_modstamp'
     )
 }}
 

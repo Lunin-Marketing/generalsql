@@ -1,11 +1,11 @@
-{% snapshot sfdc_lead_snapshot %}
+{% snapshot sfdc_lead_snapshots %}
 
 {{
     config (
         target_schema='snapshots',
-        unique_key = 'lead_id',
+        unique_key = 'id',
         strategy='timestamp',
-        updated_at='systemmodstamp'
+        updated_at='system_modstamp'
     )
 }}
 
