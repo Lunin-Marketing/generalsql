@@ -50,7 +50,7 @@ SELECT
     lead_source_xf.firmographic_demographic_lead_score,
     lead_source_xf.no_longer_with_company,
     CASE
-        WHEN lead_source_xf.is_hand_raiser = true THEN 'Yes'
+        WHEN lead_source_xf.hand_raiser_date IS NOT null THEN 'Yes'
         ELSE 'No'
     END AS is_hand_raiser,
     lead_source_xf.created_by_name,
@@ -146,7 +146,7 @@ SELECT
     firmographic_demographic_lead_score,
     is_no_longer_with_company,
     CASE
-        WHEN is_hand_raiser = true THEN 'Yes'
+        WHEN hand_raiser_date IS NOT null THEN 'Yes'
         ELSE 'No'
     END AS is_hand_raiser,
     created_by_name,

@@ -52,7 +52,7 @@ WITH campaign_base AS (
     SELECT DISTINCT
         person_id,
         campaign_type,
-        campaign_start_date,
+        campaign_member_first_responded_date,
         ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY campaign_member_first_responded_date DESC ) AS campaign_order
     FROM person_base
     WHERE mql_most_recent_date >= campaign_member_first_responded_date
@@ -60,10 +60,13 @@ WITH campaign_base AS (
 ),campaign_member_final AS (
 
     SELECT DISTINCT
-        person_id,
-        campaign_type,
-        campaign_start_date
+        campaign_member_intermediate.person_id,
+        campaign_member_intermediate.campaign_type,
+        campaign_member_intermediate.campaign_member_first_responded_date,
+        cost
     FROM campaign_member_intermediate
+    LEFT JOIN campaign_final
+        ON campaign_member_intermediate.campaign_type=campaign_final.campaign_type
     WHERE campaign_order = 1
 
 ), person_cost_final AS (
@@ -94,7 +97,7 @@ WITH campaign_base AS (
     SELECT DISTINCT
         person_id,
         campaign_type,
-        campaign_start_date
+        campaign_member_first_responded_date AS campaign_start_date
     FROM campaign_member_final
     UNION ALL
     SELECT DISTINCT
@@ -107,9 +110,9 @@ WITH campaign_base AS (
 
     SELECT DISTINCT
         campaign_type,
-        campaign_start_date,
+        campaign_member_first_responded_date AS campaign_start_date,
         cost
-    FROM campaign_final
+    FROM campaign_member_final
     UNION ALL
     SELECT DISTINCT
         channel_bucket_lt,
