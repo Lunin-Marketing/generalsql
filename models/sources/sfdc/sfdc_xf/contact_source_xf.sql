@@ -41,8 +41,9 @@ FROM {{ source('salesforce', 'contact') }}
         base.lt_utm_source_c AS source_last_touch,
         base.lt_utm_campaign_c AS campaign_last_touch,
         base.channel_lead_creation_c AS channel_lead_creation,
-        base.content_lead_creation_c AS content_lead_creation,
         base.campaign_lead_creation_c AS campaign_lead_creation,
+        base.content_lead_creation_c AS content_lead_creation,
+        base.term_lead_creation_c AS term_lead_creation,
         base.ft_offer_asset_topic_c AS offer_asset_topic_first_touch,
         base.ft_offer_asset_name_c AS offer_asset_name_first_touch,
         base.lc_offer_asset_type_c AS offer_asset_type_lead_creation,
@@ -59,7 +60,17 @@ FROM {{ source('salesforce', 'contact') }}
         base.ft_subchannel_c AS subchannel_first_touch,
         base.lt_subchannel_c AS subchannel_last_touch,
         base.lc_subchannel_c AS subchannel_lead_creation,
-        base.x_9883_lead_score_c AS lead_score,
+        base.x_9883_lead_score_c AS lead_score_9883,
+        CASE
+            WHEN account_source_xf.number_of_employees = 0 THEN 20
+            ELSE 0        
+        END AS de_ec_subtraction,
+        CASE
+            WHEN base.firmographic_demographic_lead_score_c > 99 THEN 20
+            WHEN base.firmographic_demographic_lead_score_c > 49 THEN 10
+            ELSE 0 
+        END AS firm_score_add,
+        lead_score_engagement_profile_c AS lead_score_engagement_profile,
         base.status_reason_c AS status_reason,
         DATE_TRUNC('day',marketing_lead_creation_date_c)::Date AS marketing_created_date,
         base.current_map_c AS current_ma,
@@ -276,9 +287,22 @@ FROM {{ source('salesforce', 'contact') }}
     base.created_by_id=creator.user_id
     WHERE base.is_deleted = 'False'
 
+), lead_score_prep AS (
+
+    SELECT
+        final.*,
+        CASE
+            WHEN lead_score_9883 > 19 THEN SUM(firm_score_add + lead_score_9883 + lead_score_engagement_profile)
+            ELSE lead_score_9883
+        END AS combined_lead_score
+    FROM final
+    {{dbt_utils.group_by(n=104)}}
+
 )
 
 SELECT DISTINCT
-final.*,
-contact_id||'-'||updated_at AS unique_contact_id
-FROM final
+    lead_score_prep.*,
+    contact_id||'-'||updated_at AS unique_contact_id,
+    SUM (combined_lead_score - de_ec_subtraction) AS lead_score
+FROM lead_score_prep
+{{dbt_utils.group_by(n=106)}}

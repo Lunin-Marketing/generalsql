@@ -71,6 +71,8 @@ FROM {{ source('salesforce', 'lead') }}
         lt_utm_channel_c AS channel_last_touch,
         lt_utm_medium_c AS medium_last_touch,
         lt_utm_content_c AS content_last_touch,
+        content_lead_creation_c AS content_lead_creation,
+        term_lead_creation_c AS term_lead_creation,
         lt_utm_source_c AS source_last_touch,
         lt_utm_campaign_c AS campaign_last_touch,
         channel_lead_creation_c AS channel_lead_creation,
@@ -98,7 +100,17 @@ FROM {{ source('salesforce', 'lead') }}
         mql_created_time_c AS mql_created_datetime,
         mql_most_recent_time_c AS mql_most_recent_datetime,
         article_14_notice_date_c AS article_14_notice_date,
-        x_9883_lead_score_c AS lead_score,
+        x_9883_lead_score_c AS lead_score_9883,
+        CASE
+            WHEN data_enrich_employee_count_c IS NULL THEN 20
+            ELSE 0
+        END AS de_ec_subtraction,
+        CASE
+            WHEN firmographic_demographic_lead_score_c > 99 THEN 20
+            WHEN firmographic_demographic_lead_score_c > 49 THEN 10
+            ELSE 0 
+        END AS firm_score_add,
+        lead_score_engagement_profile_c AS lead_score_engagement_profile,
         ft_utm_medium_c AS medium_first_touch,
         ft_utm_source_c AS source_first_touch,
         ft_utm_campaign_c AS campaign_first_touch,
@@ -272,10 +284,20 @@ FROM {{ source('salesforce', 'lead') }}
     WHERE base.owner_id != '00Ga0000003Nugr' -- AO-Fake Leads
     AND base.is_deleted = 'False'
 
+), lead_score_prep AS (
+
+    SELECT
+        final.*,
+        CASE
+            WHEN lead_score_9883 > 19 THEN SUM(firm_score_add + lead_score_9883 + lead_score_engagement_profile)
+            ELSE lead_score_9883
+        END AS combined_lead_score
+    FROM final
+    {{dbt_utils.group_by(n=93)}}
 )
 
 SELECT 
-    final.*,
+    lead_score_prep.*,
     CASE
         WHEN global_region IN ('EUROPE','ROW','AUNZ') THEN 'EMEA'
         WHEN company_size_rev IN ('SMB') OR company_size_rev IS null THEN 'Velocity'
@@ -285,5 +307,7 @@ SELECT
     CASE
         WHEN lead_status = 'Current Customer' THEN true
         ELSE False
-    END AS is_current_customer
-FROM final
+    END AS is_current_customer,
+    SUM (combined_lead_score - de_ec_subtraction) AS lead_score
+FROM lead_score_prep
+{{dbt_utils.group_by(n=96)}}
