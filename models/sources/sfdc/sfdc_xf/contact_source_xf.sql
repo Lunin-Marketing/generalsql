@@ -23,6 +23,7 @@ FROM {{ source('salesforce', 'contact') }}
         base.de_department_c AS department,
         DATE_TRUNC('day',base.created_date)::Date AS created_date,
         DATE_TRUNC('day',base.hand_raiser_date_time_c)::Date AS hand_raiser_date,
+        DATE_TRUNC('day',base.last_activity_date)::Date AS last_activity_date,
         base.last_modified_date,
         base.system_modstamp AS systemmodstamp,
         account_source_xf.is_current_customer AS is_current_customer,
@@ -296,7 +297,7 @@ FROM {{ source('salesforce', 'contact') }}
             ELSE lead_score_9883
         END AS combined_lead_score
     FROM final
-    {{dbt_utils.group_by(n=104)}}
+    {{dbt_utils.group_by(n=105)}}
 
 )
 
@@ -305,4 +306,4 @@ SELECT DISTINCT
     contact_id||'-'||updated_at AS unique_contact_id,
     SUM (combined_lead_score - de_ec_subtraction) AS lead_score
 FROM lead_score_prep
-{{dbt_utils.group_by(n=106)}}
+{{dbt_utils.group_by(n=107)}}
