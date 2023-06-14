@@ -65,6 +65,7 @@ FROM {{ source('salesforce', 'lead') }}
         DATE_TRUNC('day',mql_most_recent_date_c)::Date AS mql_most_recent_date,
         DATE_TRUNC('day',date_time_to_working_c)::Date AS working_date,
         DATE_TRUNC('day',base.hand_raiser_date_time_c)::Date AS hand_raiser_date,
+        DATE_TRUNC('day',base.last_activity_date)::Date AS last_activity_date,
         account_c AS account_id,
         no_longer_with_company_c AS no_longer_with_company,
         ft_utm_channel_c AS channel_first_touch,
@@ -293,7 +294,7 @@ FROM {{ source('salesforce', 'lead') }}
             ELSE lead_score_9883
         END AS combined_lead_score
     FROM final
-    {{dbt_utils.group_by(n=93)}}
+    {{dbt_utils.group_by(n=94)}}
 )
 
 SELECT 
@@ -310,4 +311,4 @@ SELECT
     END AS is_current_customer,
     SUM (combined_lead_score - de_ec_subtraction) AS lead_score
 FROM lead_score_prep
-{{dbt_utils.group_by(n=96)}}
+{{dbt_utils.group_by(n=97)}}

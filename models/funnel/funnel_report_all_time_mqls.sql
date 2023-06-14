@@ -7,6 +7,7 @@ WITH base AS (
         CONCAT('https://acton.my.salesforce.com/',lead_mql_source_xf.person_id) AS mql_url,
         lead_mql_source_xf.mql_most_recent_date AS mql_date,
         lead_mql_source_xf.working_date,
+        last_activity_date,
         company,
         first_name,
         last_name,
