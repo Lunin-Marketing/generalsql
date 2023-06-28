@@ -7,11 +7,11 @@ WITH base AS(
 SELECT DISTINCT
     channel_bucket,
     segment,
-    SUM(is_mql) AS mqls,
-    SUM(is_sal) AS sals,
-    SUM(is_sql) AS sqls,
-    SUM(is_sqo) AS sqos,
-    SUM(is_cl) AS closed_lost,
-    SUM(is_cw) AS closed_won
+    COUNT(DISTINCT mql_id) AS mqls,
+    COUNT(DISTINCT sal_id) AS sals,
+    COUNT(DISTINCT sql_id) AS sqls,
+    COUNT(DISTINCT sqo_id) AS sqos,
+    COUNT(DISTINCT cl_id) AS closed_lost,
+    COUNT(DISTINCT cw_id) AS closed_won
 FROM base
 GROUP BY 1,2

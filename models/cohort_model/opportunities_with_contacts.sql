@@ -158,5 +158,5 @@ SELECT DISTINCT
         ELSE 0
     END AS is_cw
 FROM person_base
-LEFT JOIN opp_base ON
+FULL JOIN opp_base ON
 person_base.account_id=opp_base.account_id
