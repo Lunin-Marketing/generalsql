@@ -16,7 +16,7 @@ WITH base AS (
         company_size_rev,
         global_region,
         segment,
-        channel_bucket,
+        channel_bucket_lt AS channel_bucket,
         channel_bucket_details,
         industry,
         industry_bucket,
@@ -82,20 +82,22 @@ WITH base AS (
         END AS sal_created_date,
         is_sql,
         CASE
-            WHEN is_sql = 1 AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_sql = 1 AND opp_created_date>=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
             ELSE null
         END AS sql_id,
         CASE
-            WHEN is_sql = 1 AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opp_created_date::Date
+            WHEN is_sql = 1 AND opp_created_date>=mql_created_date AND mql_created_date>=marketing_created_date THEN opp_created_date::Date
             ELSE null
         END AS sql_date,
         is_sqo,
         CASE
-            WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_sqo = 1 AND discovery_date >= mql_created_date THEN opportunity_id
+            -- WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
             ELSE null
         END AS sqo_id,
         CASE
-            WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN discovery_date::Date
+            WHEN is_sqo = 1 AND discovery_date >= mql_created_date THEN discovery_date::Date
+            -- WHEN is_sqo = 1 AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN discovery_date::Date
             ELSE null
         END AS sqo_date,
         is_demo,
@@ -127,28 +129,97 @@ WITH base AS (
         END AS closing_date,
         is_cl,
         CASE
-            WHEN is_cl = 1 AND close_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
+            WHEN is_cl = 1 AND close_date>=opp_created_date AND opp_created_date>=mql_created_date AND mql_created_date>=marketing_created_date THEN opportunity_id
             ELSE null
         END AS cl_id,
         CASE
-            WHEN is_cl = 1 AND close_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND is_won = false AND is_closed = true THEN close_date::Date
+            WHEN is_cl = 1 AND close_date>=opp_created_date AND opp_created_date>=mql_created_date AND mql_created_date>=marketing_created_date AND is_won = false AND is_closed = true THEN close_date::Date
             ELSE null
         END AS cl_date,
         is_cw,
         CASE
-            WHEN is_cw = 1 AND close_date>=closing_date AND closing_date>=voc_date AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND is_won = true THEN close_date::Date
+            WHEN is_cw = 1 AND close_date>=discovery_date AND discovery_date>=mql_created_date AND mql_created_date>=marketing_created_date AND is_won = true THEN close_date::Date
             ELSE null
         END AS cw_date,
         CASE
-            WHEN is_cw = 1 AND close_date>=closing_date AND closing_date>=voc_date AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND is_won = true THEN opportunity_id
+            WHEN is_cw = 1 AND close_date>=discovery_date AND discovery_date>=opp_created_date AND mql_created_date>=marketing_created_date AND is_won = true THEN opportunity_id
+            -- WHEN is_cw = 1 AND close_date>=closing_date AND closing_date>=voc_date AND voc_date>=demo_date AND demo_date>=discovery_date AND discovery_date>=opp_created_date AND opp_created_date>=working_date AND working_date >=mql_created_date AND mql_created_date>=marketing_created_date AND is_won = true THEN opportunity_id
             ELSE null
         END AS cw_id
     FROM base
 
 ), final AS (
 
-    SELECT 
-        intermediate.*,
+    SELECT DISTINCT
+        person_id,
+        mql_id,
+        sal_id,
+        opportunity_id,
+        sql_id,
+        sqo_id,
+        demo_id,
+        voc_id,
+        closing_id,
+        cl_id,
+        cw_id,
+        person_owner_id,
+        person_owner,
+        company_size_rev,
+        global_region,
+        segment,
+        channel_bucket,
+        channel_bucket_details,
+        industry,
+        industry_bucket,
+        lead_source,
+        person_created_date,
+        marketing_created_date,
+        person_status,
+        acv,
+        person_campaign_lead_creation,
+        person_channel_lead_creation,
+        person_medium_lead_creation,
+        person_source_lead_creation,
+        person_subchannel_lead_creation,
+        person_offer_asset_subtype_lead_creation,
+        person_offer_asset_topic_lead_creation,
+        person_offer_asset_type_lead_creation,
+        person_offer_asset_name_lead_creation,
+        person_current_customer,
+        account_name,
+        account_owner_name,
+        opportunity_name,
+        stage_name,
+        opp_lead_source,
+        closed_lost_reason,
+        opp_segment,
+        target_account,
+        account_global_region,
+        opp_company_size_rev,
+        opp_industry,
+        opp_industry_bucket,
+        opp_channel_bucket,
+        opp_channel_bucket_details,
+        opp_channel_lead_creation,
+        opp_medium_lead_creation,
+        opp_source_lead_creation,
+        opp_offer_asset_name_lead_creation,
+        opp_offer_asset_topic_lead_creation,
+        opp_offer_asset_type_lead_creation,
+        opp_subchannel_lead_creation,
+        opp_offer_asset_subtype_lead_creation,
+        opp_type,
+        is_hand_raiser,
+        is_current_customer,
+        mql_created_date,
+        sal_created_date,
+        sql_date,
+        sqo_date,
+        demo_date,
+        voc_date,
+        closing_date,
+        cl_date,
+        cw_date,
         CASE 
             WHEN mql_created_date>=marketing_created_date THEN {{ dbt.datediff("marketing_created_date","mql_created_date",'day') }} 
             ELSE 0 
