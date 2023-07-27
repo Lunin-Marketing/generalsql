@@ -1,9 +1,8 @@
 {{ config(materialized='table') }}
 
 SELECT DISTINCT
-    channel_lead_creation,
-    medium_lead_creation,
-    source_lead_creation,
-    channel_bucket,
-    channel_bucket_details    
-FROM {{ref('person_source_xf')}}
+    mql_id,
+    sqo_id  
+FROM {{ref('lead_to_cw_cohort')}}
+WHERE mql_created_date >= '2023-01-01'
+AND sqo_id IS NOT null

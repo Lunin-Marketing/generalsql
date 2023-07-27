@@ -58,6 +58,7 @@ SELECT
     lead_source_xf.email_bounced_reason_new,
     lead_source_xf.most_recent_salesloft_cadence,
     lead_source_xf.looking_for_ma,
+    'Lead' AS record_type,
 
     --Attribution Data
     lead_source_xf.campaign_first_touch,
@@ -155,6 +156,7 @@ SELECT
     email_bounced_reason_new,
     most_recent_salesloft_cadence,
     looking_for_ma,
+    'Contact' AS record_type,
 
     --Attribution Data
     campaign_first_touch,
