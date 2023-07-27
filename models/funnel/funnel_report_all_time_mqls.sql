@@ -9,6 +9,8 @@ WITH base AS (
         lead_mql_source_xf.working_date,
         last_activity_date,
         company,
+        record_type,
+        annual_revenue,
         first_name,
         last_name,
         title,
