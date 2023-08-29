@@ -24,6 +24,11 @@ SELECT
     offer_asset_name_lead_creation,
     most_recent_salesloft_cadence,
     campaign_lead_creation,
+    abm_campaign_initial,
+    abm_campaign_most_recent,
+    abm_date_time_initial,
+    abm_date_time_most_recent,
+    is_abm,
     CASE
         WHEN working_date>=mql_most_recent_date THEN TRUE
         ELSE FALSE

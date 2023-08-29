@@ -31,7 +31,12 @@ SELECT
     channel_bucket_details,
     offer_asset_name_lead_creation,
     most_recent_salesloft_cadence,
-    campaign_lead_creation
+    campaign_lead_creation,
+    abm_campaign_initial,
+    abm_campaign_most_recent,
+    abm_date_time_initial,
+    abm_date_time_most_recent,
+    is_abm
 FROM {{ref('person_source_xf')}}
 WHERE mql_most_recent_date IS NOT null
 AND person_owner_id != '00Ga0000003Nugr' -- AO-Fake Leads

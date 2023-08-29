@@ -278,7 +278,12 @@ FROM {{ source('salesforce', 'lead') }}
             WHEN LOWER(lt_utm_channel_c) = 'referral' THEN 'Partner_Referral'
             WHEN LOWER(lt_utm_channel_c) = 'predates attribution' AND LOWER(lt_utm_medium_c) = 'predates attribution' THEN 'Predates Attribution'
             ELSE 'Other'
-        END AS channel_bucket_lt
+        END AS channel_bucket_lt,
+        abm_campaign_initial_c AS abm_campaign_initial,
+        abm_campaign_most_recent_c AS abm_campaign_most_recent,
+        abm_date_time_initial_c AS abm_date_time_initial,
+        abm_date_time_most_recent_c AS abm_date_time_most_recent,
+        is_abm_c AS is_abm
     FROM base
     LEFT JOIN {{ref('user_source_xf')}} creator ON
     base.created_by_id=creator.user_id

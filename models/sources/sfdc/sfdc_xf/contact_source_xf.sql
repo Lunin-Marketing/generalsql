@@ -278,6 +278,11 @@ FROM {{ source('salesforce', 'contact') }}
             WHEN LOWER(lt_utm_channel_c) = 'predates attribution' AND LOWER(lt_utm_medium_c) = 'predates attribution' THEN 'Predates Attribution'
             ELSE 'Other'
         END AS channel_bucket_lt,
+        base.abm_campaign_initial_c AS abm_campaign_initial,
+        base.abm_campaign_most_recent_c AS abm_campaign_most_recent,
+        base.abm_date_time_initial_c AS abm_date_time_initial,
+        base.abm_date_time_most_recent_c AS abm_date_time_most_recent,
+        base.is_abm_c AS is_abm
         base._fivetran_synced AS updated_at
     FROM base
     LEFT JOIN {{ref('account_source_xf')}} ON

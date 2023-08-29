@@ -43,6 +43,13 @@ SELECT
     lead_source_xf.hand_raiser_date,
     lead_source_xf.last_activity_date,
 
+    --ABM Fields
+    lead_source_xf.abm_campaign_initial,
+    lead_source_xf.abm_campaign_most_recent,
+    lead_source_xf.abm_date_time_initial,
+    lead_source_xf.abm_date_time_most_recent,
+    lead_source_xf.is_abm,
+
     -- Other Key Information    
     lead_source_xf.lead_source,    
     lead_source_xf.lead_owner_id AS person_owner_id,
@@ -140,6 +147,13 @@ SELECT
     email_bounced_date_new,
     hand_raiser_date,
     last_activity_date,
+
+    --ABM Fields
+    abm_campaign_initial,
+    abm_campaign_most_recent,
+    abm_date_time_initial,
+    abm_date_time_most_recent,
+    is_abm,
 
     -- Other Key Information    
     lead_source,    
