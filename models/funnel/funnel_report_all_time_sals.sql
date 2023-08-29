@@ -13,6 +13,11 @@ WITH base AS (
         most_recent_salesloft_cadence,
         is_hand_raiser,
         is_sal_after_mql,
+        abm_campaign_initial,
+        abm_campaign_most_recent,
+        abm_date_time_initial,
+        abm_date_time_most_recent,
+        is_abm,
         CASE
             WHEN is_current_customer IS null THEN false
             ELSE is_current_customer
