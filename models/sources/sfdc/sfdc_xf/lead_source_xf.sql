@@ -21,6 +21,7 @@ FROM {{ source('salesforce', 'lead') }}
         email,
         lead_source,
         status AS lead_status,
+        cfcr_status_reason_c AS status_reason,
         de_department_c AS department,
         de_industry_c AS industry,
         CASE
@@ -299,7 +300,7 @@ FROM {{ source('salesforce', 'lead') }}
             ELSE lead_score_9883
         END AS combined_lead_score
     FROM final
-    {{dbt_utils.group_by(n=94)}}
+    {{dbt_utils.group_by(n=100)}}
 )
 
 SELECT 
@@ -316,4 +317,4 @@ SELECT
     END AS is_current_customer,
     SUM (combined_lead_score - de_ec_subtraction) AS lead_score
 FROM lead_score_prep
-{{dbt_utils.group_by(n=97)}}
+{{dbt_utils.group_by(n=103)}}

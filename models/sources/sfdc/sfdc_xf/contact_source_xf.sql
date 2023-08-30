@@ -282,7 +282,7 @@ FROM {{ source('salesforce', 'contact') }}
         base.abm_campaign_most_recent_c AS abm_campaign_most_recent,
         base.abm_date_time_initial_c AS abm_date_time_initial,
         base.abm_date_time_most_recent_c AS abm_date_time_most_recent,
-        base.is_abm_c AS is_abm
+        base.is_abm_c AS is_abm,
         base._fivetran_synced AS updated_at
     FROM base
     LEFT JOIN {{ref('account_source_xf')}} ON
@@ -302,7 +302,7 @@ FROM {{ source('salesforce', 'contact') }}
             ELSE lead_score_9883
         END AS combined_lead_score
     FROM final
-    {{dbt_utils.group_by(n=105)}}
+    {{dbt_utils.group_by(n=110)}}
 
 )
 
@@ -311,4 +311,4 @@ SELECT DISTINCT
     contact_id||'-'||updated_at AS unique_contact_id,
     SUM (combined_lead_score - de_ec_subtraction) AS lead_score
 FROM lead_score_prep
-{{dbt_utils.group_by(n=107)}}
+{{dbt_utils.group_by(n=112)}}

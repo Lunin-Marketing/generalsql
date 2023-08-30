@@ -10,6 +10,7 @@ SELECT
     working_date,
     last_activity_date,
     person_status,
+    person_status_reason,
     record_type,
     country,
     company,
