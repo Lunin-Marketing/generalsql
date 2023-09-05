@@ -27,6 +27,7 @@ FROM {{ref('opp_source_base')}}
         stage_name,
         owner.user_name AS owner_name, 
         opp_lead_source,
+        campaign_name AS primary_campaign_name,
         opp_crm,
         renewal_type,
         closed_lost_reason,
@@ -128,6 +129,8 @@ FROM {{ref('opp_source_base')}}
     base.owner_id=owner.user_id
     LEFT JOIN {{ref('contact_role_xf')}} ON
     base.opportunity_id=contact_role_xf.contact_role_opportunity_id
+    LEFT JOIN {{ref('campaign_source_xf')}}
+        ON base.primary_campaign_id=campaign_source_xf.campaign_id
 
 )
 

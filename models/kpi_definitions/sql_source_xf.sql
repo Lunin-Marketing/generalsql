@@ -12,6 +12,7 @@ SELECT DISTINCT
     created_date,
     stage_name,
     opp_lead_source,
+    primary_campaign_name,
     opp_channel_opportunity_creation, 
     opp_medium_opportunity_creation,
     opp_source_opportunity_creation, 
