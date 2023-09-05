@@ -14,6 +14,7 @@ WITH base AS (
         created_date,
         close_date,
         acv,
+        primary_campaign_name,
         CASE
             WHEN is_current_customer IS null THEN false
             ELSE is_current_customer

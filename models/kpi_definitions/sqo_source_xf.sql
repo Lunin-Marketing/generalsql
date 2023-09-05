@@ -15,6 +15,7 @@ created_date,
 close_day AS close_date,
 stage_name,
 opp_lead_source,
+primary_campaign_name,
 case 
 when type in ('New Business') then 'New Business'
 when type in ('UpSell','Non-Monetary Mod','Admin Opp','Trigger Up','Trigger Down','Trigger Renewal','Renewal','Multiyear Renewal','Admin Conversion','One Time','Downsell') then 'Upsell'

@@ -13,6 +13,7 @@ WITH base AS (
         person_status,
         country,
         is_hand_raiser,
+        is_abm,
         CASE
             WHEN is_current_customer IS null THEN false
             ELSE is_current_customer

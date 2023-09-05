@@ -88,6 +88,7 @@ FROM {{ source('salesforce', 'opportunity') }}
         opportunity_type_detail_c AS opp_type_details,
         DATE_TRUNC('day',close_date)::Date AS close_day,
         oc_utm_campaign_c AS opp_campaign_opportunity_creation,
+        campaign_id AS primary_campaign_id,
         forecast_category,
         ft_utm_campaign_c AS opp_campaign_first_touch,  
         acv_deal_size_override_c AS acv_deal_size_override,
