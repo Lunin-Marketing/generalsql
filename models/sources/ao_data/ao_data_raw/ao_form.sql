@@ -22,4 +22,4 @@ SELECT
     "dateTime" AS form_date_time,
     date_trunc('day', convert_timezone('America/Los_Angeles', "insertTime"))::Date AS form_insert_time,
     "fingerprint" AS form_fingerprint 
-FROM "9883_DATA".FACTS.FORM_9883
+FROM "9883_DATA"."FACTS"."form_9883"

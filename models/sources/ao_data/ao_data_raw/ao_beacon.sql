@@ -29,4 +29,4 @@ SELECT
     "verbKey" AS beacon_verb,
     "dateTime" AS beacon_datetime,
     "insertTime"  AS beacon_insert_time   
-FROM "9883_DATA".FACTS.BEACON_9883
+FROM "9883_DATA"."FACTS"."beacon_9883"
