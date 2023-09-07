@@ -12,4 +12,4 @@ SELECT
     "verbKey" AS webinar_verb,
     "insertTime" AS webinar_insert_date_time,
     "fingerprint" AS webinar_fingerprint
-FROM "9883_DATA".FACTS.BOGUSMEETING_9883
+FROM "9883_DATA"."FACTS"."bogusMeeting_9883"

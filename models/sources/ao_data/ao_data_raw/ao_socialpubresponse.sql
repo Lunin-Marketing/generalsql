@@ -22,4 +22,4 @@ SELECT
     "dateTime" AS social_pub_date_time,
     "insertTime" AS social_pub_insert_time,
     "fingerprint" AS social_pub_fingerprint 
-FROM "9883_DATA".FACTS.SOCIALPUBRESPONSE_9883
+FROM "9883_DATA"."FACTS"."socialPubResponse_9883"

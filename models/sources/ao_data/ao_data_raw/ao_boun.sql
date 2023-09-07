@@ -16,4 +16,4 @@ SELECT
     "dateTime" AS message_date_time,
     "insertTime" AS message_insert_time,
     "fingerprint" AS message_fingerprint    
-FROM "9883_DATA".FACTS.BOUN_9883
+FROM "9883_DATA"."FACTS"."boun_9883"

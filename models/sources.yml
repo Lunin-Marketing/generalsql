@@ -62,3 +62,18 @@ sources:
   - name: Facts
     tables:
       - name: attribution_9883
+      - name: beacon_9883
+      - name: bogusMeeting_9883
+      - name: boun_9883
+      - name: download_9883
+      - name: failed_9883
+      - name: forget_9883
+      - name: form_9883
+      - name: inou_9883
+      - name: open_9883
+      - name: programInout_9883
+      - name: received_9883
+      - name: response_9883
+      - name: sent_9883
+      - name: socialPubResponse_9883
+      - name: wpCookie_9883
