@@ -69,6 +69,7 @@ FROM {{ source('salesforce', 'account') }}
         base.de_ultimate_parent_company_c AS de_ultimate_parent_account_name,
         base.ao_instance_number_c AS ao_instance_number,
         base.do_not_market_c AS do_not_market,
+        base.website,
         base.target_account_c AS target_account,
         base.market_segment_static_c AS market_segment_static,
         base.sdr_c AS sdr,
