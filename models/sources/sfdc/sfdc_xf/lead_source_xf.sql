@@ -77,10 +77,12 @@ FROM {{ source('salesforce', 'lead') }}
         term_lead_creation_c AS term_lead_creation,
         lt_utm_source_c AS source_last_touch,
         lt_utm_campaign_c AS campaign_last_touch,
-        WHEN LOWER (channel_lead_creation_c) = 'predates attribution'
+        CASE 
+            WHEN LOWER (channel_lead_creation_c) = 'predates attribution'
             THEN lt_utm_channel_c
         END AS channel_lead_creation, 
-        WHEN LOWER (medium_lead_creation_c) = 'predates attribution'
+        CASE 
+            WHEN LOWER (medium_lead_creation_c) = 'predates attribution'
             THEN lt_utm_medium_c
         END AS medium_lead_creation, 
         hand_raiser_c AS is_hand_raiser,
@@ -126,7 +128,8 @@ FROM {{ source('salesforce', 'lead') }}
         legitimate_basis_c AS legitimate_basis,
         email_bounced_date,
         email_bounced_date_c AS email_bounced_date_new,
-        WHEN LOWER (source_lead_creation_c) = 'predates attribution'
+        CASE 
+            WHEN LOWER (source_lead_creation_c) = 'predates attribution'
             THEN lt_utm_source_c
         END AS source_lead_creation, 
         campaign_lead_creation_c AS campaign_lead_creation,

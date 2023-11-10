@@ -41,7 +41,8 @@ FROM {{ source('salesforce', 'contact') }}
         base.lt_utm_medium_c AS medium_last_touch,
         base.lt_utm_source_c AS source_last_touch,
         base.lt_utm_campaign_c AS campaign_last_touch,
-        WHEN LOWER (channel_lead_creation_c) = 'predates attribution'
+        CASE 
+            WHEN LOWER (channel_lead_creation_c) = 'predates attribution'
             THEN lt_utm_channel_c
         END AS channel_lead_creation,
         base.campaign_lead_creation_c AS campaign_lead_creation,
@@ -83,10 +84,12 @@ FROM {{ source('salesforce', 'contact') }}
         base.ft_utm_source_c AS source_first_touch,
         base.lead_id_converted_from_c AS lead_id_converted_from,
         base.was_a_handraiser_lead_c AS was_a_handraiser_lead,
-        WHEN LOWER (medium_lead_creation_c) = 'predates attribution'
+        CASE 
+            WHEN LOWER (medium_lead_creation_c) = 'predates attribution'
             THEN lt_utm_medium_c
         END AS medium_lead_creation, 
-        WHEN LOWER (source_lead_creation_c) = 'predates attribution'
+        CASE   
+            WHEN LOWER (source_lead_creation_c) = 'predates attribution'
             THEN lt_utm_source_c
         END AS source_lead_creation,
         base.form_consent_opt_in_c AS form_consent_opt_in,
