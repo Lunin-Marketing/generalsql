@@ -80,10 +80,12 @@ FROM {{ source('salesforce', 'lead') }}
         CASE 
             WHEN LOWER (channel_lead_creation_c) = 'predates attribution'
             THEN lt_utm_channel_c
+            ELSE channel_lead_creation_c
         END AS channel_lead_creation, 
         CASE 
             WHEN LOWER (medium_lead_creation_c) = 'predates attribution'
             THEN lt_utm_medium_c
+            ELSE medium_lead_creation_c
         END AS medium_lead_creation, 
         hand_raiser_c AS is_hand_raiser,
         ft_subchannel_c AS subchannel_first_touch,
@@ -131,6 +133,7 @@ FROM {{ source('salesforce', 'lead') }}
         CASE 
             WHEN LOWER (source_lead_creation_c) = 'predates attribution'
             THEN lt_utm_source_c
+            ELSE source_lead_creation_c
         END AS source_lead_creation, 
         campaign_lead_creation_c AS campaign_lead_creation,
         firmographic_demographic_lead_score_c AS firmographic_demographic_lead_score,
